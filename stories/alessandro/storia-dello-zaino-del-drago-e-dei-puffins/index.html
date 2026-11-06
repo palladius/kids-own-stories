@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Storia dello Zaino Magico e dei Puffins - Alessandro C.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff5e36;
+      --gold: #ffb703;
+      --gem-purple: #7209b7;
+      --bg-dark: #0f1423;
+      --card-bg: #1a2238;
+      --text-light: #f8f9fa;
+      --puffin-orange: #fb8500;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at top, #1a2238 0%, #0d1117 100%);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      color: #000;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(255, 94, 54, 0.4);
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(255, 183, 3, 0.3);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .author-tag {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .author-tag span {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    /* AUDIO PLAYER BOX */
+    .audio-player-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid var(--gold);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(255, 183, 3, 0.2);
+      text-align: center;
+    }
+
+    .audio-player-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .audio-player-card p {
+      font-size: 1rem;
+      color: #94a3b8;
+      margin-bottom: 15px;
+    }
+
+    .audio-player-card audio {
+      width: 100%;
+      max-width: 600px;
+      outline: none;
+      border-radius: 30px;
+    }
+
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(255, 183, 3, 0.15);
+    }
+
+    .card-img-wrap {
+      width: 100%;
+      max-height: 480px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .story-card:hover .card-img-wrap img {
+      transform: scale(1.02);
+    }
+
+    .card-content {
+      padding: 28px 32px;
+    }
+
+    .chapter-label {
+      color: var(--gold);
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .dialogue-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--puffin-orange);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      margin: 16px 0;
+      font-style: italic;
+    }
+
+    .dialogue-box .speaker {
+      font-weight: 700;
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .quote-box {
+      background: linear-gradient(135deg, #2b1055, #7597de);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 40px 0;
+      box-shadow: 0 8px 25px rgba(114, 9, 183, 0.3);
+    }
+
+    .quote-box h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.9rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .quote-box p {
+      font-size: 1.25rem;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .video-section {
+      background: #141c2e;
+      border: 2px dashed var(--gold);
+      border-radius: 24px;
+      padding: 35px 25px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .video-section h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.7rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer strong {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">✨ Kids' Own Stories ✨</div>
+      <h1>La Storia dello Zaino Magico,<br>del Drago e... dei Puffins!</h1>
+      <div class="author-tag">Ideata e raccontata a voce da <span>Alessandro C.</span> (8 anni) con papà <span>Riccardo</span></div>
+    </header>
+
+    <!-- BOX AUDIO ORIGINALE -->
+    <div class="audio-player-card">
+      <h3>🎙️ La Registrazione Originale di Alessandro</h3>
+      <p>Ascolta la viva voce di Ale che racconta la storia al microfono!</p>
+      <audio controls>
+        <source src="audio_originale.mp3" type="audio/mpeg">
+        <source src="audio_originale.ogg" type="audio/ogg">
+        Il tuo browser non supporta il tag audio.
+      </audio>
+    </div>
+
+    <!-- CAPITOLO 1 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena1_banco_porta.jpg" alt="Zaino e la porta magica sul banco">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Capitolo 1</div>
+        <h2>La Chiave e la Porta sul Banco</h2>
+        <p>C’era una volta un ragazzo che trovò uno strano zaino abbandonato. Dentro lo zaino, tra tasche segrete, c’era una chiave dorata e intarsiata con simboli misteriosi.</p>
+        <p>Il ragazzo provò tutte le serrature possibili, ma non trovò nessuna porta in cui farla entrare. Finché, il giorno dopo a scuola, durante la pausa... apparve qualcosa di incredibile: <strong>proprio sopra la superficie di legno del suo banco, era spuntata una porticina magica luminosa!</strong></p>
+      </div>
+    </article>
+
+    <!-- CAPITOLO 2 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena2_mondo_gemme.jpg" alt="Il Regno delle Gemme">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Capitolo 2</div>
+        <h2>Il Mondo Scintillante dei Draghi</h2>
+        <p>Il ragazzo infilò la chiave magica nella toppa, la girò con un clic sonoro e attraversò la porta... ritrovandosi catapultato in un’altra dimensione: il maestoso <strong>Mondo dei Draghi</strong>!</p>
+        <p>Tutto intorno a lui brillava: le montagne erano fatte di ametiste giganti, i fiumi scorrevano tra zaffiri scintillanti e il suolo era ricoperto da una distesa infinita di smeraldi e rubini fiammeggianti. Sopraffatto dalla meraviglia, il ragazzo cominciò a riempirsi le tasche di gemme preziose!</p>
+      </div>
+    </article>
+
+    <!-- CAPITOLO 3 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena3_drago_fuoco.jpg" alt="Il Drago Guardiano e la Fiammata">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Capitolo 3</div>
+        <h2>"Ora sono mie!" – La Fiammata del Drago</h2>
+        <p>All'improvviso le caverne tremarono. Dalle ombre dorate emerse un drago colossale, con scaglie di fuoco e occhi ardenti. Con una voce profonda tuonò:</p>
+        <div class="dialogue-box">
+          <span class="speaker">🐉 Il Grande Drago:</span>
+          «No! Tu non puoi prenderle! Quelle gemme sono mie!»
+        </div>
+        <p>Ma il ragazzo non si fece spaventare e ribatté con fierezza:</p>
+        <div class="dialogue-box">
+          <span class="speaker">🧒 Il Ragazzo:</span>
+          «No! Ora sono mie!»
+        </div>
+        <p>Il drago spalancò le fauci ed emanò una fiammata gigante: <em>FWOOOOSH!</em> Il ragazzo fu fritto in un secondo in stile cartone animato e mangiato in un sol boccone! Il drago si riprese le sue preziose gemme, raccolse la chiave magica e spiegò le ali verso una nuova meta.</p>
+      </div>
+    </article>
+
+    <!-- CAPITOLO 4 (IL GRANDE TWIST) -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena4_drago_e_puffins.jpg" alt="Il Drago che vola con i Puffins">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Capitolo 4 • Il Colpo di Scena</div>
+        <h2>Gli Amici più Inaspettati: I PUFFINS!</h2>
+        <p>Dove andò il drago con la sua chiave? Non in una terra spaventosa, ma volò dritto verso un mondo celestiale fatto di torri d’oro e isole di cristallo galleggiante nel cielo.</p>
+        <p>E chi lo stava aspettando a braccia aperte? Altri draghi feroci? <strong>No! Erano PUFFINS! Pulcinelle di mare!</strong></p>
+        <div class="dialogue-box">
+          <span class="speaker">🐧 Il Drago & le Pulcinelle:</span>
+          Perché il leggendario drago custode delle gemme... in realtà ha un cuore grandissimo ed è il miglior amico di un allegro stormo di pulcinelle di mare con gli occhialoni da volo!
+        </div>
+      </div>
+    </article>
+
+    <div class="quote-box">
+      <h3>«Erano draghi i suoi amici? No, erano PUFFINS!»</h3>
+      <p>— Alessandro C., Genio della Narrativa</p>
+    </div>
+
+    <!-- SEZIONE VIDEO GEMINI OMNI -->
+    <section class="video-section">
+      <h3>🎬 Studio di Animazione: Gemini Omni Flash</h3>
+      <p style="margin-bottom: 20px;">Ecco il filmato animato ufficiale generato direttamente con <strong>Gemini Omni Flash</strong> partendo dall'illustrazione del gran finale!</p>
+      <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.5); max-width: 800px; margin: 0 auto;">
+        <video controls autoplay loop muted style="width: 100%; display: block; border-radius: 16px;">
+          <source src="video_drago_puffins.mp4" type="video/mp4">
+          Il tuo browser non supporta il tag video.
+        </video>
+      </div>
+      <div style="margin-top: 15px; font-weight: bold; color: #38bdf8;">
+        Modello: <code>gemini-omni-flash-preview</code> • Risoluzione 720p HD • Volo con i Puffins
+      </div>
+    </section>
+
+    <footer>
+      Generato con cura da <strong>Ermete Bottazzi</strong> 🚛 per <strong>Alessandro & Riccardo</strong> • Zurigo, 2026<br>
+      Progetto <strong>Kids' Own Stories</strong>
+    </footer>
+  </div>
+
+</body>
+</html>

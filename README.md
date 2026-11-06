@@ -29,10 +29,10 @@ kids-own-stories/
 
 ---
 
-## 📖 Indice delle Storie (WIP)
+## 📖 Indice delle Storie
 
 ### 👦 Alessandro (Ale)
-* *(In arrivo: 2 storie microfonate pronte da sbobinare!)*
+* 🎒🐉🐧 **[La Storia dello Zaino Magico, del Drago e dei Puffins](stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/)** *(6 Novembre 2026)* — Storia completa con registrazione audio originale, sbobinatura integrale, 4 illustrazioni 3D e video animato con Gemini Omni Flash!
 
 ### 🧒 Sebastian (Seby)
 * *(In arrivo)*
