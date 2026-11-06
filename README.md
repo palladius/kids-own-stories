@@ -10,6 +10,8 @@ Questo repository raccoglie i racconti originali creati dai bimbi — registrati
 
 ```text
 kids-own-stories/
+├── GEMINI.md          # 🤖 Istruzioni operative per AI (workflow + schema YAML)
+├── stories.yaml       # 📋 Catalogo deterministico delle storie, stato e asset
 ├── stories/
 │   ├── alessandro/    # 👦 Le storie di Alessandro (Primary 3)
 │   └── sebastian/     # 🧒 Le storie di Sebastian / Seby (Primary 1)

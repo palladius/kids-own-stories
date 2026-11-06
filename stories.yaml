@@ -1,0 +1,93 @@
+# ==============================================================================
+# 📚 KIDS' OWN STORIES — Registro Deterministico delle Storie (stories.yaml)
+# ==============================================================================
+# Questo file è la Single Source of Truth (SSOT) per:
+# 1. Agenti AI (Gemini, Antigravity, Ermete/Hermes) per verificare lo stato
+#    di completamento di ogni storia ("C'è tutto? Manca qualcosa?").
+# 2. La Web App / Libro Multi-pagina interattivo per caricare dinamicamente
+#    storie, audio, capitoli, illustrazioni e video.
+# ==============================================================================
+
+schema_version: "1.0"
+
+authors:
+  alessandro:
+    id: alessandro
+    name: Alessandro
+    nicknames: ["Ale"]
+    birth_year: 2018
+    emoji: "👦"
+    folder: stories/alessandro
+    audio_folder: audio/alessandro
+  sebastian:
+    id: sebastian
+    name: Sebastian
+    nicknames: ["Seby", "Sebi"]
+    birth_year: 2020
+    emoji: "🧒"
+    folder: stories/sebastian
+    audio_folder: audio/sebastian
+
+# Lifecycle status valori possibili:
+# - idea_only     : Solo annotazione testuale o idea appuntata, manca audio
+# - raw_audio     : Audio grezzo registrato, da sbobinare
+# - transcribed   : Sbobinatura completata, mancano illustrazioni/video
+# - illustrated   : Illustrazioni pronte, manca video o pagina web
+# - complete      : Tutti gli asset presenti (audio, sbobinatura, immagini, video, HTML)
+
+stories:
+  - id: 2026-11-06-storia-dello-zaino-del-drago-e-dei-puffins
+    slug: storia-dello-zaino-del-drago-e-dei-puffins
+    title: "La Storia dello Zaino Magico, del Drago e dei Puffins"
+    emoji: "🎒🐉🐧"
+    author: alessandro
+    author_age_at_recording: 8
+    co_authors: ["papà Riccardo"]
+    created_at: "2026-11-06"
+    location: "Zurigo"
+    language: "it"
+    folder: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins
+
+    # Stato complessivo e checklist deterministica ("C'è tutto? Manca qualcosa?")
+    status: complete
+    checklist:
+      raw_audio: true          # Registrazione vocale del bimbo presente
+      audio_converted: true    # Disponibile sia in .mp3 che .ogg
+      transcription: true      # Sbobinatura fedele parola-per-parola
+      chapters_text: true      # Racconto strutturato in capitoli/pagine
+      illustrations: true      # Tutte le scene hanno la propria illustrazione
+      video: true              # Video animato AI generato
+      web_page: true           # index.html autonomo generato
+    missing_assets: []         # Lista vuota = storia 100% completa!
+
+    # Percorsi agli asset (relativi alla root del repository)
+    assets:
+      archive_audio:
+        mp3: audio/alessandro/2026-11-06-storia-zaino-drago-puffins.mp3
+        ogg: audio/alessandro/2026-11-06-storia-zaino-drago-puffins.ogg
+      story_audio:
+        mp3: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.mp3
+        ogg: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.ogg
+      readme: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/README.md
+      web_page: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/index.html
+      video:
+        file: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/video_drago_puffins.mp4
+        model: gemini-omni-flash-preview
+        resolution: "1280x720"
+      pages:
+        - page: 1
+          title: "La Chiave nello Zaino e la Porta sul Banco"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena1_banco_porta.jpg
+          summary: "Un ragazzo trova una chiave magica nello zaino e il giorno dopo scopre una porticina luminosa sul suo banco di scuola."
+        - page: 2
+          title: "Nel Mondo Scintillante dei Draghi"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena2_mondo_gemme.jpg
+          summary: "Attraversata la porta, entra nel Mondo dei Draghi fatto di gemme preziose e inizia a riempirsi le tasche."
+        - page: 3
+          title: "\"No, sono mie!\" — Il Furore del Grande Drago"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena3_drago_fuoco.jpg
+          summary: "Il grande drago reclama le sue gemme, arrostisce il ragazzo con una fiammata in stile cartoon, riprende gemme e chiave e vola via."
+        - page: 4
+          title: "Il Grande Twist — I Migliori Amici del Drago sono i Puffins!"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena4_drago_e_puffins.jpg
+          summary: "Il drago usa la chiave per raggiungere un mondo d'oro e cristalli dove ritrova i suoi migliori amici: le pulcinelle di mare (Puffins)!"
