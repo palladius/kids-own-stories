@@ -35,6 +35,7 @@ kids-own-stories/
 
 ### 👦 Alessandro (Ale)
 * 🎒🐉🐧 **[La Storia dello Zaino Magico, del Drago e dei Puffins](stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/)** *(6 Novembre 2026)* — Storia completa con registrazione audio originale, sbobinatura integrale, 4 illustrazioni 3D e video animato con Gemini Omni Flash!
+* 💀🧟☕ **[La Famiglia di Scheletri e gli Zombie Assetati di Tè](stories/alessandro/storia-scheletri-zombie-te/)** *(4 Novembre 2026)* — Alessandro ci racconta di zombies gentili che amano il tè servito da una famiglia di scheletri!
 
 ### 🧒 Sebastian (Seby)
 * *(In arrivo)*
