@@ -91,3 +91,42 @@ stories:
           title: "Il Grande Twist — I Migliori Amici del Drago sono i Puffins!"
           image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena4_drago_e_puffins.jpg
           summary: "Il drago usa la chiave per raggiungere un mondo d'oro e cristalli dove ritrova i suoi migliori amici: le pulcinelle di mare (Puffins)!"
+
+  - id: 2026-11-04-storia-scheletri-zombie-te
+    slug: storia-scheletri-zombie-te
+    title: "La Famiglia di Scheletri e gli Zombie Assetati di Tè"
+    emoji: "💀🧟☕"
+    author: alessandro
+    author_age_at_recording: 8
+    co_authors: ["papà Riccardo"]
+    created_at: "2026-11-04"
+    location: "Zurigo"
+    language: "it"
+    folder: stories/alessandro/storia-scheletri-zombie-te
+
+    # Stato complessivo e checklist deterministica
+    status: illustrated
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      video: false
+      web_page: false
+    missing_assets: ["video", "web_page"]
+
+    # Percorsi agli asset
+    assets:
+      archive_audio:
+        mp3: audio/alessandro/2026-11-04-storia-scheletri-zombie-te.mp3
+        ogg: audio/alessandro/2026-11-04-storia-scheletri-zombie-te.ogg
+      story_audio:
+        mp3: stories/alessandro/storia-scheletri-zombie-te/audio_originale.mp3
+        ogg: stories/alessandro/storia-scheletri-zombie-te/audio_originale.ogg
+      readme: stories/alessandro/storia-scheletri-zombie-te/README.md
+      pages:
+        - page: 1
+          title: "Scheletri e Zombie a Merenda"
+          image: stories/alessandro/storia-scheletri-zombie-te/scena1_scheletri_te.png
+          summary: "Una famiglia di scheletri serve gentilmente tazze di tè fumante a un gruppo di zombie assetati in un giardino medievale."
