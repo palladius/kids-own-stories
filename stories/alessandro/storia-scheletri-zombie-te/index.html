@@ -368,5 +368,14 @@
     </footer>
   </div>
 
+  <script>
+    document.querySelectorAll('audio').forEach((el) => {
+      el.preservesPitch = true;
+      el.defaultPlaybackRate = 1.1;
+      el.playbackRate = 1.1;
+      el.addEventListener('loadedmetadata', () => { el.playbackRate = 1.1; });
+      el.addEventListener('play', () => { if (el.playbackRate === 1) el.playbackRate = 1.1; });
+    });
+  </script>
 </body>
 </html>

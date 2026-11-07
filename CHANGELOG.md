@@ -2,6 +2,17 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.6.2] - 2026-11-07
+
+### Fixed & Changed
+- 🛠️ **Fix Definitivo Overlap / Aliasing tra Testo e Bottoni di Navigazione Pagina (`index.html`)**:
+  - Aggiunto `grid-template-rows: minmax(0, 1fr)` su `.open-book`, sostituito il wrapper flessibile con `.book-text-main` (`min-height: 0; overflow: hidden`) e reso `.book-prose` un contenitore scrollabile isolato (`min-height: 0; overflow-y: auto; justify-content: safe center`) sopra un `.book-nav-footer` opaco (`background: var(--paper-bg); flex-shrink: 0; z-index: 10`), rendendo fisicamente impossibile qualsiasi sovrapposizione tra i paragrafi e i tasti `‹ Indietro` / `Avanti ›`.
+  - Eliminato il vuoto scuro sopra il libro (`max-height: 100%` con layout `body` flex column `100dvh`) e reso responsiva la topbar sotto `1380px` così i tab delle 3 storie non vengono mai tagliati o schiacciati.
+- 🔘 **Dock con Bottoni ENORMI Sotto al Libro (`index.html`)**:
+  - Trasformato `footer.micro-footer` in una barra ad alta visibilità appena sotto il libro con 3 grandi pulsanti pillola: **`🔄 La storia non mi piace, rigenerala!`**, **`🎙️ + Racconta una Nuova Storia`** e **`📝 Audio Originale & Sbobinatura di Sebastian/Alessandro`**.
+- ⏩ **Velocità Voce di Default aumentata del `+10%` (`1.1x`) su Tutte le Voci (`index.html`, `stories/*/*/index.html`)**:
+  - Impostato `currentPlaybackSpeed = 1.1` (`1.1x (+10%)` selezionato di default in `#playbackSpeedSelect`, con opzioni `0.5x`, `0.75x`, `0.9x`, `1.0x`, `1.1x (+10%)`, `1.2x`, `1.25x`, `1.5x`, `1.75x`, `2.0x`) con `preservesPitch = true` su `#narratorAudio`, `#hoverTitleAudio`, sintesi vocale live e pagine singole delle storie.
+
 ## [0.6.1] - 2026-11-07
 
 ### Fixed
