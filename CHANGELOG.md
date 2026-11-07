@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.7.1] - 2026-11-07
+
+### Added & Changed
+- 🍿 **Integrazione "Sala Cinema 40s" e Storyboard Interattivo a 4 Atti nel Libro 3D (`index.html`)**:
+  - **Pulsante Gigante `🎬 Guarda il Film (40s)` nel Dock sotto al Libro**: permette di saltare da qualsiasi pagina direttamente alla pagina del film animato da 40 secondi con **audio italiano attivo** (o di aprire la **Sala Cinema a Schermo Intero** se si è già sulla pagina del film).
+  - **Pillola `🎬 Film 40s` nei Indicatori Pagina del Libro (`.book-dots`)**: l'ultima pagina di ogni storia è ora segnalata da un badge dedicato `🎬 Film 40s` cliccabile con un tocco.
+  - **Pagina Destra del Film con Storyboard Interattivo dei 4 Atti (`0:00`, `0:10`, `0:20`, `0:30`)**: quando si sfoglia fino alla pagina del video nel libro 3D, la pagina destra mostra il programma interattivo dei **4 atti da 10 secondi** con miniatura, orario e titolo; cliccando su un atto il video salta istantaneamente a `0s`, `10s`, `20s` o `30s` con audio attivo, evidenziando in tempo reale l'atto in riproduzione (`timeupdate`).
+  - **Modal `🍿 Sala Cinema (Schermo Intero)` (`#cinemaDialog`)**: teatro 16:9 HD dedicato con selettore rapido dei 4 atti e pausa automatica della voce narrante Karaoke (`#narratorAudio`) per evitare sovrapposizioni audio.
+  - **Pulsante diretto `🎬 Film Completo (40s)` anche nelle Card della Vetrina (`📚 Tutte`)** e cache-busting aggiornato a `?v=0.7.1`.
+
 ## [0.7.0] - 2026-11-07
 
 ### Added & Changed
