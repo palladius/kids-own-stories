@@ -1227,9 +1227,12 @@
       </div>
     </div>
 
-    <div class="narrator-bar" id="narratorBar" hidden title="Voce narrante femminile calma (Gemini Aoede) con Karaoke e pianoforte">
+    <div class="narrator-bar" id="narratorBar" hidden title="Voce narrante femminile calma con Karaoke e moltiplicatore velocità">
       <span class="narrator-label" id="narratorLabel">🎤 Karaoke + Pianino (IT):</span>
       <audio id="narratorAudio" controls preload="metadata"></audio>
+      <button type="button" id="browserTtsBtn" class="vote-pill-btn" onclick="toggleBrowserKaraokeSpeech()" hidden>
+        ▶️ Karaoke Live
+      </button>
       <select id="playbackSpeedSelect" class="speed-select" onchange="setPlaybackSpeed(this.value)" aria-label="Velocità di riproduzione voce" title="Velocità voce narrante (0.5x - 2x)">
         <option value="0.5">0.5x</option>
         <option value="0.75">0.75x</option>
@@ -1389,10 +1392,15 @@
       </div>
       <div id="unlockLangsBox" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.4);border-radius:14px;padding:14px;text-align:center;" hidden>
         <p style="font-size:0.9rem;color:#6ee7b7;margin-bottom:10px;">
-          🎉 <strong>Soglia 8.0/10 superata!</strong> Ora puoi richiedere la generazione degli audiolibri Karaoke in <strong>🇫🇷 Francese, 🇩🇪 Tedesco e 🇧🇷 Portoghese Brasiliano</strong>!
+          🎉 <strong>Soglia 8.0/10 superata!</strong> Le traduzioni e il Karaoke Live in <strong>🇫🇷 Francese, 🇩🇪 Tedesco e 🇧🇷 Portoghese (BR)</strong> sono ora <strong>sbloccati</strong> nella barra in alto!
         </p>
-        <button type="button" class="page-turn-btn primary" onclick="requestMultilangGenerationIssue()">
-          🌍 Sblocca e Genera Audio + Karaoke FR / DE / PT-BR
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px;">
+          <button type="button" class="page-turn-btn primary" onclick="document.getElementById('voteStoryDialog').close(); setLanguage('fr');">🇫🇷 Leggi in Français</button>
+          <button type="button" class="page-turn-btn primary" onclick="document.getElementById('voteStoryDialog').close(); setLanguage('de');">🇩🇪 Leggi in Deutsch</button>
+          <button type="button" class="page-turn-btn primary" onclick="document.getElementById('voteStoryDialog').close(); setLanguage('pt');">🇧🇷 Leggi in Português (BR)</button>
+        </div>
+        <button type="button" class="page-turn-btn" onclick="requestMultilangGenerationIssue()">
+          🌍 Richiedi anche Audiolibro Studio Aoede + Pianino (GitHub Issue)
         </button>
       </div>
     </div>
@@ -1401,8 +1409,23 @@
   <script>
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
-    let currentLang = 'it'; // 'it' or 'en'
+    let currentLang = 'it'; // 'it' | 'en' | 'fr' | 'de' | 'pt'
+    let pendingLangCode = null;
     const pageIndexBySlug = {};
+
+    function getLocalizedField(obj, baseField, lang = currentLang) {
+      if (!obj) return '';
+      if (lang === 'it') return obj[baseField] || obj[`${baseField}_it`] || '';
+      return obj[`${baseField}_${lang}`] || obj[`${baseField}_en`] || obj[baseField] || '';
+    }
+
+    function getLocalizedParagraphs(pageObj, lang = currentLang) {
+      if (!pageObj) return [];
+      return pageObj[`paragraphs_${lang}`]
+        || pageObj.paragraphs_en
+        || pageObj.paragraphs_it
+        || (pageObj.summary ? [pageObj.summary] : []);
+    }
 
     async function initApp() {
       try {
@@ -1445,6 +1468,8 @@
     let karaokeRafId = null;
     let lastAutoScrolledWordEl = null;
     let lastManualTurnTimestamp = 0;
+    let browserTtsActive = false;
+    let browserTtsFallbackTimer = null;
 
     async function ensureKaraokeLoaded(story, lang) {
       if (!story) return null;
@@ -1475,9 +1500,18 @@
         hoverAudio.preservesPitch = true;
         hoverAudio.playbackRate = rate;
       }
+      if (browserTtsActive) {
+        startBrowserKaraokeFromPage();
+      }
     }
 
     function seekNarratorToWord(startSec) {
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      const hasStudioAudio = Boolean(story?.assets?.narrated_audio?.[currentLang]);
+      if (!hasStudioAudio) {
+        startBrowserKaraokeFromPage(parseInt(startSec, 10) || 0);
+        return;
+      }
       const narratorAudio = document.getElementById('narratorAudio');
       if (!narratorAudio) return;
       narratorAudio.playbackRate = currentPlaybackSpeed;
@@ -1493,18 +1527,146 @@
         .replace(/>/g, '&gt;');
     }
 
+    let fallbackWordCounter = 0;
     function renderWordsWithKaraoke(fallbackText, alignedWordArray) {
       if (Array.isArray(alignedWordArray) && alignedWordArray.length > 0) {
         return alignedWordArray.map(item =>
           `<span class="k-word" data-start="${item.s}" data-end="${item.e}" onclick="seekNarratorToWord(${item.s})">${escapeHtml(item.w)}</span>`
         ).join(' ');
       }
-      return escapeHtml(fallbackText || '');
+      const tokens = String(fallbackText || '').trim().split(/\s+/).filter(Boolean);
+      return tokens.map(tok => {
+        const wIdx = fallbackWordCounter++;
+        return `<span class="k-word" data-word-idx="${wIdx}" onclick="seekNarratorToWord(${wIdx})">${escapeHtml(tok)}</span>`;
+      }).join(' ');
+    }
+
+    function autoScrollActiveWordSpan(activeSpan) {
+      if (!activeSpan || activeSpan === lastAutoScrolledWordEl) return;
+      lastAutoScrolledWordEl = activeSpan;
+      const rightEl = document.getElementById('bookPageRight');
+      const proseEl = rightEl?.querySelector('.book-prose');
+      if (proseEl && proseEl.scrollHeight > proseEl.clientHeight + 8) {
+        const proseRect = proseEl.getBoundingClientRect();
+        const wordRect = activeSpan.getBoundingClientRect();
+        const relTop = wordRect.top - proseRect.top;
+        const lowerBound = proseRect.height * 0.26;
+        const upperBound = proseRect.height * 0.66;
+        if (relTop < lowerBound || relTop > upperBound) {
+          const targetScroll = proseEl.scrollTop + relTop - (proseRect.height * 0.42);
+          proseEl.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
+        }
+      }
+    }
+
+    function stopBrowserKaraokeSpeech() {
+      browserTtsActive = false;
+      if (browserTtsFallbackTimer) {
+        clearInterval(browserTtsFallbackTimer);
+        browserTtsFallbackTimer = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      const btn = document.getElementById('browserTtsBtn');
+      if (btn) {
+        btn.textContent = `▶️ Karaoke Live (${currentLang.toUpperCase()})`;
+      }
+    }
+
+    function toggleBrowserKaraokeSpeech() {
+      if (browserTtsActive) {
+        stopBrowserKaraokeSpeech();
+      } else {
+        startBrowserKaraokeFromPage(0);
+      }
+    }
+
+    function startBrowserKaraokeFromPage(startWordIdx = 0) {
+      if (!('speechSynthesis' in window)) return;
+      stopBrowserKaraokeSpeech();
+      const rightEl = document.getElementById('bookPageRight');
+      if (!rightEl) return;
+      const wordSpans = Array.from(rightEl.querySelectorAll('.k-word'));
+      if (!wordSpans.length) return;
+
+      const clampedStart = Math.max(0, Math.min(startWordIdx, wordSpans.length - 1));
+      const sliceSpans = wordSpans.slice(clampedStart);
+      const charOffsets = [];
+      let runningLen = 0;
+      const textParts = sliceSpans.map(sp => {
+        const w = sp.textContent || '';
+        charOffsets.push({ start: runningLen, end: runningLen + w.length, span: sp });
+        runningLen += w.length + 1;
+        return w;
+      });
+      const utteranceText = textParts.join(' ');
+      const utter = new SpeechSynthesisUtterance(utteranceText);
+      const bcpMap = { it: 'it-IT', en: 'en-US', fr: 'fr-FR', de: 'de-DE', pt: 'pt-BR' };
+      utter.lang = bcpMap[currentLang] || 'en-US';
+      utter.rate = Math.max(0.5, Math.min(2.0, currentPlaybackSpeed));
+
+      const highlightByIndex = (localIdx) => {
+        wordSpans.forEach((sp, idx) => {
+          if (idx < clampedStart + localIdx) {
+            sp.classList.remove('active');
+            sp.classList.add('spoken');
+          } else if (idx === clampedStart + localIdx) {
+            sp.classList.add('active');
+            sp.classList.remove('spoken');
+            autoScrollActiveWordSpan(sp);
+          } else {
+            sp.classList.remove('active', 'spoken');
+          }
+        });
+      };
+
+      let boundaryFired = false;
+      utter.onboundary = (ev) => {
+        if (typeof ev.charIndex === 'number') {
+          boundaryFired = true;
+          const foundIdx = charOffsets.findIndex(o => ev.charIndex >= o.start && ev.charIndex <= o.end + 1);
+          if (foundIdx !== -1) highlightByIndex(foundIdx);
+        }
+      };
+
+      let approxIdx = 0;
+      const msPerWord = Math.max(120, Math.round(320 / utter.rate));
+      browserTtsFallbackTimer = setInterval(() => {
+        if (!browserTtsActive) return;
+        if (!boundaryFired && approxIdx < sliceSpans.length) {
+          highlightByIndex(approxIdx++);
+        }
+      }, msPerWord);
+
+      utter.onend = () => {
+        if (!browserTtsActive) return;
+        stopBrowserKaraokeSpeech();
+        const story = (catalog.stories || []).find(s => s.slug === activeTab);
+        if (!story) return;
+        const slides = getSlidesForStory(story);
+        const cur = pageIndexBySlug[story.slug] || 0;
+        if (cur + 1 < slides.length) {
+          playPageFlipRustle('next');
+          pageIndexBySlug[story.slug] = cur + 1;
+          renderActiveBook('next').then(() => {
+            setTimeout(() => startBrowserKaraokeFromPage(0), 380);
+          });
+        }
+      };
+
+      browserTtsActive = true;
+      const btn = document.getElementById('browserTtsBtn');
+      if (btn) {
+        btn.textContent = `⏹️ Stop Karaoke (${currentLang.toUpperCase()})`;
+      }
+      highlightByIndex(0);
+      window.speechSynthesis.speak(utter);
     }
 
     function updateKaraokeHighlight() {
       const narratorAudio = document.getElementById('narratorAudio');
-      if (!narratorAudio) return;
+      if (!narratorAudio || narratorAudio.hidden) return;
       const t = narratorAudio.currentTime;
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
@@ -1526,7 +1688,7 @@
       // 2. Highlight active word (.k-word.active) and spoken words (.k-word.spoken)
       const rightEl = document.getElementById('bookPageRight');
       if (!rightEl) return;
-      const wordSpans = rightEl.querySelectorAll('.k-word');
+      const wordSpans = rightEl.querySelectorAll('.k-word[data-start]');
       let activeSpan = null;
 
       for (let i = 0; i < wordSpans.length; i++) {
@@ -1546,20 +1708,8 @@
       }
 
       // 3. Auto-Scroll inside .book-prose so the spoken line stays comfortably centered
-      if (activeSpan && activeSpan !== lastAutoScrolledWordEl) {
-        lastAutoScrolledWordEl = activeSpan;
-        const proseEl = rightEl.querySelector('.book-prose');
-        if (proseEl && proseEl.scrollHeight > proseEl.clientHeight + 8) {
-          const proseRect = proseEl.getBoundingClientRect();
-          const wordRect = activeSpan.getBoundingClientRect();
-          const relTop = wordRect.top - proseRect.top;
-          const lowerBound = proseRect.height * 0.26;
-          const upperBound = proseRect.height * 0.66;
-          if (relTop < lowerBound || relTop > upperBound) {
-            const targetScroll = proseEl.scrollTop + relTop - (proseRect.height * 0.42);
-            proseEl.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
-          }
-        }
+      if (activeSpan) {
+        autoScrollActiveWordSpan(activeSpan);
       }
     }
 
@@ -1620,6 +1770,10 @@
         if (btn) {
           const flag = code === 'Fr' ? '🇫🇷' : (code === 'De' ? '🇩🇪' : '🇧🇷');
           btn.textContent = unlocked ? `${flag} ${code.toUpperCase()}` : `${flag}🔒`;
+          btn.classList.toggle('locked', !unlocked);
+          btn.title = unlocked
+            ? `Leggi e ascolta Karaoke in ${code.toUpperCase()} (Sbloccato con voto ${info.score}/10!)`
+            : 'Sbloccabile con voto >= 8/10';
         }
       });
     }
@@ -1632,7 +1786,7 @@
       const prefix = preselectedLangLabel
         ? `Hai cliccato su <strong>${preselectedLangLabel}</strong>! `
         : '';
-      descEl.innerHTML = `${prefix}Per non sprecare token AI (🌱 <em>Carlessian Compute Proportionality</em>), generiamo le traduzioni e la voce narrante Karaoke in <strong>🇫🇷 Francese, 🇩🇪 Tedesco e 🇧🇷 Portoghese (BR)</strong> solo per le storie che superano il voto <strong>${info.threshold}/10</strong>.<br><br>Storia attuale: <strong>${story.emoji || '📖'} ${story.title}</strong> • Media attuale: <strong>⭐ ${info.score}/10</strong> (${info.votes} voti).`;
+      descEl.innerHTML = `${prefix}Per non sprecare token AI (🌱 <em>Carlessian Compute Proportionality</em>), sblocchiamo le traduzioni e la voce narrante Karaoke in <strong>🇫🇷 Francese, 🇩🇪 Tedesco e 🇧🇷 Portoghese (BR)</strong> solo per le storie che superano il voto <strong>${info.threshold}/10</strong>.<br><br>Storia attuale: <strong>${story.emoji || '📖'} ${story.title}</strong> • Media attuale: <strong>⭐ ${info.score}/10</strong> (${info.votes} voti).`;
 
       const row = document.getElementById('voteButtonsRow');
       row.innerHTML = Array.from({ length: 10 }, (_, i) => i + 1).map(v => {
@@ -1645,7 +1799,8 @@
       if (info.userVote) {
         document.getElementById('voteResultBanner').textContent = `Hai votato ${info.userVote}/10! Nuova media: ⭐ ${info.score}/10`;
       }
-      document.getElementById('voteStoryDialog').showModal();
+      const dlg = document.getElementById('voteStoryDialog');
+      if (!dlg.open) dlg.showModal();
     }
 
     function castStoryVote(voteVal) {
@@ -1656,10 +1811,23 @@
         votedAt: new Date().toISOString()
       }));
       updateTopVoteBadge();
+      const info = getStoryRatingInfo(story);
+      if (info.score >= info.threshold && pendingLangCode) {
+        const targetLang = pendingLangCode;
+        pendingLangCode = null;
+        setLanguage(targetLang);
+      }
       openVoteModal();
     }
 
     function handleLockedLang(langCode, langLabel) {
+      const story = (catalog.stories || []).find(s => s.slug === activeTab) || catalog.stories?.[0];
+      const info = getStoryRatingInfo(story);
+      if (info.score >= info.threshold) {
+        setLanguage(langCode);
+        return;
+      }
+      pendingLangCode = langCode;
       openVoteModal(langLabel);
     }
 
@@ -1681,13 +1849,20 @@
     }
 
     function setLanguage(lang) {
+      stopBrowserKaraokeSpeech();
+      const narratorAudio = document.getElementById('narratorAudio');
+      if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
       currentLang = lang;
-      document.getElementById('langBtnIt').classList.toggle('active', lang === 'it');
-      document.getElementById('langBtnEn').classList.toggle('active', lang === 'en');
+      const map = { it: 'langBtnIt', en: 'langBtnEn', fr: 'langBtnFr', de: 'langBtnDe', pt: 'langBtnPt' };
+      Object.entries(map).forEach(([code, btnId]) => {
+        const el = document.getElementById(btnId);
+        if (el) el.classList.toggle('active', code === lang);
+      });
       renderAll();
     }
 
     function selectTab(tabSlug) {
+      stopBrowserKaraokeSpeech();
       const narratorAudio = document.getElementById('narratorAudio');
       if (narratorAudio) narratorAudio.pause();
 
@@ -1721,7 +1896,8 @@
     function renderTabsStrip() {
       const strip = document.getElementById('tabsStrip');
       const stories = catalog.stories || [];
-      const indiceLabel = currentLang === 'it' ? '📚 Tutte' : '📚 All';
+      const allMap = { it: '📚 Tutte', en: '📚 All', fr: '📚 Toutes', de: '📚 Alle', pt: '📚 Todas' };
+      const indiceLabel = allMap[currentLang] || '📚 All';
 
       const indiceBtn = `
         <button type="button" role="tab" class="tab-pill"
@@ -1732,7 +1908,7 @@
       `;
 
       const storyBtns = stories.map((s, idx) => {
-        const label = currentLang === 'en' ? (s.short_title_en || s.short_title || s.title) : (s.short_title || s.title);
+        const label = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
         return `
           <button type="button" role="tab" class="tab-pill"
             aria-selected="${activeTab === s.slug}"
@@ -1760,9 +1936,9 @@
       const grid = document.getElementById('indexGrid');
       const stories = catalog.stories || [];
       grid.innerHTML = stories.map((s, idx) => {
-        const title = currentLang === 'en' ? (s.title_en || s.title) : s.title;
+        const title = getLocalizedField(s, 'title');
         const pages = s.assets?.pages || [];
-        const firstPara = (currentLang === 'en' ? pages[0]?.paragraphs_en?.[0] : pages[0]?.paragraphs_it?.[0]) || pages[0]?.summary || '';
+        const firstPara = getLocalizedParagraphs(pages[0])[0] || pages[0]?.summary || '';
         const hoverVideo = s.assets?.hover_video || s.assets?.video?.file || '';
         const cta = currentLang === 'it' ? `📖 Sfoglia il Libro (${pages.length} pagine) →` : `📖 Open Book (${pages.length} pages) →`;
         return `
@@ -1803,8 +1979,9 @@
       const narratorAudio = document.getElementById('narratorAudio');
       if (narratorAudio && !narratorAudio.paused) return;
 
-      const titleAudioUrl = story.assets?.title_audio?.[currentLang]
-        || `${story.folder}/title_${currentLang}.mp3`;
+      const audioLang = (currentLang === 'it' || currentLang === 'en') ? currentLang : 'en';
+      const titleAudioUrl = story.assets?.title_audio?.[audioLang]
+        || `${story.folder}/title_${audioLang}.mp3`;
       const hoverAudio = document.getElementById('hoverTitleAudio');
       if (!hoverAudio || !titleAudioUrl) return;
 
@@ -1862,7 +2039,7 @@
         const rect = targetBtn.getBoundingClientRect();
         const clampedLeft = Math.max(170, Math.min(window.innerWidth - 170, rect.left + rect.width / 2));
         popover.style.left = `${clampedLeft}px`;
-        titleEl.textContent = `${story.emoji || '📖'} ${currentLang === 'en' ? (story.short_title_en || story.title_en || story.title) : (story.short_title || story.title)}`;
+        titleEl.textContent = `${story.emoji || '📖'} ${getLocalizedField(story, 'short_title') || getLocalizedField(story, 'title')}`;
 
         if (vid.getAttribute('data-src') !== hoverVideo) {
           vid.setAttribute('data-src', hoverVideo);
@@ -1891,26 +2068,24 @@
         pageNum: i + 1,
         totalPages: pages.length,
         image: p.image,
-        title: currentLang === 'en' ? (p.title_en || p.title) : p.title,
-        paragraphs: currentLang === 'en' ? (p.paragraphs_en || [p.summary]) : (p.paragraphs_it || [p.summary]),
+        title: getLocalizedField(p, 'title'),
+        paragraphs: getLocalizedParagraphs(p),
         isLastPage: (i === pages.length - 1) && !story.assets?.video?.file
       }));
 
       if (story.assets?.video?.file) {
         const lastPage = pages[pages.length - 1] || {};
-        const lastTitle = currentLang === 'en' ? (lastPage.title_en || lastPage.title || '') : (lastPage.title || '');
+        const lastTitle = getLocalizedField(lastPage, 'title');
         slides.push({
           type: 'video',
           pageNum: pages.length + 1,
           totalPages: pages.length + 1,
           video: story.assets.video.file,
           poster: lastPage.image || '',
-          title: currentLang === 'en'
-            ? `🎬 Animated Video: ${lastTitle}`
-            : `🎬 Video Animato: ${lastTitle}`,
-          paragraphs: currentLang === 'en'
-            ? (lastPage.paragraphs_en || [lastPage.summary])
-            : (lastPage.paragraphs_it || [lastPage.summary]),
+          title: currentLang === 'it'
+            ? `🎬 Video Animato: ${lastTitle}`
+            : `🎬 Animated Video: ${lastTitle}`,
+          paragraphs: getLocalizedParagraphs(lastPage),
           isLastPage: true
         });
       }
@@ -1927,12 +2102,17 @@
       // Update topbar narrated audio player for current story & language
       const narratorBar = document.getElementById('narratorBar');
       const narratorAudio = document.getElementById('narratorAudio');
+      const browserTtsBtn = document.getElementById('browserTtsBtn');
       const narratorLabel = document.getElementById('narratorLabel');
       const narratedUrl = story.assets?.narrated_audio?.[currentLang];
 
+      narratorBar.hidden = false;
       if (narratedUrl) {
-        narratorBar.hidden = false;
-        narratorLabel.textContent = currentLang === 'it' ? '🎤 Karaoke + Pianino (IT):' : '🎤 Karaoke + Piano (EN):';
+        narratorAudio.hidden = false;
+        if (browserTtsBtn) browserTtsBtn.hidden = true;
+        narratorLabel.textContent = currentLang === 'it'
+          ? '🎤 Karaoke + Pianino (IT):'
+          : `🎤 Karaoke + Piano (${currentLang.toUpperCase()}):`;
         if (narratorAudio.getAttribute('data-src') !== narratedUrl) {
           narratorAudio.setAttribute('data-src', narratedUrl);
           narratorAudio.src = narratedUrl;
@@ -1940,7 +2120,15 @@
           narratorAudio.playbackRate = currentPlaybackSpeed;
         }
       } else {
-        narratorBar.hidden = true;
+        narratorAudio.pause();
+        narratorAudio.hidden = true;
+        if (browserTtsBtn) {
+          browserTtsBtn.hidden = false;
+          browserTtsBtn.textContent = browserTtsActive
+            ? `⏹️ Stop Karaoke (${currentLang.toUpperCase()})`
+            : `▶️ Karaoke Live (${currentLang.toUpperCase()})`;
+        }
+        narratorLabel.textContent = `🎤 Karaoke (${currentLang.toUpperCase()}):`;
       }
 
       // Update tiny bottom behind-the-scenes button label
@@ -1957,6 +2145,7 @@
       // Match current slide to karaoke page timings (for video slide, use last page's karaoke timings)
       const kPages = kData?.pages || [];
       const kPage = kPages[Math.min(idx, Math.max(0, kPages.length - 1))] || null;
+      fallbackWordCounter = 0;
 
       // Trigger 3D page turn animation class and restart leaf animation on every flip
       const bookEl = document.getElementById('openBookSpread');
@@ -1979,7 +2168,7 @@
       const leftEl = document.getElementById('bookPageLeft');
       const pageBadgeText = currentLang === 'it'
         ? `Pagina ${slide.pageNum} di ${slide.totalPages}`
-        : `Page ${slide.pageNum} of ${slide.totalPages}`;
+        : `Page ${slide.pageNum} / ${slide.totalPages}`;
 
       if (slide.type === 'video') {
         leftEl.innerHTML = `
@@ -1997,17 +2186,19 @@
 
       // Render Right Page (Title + 2-3 Paragraphs with Karaoke spans + Quote + Page Turn Buttons)
       const rightEl = document.getElementById('bookPageRight');
-      const storyTitle = currentLang === 'en' ? (story.title_en || story.title) : story.title;
-      const quoteText = currentLang === 'en' ? (story.quote_en || story.quote) : story.quote;
-      const prevLabel = currentLang === 'it' ? '‹ Indietro' : '‹ Previous';
-      const nextLabel = currentLang === 'it' ? 'Avanti ›' : 'Next Page ›';
+      const storyTitle = getLocalizedField(story, 'title');
+      const quoteText = getLocalizedField(story, 'quote');
+      const prevMap = { it: '‹ Indietro', en: '‹ Previous', fr: '‹ Précédent', de: '‹ Zurück', pt: '‹ Anterior' };
+      const nextMap = { it: 'Avanti ›', en: 'Next Page ›', fr: 'Suivant ›', de: 'Weiter ›', pt: 'Seguinte ›' };
+      const prevLabel = prevMap[currentLang] || '‹ Previous';
+      const nextLabel = nextMap[currentLang] || 'Next Page ›';
 
       const storyTitleKaraokeHtml = (idx === 0 && kPage?.story_title_words?.length)
         ? renderWordsWithKaraoke(storyTitle, kPage.story_title_words)
         : escapeHtml(storyTitle);
 
-      const chapterTitleKaraokeHtml = (slide.type === 'page' && kPage?.title_words?.length)
-        ? renderWordsWithKaraoke(slide.title, kPage.title_words)
+      const chapterTitleKaraokeHtml = (slide.type === 'page')
+        ? renderWordsWithKaraoke(slide.title, kPage?.title_words || null)
         : escapeHtml(slide.title);
 
       const paragraphsHtml = (slide.paragraphs || []).map((p, pIdx) => {
@@ -2132,6 +2323,7 @@
       const cur = pageIndexBySlug[story.slug] || 0;
       const next = cur + delta;
       if (next >= 0 && next < slides.length) {
+        if (browserTtsActive) stopBrowserKaraokeSpeech();
         lastManualTurnTimestamp = Date.now();
         const dir = delta > 0 ? 'next' : 'prev';
         playPageFlipRustle(dir);
@@ -2145,6 +2337,7 @@
       if (!story) return;
       const cur = pageIndexBySlug[story.slug] || 0;
       if (index === cur) return;
+      if (browserTtsActive) stopBrowserKaraokeSpeech();
       lastManualTurnTimestamp = Date.now();
       const dir = index > cur ? 'next' : 'prev';
       playPageFlipRustle(dir);

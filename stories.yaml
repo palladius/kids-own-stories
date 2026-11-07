@@ -33,8 +33,14 @@ stories:
     slug: storia-dello-zaino-del-drago-e-dei-puffins
     short_title: "Zaino, Drago & Puffins"
     short_title_en: "Backpack, Dragon & Puffins"
+    short_title_fr: "Sac à Dos, Dragon & Macareux"
+    short_title_de: "Rucksack, Drache & Papageientaucher"
+    short_title_pt: "Mochila, Dragão & Papagaios-do-Mar"
     title: "La Storia dello Zaino Magico, del Drago e dei Puffins"
     title_en: "The Story of the Magic Backpack, the Dragon, and the Puffins"
+    title_fr: "L'Histoire du Sac à Dos Magique, du Dragon et des Macareux"
+    title_de: "Die Geschichte vom Magischen Rucksack, dem Drachen und den Papageientauchern"
+    title_pt: "A História da Mochila Mágica, do Dragão e dos Papagaios-do-Mar"
     emoji: "🎒🐉🐧"
     author: alessandro
     author_age_at_recording: 8
@@ -45,6 +51,9 @@ stories:
     folder: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins
     quote: "«Erano draghi i suoi amici? No, erano PUFFINS!» — Alessandro C."
     quote_en: "“Were his friends other dragons? No, they were PUFFINS!” — Alessandro C."
+    quote_fr: "« Ses amis étaient-ils d'autres dragons ? Non, c'étaient des PUFFINS ! » — Alessandro C."
+    quote_de: "„Waren seine Freunde andere Drachen? Nein, es waren PUFFINS!“ — Alessandro C."
+    quote_pt: "“Os amigos dele eram outros dragões? Não, eram PUFFINS!” — Alessandro C."
     rating:
       score: 7.8
       votes: 3
@@ -92,6 +101,9 @@ stories:
         - page: 1
           title: "La Chiave nello Zaino e la Porta sul Banco"
           title_en: "The Key in the Backpack and the Door on the Desk"
+          title_fr: "La Clé dans le Sac à Dos et la Porte sur le Pupitre"
+          title_de: "Der Schlüssel im Rucksack und die Tür auf dem Schulpult"
+          title_pt: "A Chave na Mochila e a Porta na Carteira da Escola"
           image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena1_banco_porta.jpg
           summary: "Un ragazzo trova una chiave magica nello zaino e il giorno dopo scopre una porticina luminosa sul suo banco di scuola."
           paragraphs_it:
@@ -102,9 +114,24 @@ stories:
             - "Once upon a time, there was a curious boy—whose name nobody could ever quite remember—who stumbled upon an extraordinary backpack. At first glance it looked like an ordinary school bag, but when he unzipped it, he found an incredible surprise resting at the bottom: an ancient golden key carved with mysterious glowing symbols."
             - "Thrilled by his discovery, the boy ran home and spent the entire evening searching for a matching lock. He tried the front door, the hallway wardrobes, the kitchen drawers, and even the dusty chests in the attic, but he couldn't find anywhere at all that the key would fit!"
             - "The very next day at school, during the second recess (the other break), something truly magical happened: as soon as he set the key down on his wooden desk, the wood began to shimmer with golden light, revealing a tiny, glowing secret door right on his desk!"
+          paragraphs_fr:
+            - "Il était une fois un garçon très curieux — dont personne ne parvenait jamais à se rappeler le prénom — qui trouva un après-midi un sac à dos extraordinaire. À première vue, il ressemblait à un simple sac d'école, mais tout au fond brillait une ancienne clé en or massif gravée de symboles lumineux."
+            - "Fou de joie, le garçon courut chez lui et passa toute la soirée à chercher une serrure correspondante. Il essaya la porte d'entrée, les armoires du couloir, les tiroirs de la cuisine et même les vieux coffres du grenier, mais aucune serrure ne correspondait à cette clé !"
+            - "Le lendemain à l'école, pendant la deuxième récréation, un prodige se produisit : dès qu'il posa la clé sur le bois de son pupitre, le bureau se mit à scintiller d'une lumière dorée et fit apparaître une petite porte secrète magique !"
+          paragraphs_de:
+            - "Es war einmal ein neugieriger Junge — an dessen Namen sich seltsamerweise niemand erinnern konnte —, der eines Nachmittags einen außergewöhnlichen Rucksack fand. Auf den ersten Blick sah er wie ein normaler Schulranzen aus, doch ganz unten auf dem Boden funkelte ein uralter goldener Schlüssel mit leuchtenden Symbolen."
+            - "Voller Aufregung lief der Junge nach Hause und suchte den ganzen Abend nach einem passenden Schloss. Er probierte die Haustür, die Kleiderschränke im Flur, die Küchenschubladen und sogar die alten Truhen auf dem Dachboden aus, doch nirgendwo wollte der Schlüssel passen!"
+            - "Am nächsten Tag in der Schule geschah in der zweiten großen Pause das Wunder: Kaum legte er den Schlüssel auf sein hölzernes Schulpult, begann das Holz golden zu schimmern und enthüllte eine kleine, leuchtende Geheimtür direkt auf seinem Pult!"
+          paragraphs_pt:
+            - "Era uma vez um menino muito curioso — cujo nome ninguém conseguia lembrar — que certa tarde encontrou uma mochila extraordinária. Parecia uma mochila escolar comum, mas bem no fundo brilhava uma antiga chave de ouro maciço gravada com símbolos luminosos."
+            - "Empolgado com a descoberta, o menino correu para casa e passou a noite inteira procurando uma fechadura que servisse. Tentou na porta da frente, nos armários do corredor, nas gavetas da cozinha e até nos baús antigos do sótão, mas não encontrou nenhum lugar onde aquela chave entrasse!"
+            - "No dia seguinte na escola, durante o segundo recreio, aconteceu o prodígio: assim que ele apoiou a chave sobre a madeira da sua carteira, o tampo começou a brilhar em ouro e revelou uma portinha secreta mágica!"
         - page: 2
           title: "Nel Mondo Scintillante dei Draghi"
           title_en: "Inside the Sparkling World of Dragons"
+          title_fr: "Dans le Monde Étincelant des Dragons"
+          title_de: "In der Funkelnden Welt der Drachen"
+          title_pt: "No Mundo Cintilante dos Dragões"
           image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena2_mondo_gemme.jpg
           summary: "Attraversata la porta, entra nel Mondo dei Draghi fatto di gemme preziose e inizia a riempirsi le tasche."
           paragraphs_it:
@@ -115,9 +142,24 @@ stories:
             - "With his heart racing with excitement, the boy slipped the golden key into the miniature keyhole on his desk. Click! The little door swung open in a burst of rainbow light, and in the blink of an eye, the boy stepped right inside, sliding down a glowing tunnel far away from his school classroom."
             - "He landed softly inside the legendary World of Dragons, a breathtaking underground kingdom made entirely of precious gems! Everywhere he looked, there were towering pillars of purple amethyst, waterfalls of blue sapphires, emerald stalactites, and whole hills of glittering red rubies."
             - "Dazzled by such riches, the boy let greed get the better of him. Without stopping to wonder who owned all those wonders, he threw open his backpack and began grabbing gems with both hands, stuffing his pockets, his hoodie, and his bag to the brim!"
+          paragraphs_fr:
+            - "Le cœur battant la chamade, le garçon glissa la clé d'or dans la minuscule serrure du pupitre. Clic ! La petite porte s'ouvrit dans un éclat arc-en-ciel et, en un clin d'œil, le garçon y entra, glissant le long d'un tunnel de lumière loin de sa salle de classe."
+            - "Il atterrit dans le légendaire Monde des Dragons, un royaume souterrain à couper le souffle car il était entièrement fait de pierres précieuses ! Partout s'élevaient des colonnes d'améthyste violette, des cascades de saphirs bleus, des stalactites d'émeraude et des collines de rubis."
+            - "Ébloui par tant de richesses, le garçon se laissa gagner par la gourmandise. Sans se demander à qui appartenaient ces merveilles, il ouvrit grand son sac à dos et se mit à ramasser des gemmes à pleines mains, remplissant ses poches et son sac jusqu'au bord !"
+          paragraphs_de:
+            - "Mit klopfendem Herzen steckte der Junge den goldenen Schlüssel in das winzige Schlüsselloch auf seinem Pult. Klick! Die kleine Tür sprang in einem Regenbogenlicht auf, und im Handumdrehen schlüpfte der Junge hinein und rutschte durch einen Lichttunnel weit weg von seinem Klassenzimmer."
+            - "Er landete sanft in der legendären Welt der Drachen, einem atemberaubenden unterirdischen Königreich, das komplett aus Edelsteinen bestand! Überall ragten Säulen aus violettem Amethyst, Wasserfälle aus blauen Saphiren, Smaragdstalaktiten und ganze Hügel aus funkelnden Rubinen empor."
+            - "Geblendet von solchem Reichtum packte den Jungen die Habgier. Ohne zu fragen, wem all diese Schätze gehörten, riss er seinen Rucksack auf und stopfte sich mit beiden Händen Taschen, Kapuze und Rucksack randvoll mit Edelsteinen!"
+          paragraphs_pt:
+            - "Com o coração batendo forte, o menino colocou a chave dourada na minúscula fechadura da carteira. Clique! A portinha se abriu num clarão de arco-íris e, num piscar de olhos, o menino entrou por ela, escorregando por um túnel de luz para bem longe da sala de aula."
+            - "Ele pousou suavemente no lendário Mundo dos Dragões, um reino subterrâneo de tirar o fôlego, feito inteirinho de pedras preciosas! Por todos os lados havia colunas de ametista roxa, cascatas de safiras azuis, estalactites de esmeralda e colinas inteiras de rubis reluzentes."
+            - "Deslumbrado com tanta riqueza, o menino deixou a ganância falar mais alto. Sem perguntar a quem pertenciam aquelas maravilhas, abriu a mochila e começou a pegar pedras preciosas com as duas mãos, enchendo os bolsos, o capuz e a mochila até a boca!"
         - page: 3
           title: "«No, sono mie!» — Il Furore del Grande Drago"
           title_en: "“No, They Are Mine!” — The Great Dragon's Wrath"
+          title_fr: "« Non, elles sont à moi ! » — La Colère du Grand Dragon"
+          title_de: "„Nein, die gehören mir!“ — Der Zorn des Großen Drachen"
+          title_pt: "“Não, são minhas!” — A Fúria do Grande Dragão"
           image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena3_drago_fuoco.jpg
           summary: "Il grande drago reclama le sue gemme, arrostisce il ragazzo con una fiammata in stile cartoon, riprende gemme e chiave e vola via."
           paragraphs_it:
@@ -128,9 +170,24 @@ stories:
             - "Suddenly, the entire cavern rumbled like a drum, and from behind a mountain of rubies rose the majestic Guardian of the treasure: a gigantic dragon with gleaming red and gold scales. Spotting the overflowing backpack, the dragon fixed his fiery eyes on the boy and boomed: “No, you cannot take those, they are mine!”"
             - "Instead of apologizing and giving the treasure back, the boy clutched the straps of his backpack tightly, took a step back, and replied with unbelievable cheekiness: “No, now they are mine!” That was the final straw!"
             - "The colossal dragon puffed out his chest and... FWOOOOOOSH! He breathed a comical, cartoon-style blast of fire that fried the greedy boy on the spot and—GULP!—ate him up in a single bite! Then, very carefully, the dragon took all his precious gems back, picked up the golden key, and spread his mighty wings toward the cavern sky."
+          paragraphs_fr:
+            - "Soudain, la caverne trembla comme un tambour et, derrière une montagne de rubis, se dressa le majestueux Gardien du trésor : un immense dragon aux écailles rouges et dorées. Voyant le sac à dos débordant, le dragon lança d'une voix tonnante : « Non, tu ne peux pas les prendre, elles sont à moi ! »"
+            - "Au lieu de s'excuser et de rendre le trésor, le garçon serra fort les bretelles de son sac, recula d'un pas et répondit avec un culot incroyable : « Non, maintenant elles sont à moi ! » Ce fut la goutte d'eau qui fit déborder le vase !"
+            - "L'immense dragon gonfla sa poitrine et... FWOOOOOOSH ! Il cracha une grande flamme de dessin animé qui fit frire le garçon sur place et — MIAM ! — il l'avala d'une seule bouchée ! Puis, avec grand soin, le dragon reprit toutes ses gemmes, récupéra la clé d'or et déploya ses ailes vers le ciel."
+          paragraphs_de:
+            - "Plötzlich bebte die ganze Höhle wie eine Trommel, und hinter einem Berg aus Rubinen erhob sich der majestätische Wächter des Schatzes: ein riesiger Drache mit rot-goldenen Schuppen. Als er den prall gefüllten Rucksack sah, donnerte der Drache: „Nein, du darfst sie nicht nehmen, die gehören mir!“"
+            - "Anstatt sich zu entschuldigen und die Edelsteine zurückzugeben, hielt der Junge die Träger seines Rucksacks fest und rief frech: „Nein, jetzt gehören sie mir!“ Das brachte das Fass zum Überlaufen!"
+            - "Der riesige Drache holte tief Luft und... FWOOOOOOSH! Er spie eine lustige Cartoon-Feuerwolke, briet den gierigen Jungen im Nu knusprig und — SCHNAPP! — verspeiste ihn mit einem einzigen Happen! Danach nahm der Drache all seine Edelsteine und den goldenen Schlüssel wieder an sich und breitete seine Flügel aus."
+          paragraphs_pt:
+            - "De repente, a caverna tremeu como um tambor e, de trás de uma montanha de rubis, ergueu-se o majestoso Guardião do tesouro: um enorme dragão de escamas vermelhas e douradas. Vendo a mochila abarrotada, o dragão trovejou: “Não, você não pode pegá-las, elas são minhas!”"
+            - "Em vez de pedir desculpas e devolver o tesouro, o menino apertou firme as alças da mochila, deu um passo para trás e respondeu com uma cara de pau incrível: “Não, agora são minhas!” Foi a gota d'água!"
+            - "O enorme dragão estufou o peito e... FWOOOOOOSH! Soltou uma labareda de desenho animado que fritou o menino num instante e — NHAC! — o engoliu numa bocada só! Depois, com todo o cuidado, o dragão pegou todas as suas pedras preciosas de volta, recuperou a chave dourada e abriu as asas rumo ao céu."
         - page: 4
           title: "Il Grande Twist — I Migliori Amici del Drago sono i Puffins!"
           title_en: "The Big Twist — The Dragon's Best Friends Are Puffins!"
+          title_fr: "La Grande Surprise — Les Meilleurs Amis du Dragon sont les Macareux !"
+          title_de: "Die Große Überraschung — Die Besten Freunde des Drachen sind Papageientaucher!"
+          title_pt: "A Grande Surpresa — Os Melhores Amigos do Dragão são os Puffins!"
           image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena4_drago_e_puffins.jpg
           summary: "Il drago usa la chiave per raggiungere un mondo d'oro e cristalli dove ritrova i suoi migliori amici: le pulcinelle di mare (Puffins)!"
           paragraphs_it:
@@ -141,6 +198,18 @@ stories:
             - "Wait a second—why did the great dragon care so much about that little key and his sparkling gems? Here is the best secret of the whole story: that key wasn't meant to lock a dungeon, but to unlock a sky portal leading to another wondrous world made entirely of gold and floating crystals!"
             - "As soon as the dragon unlocked the heavenly gateway and soared among the golden towers, a joyful crowd rushed out to greet him. And who were these friends of his? Were they other giant, fire-breathing dragons? “No, they were PUFFINS!”"
             - "That's right: the mighty dragon's best friends in the universe were a cheerful flock of sea puffins wearing little aviator goggles! The gentle giant had guarded the gems and the key so fiercely just so he could fly back and celebrate in the world of gold and crystals with his beloved Puffins!"
+          paragraphs_fr:
+            - "Mais pourquoi le grand dragon tenait-il tant à cette petite clé et à ses gemmes scintillantes ? Voici le plus beau secret de l'histoire : cette clé servait à ouvrir le portail céleste vers un autre monde merveilleux, entièrement fait d'or et de cristaux flottant dans les nuages !"
+            - "Dès que le dragon ouvrit le passage céleste et s'envola parmi les tours dorées, une foule joyeuse courut à sa rencontre pour l'embrasser. Et qui étaient ses amis ? D'autres dragons géants cracheurs de feu ? « Non, c'étaient des PUFFINS ! »"
+            - "Eh oui : les meilleurs amis du dragon étaient une joyeuse bande de macareux au bec orange portant de petites lunettes d'aviateur ! Le doux géant avait défendu ses gemmes et sa clé juste pour pouvoir retourner faire la fête dans le monde d'or et de cristaux avec ses adorables Puffins !"
+          paragraphs_de:
+            - "Aber warum waren dem großen Drachen dieser kleine Schlüssel und die funkelnden Edelsteine eigentlich so wichtig? Hier ist das schönste Geheimnis der Geschichte: Der Schlüssel öffnete ein Himmelsportal in eine andere wunderbare Welt, die ganz aus Gold und schwebenden Kristallen bestand!"
+            - "Kaum hatte der Drache das Himmelstor aufgeschlossen und flog zwischen den goldenen Türmen hindurch, eilte ihm eine fröhliche Schar entgegen. Und wer waren diese Freunde? Etwa andere riesige Feuerdrachen? „Nein, es waren PUFFINS!“"
+            - "Ganz genau: Die allerbesten Freunde des Drachen waren ein fröhlicher Schwarm kleiner Papageientaucher mit orangefarbenen Schnäbeln und Fliegerbrillen! Der sanfte Riese hatte die Edelsteine und den Schlüssel nur deshalb so tapfer beschützt, um mit seinen geliebten Puffins in der Welt aus Gold und Kristallen zu feiern!"
+          paragraphs_pt:
+            - "Mas por que o grande dragão se importava tanto com aquela chavinha e com suas pedras brilhantes? Aqui está o segredo mais lindo da história: aquela chave abria o portal do céu para outro mundo maravilhoso, feito todinho de ouro e cristais flutuantes entre as nuvens!"
+            - "Assim que o dragão abriu a passagem celeste e voou entre as torres douradas, uma multidão festiva correu para abraçá-lo. E quem eram esses amigos dele? Eram outros dragões gigantes cuspindo fogo? “Não, eram PUFFINS!”"
+            - "Isso mesmo: os melhores amigos do dragão eram um bando alegre de papagaios-do-mar de bico laranja usando óculos de aviador! O gigante gentil tinha protegido as gemas e a chave só para poder voltar a voar e festejar no mundo de ouro e cristais junto com seus adorados Puffins!"
     transcript:
       - speaker: "Papà Riccardo"
         text: "Ecco, ciao Ermete, buongiorno! Alessandro ha inventato una storia fighissima di uno zaino di una scuola... ti chiederei, adesso Ale te la racconta e quando ha finito tu usi il nuovo modello Gemini Omni... per fare un video di questa storia. Vai Ale!"
@@ -167,8 +236,14 @@ stories:
     slug: storia-scheletri-zombie-te
     short_title: "Scheletri, Zombie & Tè"
     short_title_en: "Skeletons, Zombies & Tea"
+    short_title_fr: "Squelettes, Zombies & Thé"
+    short_title_de: "Skelette, Zombies & Tee"
+    short_title_pt: "Esqueletos, Zumbis & Chá"
     title: "La Famiglia di Scheletri e gli Zombie Assetati di Tè"
     title_en: "The Skeleton Family and the Tea-Thirsty Zombies"
+    title_fr: "La Famille de Squelettes et les Zombies Assoiffés de Thé"
+    title_de: "Die Skelettfamilie und die Teedurstigen Zombies"
+    title_pt: "A Família de Esqueletos e os Zumbis Sedentos por Chá"
     emoji: "💀🧟☕"
     author: alessandro
     author_age_at_recording: 8
@@ -179,6 +254,9 @@ stories:
     folder: stories/alessandro/storia-scheletri-zombie-te
     quote: "«Vuoi un'altra cosa? — Sì! Finita!» — Alessandro C."
     quote_en: "“Would you like something else? — Yes! Finished!” — Alessandro C."
+    quote_fr: "« Voulez-vous autre chose ? — Oui ! Terminé ! » — Alessandro C."
+    quote_de: "„Wollt ihr noch etwas anderes? — Ja! Fertig!“ — Alessandro C."
+    quote_pt: "“Querem mais alguma coisa? — Sim! Acabou!” — Alessandro C."
     rating:
       score: 7.5
       votes: 2
@@ -226,6 +304,9 @@ stories:
         - page: 1
           title: "La Libreria nel Buio Buio Giardino"
           title_en: "The Library in the Dark, Dark Garden"
+          title_fr: "La Bibliothèque dans le Sombre, Très Sombre Jardin"
+          title_de: "Die Bibliothek im Dunklen, Dunklen Garten"
+          title_pt: "A Biblioteca no Jardim Escuro, Muito Escuro"
           image: stories/alessandro/storia-scheletri-zombie-te/scena1_giardino_libreria.jpg
           summary: "Una simpatica famiglia di scheletri col loro cane scheletro passeggia nel buio buio giardino e scopre una libreria piena di zombie educatissimi che chiedono un po' di tè."
           paragraphs_it:
@@ -236,9 +317,24 @@ stories:
             - "Once upon a time, there was a friendly family of skeletons—Papa, Mama, and Little Skeleton—along with their loyal skeleton dog, who trotted happily with a cheerful click-clack of his bony paws. One evening, they decided to go out for a special stroll together into the mysterious dark, dark garden."
             - "Deep among the ancient hedges and twisting trees, there was an intense dark, dark night so thick that even the crickets whispered softly. Yet right in the heart of the garden, glowing under warm golden lanterns, the family discovered something extraordinary: a grand wooden library overflowing with books!"
             - "And who was inside that library? Lots and lots of zombie zombies! Instead of groaning or being scary, those book-loving zombies had dry throats from reading so many stories, and with a shy smile and a bow, they politely asked the skeletons for a little bit of warm tea."
+          paragraphs_fr:
+            - "Il était une fois une sympathique famille de squelettes — papa, maman et le petit squelette — accompagnée de leur fidèle chien squelette qui trottinait joyeusement en faisant clic-clac avec ses petites pattes d'os. Un soir, ils décidèrent d'aller se promener ensemble dans le mystérieux jardin sombre, très sombre."
+            - "Là-bas, entre les haies anciennes et les arbres tordus, régnait une obscurité intense, si profonde que même les grillons chuchotaient. Mais en plein cœur du jardin, éclairée par de chaudes lanternes dorées, la famille découvrit une grande bibliothèque en bois remplie de livres anciens !"
+            - "Et qui se trouvait dans la bibliothèque ? Tant et tant de zombies ! Mais au lieu de faire peur, ces zombies amoureux de lecture avaient la gorge sèche et, avec un sourire timide et une révérence, ils demandèrent très poliment aux squelettes s'ils pouvaient avoir un peu de thé chaud."
+          paragraphs_de:
+            - "Es war einmal eine freundliche Skelettfamilie — Papa, Mama und das kleine Skelett — zusammen mit ihrem treuen Skeletthund, der fröhlich mit seinen Knochenpfoten klack-klack machte. Eines Abends beschlossen sie, gemeinsam einen Spaziergang durch den geheimnisvollen dunklen, dunklen Garten zu unternehmen."
+            - "Tief zwischen den alten Hecken herrschte eine tiefe, dichte Dunkelheit, in der sogar die Grillen nur flüsterten. Doch mitten im Herzen des Gartens, erhellt von warmen goldenen Laternen, entdeckte die Familie etwas Wunderbares: eine große hölzerne Bibliothek voller alter Bücher!"
+            - "Und wer war in der Bibliothek? Lauter kleine Zombies! Aber anstatt gruselig zu sein, hatten diese lesefreudigen Zombies vom vielen Schmökern eine trockene Kehle und baten die Skelette mit einem höflichen Lächeln und einer Verbeugung um eine Tasse warmen Tee."
+          paragraphs_pt:
+            - "Era uma vez uma simpática família de esqueletos — papai, mamãe e o pequeno esqueleto — junto com seu fiel cachorrinho esqueleto, que trotava alegre fazendo tique-taque com suas patinhas de osso. Certa noite, decidiram sair juntos para um passeio especial pelo misterioso jardim escuro, muito escuro."
+            - "Lá entre as cercas antigas havia uma escuridão intensa, tão profunda que até os grilos conversavam baixinho. Mas bem no coração do jardim, iluminada por lanternas douradas e acolhedoras, a família descobriu uma grande biblioteca de madeira cheia de livros antigos!"
+            - "E quem estava dentro da biblioteca? Muitos e muitos zumbis! Mas, em vez de assustar alguém, aqueles zumbis leitores estavam com a garganta seca de tanto ler e, com um sorriso tímido e uma reverência, pediram gentilmente aos esqueletos um pouquinho de chá quente."
         - page: 2
           title: "Un Tè Fumante... e Poi Ancora di Più!"
           title_en: "Steaming Tea... and Even More!"
+          title_fr: "Un Thé Fumant... et Encore Plus !"
+          title_de: "Ein Dampfender Tee... und Noch Mehr!"
+          title_pt: "Um Chá Fumegante... e Muito Mais!"
           image: stories/alessandro/storia-scheletri-zombie-te/scena2_primo_te.jpg
           summary: "Gli scheletri corrono a casa, preparano una teiera fumante e la portano agli zombie, che entusiasti ne vogliono ancora e ancora di più!"
           paragraphs_it:
@@ -249,9 +345,24 @@ stories:
             - "Hearing such a polite request, the skeletons didn't waste a single second: they turned right around and hurried back home, with their skeleton dog leading the way through the dark. In their kitchen, they put the kettle on and brewed a wonderfully fragrant pot of herbal garden tea."
             - "Carrying a steaming teapot, the skeleton family returned to the dark, dark garden and served the tea to the zombies with great care. The warm steam smelled of honey, chamomile, and cinnamon, filling the cool night air."
             - "As soon as the zombies took their very first sip, their eyes lit up with wonder—they had never tasted anything so delicious! Bursting with excitement, the thirsty zombies wanted even more, and then even more after that, until not a single drop was left in the teapot!"
+          paragraphs_fr:
+            - "Touchés par une demande si polie, les squelettes ne perdirent pas une seconde : ils firent demi-tour et coururent jusqu'à la maison, guidés par leur chien squelette. Dans la cuisine, ils mirent aussitôt la bouilloire sur le feu et préparèrent un thé parfumé aux herbes du jardin."
+            - "Tenant la théière fumante entre leurs mains, la famille de squelettes revint dans le jardin sombre et servit le thé aux zombies avec élégance. La vapeur chaude embaumait le miel, la camomille et la cannelle."
+            - "Dès que les zombies goûtèrent la première gorgée, leurs yeux s'illuminèrent d'émerveillement : ils n'avaient jamais rien bu d'aussi délicieux ! Enthousiasmés, ils en voulurent encore plus, et toujours plus, jusqu'à la dernière goutte !"
+          paragraphs_de:
+            - "Nach einer so höflichen Bitte verloren die Skelette keine Sekunde: Sie eilten zurück nach Hause, während der Skeletthund schwanzwedelnd vorauslief. In der Küche setzten sie sofort den Wasserkessel auf und brühten einen herrlich duftenden Kräutertee."
+            - "Mit der dampfenden Teekanne in den Händen kehrte die Skelettfamilie in den dunklen Garten zurück und schenkte den Zombies liebevoll ein. Der warme Dampf duftete nach Honig, Kamille und Zimt."
+            - "Kaum hatten die Zombies den ersten Schluck probiert, leuchteten ihre Augen vor Begeisterung auf: So etwas Köstliches hatten sie noch nie getrunken! Voller Freude wollten sie immer mehr und noch mehr, bis kein einziger Tropfen mehr in der Kanne war!"
+          paragraphs_pt:
+            - "Ouvindo um pedido tão educado, os esqueletos não perderam um segundo: deram meia-volta e correram para casa, com o cachorrinho esqueleto abrindo caminho no escuro. Na cozinha, colocaram logo a chaleira no fogo e prepararam um chá perfumado com ervas do jardim."
+            - "Com o bule fumegante nas mãos, a família de esqueletos voltou ao jardim escuro e serviu o chá aos zumbis com muita elegância. O vapor quentinho tinha aroma de mel, camomila e canela."
+            - "Assim que os zumbis provaram o primeiro gole, seus olhos brilharam de encantamento: nunca tinham bebido nada tão delicioso! Empolgados, os zumbis quiseram mais e mais, até não sobrar nem uma gotinha no bule!"
         - page: 3
           title: "Due Bicchieri di Tè e un «Grazie!» di Cuore"
           title_en: "Two Glasses of Tea and a Heartfelt “Thank You!”"
+          title_fr: "Deux Grands Verres de Thé et un « Merci ! » du Fond du Cœur"
+          title_de: "Zwei Gläser Tee und ein Herzliches „Danke!“"
+          title_pt: "Dois Copos de Chá e um “Obrigado!” de Coração"
           image: stories/alessandro/storia-scheletri-zombie-te/scena3_due_bicchieri_grazie.jpg
           summary: "Gli scheletri tornano a casa a prendere due grandi bicchieri di tè; gli zombie li bevono dicendo «Grazie!» e rispondono «Sì!» alla proposta di un'altra sorpresa."
           paragraphs_it:
@@ -262,6 +373,18 @@ stories:
             - "Seeing that their new friends were still thirsty, the skeletons grinned and ran all the way back home a second time! This time, to make sure there was plenty for everyone, they brought back two tall glasses filled right to the brim with warm, fragrant spiced tea."
             - "Back in front of the glowing library, the zombies drank both glasses down to the last sip with a happy sigh. Then they set the glasses neatly on the tray, gave a polite little bow, and said together with heartfelt gratitude: “Thank you!”"
             - "Yet the evening was only just beginning! Delighted to be such welcoming hosts, the skeletons leaned in and asked eagerly: “Would you like something else?” And all the zombies in the library cheered back in a joyful chorus: “Yes!”—turning the dark garden into the liveliest midnight tea party ever!"
+          paragraphs_fr:
+            - "Voyant leurs nouveaux amis encore assoiffés, les squelettes sourirent et retournèrent en courant à la maison une deuxième fois ! Cette fois, ils rapportèrent deux grands verres remplis à ras bord de thé chaud à l'orange et au romarin."
+            - "Devant la bibliothèque illuminée, les zombies burent les deux verres jusqu'à la dernière goutte avec un soupir de bonheur. Puis ils posèrent les verres sur le plateau, s'inclinèrent poliment et dirent tous ensemble avec gratitude : « Merci ! »"
+            - "Mais la soirée ne faisait que commencer ! Les squelettes, ravis d'être des hôtes si attentionnés, demandèrent avec enthousiasme : « Voulez-vous autre chose ? » Et tous les zombies répondirent en chœur : « Oui ! », lançant la plus belle fête de minuit du jardin !"
+          paragraphs_de:
+            - "Als die Skelette sahen, dass ihre neuen Freunde immer noch durstig waren, lächelten sie und liefen ein zweites Mal nach Hause! Diesmal brachten sie zwei große, bis zum Rand gefüllte Gläser mit warmem Orangen-Rosmarin-Tee mit."
+            - "Vor der leuchtenden Bibliothek tranken die Zombies beide Gläser bis zum letzten Schluck aus. Dann stellten sie die Gläser ordentlich aufs Tablett, verbeugten sich höflich und riefen gemeinsam voller Dankbarkeit: „Danke!“"
+            - "Doch der Abend hatte gerade erst begonnen! Überglücklich fragten die gastfreundlichen Skelette: „Wollt ihr noch etwas anderes?“ Und alle Zombies in der Bibliothek jubelten im Chor: „Ja!“ — und feierten die schönste Mitternachtsteeparty im ganzen Garten!"
+          paragraphs_pt:
+            - "Vendo que seus novos amigos ainda estavam com sede, os esqueletos sorriram e correram de volta para casa pela segunda vez! Desta vez, trouxeram dois copos grandes cheios até a borda de chá quente com laranja e alecrim."
+            - "Diante da biblioteca iluminada, os zumbis beberam os dois copos até o último gole com um suspiro de felicidade. Depois apoiaram os copos na bandeja, fizeram uma pequena reverência e disseram juntos com sincera gratidão: “Obrigado!”"
+            - "Mas a noite estava só começando! Os esqueletos, felizes por serem anfitriões tão carinhosos, perguntaram com entusiasmo: “Querem mais alguma coisa?” E todos os zumbis responderam num grande coro festivo: “Sim!”, dando início à festa da meia-noite mais divertida do jardim!"
     transcript:
       - speaker: "Papà Riccardo"
         text: "Pux, mio figlio Alessandro ha una storia da raccontarti, una storia che si è inventato. Ti chiederei di ascoltare tutta la storia di Ale, poi dopo quando l'hai ascoltata la trascrivi... Vai Ale, raccontaci la storia numero due!"

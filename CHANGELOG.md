@@ -2,6 +2,13 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.5.1] - 2026-11-07
+
+### Added
+- 🌍 **Traduzione Narrativa Completa in 5 Lingue (`🇮🇹 IT`, `🇬🇧 EN`, `🇫🇷 FR`, `🇩🇪 DE`, `🇧🇷 PT-BR`) & Sblocco Immediato sopra `8.0/10` (`stories.yaml`, `index.html`)**:
+  - Aggiunti titoli, titoli brevi, citazioni e tutti i paragrafi pagina per pagina in **Francese (`fr`)**, **Tedesco (`de`)** e **Portoghese Brasiliano (`pt`)** per entrambe le storie di Alessandro.
+  - Quando l'utente vota **`8`, `9` o `10`** nel modale `⭐ Vota la Storia`, i pulsanti `🇫🇷 FR`, `🇩🇪 DE` e `🇧🇷 PT` si sbloccano istantaneamente nella topbar e permettono di sfogliare il libro nelle 5 lingue, con **Karaoke Live (`Web Speech API` `onboundary` + moltiplicatore velocità `0.5x–2x` + Auto-Scroll + Auto-Page-Turn)** a costo zero di token AI, oltre al bottone per richiedere la sintesi studio `Aoede + Pianino` via GitHub Issue.
+
 ## [0.5.0] - 2026-11-07
 
 ### Added
