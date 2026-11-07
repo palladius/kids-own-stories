@@ -1,14 +1,14 @@
 # ==============================================================================
 # 📚 KIDS' OWN STORIES — Registro Deterministico delle Storie (stories.yaml)
 # ==============================================================================
-# Questo file è la Single Source of Truth (SSOT) per:
+# Single Source of Truth (SSOT) per:
 # 1. Agenti AI (Gemini, Antigravity, Ermete/Hermes) per verificare lo stato
 #    di completamento di ogni storia ("C'è tutto? Manca qualcosa?").
-# 2. La Web App / Libro Multi-pagina interattivo per caricare dinamicamente
-#    storie, audio, capitoli, illustrazioni e video.
+# 2. La Web App / Libro Sfogliabile Multi-pagina con 1 Tab per storia,
+#    testi arricchiti dal Cantastorie (IT/EN) e audiolibri narrati con pianoforte.
 # ==============================================================================
 
-schema_version: "1.0"
+schema_version: "2.0"
 
 authors:
   alessandro:
@@ -28,18 +28,13 @@ authors:
     folder: stories/sebastian
     audio_folder: audio/sebastian
 
-# Lifecycle status valori possibili:
-# - idea_only     : Solo annotazione testuale o idea appuntata, manca audio
-# - raw_audio     : Audio grezzo registrato, da sbobinare
-# - transcribed   : Sbobinatura completata, mancano illustrazioni/video
-# - illustrated   : Illustrazioni pronte, manca video o pagina web
-# - complete      : Tutti gli asset presenti (audio, sbobinatura, immagini, video, HTML)
-
 stories:
   - id: 2026-11-06-storia-dello-zaino-del-drago-e-dei-puffins
     slug: storia-dello-zaino-del-drago-e-dei-puffins
     short_title: "Zaino, Drago & Puffins"
+    short_title_en: "Backpack, Dragon & Puffins"
     title: "La Storia dello Zaino Magico, del Drago e dei Puffins"
+    title_en: "The Story of the Magic Backpack, the Dragon, and the Puffins"
     emoji: "🎒🐉🐧"
     author: alessandro
     author_age_at_recording: 8
@@ -49,6 +44,94 @@ stories:
     language: "it"
     folder: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins
     quote: "«Erano draghi i suoi amici? No, erano PUFFINS!» — Alessandro C."
+    quote_en: "“Were his friends other dragons? No, they were PUFFINS!” — Alessandro C."
+    status: complete
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
+      web_page: true
+    missing_assets: []
+
+    assets:
+      archive_audio:
+        mp3: audio/alessandro/2026-11-06-storia-zaino-drago-puffins.mp3
+        ogg: audio/alessandro/2026-11-06-storia-zaino-drago-puffins.ogg
+      story_audio:
+        mp3: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.mp3
+        ogg: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.ogg
+      narrated_audio:
+        it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_it.mp3
+        en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      title_audio:
+        it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_it.mp3
+        en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_en.mp3
+      hover_video: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/hover_preview.mp4
+      readme: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/README.md
+      web_page: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/index.html
+      video:
+        file: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/video_drago_puffins.mp4
+        model: gemini-omni-flash-preview
+        resolution: "1280x720"
+      pages:
+        - page: 1
+          title: "La Chiave nello Zaino e la Porta sul Banco"
+          title_en: "The Key in the Backpack and the Door on the Desk"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena1_banco_porta.jpg
+          summary: "Un ragazzo trova una chiave magica nello zaino e il giorno dopo scopre una porticina luminosa sul suo banco di scuola."
+          paragraphs_it:
+            - "C'era una volta un ragazzo curioso — uno di quei tipi sempre a caccia di misteri, di cui però nessuno ricordava mai il nome — che un pomeriggio trovò uno zaino straordinario. Sembrava un normale zaino di scuola, ma ad aprirlo riservava una sorpresa incredibile: nascosta proprio sul fondo di velluto brillava un'antica chiave d'oro massiccio, incisa con strani simboli luminosi."
+            - "Emozionatissimo, il ragazzo corse a casa e passò tutta la sera a cercare una serratura che potesse andare bene. Provò nella porta d'ingresso, negli armadi del corridoio, nei cassetti della cucina e persino nei vecchi bauli in soffitta, ma non poté trovare nessuna parte dove entrare con quella chiave: ogni buco della serratura era o troppo grande o troppo piccolo!"
+            - "Il giorno dopo (prossimo giornata), il ragazzo portò lo zaino a scuola tenendo la chiave in tasca. Quando suonò la campanella della seconda ricreazione (all'altro break), accadde il prodigio: appena poggiò la chiave sul legno del suo banco (sul suo desk), il piano iniziò a brillare d'oro e fece comparire una magica porticina segreta!"
+          paragraphs_en:
+            - "Once upon a time, there was a curious boy—whose name nobody could ever quite remember—who stumbled upon an extraordinary backpack. At first glance it looked like an ordinary school bag, but when he unzipped it, he found an incredible surprise resting at the bottom: an ancient golden key carved with mysterious glowing symbols."
+            - "Thrilled by his discovery, the boy ran home and spent the entire evening searching for a matching lock. He tried the front door, the hallway wardrobes, the kitchen drawers, and even the dusty chests in the attic, but he couldn't find anywhere at all that the key would fit!"
+            - "The very next day at school, during the second recess (the other break), something truly magical happened: as soon as he set the key down on his wooden desk, the wood began to shimmer with golden light, revealing a tiny, glowing secret door right on his desk!"
+        - page: 2
+          title: "Nel Mondo Scintillante dei Draghi"
+          title_en: "Inside the Sparkling World of Dragons"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena2_mondo_gemme.jpg
+          summary: "Attraversata la porta, entra nel Mondo dei Draghi fatto di gemme preziose e inizia a riempirsi le tasche."
+          paragraphs_it:
+            - "Con il cuore che batteva all'impazzata, il ragazzo infilò la chiave d'oro nella minuscola serratura sul banco. Clic! La porticina si spalancò emanando un bagliore arcobaleno e, in un battito di ciglia, il ragazzo ci entrò dentro, scivolando giù per un tunnel di luce che lo portò lontano dall'aula di scuola."
+            - "Atterrò sul morbido pavimento del leggendario Mondo dei Draghi, un regno sotterraneo che toglieva il fiato perché era fatto interamente di gemme! Ovunque guardasse c'erano colonne di ametista viola, cascate di zaffiri azzurri, stalattiti di smeraldo verde e colline intere di rubini che brillavano come lanterne."
+            - "Davanti a tutta quella ricchezza, il ragazzo si lasciò prendere dall'avidità. Senza chiedersi a chi appartenessero quelle meraviglie, spalancò il suo zaino e cominciò a prendere tantissime gemme a due mani, riempiendosi le tasche, il cappuccio e lo zaino fino all'orlo!"
+          paragraphs_en:
+            - "With his heart racing with excitement, the boy slipped the golden key into the miniature keyhole on his desk. Click! The little door swung open in a burst of rainbow light, and in the blink of an eye, the boy stepped right inside, sliding down a glowing tunnel far away from his school classroom."
+            - "He landed softly inside the legendary World of Dragons, a breathtaking underground kingdom made entirely of precious gems! Everywhere he looked, there were towering pillars of purple amethyst, waterfalls of blue sapphires, emerald stalactites, and whole hills of glittering red rubies."
+            - "Dazzled by such riches, the boy let greed get the better of him. Without stopping to wonder who owned all those wonders, he threw open his backpack and began grabbing gems with both hands, stuffing his pockets, his hoodie, and his bag to the brim!"
+        - page: 3
+          title: "«No, sono mie!» — Il Furore del Grande Drago"
+          title_en: "“No, They Are Mine!” — The Great Dragon's Wrath"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena3_drago_fuoco.jpg
+          summary: "Il grande drago reclama le sue gemme, arrostisce il ragazzo con una fiammata in stile cartoon, riprende gemme e chiave e vola via."
+          paragraphs_it:
+            - "All'improvviso la caverna tremò come un tamburo e, da dietro una montagna di rubini, si alzò in tutta la sua maestosità il Guardiano del tesoro: un grandissimo drago dalle scaglie rosse e dorate. Vedendo lo zaino stracolmo, il drago puntò gli occhi di brace sul ragazzo e tuonò: «No, tu non puoi prenderle, sono mie!»."
+            - "Invece di chiedere scusa e restituire il maltolto, il ragazzo strinse forte le spalline dello zaino, fece un passo indietro e rispose con una faccia tosta incredibile: «No, ora sono mie!». Fu la goccia che fece traboccare il vaso!"
+            - "Il grandissimo drago gonfiò il petto e... FWOOOOOOSH! Sputò una gigantesca fiammata da cartone animato che frisse il ragazzo in un istante e — GNAM! — se lo mangiò in un sol boccone! Poi, con grande cura, il drago si riprese tutte le sue gemme indietro, recuperò la chiave dorata caduta a terra e spiegò le ali verso il soffitto della caverna."
+          paragraphs_en:
+            - "Suddenly, the entire cavern rumbled like a drum, and from behind a mountain of rubies rose the majestic Guardian of the treasure: a gigantic dragon with gleaming red and gold scales. Spotting the overflowing backpack, the dragon fixed his fiery eyes on the boy and boomed: “No, you cannot take those, they are mine!”"
+            - "Instead of apologizing and giving the treasure back, the boy clutched the straps of his backpack tightly, took a step back, and replied with unbelievable cheekiness: “No, now they are mine!” That was the final straw!"
+            - "The colossal dragon puffed out his chest and... FWOOOOOOSH! He breathed a comical, cartoon-style blast of fire that fried the greedy boy on the spot and—GULP!—ate him up in a single bite! Then, very carefully, the dragon took all his precious gems back, picked up the golden key, and spread his mighty wings toward the cavern sky."
+        - page: 4
+          title: "Il Grande Twist — I Migliori Amici del Drago sono i Puffins!"
+          title_en: "The Big Twist — The Dragon's Best Friends Are Puffins!"
+          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena4_drago_e_puffins.jpg
+          summary: "Il drago usa la chiave per raggiungere un mondo d'oro e cristalli dove ritrova i suoi migliori amici: le pulcinelle di mare (Puffins)!"
+          paragraphs_it:
+            - "Ma perché il grande drago ci teneva così tanto a quella piccola chiave e alle sue gemme scintillanti? Ecco il segreto più bello della storia: quella chiave non serviva a chiudere una prigione, ma ad aprire il portale del cielo verso un altro mondo meraviglioso, fatto tutto d'oro e di cristalli fluttuanti tra le nuvole!"
+            - "Appena il drago aprì il passaggio celeste e volò tra le torri dorate, una folla festosa gli corse incontro per abbracciarlo. E chi erano questi suoi amici? Erano forse altri draghi giganti e sputafuoco? «No, erano PUFFINS!»"
+            - "Proprio così: i migliori amici del drago erano uno stormo di simpaticissime pulcinelle di mare dal becco arancione e dagli occhialoni da aviatore! Il gigante buono aveva difeso le gemme e la chiave proprio per poter tornare a volare e far festa nel mondo d'oro e cristalli insieme ai suoi adorati Puffins!"
+          paragraphs_en:
+            - "Wait a second—why did the great dragon care so much about that little key and his sparkling gems? Here is the best secret of the whole story: that key wasn't meant to lock a dungeon, but to unlock a sky portal leading to another wondrous world made entirely of gold and floating crystals!"
+            - "As soon as the dragon unlocked the heavenly gateway and soared among the golden towers, a joyful crowd rushed out to greet him. And who were these friends of his? Were they other giant, fire-breathing dragons? “No, they were PUFFINS!”"
+            - "That's right: the mighty dragon's best friends in the universe were a cheerful flock of sea puffins wearing little aviator goggles! The gentle giant had guarded the gems and the key so fiercely just so he could fly back and celebrate in the world of gold and crystals with his beloved Puffins!"
     transcript:
       - speaker: "Papà Riccardo"
         text: "Ecco, ciao Ermete, buongiorno! Alessandro ha inventato una storia fighissima di uno zaino di una scuola... ti chiederei, adesso Ale te la racconta e quando ha finito tu usi il nuovo modello Gemini Omni... per fare un video di questa storia. Vai Ale!"
@@ -71,54 +154,12 @@ stories:
       - speaker: "Alessandro"
         text: "Sì!"
 
-    # Stato complessivo e checklist deterministica ("C'è tutto? Manca qualcosa?")
-    status: complete
-    checklist:
-      raw_audio: true          # Registrazione vocale del bimbo presente
-      audio_converted: true    # Disponibile sia in .mp3 che .ogg
-      transcription: true      # Sbobinatura fedele parola-per-parola
-      chapters_text: true      # Racconto strutturato in capitoli/pagine
-      illustrations: true      # Tutte le scene hanno la propria illustrazione
-      video: true              # Video animato AI generato
-      web_page: true           # index.html autonomo generato
-    missing_assets: []         # Lista vuota = storia 100% completa!
-
-    # Percorsi agli asset (relativi alla root del repository)
-    assets:
-      archive_audio:
-        mp3: audio/alessandro/2026-11-06-storia-zaino-drago-puffins.mp3
-        ogg: audio/alessandro/2026-11-06-storia-zaino-drago-puffins.ogg
-      story_audio:
-        mp3: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.mp3
-        ogg: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.ogg
-      readme: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/README.md
-      web_page: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/index.html
-      video:
-        file: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/video_drago_puffins.mp4
-        model: gemini-omni-flash-preview
-        resolution: "1280x720"
-      pages:
-        - page: 1
-          title: "La Chiave nello Zaino e la Porta sul Banco"
-          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena1_banco_porta.jpg
-          summary: "Un ragazzo trova una chiave magica nello zaino e il giorno dopo scopre una porticina luminosa sul suo banco di scuola."
-        - page: 2
-          title: "Nel Mondo Scintillante dei Draghi"
-          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena2_mondo_gemme.jpg
-          summary: "Attraversata la porta, entra nel Mondo dei Draghi fatto di gemme preziose e inizia a riempirsi le tasche."
-        - page: 3
-          title: "\"No, sono mie!\" — Il Furore del Grande Drago"
-          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena3_drago_fuoco.jpg
-          summary: "Il grande drago reclama le sue gemme, arrostisce il ragazzo con una fiammata in stile cartoon, riprende gemme e chiave e vola via."
-        - page: 4
-          title: "Il Grande Twist — I Migliori Amici del Drago sono i Puffins!"
-          image: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena4_drago_e_puffins.jpg
-          summary: "Il drago usa la chiave per raggiungere un mondo d'oro e cristalli dove ritrova i suoi migliori amici: le pulcinelle di mare (Puffins)!"
-
   - id: 2026-11-04-storia-scheletri-zombie-te
     slug: storia-scheletri-zombie-te
     short_title: "Scheletri, Zombie & Tè"
+    short_title_en: "Skeletons, Zombies & Tea"
     title: "La Famiglia di Scheletri e gli Zombie Assetati di Tè"
+    title_en: "The Skeleton Family and the Tea-Thirsty Zombies"
     emoji: "💀🧟☕"
     author: alessandro
     author_age_at_recording: 8
@@ -127,24 +168,21 @@ stories:
     location: "Zurigo"
     language: "it"
     folder: stories/alessandro/storia-scheletri-zombie-te
-    quote: "«Volete un'altra cosa? — Sì!» — Alessandro C."
-    transcript:
-      - speaker: "Alessandro"
-        text: "Questa storia parla di una famiglia di scheletri, con tanto di cane scheletro. Una volta hanno voluto andare nel buio buio giardino. Nel buio buio giardino c'era un buio buio intenso e c'era una libreria. E dentro la libreria c'erano tantissimi zombie zombie che hanno chiesto gentilmente un po' di tè. Allora gli scheletri sono tornati a casa, hanno preso un tè e lo hanno dato agli zombie. Gli zombie ne hanno voluto ancora di più, e poi ancora di più! Quindi gli scheletri sono tornati di nuovo a casa e questa volta hanno preso due bicchieri di tè. Gli zombie li hanno bevuti e hanno detto: \"Grazie!\". Poi gli scheletri hanno chiesto: \"Volete un'altra cosa?\". E gli zombie hanno risposto: \"Sì!\"."
-
-    # Stato complessivo e checklist deterministica
-    status: illustrated
+    quote: "«Vuoi un'altra cosa? — Sì! Finita!» — Alessandro C."
+    quote_en: "“Would you like something else? — Yes! Finished!” — Alessandro C."
+    status: complete
     checklist:
       raw_audio: true
       audio_converted: true
       transcription: true
       chapters_text: true
       illustrations: true
-      video: false
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
       web_page: true
-    missing_assets: ["video"]
+    missing_assets: []
 
-    # Percorsi agli asset
     assets:
       archive_audio:
         mp3: audio/alessandro/2026-11-04-storia-scheletri-zombie-te.mp3
@@ -152,10 +190,70 @@ stories:
       story_audio:
         mp3: stories/alessandro/storia-scheletri-zombie-te/audio_originale.mp3
         ogg: stories/alessandro/storia-scheletri-zombie-te/audio_originale.ogg
+      narrated_audio:
+        it: stories/alessandro/storia-scheletri-zombie-te/narrated_it.mp3
+        en: stories/alessandro/storia-scheletri-zombie-te/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      title_audio:
+        it: stories/alessandro/storia-scheletri-zombie-te/title_it.mp3
+        en: stories/alessandro/storia-scheletri-zombie-te/title_en.mp3
+      hover_video: stories/alessandro/storia-scheletri-zombie-te/hover_preview.mp4
       readme: stories/alessandro/storia-scheletri-zombie-te/README.md
       web_page: stories/alessandro/storia-scheletri-zombie-te/index.html
+      video:
+        file: stories/alessandro/storia-scheletri-zombie-te/video_scheletri_zombie_te.mp4
+        model: veo-2.0-generate-001
+        resolution: "1280x720"
       pages:
         - page: 1
-          title: "Scheletri e Zombie a Merenda"
-          image: stories/alessandro/storia-scheletri-zombie-te/scena1_scheletri_te.png
-          summary: "Una famiglia di scheletri serve gentilmente tazze di tè fumante a un gruppo di zombie assetati in un giardino medievale."
+          title: "La Libreria nel Buio Buio Giardino"
+          title_en: "The Library in the Dark, Dark Garden"
+          image: stories/alessandro/storia-scheletri-zombie-te/scena1_giardino_libreria.jpg
+          summary: "Una simpatica famiglia di scheletri col loro cane scheletro passeggia nel buio buio giardino e scopre una libreria piena di zombie educatissimi che chiedono un po' di tè."
+          paragraphs_it:
+            - "C'era una volta una simpatica famiglia di scheletri — papà, mamma e il piccolo scheletro — con tanto di fedelissimo cane scheletro che trottava allegro facendo tic-tac con le sue zampette d'osso. Una sera decisero di uscire insieme per una passeggiata speciale e andarono a esplorare il misterioso buio buio giardino."
+            - "Laggiù tra le siepi antiche e gli alberi contorti c'era un buio buio intenso, così profondo che persino i grilli parlavano sottovoce. Ma proprio nel cuore del giardino, illuminata da lanterne calde e dorate, la famiglia scoprì una cosa straordinaria: una grandissima libreria di legno piena di volumi antichi!"
+            - "E chi c'era dentro la libreria? C'erano tantissimi zombie zombie! Ma invece di fare versi spaventosi, quegli zombie avevano la gola secca dopo aver sfogliato tanti libri e, con un sorriso timido e un inchino, chiesero gentilmente agli scheletri se potessero avere un po' di tè caldo."
+          paragraphs_en:
+            - "Once upon a time, there was a friendly family of skeletons—Papa, Mama, and Little Skeleton—along with their loyal skeleton dog, who trotted happily with a cheerful click-clack of his bony paws. One evening, they decided to go out for a special stroll together into the mysterious dark, dark garden."
+            - "Deep among the ancient hedges and twisting trees, there was an intense dark, dark night so thick that even the crickets whispered softly. Yet right in the heart of the garden, glowing under warm golden lanterns, the family discovered something extraordinary: a grand wooden library overflowing with books!"
+            - "And who was inside that library? Lots and lots of zombie zombies! Instead of groaning or being scary, those book-loving zombies had dry throats from reading so many stories, and with a shy smile and a bow, they politely asked the skeletons for a little bit of warm tea."
+        - page: 2
+          title: "Un Tè Fumante... e Poi Ancora di Più!"
+          title_en: "Steaming Tea... and Even More!"
+          image: stories/alessandro/storia-scheletri-zombie-te/scena2_primo_te.jpg
+          summary: "Gli scheletri corrono a casa, preparano una teiera fumante e la portano agli zombie, che entusiasti ne vogliono ancora e ancora di più!"
+          paragraphs_it:
+            - "Sentendo una richiesta così educata, gli scheletri non persero un secondo: fecero dietrofront e tornarono di corsa a casa, con il cane scheletro che faceva strada scodinzolando nel buio. In cucina misero subito sul fuoco il bollitore e prepararono un tè profumatissimo alle erbe del giardino."
+            - "Con la teiera fumante tra le mani, la famiglia di scheletri tornò nel buio buio giardino e servì il tè agli zombie con grande eleganza. Il vapore caldo profumava di miele, camomilla e cannella, scaldando l'aria fresca della notte."
+            - "Appena gli zombie assaggiarono il primo sorso, i loro occhi si illuminarono di meraviglia: non avevano mai bevuto niente di così delizioso! Presi dall'entusiasmo, gli zombie ne vollero ancora di più, e poi ancora di più, finché nella teiera non rimase nemmeno una gocciolina!"
+          paragraphs_en:
+            - "Hearing such a polite request, the skeletons didn't waste a single second: they turned right around and hurried back home, with their skeleton dog leading the way through the dark. In their kitchen, they put the kettle on and brewed a wonderfully fragrant pot of herbal garden tea."
+            - "Carrying a steaming teapot, the skeleton family returned to the dark, dark garden and served the tea to the zombies with great care. The warm steam smelled of honey, chamomile, and cinnamon, filling the cool night air."
+            - "As soon as the zombies took their very first sip, their eyes lit up with wonder—they had never tasted anything so delicious! Bursting with excitement, the thirsty zombies wanted even more, and then even more after that, until not a single drop was left in the teapot!"
+        - page: 3
+          title: "Due Bicchieri di Tè e un «Grazie!» di Cuore"
+          title_en: "Two Glasses of Tea and a Heartfelt “Thank You!”"
+          image: stories/alessandro/storia-scheletri-zombie-te/scena3_due_bicchieri_grazie.jpg
+          summary: "Gli scheletri tornano a casa a prendere due grandi bicchieri di tè; gli zombie li bevono dicendo «Grazie!» e rispondono «Sì!» alla proposta di un'altra sorpresa."
+          paragraphs_it:
+            - "Vedendo i loro nuovi amici ancora assetati, gli scheletri sorrisero e tornarono di nuovo a casa a gambe levate! Questa volta, per essere sicuri che nessuno restasse a bocca asciutta, presero due grandi bicchieri trasparenti colmi fino all'orlo di tè caldo all'arancia e rosmarino."
+            - "Riportati i due bicchieri davanti alla libreria illuminata, gli zombie li bevvero fino all'ultimo sorso con un lungo sospiro di felicità. Poi posarono i bicchieri sul vassoio, si fecero un piccolo inchino e dissero tutti insieme con sincera gratitudine: «Grazie!»."
+            - "Ma la serata era appena cominciata! Gli scheletri, felici di essere degli ospiti così premurosi, si piegarono in avanti e chiesero con entusiasmo: «Vuoi un'altra cosa?». E tutti gli zombie della libreria risposero in un grande coro festoso: «Sì!», dando inizio alla più bella festa di mezzanotte del giardino!"
+          paragraphs_en:
+            - "Seeing that their new friends were still thirsty, the skeletons grinned and ran all the way back home a second time! This time, to make sure there was plenty for everyone, they brought back two tall glasses filled right to the brim with warm, fragrant spiced tea."
+            - "Back in front of the glowing library, the zombies drank both glasses down to the last sip with a happy sigh. Then they set the glasses neatly on the tray, gave a polite little bow, and said together with heartfelt gratitude: “Thank you!”"
+            - "Yet the evening was only just beginning! Delighted to be such welcoming hosts, the skeletons leaned in and asked eagerly: “Would you like something else?” And all the zombies in the library cheered back in a joyful chorus: “Yes!”—turning the dark garden into the liveliest midnight tea party ever!"
+    transcript:
+      - speaker: "Papà Riccardo"
+        text: "Pux, mio figlio Alessandro ha una storia da raccontarti, una storia che si è inventato. Ti chiederei di ascoltare tutta la storia di Ale, poi dopo quando l'hai ascoltata la trascrivi... Vai Ale, raccontaci la storia numero due!"
+      - speaker: "Alessandro"
+        text: "Ehm... questa storia è di... dei scheletri, una famiglia di scheletri con un cane scheletro. Una volta hanno voluto andare nel buio buio giardino. Nel buio buio giardino c'era un buio buio..."
+      - speaker: "Papà Riccardo"
+        text: "...intenso..."
+      - speaker: "Alessandro"
+        text: "...intenso! E c'era ehm... un... un... una libreria! E dentro la libreria c'erano tantissimi zombie, zombie che hanno chiesto gentilmente per una... un po' di tè! E poi i scheletri hanno andato indietro a casa, ha preso un tè, e poi li ha dato a i zombie. I zombie ne ha voluto di più di tè, e più! E poi hanno andato..."
+      - speaker: "Papà Riccardo"
+        text: "Il tè intendi il tè da bere hanno voluto? Ok, hanno voluto più tè!"
+      - speaker: "Alessandro"
+        text: "Sì! E poi hanno andato a casa, questa volta hanno preso due bicchieri di tè. Poi i zombie li ha beve- bevuti e hanno chiesto: \"Grazie!\". E poi i scheletri hanno chiesto: \"Vuoi un'altra cosa?\". E poi i zombie hanno detto: \"Sì!\". Finita!"

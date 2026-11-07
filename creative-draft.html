@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Draft &amp; Storyboard — Kids' Own Stories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #151e32;
+      --gold: #ffb703;
+      --primary: #ff5e36;
+      --teal: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: #f8fafc;
+      padding: 20px;
+      line-height: 1.55;
+    }
+    .container { max-width: 1260px; margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 183, 3, 0.25);
+    }
+    h1, h2, h3 { font-family: 'Fredoka', sans-serif; }
+    .btn {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      color: #0b0f19;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .story-block {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      padding: 24px;
+      margin-bottom: 34px;
+    }
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin: 16px 0 22px;
+    }
+    .audio-box {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 183, 3, 0.25);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .audio-box span {
+      display: block;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .audio-box audio { width: 100%; height: 34px; }
+    .scene-row {
+      display: grid;
+      grid-template-columns: 420px 1fr 1fr;
+      gap: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      align-items: start;
+    }
+    .scene-row img, .scene-row video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+    .lang-col h4 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+    .lang-col p {
+      font-size: 0.92rem;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 980px) {
+      .scene-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>🎨 Creative Draft &amp; Storyboard Monitor</h1>
+        <p style="color:#94a3b8;font-size:0.92rem;">Vista di controllo con tutte le illustrazioni, video, audiolibri IT/EN (Aoede + Pianino) e testi fianco a fianco.</p>
+      </div>
+      <a class="btn" href="index.html">📖 Apri App Libro Sfogliabile 3D →</a>
+    </header>
+
+    <div id="draftContainer">Caricamento da <code>stories.yaml</code>...</div>
+  </div>
+
+  <script>
+    async function loadDraft() {
+      const res = await fetch('stories.yaml');
+      const text = await res.text();
+      const data = window.jsyaml.load(text);
+      const container = document.getElementById('draftContainer');
+
+      container.innerHTML = (data.stories || []).map(s => {
+        const pagesHtml = (s.assets?.pages || []).map(p => `
+          <div class="scene-row">
+            <div>
+              <img src="${p.image}" alt="${p.title}">
+              <div style="font-size:0.78rem;color:#94a3b8;margin-top:6px;"><code>${p.image}</code></div>
+            </div>
+            <div class="lang-col">
+              <h4>🇮🇹 Pagina ${p.page}: ${p.title}</h4>
+              ${(p.paragraphs_it || []).map(para => `<p>${para}</p>`).join('')}
+            </div>
+            <div class="lang-col">
+              <h4>🇬🇧 Page ${p.page}: ${p.title_en || p.title}</h4>
+              ${(p.paragraphs_en || []).map(para => `<p>${para}</p>`).join('')}
+            </div>
+          </div>
+        `).join('');
+
+        const videoHtml = s.assets?.video?.file ? `
+          <div class="scene-row">
+            <div>
+              <video controls loop muted playsinline src="${s.assets.video.file}"></video>
+              <div style="font-size:0.78rem;color:#94a3b8;margin-top:6px;"><code>${s.assets.video.file}</code></div>
+            </div>
+            <div class="lang-col">
+              <h4>🎬 Video Animato (${s.assets.video.model})</h4>
+              <p>Risoluzione: ${s.assets.video.resolution}</p>
+            </div>
+            <div class="lang-col">
+              <h4>💬 Citazione Iconica</h4>
+              <p>${s.quote}</p>
+              <p>${s.quote_en || ''}</p>
+            </div>
+          </div>
+        ` : '';
+
+        return `
+          <section class="story-block">
+            <h2>${s.emoji} ${s.title} <span style="font-size:0.95rem;color:#94a3b8;">(${s.created_at})</span></h2>
+            <div class="audio-grid">
+              <div class="audio-box">
+                <span>🔊 Voce Suadente Titolo IT (Hover WOW • Aoede)</span>
+                <audio controls preload="metadata" src="${s.assets?.title_audio?.it || ''}"></audio>
+              </div>
+              <div class="audio-box">
+                <span>🔊 Soothing Title Voice EN (Hover WOW • Aoede)</span>
+                <audio controls preload="metadata" src="${s.assets?.title_audio?.en || ''}"></audio>
+              </div>
+              <div class="audio-box">
+                <span>🇮🇹 Audiolibro Narrato IT (Voce Aoede + Pianino)</span>
+                <audio controls preload="metadata" src="${s.assets?.narrated_audio?.it || ''}"></audio>
+              </div>
+              <div class="audio-box">
+                <span>🇬🇧 Narrated Audiobook EN (Voice Aoede + Piano)</span>
+                <audio controls preload="metadata" src="${s.assets?.narrated_audio?.en || ''}"></audio>
+              </div>
+              <div class="audio-box">
+                <span>🎙️ Audio Grezzo Originale di Alessandro</span>
+                <audio controls preload="none" src="${s.assets?.story_audio?.mp3 || ''}"></audio>
+              </div>
+            </div>
+            ${pagesHtml}
+            ${videoHtml}
+          </section>
+        `;
+      }).join('');
+    }
+    loadDraft();
+  </script>
+</body>
+</html>
