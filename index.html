@@ -239,24 +239,111 @@
       transform-style: preserve-3d;
     }
 
-    /* 3D Page Turn Animations */
+    /* 3D Page Turn Animations & Physical Turning Page Leaf */
+    .page-turn-leaf {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 51.9%;
+      width: 48.1%;
+      pointer-events: none;
+      z-index: 30;
+      opacity: 0;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      background:
+        linear-gradient(90deg,
+          rgba(44, 24, 16, 0.35) 0%,
+          #fbf6ec 8%,
+          #fffdf9 45%,
+          #efe4ce 85%,
+          rgba(154, 52, 18, 0.28) 100%);
+      border-radius: 0 16px 16px 0;
+      box-shadow: -12px 0 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .page-turn-leaf::after {
+      content: "";
+      position: absolute;
+      inset: 28px 34px;
+      border-top: 2px solid rgba(154, 52, 18, 0.14);
+      border-bottom: 2px solid rgba(154, 52, 18, 0.14);
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 22px,
+        rgba(100, 83, 68, 0.09) 22px,
+        rgba(100, 83, 68, 0.09) 24px
+      );
+      opacity: 0.7;
+    }
+
+    .open-book.turning-next .page-turn-leaf {
+      animation: leafFlipNext 0.56s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .open-book.turning-prev .page-turn-leaf {
+      animation: leafFlipPrev 0.56s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
     .open-book.turning-next .book-page-right {
-      animation: flipNextPage 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: flipNextPage 0.52s cubic-bezier(0.22, 1, 0.36, 1);
       transform-origin: left center;
     }
 
     .open-book.turning-prev .book-page-left {
-      animation: flipPrevPage 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: flipPrevPage 0.52s cubic-bezier(0.22, 1, 0.36, 1);
       transform-origin: right center;
     }
 
+    @keyframes leafFlipNext {
+      0% {
+        opacity: 1;
+        transform: perspective(1800px) rotateY(0deg) skewY(0deg);
+        box-shadow: -6px 0 18px rgba(0, 0, 0, 0.25);
+      }
+      45% {
+        opacity: 1;
+        transform: perspective(1800px) rotateY(-88deg) skewY(-4deg);
+        box-shadow: -28px 10px 45px rgba(0, 0, 0, 0.55);
+      }
+      85% {
+        opacity: 0.85;
+        transform: perspective(1800px) rotateY(-165deg) skewY(-1deg);
+      }
+      100% {
+        opacity: 0;
+        transform: perspective(1800px) rotateY(-180deg) skewY(0deg);
+      }
+    }
+
+    @keyframes leafFlipPrev {
+      0% {
+        opacity: 1;
+        transform: perspective(1800px) rotateY(-175deg) skewY(-1deg);
+      }
+      50% {
+        opacity: 1;
+        transform: perspective(1800px) rotateY(-85deg) skewY(4deg);
+        box-shadow: -28px 10px 45px rgba(0, 0, 0, 0.55);
+      }
+      90% {
+        opacity: 0.9;
+        transform: perspective(1800px) rotateY(-10deg) skewY(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: perspective(1800px) rotateY(0deg) skewY(0deg);
+      }
+    }
+
     @keyframes flipNextPage {
-      0% { transform: rotateY(-18deg); opacity: 0.75; }
+      0% { transform: rotateY(-14deg); opacity: 0.72; }
       100% { transform: rotateY(0deg); opacity: 1; }
     }
 
     @keyframes flipPrevPage {
-      0% { transform: rotateY(18deg); opacity: 0.75; }
+      0% { transform: rotateY(14deg); opacity: 0.72; }
       100% { transform: rotateY(0deg); opacity: 1; }
     }
 
@@ -856,20 +943,187 @@
     }
 
     @media (max-width: 900px) {
-      .book-viewport {
+      header.topbar {
         height: auto;
-        min-height: calc(100dvh - 58px);
-        overflow: visible;
+        flex-wrap: wrap;
+        padding: 6px 10px;
+        gap: 6px;
       }
-      .open-book {
-        grid-template-columns: 1fr;
-        max-height: none;
+
+      .brand-btn {
+        font-size: 0.96rem;
+        gap: 4px;
       }
-      .book-page-left {
-        height: 280px;
+
+      .tabs-strip {
+        order: 2;
+        width: 100%;
+        padding-bottom: 2px;
       }
-      .narrator-label {
+
+      .tab-pill {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+      }
+
+      .topbar-right {
+        order: 1;
+        margin-left: auto;
+        gap: 6px;
+      }
+
+      .new-story-pill span.new-story-text {
         display: none;
+      }
+
+      /* Mobile Narrated Audio Bar: Full-width row right inside topbar so it is ALWAYS visible! */
+      .narrator-bar {
+        display: flex;
+        width: 100%;
+        order: 3;
+        justify-content: space-between;
+        padding: 4px 10px;
+        background: rgba(16, 185, 129, 0.16);
+        border: 1px solid rgba(16, 185, 129, 0.5);
+        border-radius: 12px;
+      }
+
+      .narrator-label {
+        display: inline-block;
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+
+      .narrator-bar audio {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        height: 30px;
+      }
+
+      /* Mobile Zero-Scroll Book Viewport: fits 100% of phone screen! */
+      .book-viewport {
+        height: calc(100dvh - 118px);
+        min-height: 0;
+        padding: 6px 8px 4px;
+        overflow: hidden;
+      }
+
+      .open-book-stage {
+        width: 100%;
+      }
+
+      .open-book {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 14px;
+        box-shadow:
+          0 10px 28px rgba(0, 0, 0, 0.7),
+          0 0 0 3px #3e2417,
+          0 0 0 4px rgba(255, 183, 3, 0.4);
+        touch-action: pan-y;
+      }
+
+      /* Full-card 3D page leaf curl on mobile */
+      .page-turn-leaf {
+        left: 0;
+        width: 100%;
+        border-radius: 14px;
+      }
+
+      /* Compact top illustration banner on mobile (tap to zoom full screen) */
+      .book-page-left {
+        height: 21dvh;
+        max-height: 155px;
+        min-height: 110px;
+        flex-shrink: 0;
+        border-right: none;
+        border-bottom: 2px solid rgba(154, 52, 18, 0.25);
+        cursor: zoom-in;
+      }
+
+      .book-page-left::after {
+        display: none;
+      }
+
+      .left-page-badge {
+        bottom: 8px;
+        left: 10px;
+        font-size: 0.72rem;
+        padding: 3px 9px;
+      }
+
+      /* Readable text page with pinned bottom navigation buttons */
+      .book-page-right {
+        flex: 1;
+        min-height: 0;
+        padding: 10px 14px 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .book-page-right::before {
+        display: none;
+      }
+
+      .book-text-header {
+        padding-bottom: 5px;
+        margin-bottom: 6px;
+      }
+
+      .book-kicker {
+        font-size: 0.7rem;
+      }
+
+      .book-chapter-title {
+        font-size: 1.08rem;
+        margin-top: 2px;
+      }
+
+      .book-prose {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        justify-content: flex-start;
+        font-size: 0.98rem;
+        line-height: 1.44;
+        gap: 8px;
+        padding-right: 2px;
+      }
+
+      .book-prose p:first-of-type::first-letter {
+        font-size: 1.95rem;
+        padding-right: 6px;
+        padding-top: 2px;
+      }
+
+      .book-quote-ribbon {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+      }
+
+      .book-nav-footer {
+        flex-shrink: 0;
+        padding-top: 8px;
+        margin-top: 6px;
+      }
+
+      .page-turn-btn {
+        font-size: 0.84rem;
+        padding: 7px 13px;
+      }
+
+      .micro-footer {
+        padding-top: 3px;
+        gap: 10px;
+      }
+
+      .behind-scenes-trigger {
+        font-size: 0.68rem;
       }
     }
   </style>
@@ -886,18 +1140,18 @@
 
     <div class="topbar-right" id="topbarRight">
       <button type="button" class="new-story-pill" onclick="openNewStoryModal()" title="Registra una nuova storia al microfono">
-        🎙️ + Nuova Storia
+        🎙️ <span class="new-story-text">+ Nuova Storia</span>
       </button>
 
       <div class="lang-switch" role="group" aria-label="Lingua della storia e della voce narrante">
         <button type="button" class="lang-btn active" id="langBtnIt" onclick="setLanguage('it')">🇮🇹 IT</button>
         <button type="button" class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">🇬🇧 EN</button>
       </div>
+    </div>
 
-      <div class="narrator-bar" id="narratorBar" hidden title="Voce narrante femminile calma (Gemini Aoede) con pianoforte in sottofondo">
-        <span class="narrator-label" id="narratorLabel">🎧 Voce + Pianino (IT):</span>
-        <audio id="narratorAudio" controls preload="metadata"></audio>
-      </div>
+    <div class="narrator-bar" id="narratorBar" hidden title="Voce narrante femminile calma (Gemini Aoede) con pianoforte in sottofondo">
+      <span class="narrator-label" id="narratorLabel">🎧 Voce + Pianino (IT):</span>
+      <audio id="narratorAudio" controls preload="metadata"></audio>
     </div>
   </header>
 
@@ -924,6 +1178,9 @@
   <main id="bookViewport" class="book-viewport" hidden>
     <div class="open-book-stage">
       <article class="open-book" id="openBookSpread" aria-live="polite">
+        <!-- 3D PHYSICAL TURNING PAGE LEAF OVERLAY -->
+        <div class="page-turn-leaf" id="pageTurnLeaf" aria-hidden="true"></div>
+
         <!-- LEFT PAGE: SCENE ILLUSTRATION OR VIDEO -->
         <div class="book-page-left" id="bookPageLeft"></div>
 
@@ -1337,9 +1594,15 @@
       pageIndexBySlug[story.slug] = idx;
       const slide = slides[idx];
 
-      // Trigger 3D page turn animation class if turning
+      // Trigger 3D page turn animation class and restart leaf animation on every flip
       const bookEl = document.getElementById('openBookSpread');
+      const leafEl = document.getElementById('pageTurnLeaf');
       bookEl.classList.remove('turning-next', 'turning-prev');
+      if (leafEl) {
+        leafEl.style.animation = 'none';
+        void leafEl.offsetWidth;
+        leafEl.style.animation = '';
+      }
       if (turnDirection === 'next') {
         void bookEl.offsetWidth;
         bookEl.classList.add('turning-next');
@@ -1413,6 +1676,77 @@
       `;
     }
 
+    /* =========================================================================
+       REALISTIC PAPER RUSTLE SOUND EFFECT ("SFRUSCIO DI PAGINA CHE GIRA")
+       ========================================================================= */
+    let pageFlipAudioCtx = null;
+
+    function playPageFlipRustle(direction = 'next') {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        if (!pageFlipAudioCtx) {
+          pageFlipAudioCtx = new AudioCtx();
+        }
+        if (pageFlipAudioCtx.state === 'suspended') {
+          pageFlipAudioCtx.resume();
+        }
+
+        const ctx = pageFlipAudioCtx;
+        const now = ctx.currentTime;
+        const duration = 0.36;
+        const sampleRate = ctx.sampleRate;
+        const bufferSize = Math.floor(sampleRate * duration);
+        const buffer = ctx.createBuffer(1, bufferSize, sampleRate);
+        const data = buffer.getChannelData(0);
+
+        // Generate pink-filtered paper texture noise with natural crinkle envelope
+        let b0 = 0, b1 = 0, b2 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.997 * b0 + white * 0.029;
+          b1 = 0.985 * b1 + white * 0.032;
+          b2 = 0.950 * b2 + white * 0.048;
+          const pink = b0 + b1 + b2 + white * 0.18;
+          const t = i / bufferSize;
+          // Crisp swell in the middle as the page arches, then soft landing
+          const env = Math.sin(Math.PI * Math.pow(t, 0.78)) * (1 - 0.25 * t);
+          data[i] = pink * env;
+        }
+
+        const noiseSource = ctx.createBufferSource();
+        noiseSource.buffer = buffer;
+
+        // Sweeping bandpass filter simulates the paper leaf arching through air
+        const bandpass = ctx.createBiquadFilter();
+        bandpass.type = 'bandpass';
+        bandpass.Q.setValueAtTime(1.35, now);
+        if (direction === 'next') {
+          bandpass.frequency.setValueAtTime(850, now);
+          bandpass.frequency.exponentialRampToValueAtTime(2450, now + 0.15);
+          bandpass.frequency.exponentialRampToValueAtTime(680, now + duration);
+        } else {
+          bandpass.frequency.setValueAtTime(720, now);
+          bandpass.frequency.exponentialRampToValueAtTime(1950, now + 0.15);
+          bandpass.frequency.exponentialRampToValueAtTime(590, now + duration);
+        }
+
+        const gainNode = ctx.createGain();
+        gainNode.gain.setValueAtTime(0.01, now);
+        gainNode.gain.linearRampToValueAtTime(0.34, now + 0.09);
+        gainNode.gain.exponentialRampToValueAtTime(0.008, now + duration);
+
+        noiseSource.connect(bandpass);
+        bandpass.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        noiseSource.start(now);
+        noiseSource.stop(now + duration);
+      } catch (_) {
+        // Ignore if audio context blocked
+      }
+    }
+
     function turnPage(delta) {
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
@@ -1420,8 +1754,10 @@
       const cur = pageIndexBySlug[story.slug] || 0;
       const next = cur + delta;
       if (next >= 0 && next < slides.length) {
+        const dir = delta > 0 ? 'next' : 'prev';
+        playPageFlipRustle(dir);
         pageIndexBySlug[story.slug] = next;
-        renderActiveBook(delta > 0 ? 'next' : 'prev');
+        renderActiveBook(dir);
       }
     }
 
@@ -1430,9 +1766,45 @@
       if (!story) return;
       const cur = pageIndexBySlug[story.slug] || 0;
       if (index === cur) return;
+      const dir = index > cur ? 'next' : 'prev';
+      playPageFlipRustle(dir);
       pageIndexBySlug[story.slug] = index;
-      renderActiveBook(index > cur ? 'next' : 'prev');
+      renderActiveBook(dir);
     }
+
+    /* =========================================================================
+       MOBILE TOUCH SWIPE LEFT / RIGHT TO TURN PAGES
+       ========================================================================= */
+    (function initBookSwipeGesture() {
+      let startX = 0;
+      let startY = 0;
+      let tracking = false;
+
+      const viewportEl = document.getElementById('bookViewport');
+      if (!viewportEl) return;
+
+      viewportEl.addEventListener('touchstart', (e) => {
+        if (!e.touches || e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        tracking = true;
+      }, { passive: true });
+
+      viewportEl.addEventListener('touchend', (e) => {
+        if (!tracking || !e.changedTouches || e.changedTouches.length === 0) return;
+        tracking = false;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        // Horizontal swipe threshold (at least 36px and predominantly horizontal)
+        if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+          if (dx < 0) {
+            turnPage(1);  // Swipe Left -> Next Page
+          } else {
+            turnPage(-1); // Swipe Right -> Previous Page
+          }
+        }
+      }, { passive: true });
+    })();
 
     function openBehindScenesModal() {
       const story = (catalog.stories || []).find(s => s.slug === activeTab);

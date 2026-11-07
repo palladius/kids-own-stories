@@ -2,6 +2,17 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.4.1] - 2026-11-07
+
+### Fixed & Improved (Mobile UX, Swipe & 3D Page Leaf + Sound)
+- 📱 **Mobile Layout Zero-Scroll (`100dvh`) & Audio Narrato Sempre Visibile**:
+  - La barra **`🎧 Voce + Pianino (IT/EN)`** ora si dispone su una riga dedicata a larghezza piena su mobile (`<= 900px`) così l'audiolibro narrato è sempre visibile e cliccabile in alto.
+  - Il libro su mobile ora entra interamente nello schermo (`calc(100dvh - 118px)`) con illustrazione panoramica compatta in alto (`21dvh`), testo dei 3 paragrafi subito leggibile al centro e bottoni `‹ Indietro | Avanti ›` fissati in basso senza dover fare scrolling della pagina.
+- 👆 **Touch Swipe Left / Right su Mobile**:
+  - Aggiunto il supporto nativo allo swipe orizzontale col dito (`touchstart` / `touchend`) sul libro per sfogliare avanti e indietro come su un vero libro.
+- 📄🔊 **Foglio 3D che Gira (`#pageTurnLeaf`) + Sfruscio Realistico della Carta (`Web Audio API`)**:
+  - Ad ogni cambio pagina (click, frecce o swipe), una pagina fisica 3D ruota con ombra dinamica accompagnata dal suono sintetizzato dello **sfruscio di carta** (`playPageFlipRustle`).
+
 ## [0.4.0] - 2026-11-07
 
 ### Added
