@@ -97,6 +97,7 @@ stories:
         file: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/video_drago_puffins.mp4
         model: gemini-omni-flash-preview
         resolution: "1280x720"
+        duration_seconds: 40
       pages:
         - page: 1
           title: "La Chiave nello Zaino e la Porta sul Banco"
@@ -298,8 +299,9 @@ stories:
       web_page: stories/alessandro/storia-scheletri-zombie-te/index.html
       video:
         file: stories/alessandro/storia-scheletri-zombie-te/video_scheletri_zombie_te.mp4
-        model: veo-2.0-generate-001
+        model: gemini-omni-flash-preview
         resolution: "1280x720"
+        duration_seconds: 40
       pages:
         - page: 1
           title: "La Libreria nel Buio Buio Giardino"
@@ -465,8 +467,9 @@ stories:
       web_page: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/index.html
       video:
         file: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/video_pupurabbu_hotwheels.mp4
-        model: veo-2.0-generate-001
+        model: gemini-omni-flash-preview
         resolution: "1280x720"
+        duration_seconds: 40
       pages:
         - page: 1
           title: "La Grande Pista sulla Spiaggia di Lido degli Estensi"

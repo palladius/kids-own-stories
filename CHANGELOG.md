@@ -2,6 +2,18 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.7.0] - 2026-11-07
+
+### Added & Changed
+- 🎬 **3 Film Animati Completi da 40 Secondi (`4 Atti × 10s`) Narrati in Italiano con Gemini Omni Flash (`bin/generate_40s_story_videos.py`)**:
+  - Sostituiti i brevi clip da 5–7 secondi con **3 veri mini-film animati da `40.1` secondi ciascuno (`1280x720` 24fps H.264 + AAC 48kHz stereo)** che raccontano **l'intera trama dall'inizio alla fine** in 4 atti da 10 secondi partendo dalle illustrazioni `<FIRST_FRAME>` di ogni pagina:
+    1. 🎒🐉🐧 **`stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/video_drago_puffins.mp4`** (`40.1s`, `17.2 MB`): Atto 1 Chiave nello zaino e porta magica sul banco a scuola (*all'altro break sul suo desk*) → Atto 2 Mondo dei Draghi fatto di gemme → Atto 3 Battibecco col Drago (*«No, tu non puoi prenderle, sono mie!» / «No, ora sono mie!»*), fiammata cartoon e recupero di gemme e chiave → Atto 4 Volo nel mondo d'oro e cristalli con i **Puffins**!
+    2. 💀🧟☕ **`stories/alessandro/storia-scheletri-zombie-te/video_scheletri_zombie_te.mp4`** (`40.1s`, `16.4 MB`): Atto 1 Passeggiata della famiglia di scheletri col cane scheletro nel *buio buio giardino intenso* e scoperta della libreria di zombie → Atto 2 Primo viaggio a casa, prima teiera fumante e zombie che ne vogliono *di più e ancora di più* → Atto 3 Secondo viaggio a casa con i **due bicchieri di tè** e il *«Grazie!»* degli zombie → Atto 4 *«Vuoi un'altra cosa? — Sì! Finita!»* festa di mezzanotte nel giardino.
+    3. 🐰🏎️🌈 **`stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/video_pupurabbu_hotwheels.mp4`** (`40.1s`, `16.1 MB`): Atto 1 Seby (6 anni) e il suo morbido coniglietto di peluche viola **Pupurabbu** sulla spiaggia di **Lido degli Estensi** lanciano il bolide blu sulla pista arancione → Atto 2 Giro della morte, apertura del **portale fatato** e Pupurabbu che prende vita → Atto 3 Corsa a tutto gas sulle piste arcobaleno tra nuvole di zucchero filato, castelli di cristallo e stelline marine in festa → Atto 4 Ritorno al tramonto a Lido degli Estensi con la Conchiglia-Trofeo luminosa e l'abbraccio tenerissimo a Pupurabbu.
+  - Rigenerati anche i 3 clip rapidi `hover_preview.mp4` (`5.0s` fast-start) e aggiornati `stories.yaml`, i `README.md` e gli `index.html` delle 3 storie.
+- ⚖️ **Validazione Avversaria Multi-Agente (`10/10 APPROVATO`)**:
+  - Tutti i 12 prompt da 10 secondi sono stati progettati e sottoposti a revisione avversaria incrociata tra `story-director`, `ale-fidelity-critic` (verifica al 100% di ogni dettaglio delle sbobinature originali di Ale e Seby) e `omni-technical-critic` (calibrazione prosodica a 16–23 parole italiane per atto da 10s anti-cutoff e sanitizzazione anti-blocco `35561575`).
+
 ## [0.6.2] - 2026-11-07
 
 ### Fixed & Changed

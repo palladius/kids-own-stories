@@ -74,9 +74,12 @@ Sulla sabbia tiepida del tramonto, Pupurabbu era tornato a essere il tenero pupa
 
 ---
 
-## 🎬 Il Video Ufficiale
+## 🎬 Il Video Ufficiale da 40 Secondi (Gemini Omni Flash)
 
-* **File MP4**: [video_pupurabbu_hotwheels.mp4](video_pupurabbu_hotwheels.mp4)
+Il film animato completo in **4 atti da 10 secondi (40 secondi totali)** racconta tutta l'avventura di Seby e Pupurabbu con narrazione in italiano, generato con **Gemini Omni Flash** (`gemini-omni-flash-preview`):
+
+* 📹 **File MP4**: [video_pupurabbu_hotwheels.mp4](video_pupurabbu_hotwheels.mp4)
+* **Specifiche**: 1280x720 (16:9), H.264 / AAC 48kHz stereo, **40 secondi** (4 atti × 10s).
 
 ## 🌐 Pagina Web Interattiva
 È disponibile la versione sfogliabile con audiolibro IT/EN e voce originale in:

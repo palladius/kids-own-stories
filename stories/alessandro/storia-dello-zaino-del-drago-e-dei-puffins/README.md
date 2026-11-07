@@ -94,12 +94,12 @@ Lì ad attenderlo non c'erano mostri o altri draghi spaventosi... ma **uno storm
 
 ---
 
-## 🎬 Il Video Ufficiale (Gemini Omni Flash)
+## 🎬 Il Video Ufficiale da 40 Secondi (Gemini Omni Flash)
 
-Il video del gran finale è stato animato a partire dall'illustrazione del Capitolo 4 usando **Gemini Omni Flash** (`gemini-omni-flash-preview`):
+Il film animato completo in **4 atti da 10 secondi (40 secondi totali)** racconta **tutta la storia dall'inizio alla fine** con narrazione e dialoghi in italiano, partendo dalle 4 illustrazioni della storia tramite **Gemini Omni Flash** (`gemini-omni-flash-preview`):
 
 * 📹 **File Video**: [video_drago_puffins.mp4](video_drago_puffins.mp4)
-* **Specifiche**: 1280x720 (16:9), H.264 / AAC, 5 secondi di animazione continua del volo con i Puffins.
+* **Specifiche**: 1280x720 (16:9), H.264 / AAC 48kHz stereo, **40 secondi** (4 atti × 10s: Banco & Chiave → Mondo delle Gemme → Fiammata del Drago → Volo con i Puffins).
 
 ---
 
