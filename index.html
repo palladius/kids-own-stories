@@ -1229,7 +1229,7 @@
 
     <div class="narrator-bar" id="narratorBar" hidden title="Voce narrante femminile calma con Karaoke e moltiplicatore velocità">
       <span class="narrator-label" id="narratorLabel">🎤 Karaoke + Pianino (IT):</span>
-      <audio id="narratorAudio" controls preload="metadata"></audio>
+      <audio id="narratorAudio" controls preload="auto"></audio>
       <button type="button" id="browserTtsBtn" class="vote-pill-btn" onclick="toggleBrowserKaraokeSpeech()" hidden>
         ▶️ Karaoke Live
       </button>
@@ -1429,7 +1429,7 @@
 
     async function initApp() {
       try {
-        const res = await fetch('stories.yaml');
+        const res = await fetch('stories.yaml?v=0.6.1', { cache: 'no-cache' });
         if (res.ok && window.jsyaml) {
           const text = await res.text();
           const parsed = window.jsyaml.load(text);
@@ -1477,7 +1477,7 @@
       if (karaokeCache[key]) return karaokeCache[key];
       const url = story.assets?.karaoke_timings?.[lang] || `${story.folder}/karaoke_${lang}.json`;
       try {
-        const res = await fetch(url);
+        const res = await fetch(`${url}?v=0.6.1`, { cache: 'no-cache' });
         if (res.ok) {
           const data = await res.json();
           karaokeCache[key] = data;
@@ -1514,10 +1514,21 @@
       }
       const narratorAudio = document.getElementById('narratorAudio');
       if (!narratorAudio) return;
-      narratorAudio.playbackRate = currentPlaybackSpeed;
-      narratorAudio.currentTime = Math.max(0, parseFloat(startSec) || 0);
-      narratorAudio.play().catch(() => {});
-      updateKaraokeHighlight();
+      const targetSec = Math.max(0, parseFloat(startSec) || 0);
+      lastManualTurnTimestamp = Date.now();
+      const applySeekAndPlay = () => {
+        narratorAudio.preservesPitch = true;
+        narratorAudio.playbackRate = currentPlaybackSpeed;
+        narratorAudio.currentTime = targetSec;
+        narratorAudio.play().catch(() => {});
+        updateKaraokeHighlight();
+      };
+      if (narratorAudio.readyState >= 1) {
+        applySeekAndPlay();
+      } else {
+        narratorAudio.addEventListener('loadedmetadata', applySeekAndPlay, { once: true });
+        narratorAudio.load();
+      }
     }
 
     function escapeHtml(str) {

@@ -1,12 +1,16 @@
-#!/usr/bin/env python3
+#!/home/linuxbrew/.linuxbrew/Cellar/openai-whisper/20250625_4/libexec/bin/python
 """
-Builds high-precision word-by-word Karaoke timing JSON files (`karaoke_it.json`, `karaoke_en.json`)
-for Kids' Own Stories by analyzing the pure 24kHz unmixed voice WAV tracks (or filtered MP3s),
-detecting exact page boundaries, sentence/phrase pauses (VAD), and syllable-weighted word intervals.
-
-Also adds optional support for FR, DE, PT-BR when unlocked by Story Vote >= 8/10.
+Builds high-precision acoustic word-by-word Karaoke timing JSON files (`karaoke_it.json`, `karaoke_en.json`)
+for Kids' Own Stories by combining:
+1. Exact digital-zero inter-page splice detection (`0.65s` zero-sample gaps inserted between pages).
+2. Acoustic word timestamp extraction via OpenAI Whisper (`word_timestamps=True`) per page.
+3. Needleman-Wunsch dynamic programming sequence alignment between the ground-truth story text
+   (story title, chapter title, and paragraphs) and Whisper's recognized word timestamps, with
+   monotonic interpolation for any unaligned tokens.
 """
 
+from concurrent.futures import ThreadPoolExecutor
+from difflib import SequenceMatcher
 import json
 import math
 import re
@@ -14,69 +18,89 @@ import struct
 import subprocess
 import wave
 from pathlib import Path
-import yaml
+import numpy as np
+import whisper
 
 ROOT = Path(__file__).resolve().parent.parent
 INTRO_DELAY_SEC = 1.20  # adelay=1200|1200 applied during mix_voice_with_piano
 
 
-def load_pcm_24k_mono(wav_or_mp3: Path) -> list[float]:
-    """Loads 24kHz mono float samples [-1.0, 1.0] from WAV or MP3."""
+def load_stories_yaml() -> dict:
+    """Loads stories.yaml using system python3 PyYAML."""
+    cmd = [
+        "/usr/bin/python3",
+        "-c",
+        "import yaml, json, sys; print(json.dumps(yaml.safe_load(open(sys.argv[1]))))",
+        str(ROOT / "stories.yaml"),
+    ]
+    out = subprocess.check_output(cmd).decode("utf-8")
+    return json.loads(out)
+
+
+def load_pcm_24k_mono(wav_or_mp3: Path) -> np.ndarray:
+    """Loads 24kHz mono float32 samples [-1.0, 1.0] from WAV or MP3."""
     if wav_or_mp3.suffix.lower() == ".wav" and wav_or_mp3.exists():
         with wave.open(str(wav_or_mp3), "rb") as wf:
             n = wf.getnframes()
             raw = wf.readframes(n)
-            ints = struct.unpack(f"<{n}h", raw)
-            return [x / 32768.0 for x in ints]
-    # Fallback: decode mp3 via ffmpeg to 24kHz mono s16le
+            return np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
     cmd = [
         "ffmpeg", "-v", "error", "-i", str(wav_or_mp3),
         "-f", "s16le", "-ac", "1", "-ar", "24000", "-"
     ]
     raw = subprocess.check_output(cmd)
-    n = len(raw) // 2
-    ints = struct.unpack(f"<{n}h", raw)
-    return [x / 32768.0 for x in ints]
+    return np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
 
 
-def compute_rms_envelope(samples: list[float], sample_rate: int = 24000, win_ms: int = 10) -> list[float]:
+def compute_rms_envelope(samples: np.ndarray, sample_rate: int = 24000, win_ms: int = 10) -> list[float]:
     """Computes RMS energy per 10ms frame."""
     step = int(sample_rate * win_ms / 1000)
     n_frames = len(samples) // step
-    rms = []
-    for i in range(n_frames):
-        chunk = samples[i * step:(i + 1) * step]
-        s = sum(x * x for x in chunk)
-        rms.append(math.sqrt(s / len(chunk)))
-    return rms
+    trimmed = samples[: n_frames * step].reshape(n_frames, step)
+    rms = np.sqrt(np.mean(trimmed * trimmed, axis=1))
+    return rms.tolist()
 
 
-def estimate_word_weight(word: str) -> float:
-    """Estimates spoken duration weight of a word based on vowel nuclei, length, and punctuation."""
-    clean = re.sub(r"[^\wÀ-ÿ]", "", word)
-    if not clean:
-        return 0.4
-    vowels = len(re.findall(r"[aeiouyàèéìòóùäöüãõâêîôû]+", clean.lower()))
-    syllables = max(1, vowels)
-    weight = syllables * 0.65 + len(clean) * 0.09
-    # Add natural micro-pause weight if word ends with punctuation
-    if re.search(r"[.!?…»”]$", word):
-        weight += 0.45
-    elif re.search(r"[,;:—–]$", word):
-        weight += 0.22
-    return weight
-
-
-def split_page_boundaries(rms: list[float], pages: list[dict], lang: str, win_sec: float = 0.01) -> list[tuple[float, float]]:
+def split_exact_page_boundaries(
+    samples: np.ndarray, rms: list[float], n_pages: int, sample_rate: int = 24000, win_sec: float = 0.01
+) -> list[tuple[float, float]]:
     """
-    Finds the N-1 page boundaries in the voice track by locating the longest silence gaps
-    near the expected cumulative character/word ratios of the pages.
+    Detects the exact N-1 inter-page 0.65s zero-sample splices in the raw voice WAV.
+    Falls back to longest RMS silences if reading from a piano-mixed MP3.
     """
-    total_frames = len(rms)
-    total_dur = total_frames * win_sec
+    n_samples = len(samples)
+    abs_s = np.abs(samples)
+    zero_runs = []
+    i = 0
+    while i < n_samples:
+        if abs_s[i] <= 0.00015:
+            s = i
+            while i < n_samples and abs_s[i] <= 0.00015:
+                i += 1
+            dur = (i - s) / float(sample_rate)
+            if dur >= 0.45:
+                zero_runs.append((s / float(sample_rate), i / float(sample_rate), dur))
+        else:
+            i += 1
 
-    # Trim leading and trailing silence in the raw voice track
     thresh = 0.008
+    total_frames = len(rms)
+
+    if len(zero_runs) == n_pages - 1:
+        starts = [0.0] + [zr[1] for zr in zero_runs]
+        ends = [zr[0] for zr in zero_runs] + [n_samples / float(sample_rate)]
+        spans = []
+        for ps, pe in zip(starts, ends):
+            sf = max(0, int(ps / win_sec))
+            ef = min(total_frames, int(pe / win_sec))
+            while sf < ef and rms[sf] < thresh:
+                sf += 1
+            while ef > sf and rms[ef - 1] < thresh:
+                ef -= 1
+            spans.append((sf * win_sec, ef * win_sec))
+        return spans
+
+    # Fallback if more/fewer zero_runs found: pick the N-1 longest silence gaps well-spaced across track
     first_voiced = 0
     while first_voiced < total_frames and rms[first_voiced] < thresh:
         first_voiced += 1
@@ -84,129 +108,14 @@ def split_page_boundaries(rms: list[float], pages: list[dict], lang: str, win_se
     while last_voiced > first_voiced and rms[last_voiced] < thresh:
         last_voiced -= 1
 
-    # Compute expected weight of each page (including story title on page 1)
-    page_weights = []
-    for idx, p in enumerate(pages):
-        title_txt = p.get("title_en" if lang == "en" else f"title_{lang}" if lang != "it" else "title", p.get("title", ""))
-        paras = p.get(f"paragraphs_{lang}", [])
-        full_txt = f"{title_txt} " + " ".join(paras)
-        words = full_txt.split()
-        w = sum(estimate_word_weight(tok) for tok in words)
-        if idx == 0:
-            w += 3.5  # Story main title spoken before page 1 title
-        page_weights.append(w)
-
-    total_w = sum(page_weights)
-    cum_w = 0.0
     boundaries = [first_voiced * win_sec]
-
-    # Find silence runs (consecutive frames below threshold)
-    is_silent = [1 if r < thresh else 0 for r in rms]
-
-    for i in range(len(pages) - 1):
-        cum_w += page_weights[i]
-        expected_ratio = cum_w / total_w
-        expected_sec = (first_voiced * win_sec) + expected_ratio * ((last_voiced - first_voiced) * win_sec)
-        expected_frame = int(expected_sec / win_sec)
-
-        # Search window: +/- 18% of total duration around expected_frame
-        search_radius = int(0.18 * total_frames)
-        lo = max(first_voiced + 50, expected_frame - search_radius)
-        hi = min(last_voiced - 50, expected_frame + search_radius)
-
-        # Find all silence intervals in [lo, hi]
-        best_mid_frame = expected_frame
-        best_score = -1.0
-        idx_f = lo
-        while idx_f < hi:
-            if is_silent[idx_f]:
-                start_f = idx_f
-                while idx_f < hi and is_silent[idx_f]:
-                    idx_f += 1
-                end_f = idx_f
-                dur_frames = end_f - start_f
-                mid_f = (start_f + end_f) // 2
-                # Prefer silence gaps >= 55 frames (0.55s, matching our 0.65s inter-page silence)
-                # weighted by proximity to expected_frame
-                dist_penalty = abs(mid_f - expected_frame) / float(search_radius + 1)
-                score = (dur_frames * win_sec) * (1.35 - 0.65 * dist_penalty)
-                if score > best_score:
-                    best_score = score
-                    best_mid_frame = mid_f
-            else:
-                idx_f += 1
-
-        boundaries.append(best_mid_frame * win_sec)
-
-    boundaries.append(last_voiced * win_sec)
-
-    # Convert to (start_sec, end_sec) per page, trimming silence at edges of each page
-    page_spans = []
-    for i in range(len(pages)):
-        s_frame = int(boundaries[i] / win_sec)
-        e_frame = int(boundaries[i + 1] / win_sec)
-        while s_frame < e_frame and rms[s_frame] < thresh:
-            s_frame += 1
-        while e_frame > s_frame and rms[e_frame - 1] < thresh:
-            e_frame -= 1
-        page_spans.append((s_frame * win_sec, e_frame * win_sec))
-
-    return page_spans
-
-
-def align_words_in_span(
-    rms: list[float],
-    span_start_sec: float,
-    span_end_sec: float,
-    segments_words: list[list[str]],
-    win_sec: float = 0.01,
-    offset_sec: float = INTRO_DELAY_SEC,
-) -> list[list[dict]]:
-    """
-    Given a voice time span [span_start_sec, span_end_sec] and a list of segments
-    (e.g. [story_title_words, page_title_words, para1_words, para2_words, para3_words]),
-    detects natural phrase pauses in the RMS envelope to anchor segment boundaries
-    and distributes words within each voiced phrase using syllable-weighted energy alignment.
-    """
-    s_frame = int(span_start_sec / win_sec)
-    e_frame = int(span_end_sec / win_sec)
-    thresh = 0.008
-
-    # First, find K-1 pause boundaries for the K segments (title + paragraphs)
-    # using cumulative voiced energy so expected positions are immune to silence skew
-    seg_weights = [max(0.5, sum(estimate_word_weight(w) for w in seg)) for seg in segments_words]
-    total_seg_w = sum(seg_weights)
-
-    page_voiced_cum = [0.0]
-    for f in range(s_frame, e_frame):
-        page_voiced_cum.append(page_voiced_cum[-1] + (1.0 if rms[f] >= thresh else 0.08))
-    total_page_voiced = page_voiced_cum[-1] or 1.0
-
-    def page_voiced_to_frame(v_target: float) -> int:
-        lo_i, hi_i = 0, len(page_voiced_cum) - 1
-        while lo_i < hi_i:
-            mid_i = (lo_i + hi_i) // 2
-            if page_voiced_cum[mid_i] < v_target:
-                lo_i = mid_i + 1
-            else:
-                hi_i = mid_i
-        return s_frame + lo_i
-
-    seg_frames = [s_frame]
-    cum_w = 0.0
-
-    for k in range(len(segments_words) - 1):
-        cum_w += seg_weights[k]
-        target_v = (cum_w / total_seg_w) * total_page_voiced
-        exp_f = page_voiced_to_frame(target_v)
-        # Tight search window: +/- 1.2s for short titles, +/- 2.4s for full paragraphs
-        radius = 120 if len(segments_words[k]) <= 14 else 240
-        lo = max(seg_frames[-1] + 20, exp_f - radius)
-        hi = min(e_frame - 20, exp_f + radius)
-
-        # Find best pause in [lo, hi]
-        best_f = exp_f
-        best_score = -1.0
+    for k in range(1, n_pages):
+        exp_f = first_voiced + int((k / float(n_pages)) * (last_voiced - first_voiced))
+        rad = int(0.16 * total_frames)
+        lo = max(first_voiced + 50, exp_f - rad)
+        hi = min(last_voiced - 50, exp_f + rad)
+        best_mid = exp_f
+        best_dur = -1
         f = lo
         while f < hi:
             if rms[f] < thresh:
@@ -214,105 +123,208 @@ def align_words_in_span(
                 while f < hi and rms[f] < thresh:
                     f += 1
                 en = f
-                dur = en - st
-                mid = (st + en) // 2
-                dist = abs(mid - exp_f) / float(radius + 1)
-                sc = min(dur, 65) * (1.35 - 0.75 * dist)
-                if sc > best_score:
-                    best_score = sc
-                    best_f = mid
+                if (en - st) > best_dur:
+                    best_dur = en - st
+                    best_mid = (st + en) // 2
             else:
                 f += 1
-        seg_frames.append(best_f)
+        boundaries.append(best_mid * win_sec)
+    boundaries.append(last_voiced * win_sec)
 
-    seg_frames.append(e_frame)
+    spans = []
+    for k in range(n_pages):
+        sf = int(boundaries[k] / win_sec)
+        ef = int(boundaries[k + 1] / win_sec)
+        while sf < ef and rms[sf] < thresh:
+            sf += 1
+        while ef > sf and rms[ef - 1] < thresh:
+            ef -= 1
+        spans.append((sf * win_sec, ef * win_sec))
+    return spans
 
-    # Now align words inside each segment using voiced frames
-    aligned_segments = []
-    for k, words in enumerate(segments_words):
-        if not words:
-            aligned_segments.append([])
-            continue
-        k_start = seg_frames[k]
-        k_end = seg_frames[k + 1]
-        while k_start < k_end and rms[k_start] < thresh:
-            k_start += 1
-        while k_end > k_start and rms[k_end - 1] < thresh:
-            k_end -= 1
 
-        #Now align words inside each segment by mapping words ONLY onto voiced frames
-        # and skipping natural breath/punctuation pauses (>= 100ms of silence)!
-        voiced_mask = []
-        f_idx = k_start
-        while f_idx < k_end:
-            if rms[f_idx] < thresh:
-                s_run = f_idx
-                while f_idx < k_end and rms[f_idx] < thresh:
-                    f_idx += 1
-                run_len = f_idx - s_run
-                # If silence run >= 10 frames (100ms), it's a breath/phrase pause (weight 0.02)
-                # Shorter dips (< 100ms) are plosive consonants inside words (weight 0.5)
-                w_val = 0.02 if run_len >= 10 else 0.5
-                voiced_mask.extend([w_val] * run_len)
+def norm_word(w: str) -> str:
+    """Normalizes a word token for acoustic-to-text alignment."""
+    return re.sub(r"[^\wÀ-ÿ]", "", w.lower())
+
+
+def word_sim(a: str, b: str) -> float:
+    """Returns similarity score in [-0.6, 1.5] between two normalized words."""
+    na, nb = norm_word(a), norm_word(b)
+    if not na or not nb:
+        return 0.0
+    if na == nb:
+        return 1.5
+    if na in nb or nb in na:
+        return 1.0
+    ratio = SequenceMatcher(None, na, nb).ratio()
+    return (ratio * 1.6) - 0.55
+
+
+def transcribe_page_words(
+    model, samples_24k: np.ndarray, p_start_sec: float, p_end_sec: float, lang: str
+) -> list[dict]:
+    """Slices a page from 24kHz audio, resamples to 16kHz, and extracts Whisper word timestamps."""
+    s_idx = max(0, int(p_start_sec * 24000))
+    e_idx = min(len(samples_24k), int(p_end_sec * 24000))
+    slice_24k = samples_24k[s_idx:e_idx]
+    if len(slice_24k) < 400:
+        return []
+
+    target_len = int(len(slice_24k) * 16000 / 24000)
+    x_old = np.arange(len(slice_24k), dtype=np.float32)
+    x_new = np.linspace(0, len(slice_24k) - 1, target_len, dtype=np.float32)
+    slice_16k = np.interp(x_new, x_old, slice_24k).astype(np.float32)
+
+    res = model.transcribe(
+        slice_16k,
+        language=lang,
+        word_timestamps=True,
+        fp16=False,
+        condition_on_previous_text=False,
+    )
+    words = []
+    for seg in res.get("segments", []):
+        for w in seg.get("words", []):
+            tok = w.get("word", "").strip()
+            if tok:
+                words.append({
+                    "w": tok,
+                    "s": float(w["start"]) + p_start_sec,
+                    "e": float(w["end"]) + p_start_sec,
+                })
+    return words
+
+
+def align_ground_truth_to_whisper(
+    segments_words: list[list[str]],
+    whisper_words: list[dict],
+    p_start_sec: float,
+    p_end_sec: float,
+    offset_sec: float = INTRO_DELAY_SEC,
+) -> list[list[dict]]:
+    """
+    Aligns ground-truth segment words (story title, page title, paragraphs) to Whisper's
+    acoustic word timestamps using Needleman-Wunsch dynamic programming, then interpolates
+    any unmatched tokens monotonically within their segment bounds.
+    """
+    flat_gt = []
+    for seg_i, seg in enumerate(segments_words):
+        for w_i, w_str in enumerate(seg):
+            flat_gt.append({"seg": seg_i, "idx": w_i, "w": w_str})
+
+    n = len(flat_gt)
+    m = len(whisper_words)
+    if n == 0:
+        return [[] for _ in segments_words]
+
+    # Needleman-Wunsch DP table
+    gap_penalty = -0.32
+    dp = np.zeros((n + 1, m + 1), dtype=np.float32)
+    ptr = np.zeros((n + 1, m + 1), dtype=np.int8)  # 1: diag, 2: up (skip gt), 3: left (skip whisper)
+
+    for i in range(1, n + 1):
+        dp[i, 0] = i * gap_penalty
+        ptr[i, 0] = 2
+    for j in range(1, m + 1):
+        dp[0, j] = j * gap_penalty
+        ptr[0, j] = 3
+
+    for i in range(1, n + 1):
+        gt_w = flat_gt[i - 1]["w"]
+        pos_ratio_gt = i / float(n)
+        for j in range(1, m + 1):
+            pos_ratio_wh = j / float(max(1, m))
+            # Band penalty so words cannot match wildly out of position
+            if abs(pos_ratio_gt - pos_ratio_wh) > 0.28:
+                sim = -1.5
             else:
-                # Weight voiced frames slightly by energy + constant speech rate
-                voiced_mask.append(1.0)
-                f_idx += 1
+                sim = word_sim(gt_w, whisper_words[j - 1]["w"])
+            sc_diag = dp[i - 1, j - 1] + sim
+            sc_up = dp[i - 1, j] + gap_penalty
+            sc_left = dp[i, j - 1] + gap_penalty
+            if sc_diag >= sc_up and sc_diag >= sc_left:
+                dp[i, j] = sc_diag
+                ptr[i, j] = 1
+            elif sc_up >= sc_left:
+                dp[i, j] = sc_up
+                ptr[i, j] = 2
+            else:
+                dp[i, j] = sc_left
+                ptr[i, j] = 3
 
-        if not voiced_mask:
-            voiced_mask = [1.0]
-            k_end = k_start + 1
+    # Backtrack matches
+    matched_wh = [None] * n
+    i, j = n, m
+    while i > 0 and j > 0:
+        mv = ptr[i, j]
+        if mv == 1:
+            if word_sim(flat_gt[i - 1]["w"], whisper_words[j - 1]["w"]) >= 0.25:
+                matched_wh[i - 1] = j - 1
+            i -= 1
+            j -= 1
+        elif mv == 2:
+            i -= 1
+        else:
+            j -= 1
 
-        # Build cumulative voiced progress array over [k_start, k_end]
-        cum_voiced = [0.0]
-        for v in voiced_mask:
-            cum_voiced.append(cum_voiced[-1] + v)
-        total_voiced = cum_voiced[-1] or 1.0
+    # Assign raw (s, e) from matched Whisper words and interpolate gaps
+    times = [None] * n
+    for idx_gt, wh_idx in enumerate(matched_wh):
+        if wh_idx is not None:
+            w_obj = whisper_words[wh_idx]
+            s_val = max(p_start_sec, min(p_end_sec, w_obj["s"]))
+            e_val = max(s_val + 0.06, min(p_end_sec, w_obj["e"]))
+            times[idx_gt] = (s_val, e_val)
 
-        # Pure phonetic weight (without punctuation pause padding, since pauses are in voiced_mask!)
-        def pure_word_weight(w_tok: str) -> float:
-            clean = re.sub(r"[^\wÀ-ÿ]", "", w_tok)
-            if not clean:
-                return 0.35
-            vowels = len(re.findall(r"[aeiouyàèéìòóùäöüãõâêîôû]+", clean.lower()))
-            return max(1, vowels) * 0.68 + len(clean) * 0.08
+    # Interpolate unaligned spans between anchored matches
+    idx = 0
+    while idx < n:
+        if times[idx] is None:
+            start_gap = idx
+            while idx < n and times[idx] is None:
+                idx += 1
+            end_gap = idx  # exclusive
 
-        weights = [pure_word_weight(w) for w in words]
-        w_sum = sum(weights) or 1.0
+            # Find left anchor time and right anchor time
+            if start_gap > 0 and times[start_gap - 1] is not None:
+                t_left = times[start_gap - 1][1]
+            else:
+                t_left = p_start_sec
 
-        def voiced_target_to_sec(v_target: float) -> float:
-            # Binary search in cum_voiced
-            lo_i, hi_i = 0, len(voiced_mask)
-            while lo_i < hi_i:
-                mid_i = (lo_i + hi_i) // 2
-                if cum_voiced[mid_i] < v_target:
-                    lo_i = mid_i + 1
-                else:
-                    hi_i = mid_i
-            return (k_start + lo_i) * win_sec + offset_sec
+            if end_gap < n and times[end_gap] is not None:
+                # If there is a large pause between segments (e.g. after title), don't stretch title into paragraph!
+                t_right = times[end_gap][0]
+                if start_gap > 0 and flat_gt[start_gap - 1]["seg"] == flat_gt[end_gap - 1]["seg"] and (t_right - t_left) > 1.2 * (end_gap - start_gap):
+                    t_right = t_left + 0.36 * (end_gap - start_gap)
+            else:
+                t_right = p_end_sec
 
-        cur_v = 0.0
-        word_items = []
-        for w_idx, w_str in enumerate(words):
-            w_v = total_voiced * (weights[w_idx] / w_sum)
-            nxt_v = cur_v + w_v
-            # Snap word start to the first actually voiced frame if cur_v falls inside a breath pause
-            s_sec = voiced_target_to_sec(cur_v + w_v * 0.04)
-            e_sec = voiced_target_to_sec(nxt_v - w_v * 0.02)
-            if e_sec <= s_sec:
-                e_sec = round(s_sec + 0.12, 2)
-            word_items.append({
-                "w": w_str,
-                "s": round(s_sec, 2),
-                "e": round(e_sec, 2),
-            })
-            cur_v = nxt_v
-        aligned_segments.append(word_items)
+            span_dur = max(0.08 * (end_gap - start_gap), t_right - t_left)
+            step = span_dur / float(end_gap - start_gap)
+            for k in range(start_gap, end_gap):
+                s_k = t_left + (k - start_gap) * step
+                e_k = s_k + max(0.08, step * 0.92)
+                times[k] = (s_k, e_k)
+        else:
+            idx += 1
+
+    # Group back into segments and add INTRO_DELAY_SEC offset
+    aligned_segments = [[] for _ in segments_words]
+    for idx_gt, item in enumerate(flat_gt):
+        s_raw, e_raw = times[idx_gt]
+        s_final = round(s_raw + offset_sec, 2)
+        e_final = round(max(s_final + 0.08, e_raw + offset_sec), 2)
+        aligned_segments[item["seg"]].append({
+            "w": item["w"],
+            "s": s_final,
+            "e": e_final,
+        })
 
     return aligned_segments
 
 
-def build_karaoke_for_story_lang(story: dict, lang: str):
+def build_karaoke_for_story_lang(model, story: dict, lang: str):
     slug = story["slug"]
     folder = ROOT / story["folder"]
     raw_wav = Path(f"/tmp/{slug}_voice_{lang}.wav")
@@ -330,7 +342,7 @@ def build_karaoke_for_story_lang(story: dict, lang: str):
     rms = compute_rms_envelope(samples, 24000, win_ms=10)
 
     pages = story["assets"]["pages"]
-    page_spans = split_page_boundaries(rms, pages, lang, win_sec=0.01)
+    page_spans = split_exact_page_boundaries(samples, rms, len(pages), sample_rate=24000, win_sec=0.01)
 
     story_title = story.get("title_en" if lang == "en" else f"title_{lang}" if lang != "it" else "title", story["title"])
 
@@ -347,7 +359,10 @@ def build_karaoke_for_story_lang(story: dict, lang: str):
         for para in paras:
             segments_words.append(para.split())
 
-        aligned = align_words_in_span(rms, p_start, p_end, segments_words, win_sec=0.01, offset_sec=offset)
+        whisper_words = transcribe_page_words(model, samples, p_start, p_end, lang)
+        aligned = align_ground_truth_to_whisper(
+            segments_words, whisper_words, p_start, p_end, offset_sec=offset
+        )
 
         if idx == 0:
             story_title_aligned = aligned[0]
@@ -376,15 +391,26 @@ def build_karaoke_for_story_lang(story: dict, lang: str):
 
     out_json = folder / f"karaoke_{lang}.json"
     out_json.write_text(json.dumps(out_data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"✅ Saved Karaoke timings: {out_json.relative_to(ROOT)} ({len(pages_out)} pages, source={source_audio.name})")
+    print(f"✅ Saved Whisper-aligned Karaoke timings: {out_json.relative_to(ROOT)} ({len(pages_out)} pages)", flush=True)
     return out_json
 
 
 def main():
-    catalog = yaml.safe_load((ROOT / "stories.yaml").read_text(encoding="utf-8"))
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--slug", default=None)
+    parser.add_argument("--lang", default=None)
+    args = parser.parse_args()
+
+    catalog = load_stories_yaml()
+    model = whisper.load_model("base")
     for story in catalog.get("stories", []):
+        if args.slug and story.get("slug") != args.slug:
+            continue
         for lang in ("it", "en"):
-            build_karaoke_for_story_lang(story, lang)
+            if args.lang and lang != args.lang:
+                continue
+            build_karaoke_for_story_lang(model, story, lang)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.6.1] - 2026-11-07
+
+### Fixed
+- 🎯 **Allineamento Acustico Whisper (`word_timestamps=True`) + Stacchi Pagina a Campioni Zero (`bin/build_karaoke_timings.py`)**:
+  - Risolto il desync del Karaoke inglese (es. Pagina 3 di `storia-scheletri-zombie-te`, dove lo stacco di pagina cadeva erroneamente dopo il titolo a `141.93s` invece che allo stacco esatto di `0.65s` a campioni zero a `137.52s`, facendo partire *"Seeing that their new friends..."* cliccando sul titolo).
+  - Riscritto `bin/build_karaoke_timings.py` combinando il rilevamento deterministico degli stacchi inter-pagina a campioni zero (`0.65s`) con il **forced alignment acustico parola-per-parola tramite OpenAI Whisper (`word_timestamps=True`) + programmazione dinamica Needleman-Wunsch** su tutte e 3 le storie (`IT` e `EN`).
+  - Allineato al 100% il testo e il titolo di Pagina 3 di `storia-scheletri-zombie-te` (`"Two Glasses of Tea and the Grand Tea Party!"` / `"Due Bicchieri di Tè e la Grande Festa!"`) con il parlato effettivo di `Aoede`.
+- ⚡ **Supporto `HTTP/1.1 206 Partial Content` (`Accept-Ranges: bytes`) sul Server Locale (`bin/serve_local.py`) e Seek Audio Robusto (`index.html`)**:
+  - Sostituito `python3 -m http.server` con `bin/serve_local.py` dotato di supporto `Range: bytes=...` (`206 Partial Content`) per rendere istantaneo il Tap-to-Seek su Chrome in locale (`http://localhost:8088/`).
+
 ## [0.6.0] - 2026-11-07
 
 ### Added
