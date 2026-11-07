@@ -45,6 +45,12 @@ stories:
     folder: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins
     quote: "«Erano draghi i suoi amici? No, erano PUFFINS!» — Alessandro C."
     quote_en: "“Were his friends other dragons? No, they were PUFFINS!” — Alessandro C."
+    rating:
+      score: 7.8
+      votes: 3
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -69,6 +75,9 @@ stories:
         it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_it.mp3
         en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_en.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/karaoke_it.json
+        en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/karaoke_en.json
       title_audio:
         it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_it.mp3
         en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_en.mp3
@@ -170,6 +179,12 @@ stories:
     folder: stories/alessandro/storia-scheletri-zombie-te
     quote: "«Vuoi un'altra cosa? — Sì! Finita!» — Alessandro C."
     quote_en: "“Would you like something else? — Yes! Finished!” — Alessandro C."
+    rating:
+      score: 7.5
+      votes: 2
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -194,6 +209,9 @@ stories:
         it: stories/alessandro/storia-scheletri-zombie-te/narrated_it.mp3
         en: stories/alessandro/storia-scheletri-zombie-te/narrated_en.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/alessandro/storia-scheletri-zombie-te/karaoke_it.json
+        en: stories/alessandro/storia-scheletri-zombie-te/karaoke_en.json
       title_audio:
         it: stories/alessandro/storia-scheletri-zombie-te/title_it.mp3
         en: stories/alessandro/storia-scheletri-zombie-te/title_en.mp3

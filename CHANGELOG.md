@@ -2,6 +2,19 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.5.0] - 2026-11-07
+
+### Added
+- 🎤 **Motore Karaoke Parola-per-Parola + Auto-Scroll + Auto-Page-Turn (`index.html`, `bin/build_karaoke_timings.py`)**:
+  - Allineamento al centesimo di secondo (`karaoke_it.json` e `karaoke_en.json`) calcolato sui campioni vocali puri a `24.000 Hz` di `Aoede` con rilevamento pause naturali (`RMS VAD`) e pesatura sillabica.
+  - Ogni parola (`.k-word`) si illumina di giallo oro mentre viene pronunciata, con **Tap-to-Seek** (toccando qualsiasi parola l'audio salta a quel punto).
+  - **Auto-Scroll fluido** su Mobile e Desktop che mantiene sempre al centro dello schermo la riga letta.
+  - **Auto-Page-Turn**: quando la voce finisce una pagina e inizia la successiva, il libro gira pagina da solo (con foglio 3D che ruota e sfruscio della carta).
+- ⚡ **Moltiplicatore di Velocità Voce stile YouTube (`0.5x` .. `2x`)**:
+  - Selettore velocità (`0.5x`, `0.75x`, `1x`, `1.25x`, `1.5x`, `1.75x`, `2x` con `preservesPitch = true`) integrato nella barra `🎤 Karaoke + Pianino`, perfettamente sincronizzato col Karaoke.
+- ⭐ **Sistema di Voting Storia (`1..10`) con Gate Anti-Spreco Token (`>= 8/10`) per `🇫🇷 FR`, `🇩🇪 DE`, `🇧🇷 PT-BR`**:
+  - Italiano (`🇮🇹 IT`) e Inglese (`🇬🇧 EN`) attivi subito col Karaoke; Francese, Tedesco e Portoghese Brasiliano si sbloccano quando il voto della storia supera **`8.0/10`**.
+
 ## [0.4.1] - 2026-11-07
 
 ### Fixed & Improved (Mobile UX, Swipe & 3D Page Leaf + Sound)
