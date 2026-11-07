@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kids' Own Stories — Le Storie di Alessandro &amp; Sebastian</title>
+  <meta name="description" content="Raccolta interattiva delle storie inventate, raccontate al microfono, sbobinate e illustrate da Alessandro (Ale, 2018) e Sebastian (Seby, 2020).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
+    }
+
+    :root {
+      --primary: #ff5e36;
+      --gold: #ffb703;
+      --purple: #9333ea;
+      --teal: #10b981;
+      --sky: #38bdf8;
+      --bg-dark: #0b0f19;
+      --card-bg: #151e32;
+      --card-hover: #1c2842;
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      color: var(--text-light);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fredoka', sans-serif;
+      text-wrap: balance;
+    }
+
+    p, blockquote, li, .dialogue-box {
+      text-wrap: pretty;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* COMPACT HERO HEADER */
+    header.hero {
+      text-align: center;
+      padding: 24px 16px 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      color: #0b0f19;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 20px rgba(255, 94, 54, 0.35);
+    }
+
+    header.hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(255, 183, 3, 0.28);
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    header.hero .subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: #cbd5e1;
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+
+    header.hero .subtitle strong {
+      color: var(--gold);
+    }
+
+    /* MAIN STORY TABS BAR (1 TAB PER STORIA + VETRINA) */
+    .story-tabs-wrapper {
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+      background: rgba(13, 19, 34, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 183, 3, 0.28);
+      border-radius: 20px;
+      padding: 10px;
+      margin-bottom: 32px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .story-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding-bottom: 2px;
+    }
+
+    .story-tab-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      padding: 11px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .story-tab-btn:hover {
+      border-color: rgba(255, 183, 3, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .story-tab-btn[aria-selected="true"] {
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      color: #0b0f19;
+      border-color: transparent;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(255, 183, 3, 0.35);
+    }
+
+    .tab-author-pill {
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.22);
+      color: inherit;
+    }
+
+    /* STATS BAR */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      max-width: 820px;
+      margin: 0 auto 28px;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .stat-pill .stat-value {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .stat-pill .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* AUTHOR FILTER IN VETRINA TAB */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .filter-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-light);
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn.active {
+      background: var(--gold);
+      color: #0b0f19;
+      border-color: transparent;
+    }
+
+    /* STORIES GRID IN VETRINA */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+      margin-bottom: 44px;
+    }
+
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 42px rgba(255, 183, 3, 0.16);
+      border-color: rgba(255, 183, 3, 0.35);
+    }
+
+    .cover-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      background: #0f172a;
+      cursor: pointer;
+    }
+
+    .cover-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .story-card:hover .cover-wrap img {
+      transform: scale(1.04);
+    }
+
+    .cover-badges {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .emoji-pill {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(6px);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .status-pill {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .status-complete {
+      background: rgba(16, 185, 129, 0.92);
+      color: #052e16;
+    }
+
+    .status-illustrated {
+      background: rgba(56, 189, 248, 0.92);
+      color: #082f49;
+    }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .story-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .story-card h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .story-summary {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .asset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .chip.ok {
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    .chip.missing {
+      border-color: rgba(251, 191, 36, 0.35);
+      color: #fde68a;
+      opacity: 0.75;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      padding: 11px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, filter 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      color: #0b0f19;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* DEDICATED STORY TAB PANEL VIEW */
+    .story-tabpanel {
+      max-width: 920px;
+      margin: 0 auto 40px;
+    }
+
+    .story-tab-header {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(255, 183, 3, 0.25);
+      border-radius: 24px;
+      padding: 28px 28px 24px;
+      margin-bottom: 28px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .story-tab-header h2 {
+      font-size: clamp(1.8rem, 3.8vw, 2.5rem);
+      color: #fff;
+      margin: 10px 0;
+      outline: none;
+    }
+
+    .story-tab-meta {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      margin-bottom: 18px;
+    }
+
+    .story-tab-meta strong {
+      color: var(--gold);
+    }
+
+    .story-tab-toolbar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* AUDIO PLAYER CARD IN STORY TAB */
+    .audio-player-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid var(--gold);
+      border-radius: 22px;
+      padding: 22px 26px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(255, 183, 3, 0.16);
+      text-align: center;
+    }
+
+    .audio-player-card h3 {
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .audio-player-card p {
+      font-size: 0.98rem;
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+
+    .audio-player-card audio {
+      width: 100%;
+      max-width: 620px;
+      border-radius: 30px;
+    }
+
+    /* INTERACTIVE BOOK FLIPPER WIDGET INSIDE THE STORY TAB */
+    .inline-book-reader {
+      background: #131c31;
+      border: 2px solid rgba(255, 183, 3, 0.35);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 34px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .inline-book-top {
+      background: #0d1322;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .inline-book-top span {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .view-mode-switch {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .mode-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      background: transparent;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .mode-btn.active {
+      background: var(--gold);
+      color: #0b0f19;
+      font-weight: 700;
+    }
+
+    .inline-book-stage {
+      padding: 24px;
+    }
+
+    .inline-book-media {
+      width: 100%;
+      max-height: 500px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #090d16;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .inline-book-media img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .inline-book-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: #0d1322;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .page-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .page-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .page-dot.active {
+      background: var(--gold);
+      transform: scale(1.25);
+    }
+
+    /* ALL CHAPTERS CARDS (CONTINUOUS VIEW) */
+    .chapter-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .chapter-card img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .chapter-card-content {
+      padding: 26px 30px;
+    }
+
+    .chapter-label {
+      color: var(--gold);
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin-bottom: 6px;
+    }
+
+    .chapter-card-content h3 {
+      font-size: 1.7rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .chapter-card-content p {
+      font-size: 1.12rem;
+      color: #cbd5e1;
+    }
+
+    /* SBOBINATURA FEDELE BOX */
+    .transcript-section {
+      background: rgba(21, 30, 50, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      padding: 26px 28px;
+      margin-bottom: 32px;
+    }
+
+    .transcript-section h3 {
+      font-size: 1.45rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .transcript-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .dialogue-box {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid var(--gold);
+      padding: 12px 16px;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 12px;
+    }
+
+    .dialogue-box.kid {
+      border-left-color: var(--primary);
+      background: rgba(255, 94, 54, 0.07);
+    }
+
+    .dialogue-box .speaker {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.95rem;
+    }
+
+    .dialogue-box.kid .speaker {
+      color: #ff8a65;
+    }
+
+    /* QUOTE BOX */
+    .quote-box {
+      background: linear-gradient(135deg, #2b1055, #1e3a8a);
+      padding: 28px;
+      border-radius: 22px;
+      text-align: center;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 25px rgba(147, 51, 234, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .quote-box h3 {
+      font-size: 1.75rem;
+      color: #fff;
+    }
+
+    /* VIDEO SECTION IN STORY TAB */
+    .video-section {
+      background: #141c2e;
+      border: 2px dashed var(--gold);
+      border-radius: 24px;
+      padding: 30px 24px;
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .video-section h3 {
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .video-section p {
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    .video-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* BOTTOM TAB NAVIGATION */
+    .story-bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 12px;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px dashed rgba(255, 183, 3, 0.35);
+      border-radius: 24px;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .empty-state h3 {
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* REGISTRO DETERMINISTICO TABLE */
+    .ssot-section {
+      background: rgba(21, 30, 50, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 40px;
+    }
+
+    .ssot-section h3 {
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .ssot-section p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table.ssot-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    table.ssot-table th,
+    table.ssot-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    table.ssot-table th {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.8px;
+    }
+
+    footer.site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    footer.site-footer a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      .card-actions {
+        grid-template-columns: 1fr;
+      }
+      .inline-book-controls {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="hero">
+      <div class="hero-badge">📚🎙️ Kids' Own Stories • Vetrina Interattiva</div>
+      <h1>Le Storie di Alessandro &amp; Sebastian</h1>
+      <p class="subtitle">
+        Racconti originali inventati al microfono da <strong>Alessandro (Ale, 2018)</strong> e <strong>Sebastian (Seby, 2020)</strong> con papà <strong>Riccardo</strong>, sbobinati fedelmente e trasformati in libri illustrati e animati! ✨<br>
+        <a href="https://palladius.github.io/kids-own-stories/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:5px 14px;border-radius:999px;background:rgba(255,183,3,0.14);border:1px solid rgba(255,183,3,0.4);color:var(--gold);font-family:'Fredoka',sans-serif;font-size:0.92rem;text-decoration:none;">
+          🌐 Vetrina Online: palladius.github.io/kids-own-stories ↗
+        </a>
+      </p>
+    </header>
+
+    <!-- STICKY TOP TAB BAR: VETRINA + 1 TAB PER STORIA -->
+    <nav class="story-tabs-wrapper" aria-label="Seleziona una storia">
+      <div class="story-tabs-bar" id="storyTabsBar" role="tablist"></div>
+    </nav>
+
+    <main id="mainContent">
+      <!-- TABPANEL 0: VETRINA GENERALE -->
+      <section id="panel-vetrina" role="tabpanel" aria-labelledby="tab-vetrina">
+        <h2 id="heading-vetrina" tabindex="-1" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Vetrina di tutte le storie</h2>
+
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-pill">
+            <span class="stat-value" id="statStories">2</span>
+            <span class="stat-label">📖 Storie</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-value" id="statAudio">2</span>
+            <span class="stat-label">🎙️ Audio Originali</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-value" id="statPages">5</span>
+            <span class="stat-label">🎨 Pagine Illustrate</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-value" id="statVideos">1</span>
+            <span class="stat-label">🎬 Video AI</span>
+          </div>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="Filtra vetrina per autore">
+          <button type="button" class="filter-btn active" data-author="all" onclick="setAuthorFilter('all')">
+            ✨ Tutte (<span id="countAll">2</span>)
+          </button>
+          <button type="button" class="filter-btn" data-author="alessandro" onclick="setAuthorFilter('alessandro')">
+            👦 Alessandro (<span id="countAle">2</span>)
+          </button>
+          <button type="button" class="filter-btn" data-author="sebastian" onclick="setAuthorFilter('sebastian')">
+            🧒 Sebastian (<span id="countSeby">0</span>)
+          </button>
+        </div>
+
+        <div class="stories-grid" id="storiesGrid" aria-live="polite"></div>
+
+        <section class="ssot-section">
+          <h3>📋 Registro Deterministico delle Storie (<code>stories.yaml</code>)</h3>
+          <p>Clicca su qualsiasi storia per aprire il suo Tab dedicato oppure la pagina standalone.</p>
+          <div class="table-wrap">
+            <table class="ssot-table">
+              <thead>
+                <tr>
+                  <th>Storia</th>
+                  <th>Autore</th>
+                  <th>Data</th>
+                  <th>Stato</th>
+                  <th>Asset Completati</th>
+                  <th>Cosa Manca</th>
+                </tr>
+              </thead>
+              <tbody id="ssotTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <!-- DYNAMIC STORY TABPANELS CONTAINER (1 PER STORIA) -->
+      <div id="storyPanelsContainer"></div>
+    </main>
+
+    <footer class="site-footer">
+      Creato con ❤️ da Papino (<strong>Riccardo Carlesso</strong>, <a href="https://github.com/palladius/kids-own-stories">@palladius</a>), <strong>Alessandro</strong> e <strong>Sebastian</strong> • Zurigo, 2026<br>
+      🌐 <a href="https://palladius.github.io/kids-own-stories/">Vetrina GitHub Pages</a> • Alimentato deterministicamente da <a href="stories.yaml"><code>stories.yaml</code></a>
+    </footer>
+  </div>
+
+  <script>
+    // Embedded fallback matching stories.yaml so the showcase also works via file://
+    const FALLBACK_CATALOG = {
+      authors: {
+        alessandro: { id: "alessandro", name: "Alessandro", nicknames: ["Ale"], birth_year: 2018, emoji: "👦" },
+        sebastian: { id: "sebastian", name: "Sebastian", nicknames: ["Seby", "Sebi"], birth_year: 2020, emoji: "🧒" }
+      },
+      stories: [
+        {
+          id: "2026-11-06-storia-dello-zaino-del-drago-e-dei-puffins",
+          slug: "storia-dello-zaino-del-drago-e-dei-puffins",
+          short_title: "Zaino, Drago & Puffins",
+          title: "La Storia dello Zaino Magico, del Drago e dei Puffins",
+          emoji: "🎒🐉🐧",
+          author: "alessandro",
+          author_age_at_recording: 8,
+          created_at: "2026-11-06",
+          location: "Zurigo",
+          status: "complete",
+          quote: "«Erano draghi i suoi amici? No, erano PUFFINS!» — Alessandro C.",
+          transcript: [
+            { speaker: "Papà Riccardo", text: "Ecco, ciao Ermete, buongiorno! Alessandro ha inventato una storia fighissima di uno zaino di una scuola... ti chiederei, adesso Ale te la racconta e quando ha finito tu usi il nuovo modello Gemini Omni... per fare un video di questa storia. Vai Ale!" },
+            { speaker: "Alessandro", text: "Una volta c'era un zaino... c'era un tizio che non mi ricordo com'era il suo nome, ma ha trovato un zaino e dentro il zaino ha trovato una chiave. E poi non ha potuto vedere nessuna parte dove entrare con quella chiave. Prossimo giornata all'altro break ha visto una porta sul suo desk e ci ha entrato ed è andato nel mondo dei draghi che era fatto di gemme! E poi lui ha preso tantissime gemme e poi c'è un drago, un grandissimo drago che ha detto: \"No, tu non puoi prenderle, sono mie!\" E il ragazzo ha detto: \"No, ora sono mie!\" E poi il drago ha sputato fuoco e l'ha fritto! E poi l'ha mangiato! E poi ha preso le gemme indietro e ha preso la chiave ed è andato con i suoi amici all'altro mondo fatto di oro e cristalli dove ha potuto vedere gli altri dei suoi amici." },
+            { speaker: "Papà Riccardo", text: "E cos'erano altri suoi amici? Erano altri draghi?" },
+            { speaker: "Alessandro", text: "No, erano PUFFINS!" },
+            { speaker: "Papà Riccardo", text: "Erano dei puffins?!" },
+            { speaker: "Alessandro", text: "Sì!" },
+            { speaker: "Papà Riccardo", text: "Quindi il drago era amico dei puffins?!" },
+            { speaker: "Alessandro", text: "Sì!" },
+            { speaker: "Papà Riccardo", text: "Ok, è finita la storia amore?" },
+            { speaker: "Alessandro", text: "Sì!" }
+          ],
+          checklist: {
+            raw_audio: true,
+            audio_converted: true,
+            transcription: true,
+            chapters_text: true,
+            illustrations: true,
+            video: true,
+            web_page: true
+          },
+          missing_assets: [],
+          assets: {
+            story_audio: {
+              mp3: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.mp3",
+              ogg: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/audio_originale.ogg"
+            },
+            web_page: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/index.html",
+            video: {
+              file: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/video_drago_puffins.mp4",
+              model: "gemini-omni-flash-preview",
+              resolution: "1280x720"
+            },
+            pages: [
+              {
+                page: 1,
+                title: "La Chiave nello Zaino e la Porta sul Banco",
+                image: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena1_banco_porta.jpg",
+                summary: "Un ragazzo trova una chiave magica nello zaino e il giorno dopo scopre una porticina luminosa sul suo banco di scuola."
+              },
+              {
+                page: 2,
+                title: "Nel Mondo Scintillante dei Draghi",
+                image: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena2_mondo_gemme.jpg",
+                summary: "Attraversata la porta, entra nel Mondo dei Draghi fatto di gemme preziose e inizia a riempirsi le tasche."
+              },
+              {
+                page: 3,
+                title: "\"No, sono mie!\" — Il Furore del Grande Drago",
+                image: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena3_drago_fuoco.jpg",
+                summary: "Il grande drago reclama le sue gemme, arrostisce il ragazzo con una fiammata in stile cartoon, riprende gemme e chiave e vola via."
+              },
+              {
+                page: 4,
+                title: "Il Grande Twist — I Migliori Amici del Drago sono i Puffins!",
+                image: "stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/scena4_drago_e_puffins.jpg",
+                summary: "Il drago usa la chiave per raggiungere un mondo d'oro e cristalli dove ritrova i suoi migliori amici: le pulcinelle di mare (Puffins)!"
+              }
+            ]
+          }
+        },
+        {
+          id: "2026-11-04-storia-scheletri-zombie-te",
+          slug: "storia-scheletri-zombie-te",
+          short_title: "Scheletri, Zombie & Tè",
+          title: "La Famiglia di Scheletri e gli Zombie Assetati di Tè",
+          emoji: "💀🧟☕",
+          author: "alessandro",
+          author_age_at_recording: 8,
+          created_at: "2026-11-04",
+          location: "Zurigo",
+          status: "illustrated",
+          quote: "«Volete un'altra cosa? — Sì!» — Alessandro C.",
+          transcript: [
+            { speaker: "Alessandro", text: "Questa storia parla di una famiglia di scheletri, con tanto di cane scheletro. Una volta hanno voluto andare nel buio buio giardino. Nel buio buio giardino c'era un buio buio intenso e c'era una libreria. E dentro la libreria c'erano tantissimi zombie zombie che hanno chiesto gentilmente un po' di tè. Allora gli scheletri sono tornati a casa, hanno preso un tè e lo hanno dato agli zombie. Gli zombie ne hanno voluto ancora di più, e poi ancora di più! Quindi gli scheletri sono tornati di nuovo a casa e questa volta hanno preso due bicchieri di tè. Gli zombie li hanno bevuti e hanno detto: \"Grazie!\". Poi gli scheletri hanno chiesto: \"Volete un'altra cosa?\". E gli zombie hanno risposto: \"Sì!\"." }
+          ],
+          checklist: {
+            raw_audio: true,
+            audio_converted: true,
+            transcription: true,
+            chapters_text: true,
+            illustrations: true,
+            video: false,
+            web_page: true
+          },
+          missing_assets: ["video"],
+          assets: {
+            story_audio: {
+              mp3: "stories/alessandro/storia-scheletri-zombie-te/audio_originale.mp3",
+              ogg: "stories/alessandro/storia-scheletri-zombie-te/audio_originale.ogg"
+            },
+            web_page: "stories/alessandro/storia-scheletri-zombie-te/index.html",
+            pages: [
+              {
+                page: 1,
+                title: "Scheletri e Zombie a Merenda",
+                image: "stories/alessandro/storia-scheletri-zombie-te/scena1_scheletri_te.png",
+                summary: "Una famiglia di scheletri serve gentilmente tazze di tè fumante a un gruppo di zombie assetati in un giardino medievale."
+              }
+            ]
+          }
+        }
+      ]
+    };
+
+    let catalog = FALLBACK_CATALOG;
+    let activeTab = 'vetrina'; // 'vetrina' or story.slug
+    let activeAuthorFilter = 'all';
+    const pageCursorBySlug = {}; // tracks current page index per story tab
+    const viewModeBySlug = {};   // 'book' (page-by-page) or 'continuous' (all chapters)
+
+    async function loadCatalog() {
+      try {
+        const res = await fetch('stories.yaml');
+        if (res.ok && window.jsyaml) {
+          const text = await res.text();
+          const parsed = window.jsyaml.load(text);
+          if (parsed && Array.isArray(parsed.stories)) {
+            catalog = parsed;
+          }
+        }
+      } catch (_) {
+        // Fallback already populated for offline/file:// usage
+      }
+
+      (catalog.stories || []).forEach(s => {
+        pageCursorBySlug[s.slug] = 0;
+        viewModeBySlug[s.slug] = (s.assets?.pages || []).length > 1 ? 'book' : 'continuous';
+      });
+
+      renderAll();
+
+      // Check initial URL hash for deep-linking to a story tab
+      const hash = window.location.hash.replace(/^#/, '');
+      if (hash && (catalog.stories || []).some(s => s.slug === hash || s.id === hash)) {
+        const matched = catalog.stories.find(s => s.slug === hash || s.id === hash);
+        selectTab(matched.slug, false);
+      }
+    }
+
+    function renderAll() {
+      const stories = catalog.stories || [];
+      const aleCount = stories.filter(s => s.author === 'alessandro').length;
+      const sebyCount = stories.filter(s => s.author === 'sebastian').length;
+      const audioCount = stories.filter(s => s.checklist?.raw_audio).length;
+      const totalPages = stories.reduce((acc, s) => acc + ((s.assets?.pages || []).length), 0);
+      const videoCount = stories.filter(s => s.checklist?.video).length;
+
+      document.getElementById('statStories').textContent = stories.length;
+      document.getElementById('statAudio').textContent = audioCount;
+      document.getElementById('statPages').textContent = totalPages;
+      document.getElementById('statVideos').textContent = videoCount;
+
+      document.getElementById('countAll').textContent = stories.length;
+      document.getElementById('countAle').textContent = aleCount;
+      document.getElementById('countSeby').textContent = sebyCount;
+
+      renderTabsBar();
+      renderVetrinaGrid();
+      renderSsotTable();
+      renderStoryTabPanels();
+    }
+
+    function renderTabsBar() {
+      const bar = document.getElementById('storyTabsBar');
+      const stories = catalog.stories || [];
+
+      const vetrinaBtn = `
+        <button type="button" role="tab" id="tab-vetrina"
+          class="story-tab-btn"
+          aria-selected="${activeTab === 'vetrina'}"
+          aria-controls="panel-vetrina"
+          onclick="selectTab('vetrina')">
+          📚 Tutte le Storie <span class="tab-author-pill">${stories.length}</span>
+        </button>
+      `;
+
+      const storyBtns = stories.map((story, idx) => {
+        const author = catalog.authors?.[story.author] || { name: story.author, nicknames: [story.author], emoji: '👦' };
+        const shortLabel = story.short_title || story.title;
+        const nick = author.nicknames?.[0] || author.name;
+        const isSelected = activeTab === story.slug;
+        return `
+          <button type="button" role="tab" id="tab-${story.slug}"
+            class="story-tab-btn"
+            aria-selected="${isSelected}"
+            aria-controls="panel-${story.slug}"
+            onclick="selectTab('${story.slug}')">
+            <span>${story.emoji || '📖'} ${idx + 1}. ${shortLabel}</span>
+            <span class="tab-author-pill">${author.emoji} ${nick}</span>
+          </button>
+        `;
+      }).join('');
+
+      bar.innerHTML = vetrinaBtn + storyBtns;
+    }
+
+    function pauseAllMedia() {
+      document.querySelectorAll('audio, video').forEach(m => {
+        try { m.pause(); } catch (_) {}
+      });
+    }
+
+    function selectTab(tabSlug, focusHeading = true) {
+      pauseAllMedia();
+
+      const applySwitch = () => {
+        activeTab = tabSlug;
+        renderTabsBar();
+
+        const vetrinaPanel = document.getElementById('panel-vetrina');
+        vetrinaPanel.hidden = (tabSlug !== 'vetrina');
+
+        (catalog.stories || []).forEach(story => {
+          const panel = document.getElementById(`panel-${story.slug}`);
+          if (panel) {
+            panel.hidden = (story.slug !== tabSlug);
+          }
+        });
+
+        if (tabSlug === 'vetrina') {
+          history.replaceState(null, '', '#vetrina');
+        } else {
+          history.replaceState(null, '', `#${tabSlug}`);
+          syncReducedMotion();
+        }
+      };
+
+      const routeFocus = () => {
+        if (!focusHeading) return;
+        const headingId = tabSlug === 'vetrina' ? 'heading-vetrina' : `heading-${tabSlug}`;
+        document.getElementById(headingId)?.focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      if (!document.startViewTransition) {
+        applySwitch();
+        routeFocus();
+        return;
+      }
+
+      const transition = document.startViewTransition(() => applySwitch());
+      transition.finished.finally(() => routeFocus());
+    }
+
+    function setAuthorFilter(author) {
+      activeAuthorFilter = author;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.author === author);
+      });
+      renderVetrinaGrid();
+    }
+
+    function renderVetrinaGrid() {
+      const grid = document.getElementById('storiesGrid');
+      const stories = (catalog.stories || []).filter(
+        s => activeAuthorFilter === 'all' || s.author === activeAuthorFilter
+      );
+
+      if (stories.length === 0) {
+        const authorObj = catalog.authors?.[activeAuthorFilter] || { name: 'Sebastian', emoji: '🧒' };
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3>${authorObj.emoji} Microfono pronto per ${authorObj.name}!</h3>
+            <p>Non appena ${authorObj.name} racconterà una storia al microfono con papà Riccardo, apparirà qui e avrà il suo Tab dedicato! ✨</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = stories.map((story) => {
+        const author = catalog.authors?.[story.author] || { name: story.author, emoji: '👦' };
+        const coverImg = story.assets?.pages?.[0]?.image || '';
+        const firstSummary = story.assets?.pages?.[0]?.summary || '';
+        const pageCount = (story.assets?.pages || []).length;
+        const isComplete = story.status === 'complete';
+        const statusLabel = isComplete ? '✅ Completa' : '🎨 Illustrata';
+        const statusClass = isComplete ? 'status-complete' : 'status-illustrated';
+        const webPageUrl = story.assets?.web_page || `${story.folder}/index.html`;
+
+        return `
+          <article class="story-card">
+            <div class="cover-wrap" onclick="selectTab('${story.slug}')" title="Apri il Tab di questa storia">
+              <img src="${coverImg}" alt="${story.title}" loading="lazy">
+              <div class="cover-badges">
+                <span class="emoji-pill">${story.emoji || '📖'}</span>
+                <span class="status-pill ${statusClass}">${statusLabel}</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="story-meta">
+                <span>${author.emoji} ${author.name} (${story.author_age_at_recording} anni)</span>
+                <span>•</span>
+                <span>📅 ${story.created_at}</span>
+              </div>
+              <h2>${story.title}</h2>
+              <p class="story-summary">${firstSummary}</p>
+
+              <div class="asset-chips">
+                <span class="chip ok">🎙️ Audio Originale</span>
+                <span class="chip ok">📝 Sbobinatura</span>
+                <span class="chip ok">🎨 ${pageCount} ${pageCount === 1 ? 'Pagina' : 'Pagine'}</span>
+                <span class="chip ${story.checklist?.video ? 'ok' : 'missing'}">
+                  ${story.checklist?.video ? '🎬 Video AI' : '⏳ Video opzionale'}
+                </span>
+              </div>
+
+              <div class="card-actions">
+                <button type="button" class="btn btn-primary" onclick="selectTab('${story.slug}')">
+                  📖 Apri Tab Storia
+                </button>
+                <a class="btn btn-secondary" href="${webPageUrl}">
+                  🌐 Pagina Dedicata →
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderSsotTable() {
+      const tbody = document.getElementById('ssotTableBody');
+      const stories = catalog.stories || [];
+      tbody.innerHTML = stories.map(s => {
+        const author = catalog.authors?.[s.author] || { name: s.author, emoji: '👦' };
+        const missing = (s.missing_assets || []).length === 0
+          ? '<span style="color:#6ee7b7;font-weight:700;">Nessuno (100% completa!)</span>'
+          : `<span style="color:#fde68a;">${s.missing_assets.join(', ')}</span>`;
+        return `
+          <tr>
+            <td>
+              <a href="#${s.slug}" onclick="event.preventDefault(); selectTab('${s.slug}')" style="color:#fff;font-weight:700;text-decoration:none;">
+                ${s.emoji || ''} ${s.title}
+              </a>
+            </td>
+            <td>${author.emoji} ${author.name}</td>
+            <td>${s.created_at}</td>
+            <td><code>${s.status}</code></td>
+            <td>🎙️ Audio • 📝 Testo • 🎨 ${(s.assets?.pages || []).length} img ${s.checklist?.video ? '• 🎬 Video' : ''} • 🌐 HTML</td>
+            <td>${missing}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderStoryTabPanels() {
+      const container = document.getElementById('storyPanelsContainer');
+      const stories = catalog.stories || [];
+
+      container.innerHTML = stories.map((story, idx) => {
+        const author = catalog.authors?.[story.author] || { name: story.author, emoji: '👦' };
+        const mp3Url = story.assets?.story_audio?.mp3 || '';
+        const oggUrl = story.assets?.story_audio?.ogg || '';
+        const webPageUrl = story.assets?.web_page || `${story.folder}/index.html`;
+        const pages = story.assets?.pages || [];
+        const prevStory = idx > 0 ? stories[idx - 1] : null;
+        const nextStory = idx < stories.length - 1 ? stories[idx + 1] : null;
+
+        // Sbobinatura HTML
+        const transcriptHtml = (story.transcript || []).map(turn => {
+          const isKid = !turn.speaker.toLowerCase().includes('papà');
+          return `
+            <div class="dialogue-box ${isKid ? 'kid' : ''}">
+              <span class="speaker">${isKid ? author.emoji : '🧔🏻'} ${turn.speaker}:</span>
+              «${turn.text}»
+            </div>
+          `;
+        }).join('');
+
+        // Continuous chapters HTML
+        const chaptersHtml = pages.map(p => `
+          <article class="chapter-card">
+            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            <div class="chapter-card-content">
+              <div class="chapter-label">Capitolo ${p.page} di ${pages.length}</div>
+              <h3>${p.title}</h3>
+              <p>${p.summary}</p>
+            </div>
+          </article>
+        `).join('');
+
+        // Video section HTML if available
+        const videoHtml = story.assets?.video?.file ? `
+          <section class="video-section">
+            <h3>🎬 Il Video Animato Ufficiale (${story.assets.video.model || 'AI'})</h3>
+            <p>Filmato animato in ${story.assets.video.resolution || '720p'} generato a partire dal racconto e dalle illustrazioni della storia!</p>
+            <div class="video-frame">
+              <video controls loading="lazy" autoplay loop muted playsinline width="1280" height="720" preload="metadata" poster="${pages[pages.length - 1]?.image || ''}">
+                <source src="${story.assets.video.file}" type="video/mp4">
+                Il tuo browser non supporta il tag video.
+              </video>
+            </div>
+          </section>
+        ` : '';
+
+        return `
+          <section id="panel-${story.slug}" class="story-tabpanel" role="tabpanel" aria-labelledby="tab-${story.slug}" ${activeTab === story.slug ? '' : 'hidden'}>
+            <div class="story-tab-header">
+              <div class="hero-badge">${story.emoji || '📖'} Storia #${idx + 1}</div>
+              <h2 id="heading-${story.slug}" tabindex="-1">${story.title}</h2>
+              <div class="story-tab-meta">
+                Ideata e raccontata al microfono da <strong>${author.emoji} ${author.name} (${story.author_age_at_recording} anni)</strong> con <strong>Papà Riccardo</strong> • 📅 ${story.created_at} • 📍 ${story.location || 'Zurigo'}
+              </div>
+              <div class="story-tab-toolbar">
+                <button type="button" class="btn btn-secondary" onclick="selectTab('vetrina')">← Torna a Tutte le Storie</button>
+                <a class="btn btn-secondary" href="${webPageUrl}">🌐 Apri Pagina Dedicata →</a>
+              </div>
+            </div>
+
+            <!-- AUDIO PLAYER ORIGINALE -->
+            <div class="audio-player-card">
+              <h3>🎙️ La Registrazione Originale di ${author.name}</h3>
+              <p>Premi Play per ascoltare la viva voce di ${author.name} mentre leggi o sfogli le pagine illustrate!</p>
+              <audio controls preload="metadata">
+                <source src="${mp3Url}" type="audio/mpeg">
+                <source src="${oggUrl}" type="audio/ogg">
+              </audio>
+            </div>
+
+            <!-- MODALITA' LIBRO SFOGLIABILE / TUTTI I CAPITOLI -->
+            <div class="inline-book-reader">
+              <div class="inline-book-top">
+                <span id="bookBadge-${story.slug}">📖 Il Racconto Illustrato (${pages.length} ${pages.length === 1 ? 'pagina' : 'pagine'})</span>
+                <div class="view-mode-switch" role="group" aria-label="Modalità di lettura">
+                  <button type="button" id="modeBook-${story.slug}" class="mode-btn ${viewModeBySlug[story.slug] === 'book' ? 'active' : ''}" onclick="setStoryViewMode('${story.slug}', 'book')">
+                    📖 Sfoglia Pagina per Pagina
+                  </button>
+                  <button type="button" id="modeCont-${story.slug}" class="mode-btn ${viewModeBySlug[story.slug] === 'continuous' ? 'active' : ''}" onclick="setStoryViewMode('${story.slug}', 'continuous')">
+                    📜 Tutte le Pagine
+                  </button>
+                </div>
+              </div>
+
+              <!-- SINGLE PAGE FLIPPER VIEW -->
+              <div id="bookFlipperView-${story.slug}" ${viewModeBySlug[story.slug] === 'book' ? '' : 'hidden'}>
+                <div class="inline-book-stage" id="bookStage-${story.slug}"></div>
+                <div class="inline-book-controls">
+                  <button type="button" class="btn btn-secondary" id="prevBtn-${story.slug}" onclick="flipStoryPage('${story.slug}', -1)">
+                    ← Pagina Precedente
+                  </button>
+                  <div class="page-dots" id="pageDots-${story.slug}"></div>
+                  <button type="button" class="btn btn-primary" id="nextBtn-${story.slug}" onclick="flipStoryPage('${story.slug}', 1)">
+                    Pagina Successiva →
+                  </button>
+                </div>
+              </div>
+
+              <!-- CONTINUOUS ALL CHAPTERS VIEW -->
+              <div id="continuousView-${story.slug}" style="padding: 24px;" ${viewModeBySlug[story.slug] === 'continuous' ? '' : 'hidden'}>
+                ${chaptersHtml}
+              </div>
+            </div>
+
+            ${story.quote ? `
+              <div class="quote-box">
+                <h3>${story.quote}</h3>
+              </div>
+            ` : ''}
+
+            ${videoHtml}
+
+            ${transcriptHtml ? `
+              <section class="transcript-section">
+                <h3>📝 Sbobinatura Fedele (Parola per Parola)</h3>
+                <p class="transcript-subtitle">Trascrizione integrale che preserva tutte le invenzioni linguistiche spontanee raccontate al microfono:</p>
+                ${transcriptHtml}
+              </section>
+            ` : ''}
+
+            <div class="story-bottom-nav">
+              ${prevStory ? `
+                <button type="button" class="btn btn-secondary" onclick="selectTab('${prevStory.slug}')">
+                  ← ${prevStory.emoji || '📖'} ${prevStory.short_title || prevStory.title}
+                </button>
+              ` : `
+                <button type="button" class="btn btn-secondary" onclick="selectTab('vetrina')">
+                  ← Torna alla Vetrina
+                </button>
+              `}
+              ${nextStory ? `
+                <button type="button" class="btn btn-primary" onclick="selectTab('${nextStory.slug}')">
+                  Prossima Storia: ${nextStory.emoji || '📖'} ${nextStory.short_title || nextStory.title} →
+                </button>
+              ` : ''}
+            </div>
+          </section>
+        `;
+      }).join('');
+
+      stories.forEach(s => updateInlineBookStage(s.slug));
+    }
+
+    function setStoryViewMode(slug, mode) {
+      viewModeBySlug[slug] = mode;
+      document.getElementById(`modeBook-${slug}`)?.classList.toggle('active', mode === 'book');
+      document.getElementById(`modeCont-${slug}`)?.classList.toggle('active', mode === 'continuous');
+      const flipper = document.getElementById(`bookFlipperView-${slug}`);
+      const cont = document.getElementById(`continuousView-${slug}`);
+      if (flipper) flipper.hidden = (mode !== 'book');
+      if (cont) cont.hidden = (mode !== 'continuous');
+    }
+
+    function updateInlineBookStage(slug) {
+      const story = (catalog.stories || []).find(s => s.slug === slug);
+      if (!story) return;
+      const pages = story.assets?.pages || [];
+      const idx = pageCursorBySlug[slug] || 0;
+      const page = pages[idx];
+      if (!page) return;
+
+      const stage = document.getElementById(`bookStage-${slug}`);
+      if (stage) {
+        stage.innerHTML = `
+          <div class="inline-book-media">
+            <img src="${page.image}" alt="${page.title}">
+          </div>
+          <div class="chapter-label">Pagina ${page.page} di ${pages.length}</div>
+          <h3 style="font-size:1.65rem;color:#fff;margin-bottom:10px;">${page.title}</h3>
+          <p style="font-size:1.15rem;color:#e2e8f0;">${page.summary}</p>
+        `;
+      }
+
+      const dots = document.getElementById(`pageDots-${slug}`);
+      if (dots) {
+        dots.innerHTML = pages.map((_, i) => `
+          <button type="button" class="page-dot ${i === idx ? 'active' : ''}"
+            onclick="goToStoryPage('${slug}', ${i})" aria-label="Vai a pagina ${i + 1}"></button>
+        `).join('');
+      }
+
+      const prevBtn = document.getElementById(`prevBtn-${slug}`);
+      const nextBtn = document.getElementById(`nextBtn-${slug}`);
+      if (prevBtn) prevBtn.disabled = (idx === 0);
+      if (nextBtn) nextBtn.disabled = (idx === pages.length - 1);
+    }
+
+    function flipStoryPage(slug, delta) {
+      const story = (catalog.stories || []).find(s => s.slug === slug);
+      if (!story) return;
+      const pages = story.assets?.pages || [];
+      const nextIdx = (pageCursorBySlug[slug] || 0) + delta;
+      if (nextIdx >= 0 && nextIdx < pages.length) {
+        pageCursorBySlug[slug] = nextIdx;
+        updateInlineBookStage(slug);
+      }
+    }
+
+    function goToStoryPage(slug, index) {
+      pageCursorBySlug[slug] = index;
+      updateInlineBookStage(slug);
+    }
+
+    // Keyboard Left/Right navigation for the active story tab's book flipper
+    window.addEventListener('keydown', (e) => {
+      if (activeTab === 'vetrina') return;
+      if (viewModeBySlug[activeTab] !== 'book') return;
+      if (e.key === 'ArrowRight') flipStoryPage(activeTab, 1);
+      if (e.key === 'ArrowLeft') flipStoryPage(activeTab, -1);
+    });
+
+    // Respect prefers-reduced-motion on autoplaying videos
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function syncReducedMotion() {
+      const prefersReduced = reducedMotionQuery.matches;
+      for (const video of document.querySelectorAll('video[autoplay]')) {
+        if (prefersReduced) {
+          video.removeAttribute('autoplay');
+          video.pause();
+        }
+      }
+    }
+    reducedMotionQuery.addEventListener('change', syncReducedMotion);
+
+    loadCatalog();
+  </script>
+</body>
+</html>

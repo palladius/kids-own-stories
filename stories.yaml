@@ -38,6 +38,7 @@ authors:
 stories:
   - id: 2026-11-06-storia-dello-zaino-del-drago-e-dei-puffins
     slug: storia-dello-zaino-del-drago-e-dei-puffins
+    short_title: "Zaino, Drago & Puffins"
     title: "La Storia dello Zaino Magico, del Drago e dei Puffins"
     emoji: "🎒🐉🐧"
     author: alessandro
@@ -47,6 +48,28 @@ stories:
     location: "Zurigo"
     language: "it"
     folder: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins
+    quote: "«Erano draghi i suoi amici? No, erano PUFFINS!» — Alessandro C."
+    transcript:
+      - speaker: "Papà Riccardo"
+        text: "Ecco, ciao Ermete, buongiorno! Alessandro ha inventato una storia fighissima di uno zaino di una scuola... ti chiederei, adesso Ale te la racconta e quando ha finito tu usi il nuovo modello Gemini Omni... per fare un video di questa storia. Vai Ale!"
+      - speaker: "Alessandro"
+        text: "Una volta c'era un zaino... c'era un tizio che non mi ricordo com'era il suo nome, ma ha trovato un zaino e dentro il zaino ha trovato una chiave. E poi non ha potuto vedere nessuna parte dove entrare con quella chiave. Prossimo giornata all'altro break ha visto una porta sul suo desk e ci ha entrato ed è andato nel mondo dei draghi che era fatto di gemme! E poi lui ha preso tantissime gemme e poi c'è un drago, un grandissimo drago che ha detto: \"No, tu non puoi prenderle, sono mie!\" E il ragazzo ha detto: \"No, ora sono mie!\" E poi il drago ha sputato fuoco e l'ha fritto! E poi l'ha mangiato! E poi ha preso le gemme indietro e ha preso la chiave ed è andato con i suoi amici all'altro mondo fatto di oro e cristalli dove ha potuto vedere gli altri dei suoi amici."
+      - speaker: "Papà Riccardo"
+        text: "E cos'erano altri suoi amici? Erano altri draghi?"
+      - speaker: "Alessandro"
+        text: "No, erano PUFFINS!"
+      - speaker: "Papà Riccardo"
+        text: "Erano dei puffins?!"
+      - speaker: "Alessandro"
+        text: "Sì!"
+      - speaker: "Papà Riccardo"
+        text: "Quindi il drago era amico dei puffins?!"
+      - speaker: "Alessandro"
+        text: "Sì!"
+      - speaker: "Papà Riccardo"
+        text: "Ok, è finita la storia amore?"
+      - speaker: "Alessandro"
+        text: "Sì!"
 
     # Stato complessivo e checklist deterministica ("C'è tutto? Manca qualcosa?")
     status: complete
@@ -94,6 +117,7 @@ stories:
 
   - id: 2026-11-04-storia-scheletri-zombie-te
     slug: storia-scheletri-zombie-te
+    short_title: "Scheletri, Zombie & Tè"
     title: "La Famiglia di Scheletri e gli Zombie Assetati di Tè"
     emoji: "💀🧟☕"
     author: alessandro
@@ -103,6 +127,10 @@ stories:
     location: "Zurigo"
     language: "it"
     folder: stories/alessandro/storia-scheletri-zombie-te
+    quote: "«Volete un'altra cosa? — Sì!» — Alessandro C."
+    transcript:
+      - speaker: "Alessandro"
+        text: "Questa storia parla di una famiglia di scheletri, con tanto di cane scheletro. Una volta hanno voluto andare nel buio buio giardino. Nel buio buio giardino c'era un buio buio intenso e c'era una libreria. E dentro la libreria c'erano tantissimi zombie zombie che hanno chiesto gentilmente un po' di tè. Allora gli scheletri sono tornati a casa, hanno preso un tè e lo hanno dato agli zombie. Gli zombie ne hanno voluto ancora di più, e poi ancora di più! Quindi gli scheletri sono tornati di nuovo a casa e questa volta hanno preso due bicchieri di tè. Gli zombie li hanno bevuti e hanno detto: \"Grazie!\". Poi gli scheletri hanno chiesto: \"Volete un'altra cosa?\". E gli zombie hanno risposto: \"Sì!\"."
 
     # Stato complessivo e checklist deterministica
     status: illustrated
@@ -113,8 +141,8 @@ stories:
       chapters_text: true
       illustrations: true
       video: false
-      web_page: false
-    missing_assets: ["video", "web_page"]
+      web_page: true
+    missing_assets: ["video"]
 
     # Percorsi agli asset
     assets:
@@ -125,6 +153,7 @@ stories:
         mp3: stories/alessandro/storia-scheletri-zombie-te/audio_originale.mp3
         ogg: stories/alessandro/storia-scheletri-zombie-te/audio_originale.ogg
       readme: stories/alessandro/storia-scheletri-zombie-te/README.md
+      web_page: stories/alessandro/storia-scheletri-zombie-te/index.html
       pages:
         - page: 1
           title: "Scheletri e Zombie a Merenda"

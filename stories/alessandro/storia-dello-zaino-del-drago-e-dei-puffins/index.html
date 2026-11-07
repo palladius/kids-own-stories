@@ -8,6 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
     :root {
       --primary: #ff5e36;
       --gold: #ffb703;
@@ -35,6 +41,43 @@
     .container {
       max-width: 900px;
       margin: 0 auto;
+    }
+
+    h1, h2, h3, h4 {
+      text-wrap: balance;
+    }
+
+    p, blockquote, li, .dialogue-box {
+      text-wrap: pretty;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 183, 3, 0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255, 183, 3, 0.15);
+      transform: translateX(-3px);
     }
 
     header {
@@ -241,6 +284,10 @@
 <body>
 
   <div class="container">
+    <nav class="top-nav" aria-label="Navigazione storia">
+      <a href="../../../index.html" class="back-link">← Tutte le Storie di Ale &amp; Seby</a>
+    </nav>
+
     <header>
       <div class="badge">✨ Kids' Own Stories ✨</div>
       <h1>La Storia dello Zaino Magico,<br>del Drago e... dei Puffins!</h1>
@@ -333,7 +380,7 @@
       <h3>🎬 Studio di Animazione: Gemini Omni Flash</h3>
       <p style="margin-bottom: 20px;">Ecco il filmato animato ufficiale generato direttamente con <strong>Gemini Omni Flash</strong> partendo dall'illustrazione del gran finale!</p>
       <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.5); max-width: 800px; margin: 0 auto;">
-        <video controls autoplay loop muted style="width: 100%; display: block; border-radius: 16px;">
+        <video controls loading="lazy" autoplay loop muted playsinline width="1280" height="720" preload="metadata" poster="scena4_drago_e_puffins.jpg" style="width: 100%; height: auto; display: block; border-radius: 16px;">
           <source src="video_drago_puffins.mp4" type="video/mp4">
           Il tuo browser non supporta il tag video.
         </video>
@@ -344,10 +391,23 @@
     </section>
 
     <footer>
-      Generato con cura da <strong>Ermete Bottazzi</strong> 🚛 per <strong>Alessandro & Riccardo</strong> • Zurigo, 2026<br>
-      Progetto <strong>Kids' Own Stories</strong>
+      Generato con cura da <strong>Ermete Bottazzi</strong> 🚛 per <strong>Alessandro &amp; Riccardo</strong> • Zurigo, 2026<br>
+      Progetto <strong>Kids' Own Stories</strong> • <a href="../../../index.html" style="color: var(--gold); text-decoration: none; font-weight: 700;">📚 Torna alla Vetrina Principale</a>
     </footer>
   </div>
 
+  <script>
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function syncReducedMotion(prefersReducedMotion) {
+      for (const video of document.querySelectorAll('video[autoplay]')) {
+        if (prefersReducedMotion) {
+          video.removeAttribute('autoplay');
+          video.pause();
+        }
+      }
+    }
+    syncReducedMotion(reducedMotionQuery.matches);
+    reducedMotionQuery.addEventListener('change', (event) => syncReducedMotion(event.matches));
+  </script>
 </body>
 </html>
