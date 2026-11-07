@@ -41,7 +41,7 @@ kids-own-stories/
 * 💀🧟☕ **[La Famiglia di Scheletri e gli Zombie Assetati di Tè](stories/alessandro/storia-scheletri-zombie-te/)** *(4 Novembre 2026)* — Alessandro ci racconta di zombies gentili che amano il tè servito da una famiglia di scheletri! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-scheletri-zombie-te/))
 
 ### 🧒 Sebastian (Seby)
-* *(In arrivo)*
+* 🐰🏎️🌈 **[Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi](stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/)** *(7 Novembre 2026)* — La prima storia di Seby (6 anni): sulla spiaggia di Lido degli Estensi, Seby e il suo inseparabile coniglietto viola di peluche **Pupurabbu** sfrecciano con le **Hot Wheels** dentro un portale fatato pieno di magia! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/))
 
 ---
 

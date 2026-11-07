@@ -3,10 +3,11 @@
 Generates Hover "WOW" Assets for Kids' Own Stories:
 1. Calm, soothing female voiceover (Aoede via Gemini 2.5 Flash TTS) reciting each story's title
    in Italian (title_it.mp3) and English (title_en.mp3), mixed with a gentle warm piano chord.
-2. Veo video for Story #2 (video_scheletri_zombie_te.mp4) via Gemini API Veo model (or Vertex Veo),
+2. Veo video for the story (via Gemini API Veo model or dynamic multi-scene 1280x720 fallback),
    plus 5-second fast-start hover_preview.mp4 clips for every story.
 """
 
+import argparse
 import base64
 import json
 import math
@@ -57,6 +58,38 @@ STORIES = [
             "who smile and bow in gratitude, warm lantern light, cinematic 3D animation, vibrant colors, kid-friendly."
         ),
         "veo_image": "scena3_due_bicchieri_grazie.jpg",
+        "scenes": [
+            "scena1_giardino_libreria.jpg",
+            "scena2_primo_te.jpg",
+            "scena3_due_bicchieri_grazie.jpg",
+        ],
+    },
+    {
+        "slug": "storia-pupurabbu-hot-wheels-lido-degli-estensi",
+        "folder": ROOT / "stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi",
+        "title_prompt_it": (
+            "Leggi questo titolo di fiaba con voce femminile dolcissima, suadente, calda, calma e rassicurante: "
+            "«Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi. Una fiaba di Sebastian.»"
+        ),
+        "title_prompt_en": (
+            "Read this fairy tale title in a soothing, warm, calm, gentle female storytelling voice: "
+            "'Seby, Sweet Pupurabbu, and the Enchanted Hot Wheels Track at Lido degli Estensi. A story by Sebastian.'"
+        ),
+        "existing_video": "video_pupurabbu_hotwheels.mp4",
+        "veo_prompt": (
+            "3D Pixar animated movie scene, a joyful 6-year-old boy (Seby) in a yellow-and-teal striped shirt "
+            "and his adorable soft purple plush bunny rabbit friend (Pupurabbu, with long floppy lavender ears and racing goggles) "
+            "driving a sleek electric-blue Hot Wheels race car with golden flames along a glowing rainbow-and-orange loop track "
+            "high among pink cotton-candy clouds, floating crystal sandcastles, and cute cheering golden starfish waving checkered flags, "
+            "magical sparkles, vibrant colors, heartwarming kid-friendly 3D animation."
+        ),
+        "veo_image": "scena3_mondo_magico_hotwheels.jpg",
+        "scenes": [
+            "scena1_spiaggia_lido_estensi.jpg",
+            "scena2_portale_fatato.jpg",
+            "scena3_mondo_magico_hotwheels.jpg",
+            "scena4_abbraccio_tramonto_lido.jpg",
+        ],
     },
 ]
 
@@ -192,7 +225,6 @@ def try_generate_veo_video_gemini_api(prompt: str, image_path: Path, out_mp4: Pa
                         print(f"  Veo operation error: {pbody['error']}", file=sys.stderr)
                         break
                     resp_obj = pbody.get("response", {})
-                    # Check generateVideoResponse or videos
                     samples = (
                         resp_obj.get("generateVideoResponse", {}).get("generatedSamples", [])
                         or resp_obj.get("videos", [])
@@ -219,32 +251,56 @@ def try_generate_veo_video_gemini_api(prompt: str, image_path: Path, out_mp4: Pa
     return False
 
 
-def build_cinematic_3scene_video_fallback(folder: Path, out_mp4: Path):
-    """Creates a lush 6-second 1280x720 30fps dynamic pan-and-zoom summary video across all 3 scenes."""
-    print(f"🎞️ Building 6s dynamic 3-scene summary video for {folder.name}...")
-    s1 = folder / "scena1_giardino_libreria.jpg"
-    s2 = folder / "scena2_primo_te.jpg"
-    s3 = folder / "scena3_due_bicchieri_grazie.jpg"
-    cmd = [
-        "ffmpeg", "-y",
-        "-loop", "1", "-t", "2.4", "-i", str(s1),
-        "-loop", "1", "-t", "2.4", "-i", str(s2),
-        "-loop", "1", "-t", "2.6", "-i", str(s3),
-        "-filter_complex",
-        "[0:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
-        "zoompan=z='min(zoom+0.0022,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=72:s=1280x720:fps=30,format=yuv420p[v0];"
-        "[1:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
-        "zoompan=z='1.15-0.002*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=72:s=1280x720:fps=30,format=yuv420p[v1];"
-        "[2:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
-        "zoompan=z='min(zoom+0.0025,1.18)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=78:s=1280x720:fps=30,format=yuv420p[v2];"
-        "[v0][v1]xfade=transition=fade:duration=0.45:offset=1.95[v01];"
-        "[v01][v2]xfade=transition=circleopen:duration=0.45:offset=3.90[vout]",
-        "-map", "[vout]",
-        "-t", "6.2",
-        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "fast", "-crf", "21",
-        "-movflags", "+faststart",
-        str(out_mp4),
-    ]
+def build_cinematic_multiscene_video_fallback(folder: Path, scene_names: list[str], out_mp4: Path):
+    """Creates a lush 1280x720 30fps dynamic pan-and-zoom summary video across all scenes of the story."""
+    print(f"🎞️ Building dynamic {len(scene_names)}-scene summary video for {folder.name}...")
+    scene_paths = [folder / s for s in scene_names]
+    if len(scene_paths) == 4:
+        cmd = [
+            "ffmpeg", "-y",
+            "-loop", "1", "-t", "2.1", "-i", str(scene_paths[0]),
+            "-loop", "1", "-t", "2.1", "-i", str(scene_paths[1]),
+            "-loop", "1", "-t", "2.1", "-i", str(scene_paths[2]),
+            "-loop", "1", "-t", "2.2", "-i", str(scene_paths[3]),
+            "-filter_complex",
+            "[0:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='min(zoom+0.0022,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=63:s=1280x720:fps=30,format=yuv420p[v0];"
+            "[1:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='1.15-0.002*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=63:s=1280x720:fps=30,format=yuv420p[v1];"
+            "[2:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='min(zoom+0.0025,1.18)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=63:s=1280x720:fps=30,format=yuv420p[v2];"
+            "[3:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='1.16-0.002*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=66:s=1280x720:fps=30,format=yuv420p[v3];"
+            "[v0][v1]xfade=transition=fade:duration=0.4:offset=1.7[v01];"
+            "[v01][v2]xfade=transition=circleopen:duration=0.4:offset=3.4[v012];"
+            "[v012][v3]xfade=transition=fade:duration=0.4:offset=5.1[vout]",
+            "-map", "[vout]",
+            "-t", "7.0",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "fast", "-crf", "21",
+            "-movflags", "+faststart",
+            str(out_mp4),
+        ]
+    else:
+        cmd = [
+            "ffmpeg", "-y",
+            "-loop", "1", "-t", "2.4", "-i", str(scene_paths[0]),
+            "-loop", "1", "-t", "2.4", "-i", str(scene_paths[1]),
+            "-loop", "1", "-t", "2.6", "-i", str(scene_paths[2]),
+            "-filter_complex",
+            "[0:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='min(zoom+0.0022,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=72:s=1280x720:fps=30,format=yuv420p[v0];"
+            "[1:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='1.15-0.002*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=72:s=1280x720:fps=30,format=yuv420p[v1];"
+            "[2:v]scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810,"
+            "zoompan=z='min(zoom+0.0025,1.18)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=78:s=1280x720:fps=30,format=yuv420p[v2];"
+            "[v0][v1]xfade=transition=fade:duration=0.45:offset=1.95[v01];"
+            "[v01][v2]xfade=transition=circleopen:duration=0.45:offset=3.90[vout]",
+            "-map", "[vout]",
+            "-t", "6.2",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "fast", "-crf", "21",
+            "-movflags", "+faststart",
+            str(out_mp4),
+        ]
     subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print(f"✅ Created {out_mp4.relative_to(ROOT)}")
 
@@ -266,6 +322,10 @@ def create_5s_hover_clip(src_mp4: Path, out_hover_mp4: Path):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate Hover WOW assets (title TTS + Veo video + 5s clip)")
+    parser.add_argument("--slug", help="Only generate for this specific story slug", default=None)
+    args = parser.parse_args()
+
     if not API_KEY:
         print("ERROR: GEMINI_API_KEY not set", file=sys.stderr)
         sys.exit(1)
@@ -273,7 +333,11 @@ def main():
     chime_wav = Path("/tmp/warm_title_chime.wav")
     generate_warm_chime_wav(chime_wav)
 
-    for st in STORIES:
+    stories = STORIES
+    if args.slug:
+        stories = [s for s in stories if s["slug"] == args.slug]
+
+    for st in stories:
         folder = st["folder"]
         build_title_mp3(st["title_prompt_it"], chime_wav, folder / "title_it.mp3")
         build_title_mp3(st["title_prompt_en"], chime_wav, folder / "title_en.mp3")
@@ -286,7 +350,7 @@ def main():
                 full_video,
             )
             if not ok or not full_video.exists():
-                build_cinematic_3scene_video_fallback(folder, full_video)
+                build_cinematic_multiscene_video_fallback(folder, st.get("scenes", []), full_video)
 
         hover_mp4 = folder / "hover_preview.mp4"
         create_5s_hover_clip(full_video, hover_mp4)
