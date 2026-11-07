@@ -2,6 +2,18 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.6.0] - 2026-11-07
+
+### Added
+- 🐰🏎️🌈 **Prima Storia di Sebastian ("Seby", 6 anni) da GitHub Issue #1 (`storia-pupurabbu-hot-wheels-lido-degli-estensi`)**:
+  - **"Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi"** (*"Seby, Sweet Pupurabbu, and the Enchanted Hot Wheels Track at Lido degli Estensi"*), completa in **5 lingue (`🇮🇹 IT`, `🇬🇧 EN`, `🇫🇷 FR`, `🇩🇪 DE`, `🇧🇷 PT-BR`)** e con **Karaoke Parola-per-Parola (`karaoke_it.json`, `karaoke_en.json`)**.
+  - Scaricato e convertito l'audio originale `.webm` registrato dal modulo `+ Nuova Storia` e allegato alla GitHub Issue #1 (`audio/sebastian/2026-11-07-storia-pupurabbu-hot-wheels-lido-degli-estensi.{webm,mp3,ogg}` e `audio_originale.{mp3,ogg}`).
+  - Sbobinatura fedele parola-per-parola e adattamento narrativo in 4 pagine illustrate *super cutie* per un bimbo di 6 anni.
+  - 4 illustrazioni 3D Pixar coerenti (`scena1_spiaggia_lido_estensi.jpg`, `scena2_portale_fatato.jpg`, `scena3_mondo_magico_hotwheels.jpg`, `scena4_abbraccio_tramonto_lido.jpg`) con Seby, il morbido coniglietto di peluche viola **Pupurabbu** e la pista delle **Hot Wheels** tra Lido degli Estensi e il Mondo Magico.
+  - Audiolibri bilingui `narrated_it.mp3` e `narrated_en.mp3` con voce femminile calma (`Aoede` via Gemini 2.5 Flash TTS) e sottofondo di pianoforte, più `title_it.mp3`, `title_en.mp3`, `video_pupurabbu_hotwheels.mp4` e `hover_preview.mp4`.
+- 🐛 **Fix Autore Dinamico nella Vetrina (`index.html`)**:
+  - Le card della vista `📚 Tutte` ora mostrano dinamicamente l'autore e l'emoji corretta da `stories.yaml` (`🧒 Sebastian (6 anni)` vs `👦 Alessandro (8 anni)`).
+
 ## [0.5.1] - 2026-11-07
 
 ### Added

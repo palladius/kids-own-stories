@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi - Sebastian C.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      --primary: #a855f7;
+      --gold: #fbbf24;
+      --hotwheels-orange: #f97316;
+      --sea-cyan: #38bdf8;
+      --bg-dark: #0f1423;
+      --card-bg: #1a2238;
+      --text-light: #f8f9fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at top, #2e1065 0%, #0d1117 100%);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    h1, h2, h3, h4 {
+      text-wrap: balance;
+    }
+
+    p, blockquote, li, .dialogue-box {
+      text-wrap: pretty;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(251, 191, 36, 0.15);
+      transform: translateX(-3px);
+    }
+
+    header {
+      text-align: center;
+      padding: 24px 20px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--hotwheels-orange));
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(168, 85, 247, 0.35);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .author-tag {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .author-tag span {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .audio-player-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+      text-align: center;
+    }
+
+    .audio-player-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      color: #d8b4fe;
+      margin-bottom: 8px;
+    }
+
+    .audio-player-card p {
+      font-size: 1rem;
+      color: #94a3b8;
+      margin-bottom: 15px;
+    }
+
+    .audio-player-card audio {
+      width: 100%;
+      max-width: 600px;
+      outline: none;
+      border-radius: 30px;
+    }
+
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(168, 85, 247, 0.25);
+    }
+
+    .card-img-wrap {
+      width: 100%;
+      max-height: 520px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .story-card:hover .card-img-wrap img {
+      transform: scale(1.02);
+    }
+
+    .card-content {
+      padding: 28px 32px;
+    }
+
+    .chapter-label {
+      color: var(--hotwheels-orange);
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .dialogue-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--hotwheels-orange);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      margin: 16px 0;
+      font-style: italic;
+    }
+
+    .dialogue-box .speaker {
+      font-weight: 700;
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .quote-box {
+      background: linear-gradient(135deg, #581c87, #c2410c);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 40px 0;
+      box-shadow: 0 8px 25px rgba(249, 115, 22, 0.25);
+    }
+
+    .quote-box h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.7rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .quote-box p {
+      font-size: 1.15rem;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .video-section {
+      background: linear-gradient(180deg, #1a2238 0%, #0f1423 100%);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      border: 2px solid var(--gold);
+      margin-bottom: 40px;
+    }
+
+    .video-section h2 {
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer strong {
+      color: #c084fc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="top-nav" aria-label="Navigazione storia">
+      <a href="../../../index.html#storia-pupurabbu-hot-wheels-lido-degli-estensi" class="back-link">← Tutte le Storie di Ale &amp; Seby</a>
+    </nav>
+
+    <header>
+      <div class="badge">🐰🏎️🌈 Kids' Own Stories</div>
+      <h1>Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi</h1>
+      <div class="author-tag">Dedicata a <span>Sebastian C. ("Seby", 6 anni)</span> e raccontata al microfono con papà <span>Riccardo</span> • 7 Novembre 2026</div>
+    </header>
+
+    <!-- BOX AUDIO NARRATO (IT & EN) -->
+    <div class="audio-player-card">
+      <h3>🎧 Audiolibro Narrato (Voce Calma + Pianino)</h3>
+      <p>Ascolta la fiaba di Seby e Pupurabbu narrata in italiano o in inglese con sottofondo di pianoforte!</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center;">
+        <div>
+          <div style="font-size:0.85rem; color:#fbbf24; font-weight:700; margin-bottom:4px;">🇮🇹 Italiano</div>
+          <audio controls preload="metadata">
+            <source src="narrated_it.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div>
+          <div style="font-size:0.85rem; color:#38bdf8; font-weight:700; margin-bottom:4px;">🇬🇧 English</div>
+          <audio controls preload="metadata">
+            <source src="narrated_en.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 1 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena1_spiaggia_lido_estensi.jpg" alt="Seby e Pupurabbu costruiscono la pista Hot Wheels sulla spiaggia di Lido degli Estensi">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Pagina 1 • Sole, Mare e Macchinine</div>
+        <h2>La Grande Pista sulla Spiaggia di Lido degli Estensi</h2>
+        <p>C'era una volta, in un caldo pomeriggio d'estate sulla spiaggia dorata di <strong>Lido degli Estensi</strong>, il piccolo <strong>Sebastian</strong> — che tutti chiamavano affettuosamente <strong>Seby</strong> — intento a preparare la gara più straordinaria del mondo. Tra gli ombrelloni colorati, il profumo dei pini marittimi e le onde azzurre del mare Adriatico che facevano <em>ciac-ciac</em> sulla riva, Seby aveva costruito con la sabbia e i binari arancioni una pista delle <strong>Hot Wheels</strong> lunghissima, piena di curve paraboliche, ponti di conchiglie e un gigantesco giro della morte!</p>
+        <p>Accanto a lui, seduto su un morbido telo da mare come un vero direttore di gara, c'era il suo amico più caro e inseparabile: <strong>Pupurabbu</strong>, un dolcissimo coniglietto di peluche tutto viola, con due lunghe orecchie vellutate color lavanda, il nasino rosa cucito a mano e la pancia soffice perfetta per le coccole.</p>
+        <p>Seby aveva sei anni e voleva un bene immenso al suo tenero Pupurabbu: non iniziava mai nessuna avventura senza di lui! Tra le zampine morbide del pupazzo viola brillava la macchinina Hot Wheels preferita di Seby, un bolide blu elettrico decorato con fiammelle dorate, pronto a sfrecciare sotto il sole della riviera.</p>
+      </div>
+    </article>
+
+    <!-- CAPITOLO 2 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena2_portale_fatato.jpg" alt="Il giro della morte e il portale fatato sulla spiaggia">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Pagina 2 • Un Vortice di Stelle</div>
+        <h2>Il Giro della Morte e il Portale Fatato</h2>
+        <div class="dialogue-box">
+          <span class="speaker">🧒 Seby:</span>
+          «Sei pronto, Pupurabbu? Tre, due, uno... VIA!»
+        </div>
+        <p>La macchinina blu sfrecciò come un piccolo fulmine lungo la pista arancione, sollevando una scia di granelli d'oro fino a imboccare a tutta velocità il grande giro della morte in riva al mare.</p>
+        <p>Ma proprio quando il bolide raggiunse la cima del cerchio arancione, accadde qualcosa di meraviglioso: le conchiglie intorno alla pista iniziarono a suonare una melodia cristallina e, proprio al centro del loop, si spalancò un <strong>portale fatato</strong>! Era un vortice incantevole di luce turchese, stelline dorate e bolle di sapone iridescenti che profumavano di zucchero filato e brezza marina.</p>
+        <p>In quell'istante una scintilla fatata sfiorò le lunghe orecchie viola di Pupurabbu: il peluche sbatté gli occhietti dolci, fece un saltello morbido sulla sabbia e sorrise a Seby prendendolo per mano! Come per incanto, la macchinina Hot Wheels divenne abbastanza grande per tutti e due: Seby e il suo soffice amico viola balzarono a bordo e... <em>ZOOOOM!</em> Sfrecciarono insieme dentro il portale fatato!</p>
+      </div>
+    </article>
+
+    <!-- CAPITOLO 3 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena3_mondo_magico_hotwheels.jpg" alt="Seby e Pupurabbu sfrecciano sulle piste arcobaleno nel mondo magico">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Pagina 3 • Oltre il Portale</div>
+        <h2>A Tutto Gas nel Mondo Magico delle Nuvole</h2>
+        <p>Usciti dal tunnel di stelle, Seby e Pupurabbu si ritrovarono in un mondo diverso, dolcissimo e pieno di magia! Lassù non c'era l'asfalto, ma chilometriche piste arancioni e arcobaleno sospese tra soffici nuvole di zucchero filato rosa, cascate di polvere di stelle e grandiosi castelli di sabbia fatti di cristallo luminoso che fluttuavano nel cielo.</p>
+        <p>Seduto sul sedile del copilota con un paio di buffi occhialoni da corsa appoggiati sulla fronte di peluche, Pupurabbu batteva le zampine viola per la gioia, mentre le sue lunghe orecchie morbide svolazzavano nel vento tiepido facendo il solletico a Seby che rideva a crepapelle.</p>
+        <p>A ogni curva parabolica la loro Hot Wheels lasciava dietro di sé una scia di arcobaleni e bollicine luminose, mentre a bordo pista una squadra di tenerissime stelline marine dorate e granchietti color pastello sventolava bandierine a scacchi facendo il tifo per Seby e il suo amico del cuore!</p>
+      </div>
+    </article>
+
+    <!-- CAPITOLO 4 -->
+    <article class="story-card">
+      <div class="card-img-wrap">
+        <img src="scena4_abbraccio_tramonto_lido.jpg" alt="Seby abbraccia Pupurabbu al tramonto a Lido degli Estensi con la conchiglia luminosa">
+      </div>
+      <div class="card-content">
+        <div class="chapter-label">Pagina 4 • Il Ritorno sulla Spiaggia</div>
+        <h2>La Conchiglia delle Stelle e le Coccole al Tramonto</h2>
+        <p>Dopo un ultimo salto spettacolare sopra il grande ponte dell'arcobaleno, Seby e Pupurabbu tagliarono il traguardo tra una pioggia di coriandoli di luce! Per premiare la loro amicizia speciale, le stelline del regno fatato posarono tra le zampine di Pupurabbu una piccola <strong>Conchiglia-Trofeo</strong> d'oro e turchese che brillava come una lanterna.</p>
+        <p>Poi il portale fatato si aprì di nuovo con una dolce carezza di luce e, lungo uno scivolo vellutato, riportò la macchinina giù sulla spiaggia di Lido degli Estensi, proprio mentre il sole tramontava dietro il pontile tingendo il mare di rosa, arancione e violetto.</p>
+        <p>Sulla sabbia tiepida del tramonto, Pupurabbu era tornato a essere il tenero pupazzo di peluche viola di sempre, ma tra le sue zampine di stoffa stringeva davvero la conchiglia luminosa del mondo magico! Seby sorrise con gli occhi pieni di meraviglia e abbracciò forte forte il suo morbido Pupurabbu, pronto a raccontare tutta l'avventura a Papino.</p>
+      </div>
+    </article>
+
+    <div class="quote-box">
+      <h3>«Seby adora il suo amico Pupurabbu, un pupazzo viola di peluche, e le Hot Wheels a Lido degli Estensi con un portale fatato pieno di magia!»</h3>
+      <p>— Sebastian C. (6 anni) &amp; Papà Riccardo, 7 Novembre 2026</p>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+      <h2>🎬 Il Video Animato della Corsa Fatata</h2>
+      <p>Guarda l'animazione della magica avventura di Seby e Pupurabbu a bordo della Hot Wheels!</p>
+      <video controls autoplay loop muted playsinline width="1280" height="720" preload="metadata" poster="scena3_mondo_magico_hotwheels.jpg">
+        <source src="video_pupurabbu_hotwheels.mp4" type="video/mp4">
+      </video>
+    </section>
+
+    <details style="margin: 24px 0; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 18px; font-size: 0.85rem; color: #94a3b8;">
+      <summary style="cursor: pointer; font-weight: 700; color: #64748b;">📝 Vedi l'audio originale registrato dal microfono e la sbobinatura fedele (GitHub Issue #1)</summary>
+      <div style="margin-top: 12px;">
+        <audio controls preload="none" style="height: 32px; margin-bottom: 10px;">
+          <source src="audio_originale.mp3" type="audio/mpeg">
+          <source src="audio_originale.ogg" type="audio/ogg">
+        </audio>
+        <p style="font-size: 0.85rem; color: #cbd5e1;"><strong>Papà Riccardo (on behalf of Sebastian):</strong> «Allora, questo è Papino che parla on behalf of Sebastian. Allora, Seby adora il suo amico Pupurabbu, che è un pupazzo viola di peluche, e adora le... come si chiamano le macchinine... le Hot Wheels! Quindi una qualunque storia che abbia a che fare con le Hot Wheels, e magari ambientata a Lido degli Estensi, ehm... con il Pupurabbu e magari un portale fatato che ti porta in un mondo... in un mondo diverso, pieno di magia, sarebbe molto figo. E anche molto cutie, perché Seby comunque ha sei anni, quindi ancora ama i pupazzi, quindi qualcosa del genere. Questi sono gli ingredienti che mi piacerebbe vedere. Grazie!»</p>
+      </div>
+    </details>
+
+    <footer>
+      Progetto <strong>Kids' Own Stories</strong> • Creato con ❤️ da <strong>Alessandro, Sebastian &amp; Papà Riccardo</strong> • Zurigo / Lido degli Estensi, 2026<br>
+      <a href="../../../index.html" style="color: var(--gold); text-decoration: none; font-weight: 700;">📚 Torna alla Vetrina Principale</a>
+    </footer>
+  </div>
+
+</body>
+</html>

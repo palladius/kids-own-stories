@@ -1941,6 +1941,9 @@
         const firstPara = getLocalizedParagraphs(pages[0])[0] || pages[0]?.summary || '';
         const hoverVideo = s.assets?.hover_video || s.assets?.video?.file || '';
         const cta = currentLang === 'it' ? `📖 Sfoglia il Libro (${pages.length} pagine) →` : `📖 Open Book (${pages.length} pages) →`;
+        const authorObj = catalog.authors?.[s.author] || { name: s.author || 'Alessandro', emoji: '👦' };
+        const ageUnit = currentLang === 'en' ? 'yo' : 'anni';
+        const storyLabel = currentLang === 'en' ? 'Story' : 'Storia';
         return `
           <article class="index-card"
             tabindex="0"
@@ -1956,7 +1959,7 @@
             </div>
             <div class="index-card-body">
               <div style="font-size:0.82rem;color:var(--gold);font-weight:700;">
-                ${s.emoji || '📖'} Storia #${idx + 1} • 👦 Alessandro (${s.author_age_at_recording} anni)
+                ${s.emoji || '📖'} ${storyLabel} #${idx + 1} • ${authorObj.emoji} ${authorObj.name} (${s.author_age_at_recording} ${ageUnit})
               </div>
               <h2>${title}</h2>
               <p>${firstPara}</p>

@@ -398,3 +398,188 @@ stories:
         text: "Il tè intendi il tè da bere hanno voluto? Ok, hanno voluto più tè!"
       - speaker: "Alessandro"
         text: "Sì! E poi hanno andato a casa, questa volta hanno preso due bicchieri di tè. Poi i zombie li ha beve- bevuti e hanno chiesto: \"Grazie!\". E poi i scheletri hanno chiesto: \"Vuoi un'altra cosa?\". E poi i zombie hanno detto: \"Sì!\". Finita!"
+
+  - id: 2026-11-07-storia-pupurabbu-hot-wheels-lido-degli-estensi
+    slug: storia-pupurabbu-hot-wheels-lido-degli-estensi
+    short_title: "Pupurabbu & Hot Wheels"
+    short_title_en: "Pupurabbu & Hot Wheels"
+    short_title_fr: "Pupurabbu & Hot Wheels"
+    short_title_de: "Pupurabbu & Hot Wheels"
+    short_title_pt: "Pupurabbu & Hot Wheels"
+    title: "Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi"
+    title_en: "Seby, Sweet Pupurabbu, and the Enchanted Hot Wheels Track at Lido degli Estensi"
+    title_fr: "Seby, le Doux Pupurabbu et la Piste Féerique des Hot Wheels à Lido degli Estensi"
+    title_de: "Seby, der Süße Pupurabbu und die Verzauberte Hot-Wheels-Bahn in Lido degli Estensi"
+    title_pt: "Seby, o Doce Pupurabbu e a Pista Encantada de Hot Wheels em Lido degli Estensi"
+    emoji: "🐰🏎️🌈"
+    author: sebastian
+    author_age_at_recording: 6
+    co_authors: ["papà Riccardo"]
+    created_at: "2026-11-07"
+    location: "Lido degli Estensi / Zurigo"
+    language: "it"
+    folder: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi
+    quote: "«Seby adora il suo amico Pupurabbu, un pupazzo viola di peluche, e le Hot Wheels a Lido degli Estensi con un portale fatato pieno di magia!» — Sebastian & Papino"
+    quote_en: "“Seby loves his purple plush friend Pupurabbu and racing Hot Wheels at Lido degli Estensi through a fairy portal full of magic!” — Sebastian & Daddy"
+    quote_fr: "« Seby adore son ami Pupurabbu, une peluche violette toute douce, et les Hot Wheels à Lido degli Estensi avec un portail féerique plein de magie ! » — Sebastian & Papa"
+    quote_de: "„Seby liebt seinen lila Plüschfreund Pupurabbu und die Hot Wheels in Lido degli Estensi mit einem verzauberten Feenportal voller Magie!“ — Sebastian & Papa"
+    quote_pt: "“O Seby adora o seu amigo Pupurabbu, um bichinho de pelúcia roxo, e as Hot Wheels em Lido degli Estensi com um portal encantado cheio de magia!” — Sebastian & Papai"
+    rating:
+      score: 7.9
+      votes: 3
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
+    status: complete
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
+      web_page: true
+    missing_assets: []
+
+    assets:
+      archive_audio:
+        mp3: audio/sebastian/2026-11-07-storia-pupurabbu-hot-wheels-lido-degli-estensi.mp3
+        ogg: audio/sebastian/2026-11-07-storia-pupurabbu-hot-wheels-lido-degli-estensi.ogg
+      story_audio:
+        mp3: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/audio_originale.mp3
+        ogg: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/audio_originale.ogg
+      narrated_audio:
+        it: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/narrated_it.mp3
+        en: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/karaoke_it.json
+        en: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/karaoke_en.json
+      title_audio:
+        it: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/title_it.mp3
+        en: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/title_en.mp3
+      hover_video: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/hover_preview.mp4
+      readme: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/README.md
+      web_page: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/index.html
+      video:
+        file: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/video_pupurabbu_hotwheels.mp4
+        model: veo-2.0-generate-001
+        resolution: "1280x720"
+      pages:
+        - page: 1
+          title: "La Grande Pista sulla Spiaggia di Lido degli Estensi"
+          title_en: "The Grand Track on the Beach of Lido degli Estensi"
+          title_fr: "La Grande Piste sur la Plage de Lido degli Estensi"
+          title_de: "Die Große Rennbahn am Strand von Lido degli Estensi"
+          title_pt: "A Grande Pista na Praia de Lido degli Estensi"
+          image: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/scena1_spiaggia_lido_estensi.jpg
+          summary: "Sulla sabbia dorata di Lido degli Estensi, il piccolo Seby e il suo adorato pupazzo viola di peluche Pupurabbu costruiscono una gigantesca pista arancione per le macchinine Hot Wheels."
+          paragraphs_it:
+            - "C'era una volta, in un caldo pomeriggio d'estate sulla spiaggia dorata di Lido degli Estensi, il piccolo Sebastian — che tutti chiamavano affettuosamente Seby — intento a preparare la gara più straordinaria del mondo. Tra gli ombrelloni colorati, il profumo dei pini marittimi e le onde azzurre del mare Adriatico che facevano ciac-ciac sulla riva, Seby aveva costruito con la sabbia e i binari arancioni una pista delle Hot Wheels lunghissima, piena di curve paraboliche, ponti di conchiglie e un gigantesco giro della morte!"
+            - "Accanto a lui, seduto su un morbido telo da mare come un vero direttore di gara, c'era il suo amico più caro e inseparabile: Pupurabbu, un dolcissimo coniglietto di peluche tutto viola, con due lunghe orecchie vellutate color lavanda, il nasino rosa cucito a mano e la pancia soffice perfetta per le coccole."
+            - "Seby aveva sei anni e voleva un bene immenso al suo tenero Pupurabbu: non iniziava mai nessuna avventura senza di lui! Tra le zampine morbide del pupazzo viola brillava la macchinina Hot Wheels preferita di Seby, un bolide blu elettrico decorato con fiammelle dorate, pronto a sfrecciare sotto il sole della riviera."
+          paragraphs_en:
+            - "Once upon a time, on a warm summer afternoon along the golden sandy beach of Lido degli Estensi, six-year-old Sebastian—whom everyone lovingly called Seby—was setting up the most extraordinary race in the world. Between the colorful beach umbrellas, the scent of maritime pine trees, and the gentle turquoise waves of the Adriatic Sea, Seby had built a colossal orange Hot Wheels track winding over seashell bridges, sandy banks, and a giant loop-de-loop!"
+            - "Right beside him on a cozy beach towel sat his dearest and most inseparable friend: Pupurabbu, an irresistibly sweet purple plush bunny rabbit with long floppy lavender-velvet ears, a tiny stitched pink nose, and the softest cuddly tummy in the universe."
+            - "At six years old, Seby adored his gentle plush friend Pupurabbu and never started a single adventure without him. Resting right between Pupurabbu's soft purple paws gleamed Seby's favorite Hot Wheels car: a sleek electric-blue racer painted with golden flames, ready to zoom under the seaside sun."
+          paragraphs_fr:
+            - "Il était une fois, par un chaud après-midi d'été sur la plage dorée de Lido degli Estensi, le petit Sebastian — que tout le monde appelait tendrement Seby — occupé à préparer la course la plus extraordinaire du monde. Entre les parasols colorés, le parfum des pins maritimes et les vagues bleues de la mer Adriatique, Seby avait construit sur le sable une immense piste orange Hot Wheels avec des ponts de coquillages et un looping géant !"
+            - "Juste à côté de lui, assis sur une serviette moelleuse comme un vrai directeur de course, se trouvait son ami le plus cher et inséparable : Pupurabbu, un adorable petit lapin en peluche tout violet aux longues oreilles douces couleur lavande et au petit nez rose cousu main."
+            - "À six ans, Seby aimait de tout son cœur son tendre Pupurabbu et ne commençait jamais une aventure sans lui ! Entre les pattes douces de la peluche violette brillait la voiture Hot Wheels préférée de Seby : un bolide bleu électrique orné de flammes dorées."
+          paragraphs_de:
+            - "Es war einmal an einem warmen Sommernachmittag am goldenen Sandstrand von Lido degli Estensi, als der kleine Sebastian — den alle liebevoll Seby nannten — das außergewöhnlichste Rennen der Welt vorbereitete. Zwischen bunten Sonnenschirmen, duftenden Pinien und den glitzernden Wellen der Adria hatte Seby eine riesige orangefarbene Hot-Wheels-Rennbahn mit Muschelbrücken und einem gigantischen Looping im Sand gebaut!"
+            - "Direkt neben ihm saß auf einem weichen Strandtuch sein allerbester und unzertrennlicher Freund: Pupurabbu, ein zuckersüßes lila Plüschhäschen mit langen samtenen Lavendelohren, einem rosa gestickten Näschen und einem kuschelweichen Bauch."
+            - "Mit seinen sechs Jahren liebte Seby seinen treuen Pupurabbu über alles und begann kein einziges Abenteuer ohne ihn! Zwischen den weichen Pfoten des lila Kuscheltiers funkelte Sebys liebstes Hot-Wheels-Auto: ein blitzblauer Flitzer mit goldenen Flammen."
+          paragraphs_pt:
+            - "Era uma vez, numa tarde quente de verão na praia dourada de Lido degli Estensi, o pequeno Sebastian — que todos chamavam carinhosamente de Seby — preparando a corrida mais extraordinária do mundo. Entre os guarda-sóis coloridos, o perfume dos pinheiros-marítimos e as ondas azuis do mar Adriático, Seby havia construído na areia uma pista laranja gigantesca de Hot Wheels cheia de curvas, pontes de conchinhas e um looping espetacular!"
+            - "Bem ao seu lado, sentado numa toalha macia como um verdadeiro diretor de prova, estava o seu amigo mais querido e inseparável: Pupurabbu, um coelhinho de pelúcia todo roxo super fofo, com longas orelhas aveludadas cor de lavanda e um narizinho rosa costurado à mão."
+            - "Aos seis anos, Seby amava de paixão o seu doce Pupurabbu e nunca começava nenhuma aventura sem ele! Entre as patinhas macias da pelúcia roxa brilhava o carrinho Hot Wheels favorito de Seby: um bólido azul-elétrico decorado com chamas douradas."
+        - page: 2
+          title: "Il Giro della Morte e il Portale Fatato"
+          title_en: "The Loop-de-Loop and the Fairy Portal"
+          title_fr: "Le Looping Géant et le Portail Féerique"
+          title_de: "Der Riesen-Looping und das Verzauberte Feenportal"
+          title_pt: "O Looping Gigante e o Portal Encantado"
+          image: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/scena2_portale_fatato.jpg
+          summary: "Al centro del giro della morte si apre un portale fatato scintillante: Pupurabbu prende vita con un sorriso dolcissimo e salta con Seby a bordo della Hot Wheels dentro il vortice magico!"
+          paragraphs_it:
+            - "«Sei pronto, Pupurabbu? Tre, due, uno... VIA!» esclamò Seby premendo con entusiasmo il pulsante del lanciatore. La macchinina blu sfrecciò come un piccolo fulmine lungo la pista arancione, sollevando una scia di granelli d'oro fino a imboccare a tutta velocità il grande giro della morte in riva al mare."
+            - "Ma proprio quando il bolide raggiunse la cima del cerchio arancione, accadde qualcosa di meraviglioso: le conchiglie intorno alla pista iniziarono a suonare una melodia cristallina e, proprio al centro del loop, si spalancò un portale fatato! Era un vortice incantevole di luce turchese, stelline dorate e bolle di sapone iridescenti che profumavano di zucchero filato e brezza marina."
+            - "In quell'istante una scintilla fatata sfiorò le lunghe orecchie viola di Pupurabbu: il peluche sbatté gli occhietti dolci, fece un saltello morbido sulla sabbia e sorrise a Seby prendendolo per mano! Come per incanto, la macchinina Hot Wheels divenne abbastanza grande per tutti e due: Seby e il suo soffice amico viola balzarono a bordo e... ZOOOOM! Sfrecciarono insieme dentro il portale fatato!"
+          paragraphs_en:
+            - "“Are you ready, Pupurabbu? Three, two, one... GO!” cheered Seby as he pressed the launcher with all his might. The electric-blue race car shot forward like a tiny lightning bolt along the bright orange track, kicking up a trail of golden sand before roaring straight into the giant seaside loop-de-loop."
+            - "Just as the little racer reached the very top of the orange loop, something wondrous happened: the seashells lining the track began to chime like tiny silver bells, and right inside the circle a fairy portal spun open! It was a dazzling whirlpool of turquoise light, golden stardust, and iridescent bubbles smelling of cotton candy and sea breeze."
+            - "At that very moment, a fairy spark brushed against Pupurabbu's long purple ears: the plush bunny blinked his sweet button eyes, gave a joyful little hop on the sand, and smiled warmly as he took Seby by the hand! By magic, the Hot Wheels car grew just big enough for the two of them—Seby and his cuddly purple friend hopped aboard and... ZOOOOM! They raced straight through the fairy portal!"
+          paragraphs_fr:
+            - "« Tu es prêt, Pupurabbu ? Trois, deux, un... PARTEZ ! » s'écria Seby en appuyant sur le lanceur. La petite voiture bleue fila comme l'éclair sur la piste orange, soulevant un nuage de sable doré avant de s'élancer à toute vitesse dans le grand looping au bord de la mer."
+            - "Mais au moment précis où le bolide atteignit le sommet du cercle orange, les coquillages se mirent à tinter comme des clochettes et, juste au centre du looping, un portail féerique s'ouvrit ! C'était un tourbillon éblouissant de lumière turquoise, d'étoiles dorées et de bulles irisées au parfum de barbe à papa."
+            - "Une étincelle magique effleura alors les longues oreilles violettes de Pupurabbu : la peluche cligna de ses doux yeux ronds, fit un petit bond joyeux sur le sable et prit Seby par la main ! Par enchantement, la Hot Wheels grandit juste assez pour eux deux : Seby et son ami violet sautèrent à bord et... ZOOOOM ! Ils plongèrent ensemble dans le portail féerique !"
+          paragraphs_de:
+            - "„Bist du bereit, Pupurabbu? Drei, zwei, eins... LOS!“ rief Seby begeistert und drückte auf den Starter. Das blaue Rennauto schoss wie ein kleiner Blitz über die orangefarbene Piste, wirbelte goldenen Sand auf und raste mitten in den großen Looping am Meer."
+            - "Doch genau als der Flitzer die Spitze des orangen Kreises erreichte, geschah etwas Wunderbares: Die Muscheln am Rand begannen wie Silberglöckchen zu klingen, und mitten im Looping öffnete sich ein verzaubertes Feenportal aus türkisfarbenem Licht, goldenem Sternenstaub und schillernden Seifenblasen!"
+            - "In diesem Moment berührte ein Feenfunke Pupurabbus lange lila Ohren: Das Plüschhäschen blinzelte vergnügt, machte einen weichen Hüpfer im Sand und nahm Seby lächelnd an die Hand! Wie durch Zauberei wurde das Hot-Wheels-Auto groß genug für beide: Seby und sein flauschiger Freund sprangen hinein und... ZOOOOM! Gemeinsam sausten sie durch das Feenportal!"
+          paragraphs_pt:
+            - "“Você está pronto, Pupurabbu? Três, dois, um... JÁ!” exclamou Seby apertando o lançador com entusiasmo. O carrinho azul disparou como um pequeno raio pela pista laranja, levantando uma trilha de areia dourada até entrar a toda velocidade no grande looping à beira-mar."
+            - "Mas bem quando o bólido alcançou o topo do círculo laranja, algo maravilhoso aconteceu: as conchinhas começaram a tocar uma melodia cristalina e, bem no centro do looping, abriu-se um portal encantado cheio de luz turquesa, estrelinhas douradas e bolhas brilhantes com cheirinho de algodão-doce!"
+            - "Naquele instante, uma faísca mágica tocou as longas orelhas roxas de Pupurabbu: o coelhinho de pelúcia piscou os olhinhos doces, deu um pulinho fofo na areia e sorriu pegando Seby pela mão! Como num passe de mágica, o carrinho Hot Wheels ficou grande o suficiente para os dois: Seby e seu amigo roxo pularam a bordo e... ZOOOOM! Entraram juntos pelo portal encantado!"
+        - page: 3
+          title: "A Tutto Gas nel Mondo Magico delle Nuvole"
+          title_en: "Full Throttle in the Magical Cloud World"
+          title_fr: "À Plein Gaz dans le Monde Magique des Nuages"
+          title_de: "Vollgas in der Magischen Wolkenwelt"
+          title_pt: "A Todo Vapor no Mundo Mágico das Nuvens"
+          image: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/scena3_mondo_magico_hotwheels.jpg
+          summary: "Dall'altra parte del portale fatato, Seby e Pupurabbu corrono su piste arcobaleno sospese tra nuvole di zucchero filato, castelli di sabbia di cristallo e stelline marine festose."
+          paragraphs_it:
+            - "Usciti dal tunnel di stelle, Seby e Pupurabbu si ritrovarono in un mondo diverso, dolcissimo e pieno di magia! Lassù non c'era l'asfalto, ma chilometriche piste arancioni e arcobaleno sospese tra soffici nuvole di zucchero filato rosa, cascate di polvere di stelle e grandiosi castelli di sabbia fatti di cristallo luminoso che fluttuavano nel cielo."
+            - "Seduto sul sedile del copilota con un paio di buffi occhialoni da corsa appoggiati sulla fronte di peluche, Pupurabbu batteva le zampine viola per la gioia, mentre le sue lunghe orecchie morbide svolazzavano nel vento tiepido facendo il solletico a Seby che rideva a crepapelle."
+            - "A ogni curva parabolica la loro Hot Wheels lasciava dietro di sé una scia di arcobaleni e bollicine luminose, mentre a bordo pista una squadra di tenerissime stelline marine dorate e granchietti color pastello sventolava bandierine a scacchi facendo il tifo per Seby e il suo amico del cuore!"
+          paragraphs_en:
+            - "Bursting out of the starlight tunnel, Seby and Pupurabbu found themselves in a completely different world—super cute and overflowing with magic! Up there, endless orange and rainbow Hot Wheels tracks looped high in the sky among fluffy pink cotton-candy clouds, waterfalls of stardust, and floating sandcastles made of glowing crystal."
+            - "Sitting proudly in the co-pilot seat with tiny racing goggles perched on his plush forehead, Pupurabbu clapped his soft purple paws in delight while his long lavender ears fluttered in the warm breeze, tickling Seby and making him giggle with joy."
+            - "Around every banking curve, their Hot Wheels racer left a shimmering trail of rainbows and glowing bubbles, while along the cloud sidelines a cheering squad of adorable golden starfish and pastel little crabs waved checkered flags for Seby and his best friend!"
+          paragraphs_fr:
+            - "Sortis du tunnel d'étoiles, Seby et Pupurabbu se retrouvèrent dans un monde différent, tout doux et rempli de magie ! Là-haut, d'immenses pistes orange et arc-en-ciel serpentaient dans le ciel entre des nuages roses en barbe à papa, des cascades de poussière d'étoiles et des châteaux de sable en cristal lumineux."
+            - "Assis sur le siège du copilote avec de jolies petites lunettes de course sur le front, Pupurabbu tapait dans ses pattes violettes de bonheur tandis que ses longues oreilles douces flottaient au vent en chatouillant Seby qui riait aux éclats."
+            - "À chaque virage, leur Hot Wheels laissait derrière elle un sillage d'arcs-en-ciel étincelants, pendant qu'au bord de la piste une équipe d'adorables petites étoiles de mer dorées et de petits crabes pastel agitait des drapeaux à damier pour les encourager !"
+          paragraphs_de:
+            - "Als sie aus dem Sternentunnel sausten, fanden sich Seby und Pupurabbu in einer völlig anderen, zuckersüßen Welt voller Magie wieder! Dort oben schwebten endlose orangefarbene und regenbogenbunte Hot-Wheels-Bahnen zwischen rosa Zuckerwattewolken, Sternenstaub-Wasserfällen und leuchtenden Kristall-Sandburgen."
+            - "Stolz auf dem Beifahrersitz mit einer kleinen Rennbrille auf der Plüschstirn klatschte Pupurabbu vor Freude in seine lila Pfötchen, während seine langen weichen Ohren im warmen Wind flatterten und Seby kitzelten, sodass er herzlich kicherte."
+            - "In jeder Steilkurve hinterließ ihr Hot-Wheels-Flitzer eine funkelnde Spur aus Regenbögen, während am Wolkenrand niedliche goldene Seesterne und pastellfarbene kleine Krabben begeistert karierte Zielflaggen schwenkten!"
+          paragraphs_pt:
+            - "Ao saírem do túnel de estrelas, Seby e Pupurabbu encontraram-se num mundo diferente, super fofo e cheio de magia! Lá no alto, pistas laranja e arco-íris sem fim flutuavam entre nuvens fofinhas de algodão-doce rosa, cascatas de poeira estelar e castelos de areia feitos de cristal luminoso."
+            - "Sentado no banco do copiloto com pequenos óculos de corrida na testa de pelúcia, Pupurabbu batia as patinhas roxas de alegria, enquanto suas longas orelhas macias voavam ao vento fazendo cócegas em Seby, que dava gargalhadas."
+            - "Em cada curva, o carrinho Hot Wheels deixava um rastro brilhante de arco-íris e bolhinhas de luz, enquanto na beira da pista uma torcida fofíssima de estrelinhas-do-mar douradas e caranguejinhos cor de pastel agitava bandeiras quadriculadas para Seby e seu melhor amigo!"
+        - page: 4
+          title: "La Conchiglia delle Stelle e le Coccole al Tramonto"
+          title_en: "The Starlight Seashell and Sunset Cuddles"
+          title_fr: "Le Coquillage des Étoiles et les Câlins au Coucher du Soleil"
+          title_de: "Die Sternenmuschel und das Kuscheln bei Sonnenuntergang"
+          title_pt: "A Conchinha das Estrelas e o Abraço ao Pôr do Sol"
+          image: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/scena4_abbraccio_tramonto_lido.jpg
+          summary: "Vinta la gara magica, il portale riporta Seby e Pupurabbu sulla spiaggia di Lido degli Estensi al tramonto per un tenero abbraccio con la conchiglia luminosa."
+          paragraphs_it:
+            - "Dopo un ultimo salto spettacolare sopra il grande ponte dell'arcobaleno, Seby e Pupurabbu tagliarono il traguardo tra una pioggia di coriandoli di luce! Per premiare la loro amicizia speciale, le stelline del regno fatato posarono tra le zampine di Pupurabbu una piccola Conchiglia-Trofeo d'oro e turchese che brillava come una lanterna."
+            - "Poi il portale fatato si aprì di nuovo con una dolce carezza di luce e, lungo uno scivolo vellutato, riportò la macchinina giù sulla spiaggia di Lido degli Estensi, proprio mentre il sole tramontava dietro il pontile tingendo il mare di rosa, arancione e violetto."
+            - "Sulla sabbia tiepida del tramonto, Pupurabbu era tornato a essere il tenero pupazzo di peluche viola di sempre, ma tra le sue zampine di stoffa stringeva davvero la conchiglia luminosa del mondo magico! Seby sorrise con gli occhi pieni di meraviglia e abbracciò forte forte il suo morbido Pupurabbu, pronto a raccontare tutta l'avventura a Papino."
+          paragraphs_en:
+            - "After one final breathtaking leap over the grand rainbow bridge, Seby and Pupurabbu crossed the finish line in a shower of sparkling light! To celebrate their special friendship, the little stars of the fairy kingdom placed a glowing golden-and-turquoise Seashell Trophy right into Pupurabbu's soft paws."
+            - "Then the fairy portal opened once more with a gentle glow and guided their racer smoothly down a velvet slide of light right back onto the beach of Lido degli Estensi, just as the sun was setting behind the wooden pier and painting the sea in shades of pink, orange, and violet."
+            - "On the warm evening sand, Pupurabbu was once again Seby's cuddly purple plush toy, yet between his fabric paws still glowed the real magical seashell from the fairy world! With eyes shining with wonder, Seby hugged his soft Pupurabbu tight, ready to tell Daddy all about their unforgettable race."
+          paragraphs_fr:
+            - "Après un dernier saut spectaculaire au-dessus du grand pont de l'arc-en-ciel, Seby et Pupurabbu franchirent la ligne d'arrivée sous une pluie de confettis lumineux ! Pour récompenser leur amitié, les petites étoiles du royaume féerique déposèrent entre les pattes de Pupurabbu un Coquillage-Trophée doré et turquoise qui brillait comme une lanterne."
+            - "Puis le portail féerique s'ouvrit à nouveau dans une douce caresse de lumière et ramena la petite voiture sur la plage de Lido degli Estensi, juste au moment où le soleil se couchait derrière la jetée en teintant la mer de rose et de violet."
+            - "Sur le sable tiède du soir, Pupurabbu était redevenu sa tendre peluche violette, mais entre ses pattes en tissu brillait toujours le vrai coquillage magique ! Les yeux pleins d'étoiles, Seby serra très fort son doux Pupurabbu contre son cœur, prêt à raconter toute l'aventure à Papa."
+          paragraphs_de:
+            - "Nach einem letzten spektakulären Sprung über die große Regenbogenbrücke überquerten Seby und Pupurabbu die Ziellinie in einem Regen aus Lichtkonfetti! Um ihre besondere Freundschaft zu feiern, legten die kleinen Sterne des Feenreichs eine leuchtende Muschel-Trophäe aus Gold und Türkis in Pupurabbus weiche Pfötchen."
+            - "Dann öffnete sich das Feenportal erneut mit einem sanften Leuchten und ließ den kleinen Rennwagen über eine samtige Lichtrutsche zurück an den Strand von Lido degli Estensi gleiten, gerade als die Sonne hinter dem Holzsteg versank und das Meer in Rosa und Violett tauchte."
+            - "Auf dem warmen Abendsand war Pupurabbu wieder das kuschelige lila Plüschtier wie immer, doch zwischen seinen Stoffpfoten leuchtete tatsächlich die magische Muschel aus der Feenwelt! Mit strahlenden Augen drückte Seby seinen weichen Pupurabbu ganz fest an sich, bereit, Papa von ihrem Abenteuer zu erzählen."
+          paragraphs_pt:
+            - "Depois de um último salto espetacular sobre a grande ponte do arco-íris, Seby e Pupurabbu cruzaram a linha de chegada sob uma chuva de confetes de luz! Para premiar a amizade especial dos dois, as estrelinhas do reino encantado colocaram entre as patinhas de Pupurabbu uma Conchinha-Troféu dourada e turquesa que brilhava como uma lanterna."
+            - "Então o portal encantado abriu-se novamente com um carinho suave de luz e levou o carrinho de volta para a praia de Lido degli Estensi, bem na hora em que o sol se punha atrás do píer tingindo o mar de rosa, laranja e violeta."
+            - "Na areia morna do entardecer, Pupurabbu havia voltado a ser o seu fofo bichinho de pelúcia roxo de sempre, mas entre suas patinhas de pano ainda brilhava de verdade a conchinha luminosa do mundo mágico! Com os olhos cheios de encanto, Seby abraçou bem forte o seu macio Pupurabbu, pronto para contar toda a aventura ao Papai."
+    transcript:
+      - speaker: "Papà Riccardo (on behalf of Sebastian)"
+        text: "Allora, questo è Papino che parla on behalf of Sebastian. Allora, Seby adora il suo amico Pupurabbu, che è un pupazzo viola di peluche, e adora le... come si chiamano le macchinine... le Hot Wheels! Quindi una qualunque storia che abbia a che fare con le Hot Wheels, e magari ambientata a Lido degli Estensi, ehm... con il Pupurabbu e magari un portale fatato che ti porta in un mondo... in un mondo diverso, pieno di magia, sarebbe molto figo. E anche molto cutie, perché Seby comunque ha sei anni, quindi ancora ama i pupazzi, quindi qualcosa del genere. Questi sono gli ingredienti che mi piacerebbe vedere. Grazie!"
