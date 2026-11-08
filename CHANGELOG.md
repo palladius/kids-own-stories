@@ -2,6 +2,19 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.8.1] - 2026-11-08
+
+### Added & Fixed
+- 🧒🏼💙 **Fix Fedele delle Fattezze di Seby (Capelli Biondo Scuro + Occhi Azzurri) preservando il Camion Camper Scania Originale (`storia-cavalletto-marie-mondo-cavalli`)**:
+  - Editate chirurgicamente tutte e 4 le illustrazioni originali (`scena1_cavalletto_marie_soffio_tunnel.jpg`, `scena2_vortice_dimensionale_mondo_cavalli.jpg`, `scena3_camion_camper_tutti_cavalli.jpg`, `scena4_marie_chiude_tunnel_mondo_umani.jpg`) mantenendo al 100% le scene originali e il bellissimo camion camper multifunzione portacavalli **Scania `"SEBASTIAN'S ADVENTURE — THE ADVENTURE STAR"`** (con letti a castello, stalle e cavalli a bordo), correggendo solo Seby con i suoi veri **capelli biondo scuro lisci con frangetta** e **grandi occhi azzurri**.
+  - Codificata in `GEMINI.md` e `stories.yaml` (`authors:`) la **Regola Canonica sull'Aspetto Fisico di Ale (capelli castani, occhi castani) e Seby (capelli biondo scuro, occhi azzurri)** affinché nessun agente AI sbagli mai più i loro tratti.
+- 🎬 **Film Animato Completo da 40 Secondi (`4 Atti × 10s`) + Anteprima Hover (`video_cavalletto_marie_camion.mp4`, `hover_preview.mp4`)**:
+  - Generato con `gemini-omni-flash-preview` (`bin/generate_40s_story_videos.py`) il film animato completo da **40 secondi** (`1280x720` HD, narrato in italiano) partendo dalle 4 scene editate col camion camper Scania di Seby, più la clip rapida `hover_preview.mp4` (`5s`).
+- 🎧 **Audiolibri Studio Bilingui (`narrated_it.mp3`, `narrated_en.mp3`), Voci Hover (`title_it.mp3`, `title_en.mp3`), Karaoke Whisper (`karaoke_it.json`, `karaoke_en.json`) e 5 Lingue (`IT`, `EN`, `FR`, `DE`, `PT-BR`)**:
+  - Espanso il racconto di `storia-cavalletto-marie-mondo-cavalli` a 3 ricchi paragrafi per pagina in tutte e 5 le lingue (`IT`, `EN`, `FR`, `DE`, `PT-BR`).
+  - Generati gli audiolibri narrati da `Aoede` con sottofondo di pianoforte (`narrated_it.mp3` e `narrated_en.mp3`), gli audio del titolo per l'hover (`title_it.mp3` e `title_en.mp3`) e l'allineamento Karaoke parola-per-parola con OpenAI Whisper (`karaoke_it.json` e `karaoke_en.json`).
+  - Aggiornata la pagina dedicata `stories/sebastian/storia-cavalletto-marie-mondo-cavalli/index.html` (incluso fix del link `← Torna al Libro`, player audiolibro IT/EN, player del film da 40s e velocità `1.1x` di default).
+
 ## [0.8.0] - 2026-11-08
 
 ### Added

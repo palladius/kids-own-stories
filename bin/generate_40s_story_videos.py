@@ -259,6 +259,72 @@ STORY_SPECS = [
             },
         ],
     },
+    {
+        "slug": "storia-cavalletto-marie-mondo-cavalli",
+        "title": "Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli",
+        "folder": ROOT / "stories/sebastian/storia-cavalletto-marie-mondo-cavalli",
+        "output_mp4": "video_cavalletto_marie_camion.mp4",
+        "acts": [
+            {
+                "act": 1,
+                "first_frame": "scena1_cavalletto_marie_soffio_tunnel.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame in a magical forest glade, 6-year-old Sebastian (a cute boy with "
+                    "dark blonde straight hair, bright sky-blue eyes, red cap, and green hoodie) watches in amazement "
+                    "as his adorable miniature white pony Marie blows a swirling stream of sparkling blue-and-gold "
+                    "stardust from her snout (`fiuuu!`), spinning open a glowing cosmic vortex tunnel portal in the woods. "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"C'era una volta Sebastian con un cavalletto magico di nome Marie: con un soffio fiuuu, Marie aprì un vortice luminoso!\" "
+                    "Accompanied by a magical wind chime whoosh, gentle pony whinny, and wondrous orchestral strings."
+                ),
+            },
+            {
+                "act": 2,
+                "first_frame": "scena2_vortice_dimensionale_mondo_cavalli.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame, 6-year-old Sebastian (with dark blonde straight hair, bright sky-blue "
+                    "eyes, denim overalls over a green striped shirt) steps joyfully out of the glowing rainbow vortex "
+                    "portal into the wondrous World of Horses, a sunlit valley with horseshoe-roof cottages and friendly "
+                    "horses of every color trotting happily along rainbow fences to welcome him! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Attraverso il tunnel magico arrivò nel Mondo dei Cavalli, dove tutto era a misura di cavallo e volevano visitare il mondo umano!\" "
+                    "Accompanied by sparkling portal whoosh, cheerful horse neighs, and triumphant adventure music."
+                ),
+            },
+            {
+                "act": 3,
+                "first_frame": "scena3_camion_camper_tutti_cavalli.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family comedy adventure film, 16:9 HD. "
+                    "Starting from the first frame at golden sunset, 6-year-old Sebastian (with dark blonde straight hair, "
+                    "bright sky-blue eyes, and a blue hoodie) sits proudly at the steering wheel of his awesome custom "
+                    "Scania multi-function horse-transporter camper truck ('SEBASTIAN'S ADVENTURE - THE ADVENTURE STAR'), "
+                    "complete with cozy bunk beds upstairs and horse stalls below. Happy horses climb up the side ramp "
+                    "and poke their smiling heads out the windows as the camper truck drives toward the glowing vortex portal! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Trovò un fantastico camion camper dove vivere e portare tutti i cavalli, e partì a tutto gas attraverso il tunnel!\" "
+                    "Accompanied by a friendly truck horn, rumbling camper engine, happy hooves, and upbeat brass fanfare."
+                ),
+            },
+            {
+                "act": 4,
+                "first_frame": "scena4_marie_chiude_tunnel_mondo_umani.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame inside the cozy cab of the camper truck driving down a sunny street "
+                    "in the human world, 6-year-old Sebastian (with dark blonde straight hair, bright sky-blue eyes, and "
+                    "blue striped hoodie) smiles at the wheel while petting his miniature white pony Marie sitting on the "
+                    "passenger seat beside him. Through the rear window, the swirling vortex portal sparkles and closes "
+                    "forever in a shower of golden stardust as they live happily ever after! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Caricata a bordo anche la piccola Marie, il tunnel magico si chiuse alle loro spalle e vissero felici per sempre!\" "
+                    "Accompanied by a magical sparkling chime, celebratory horse neighs, and a warm orchestral finale chord."
+                ),
+            },
+        ],
+    },
 ]
 
 

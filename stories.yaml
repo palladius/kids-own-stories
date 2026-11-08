@@ -17,6 +17,7 @@ authors:
     nicknames: ["Ale"]
     birth_year: 2018
     emoji: "👦"
+    appearance: "8-year-old boy with straight brown hair with bangs and warm brown/hazel eyes"
     folder: stories/alessandro
     audio_folder: audio/alessandro
   sebastian:
@@ -25,6 +26,7 @@ authors:
     nicknames: ["Seby", "Sebi"]
     birth_year: 2020
     emoji: "🧒"
+    appearance: "6-year-old boy with dark blonde / golden sandy-blonde straight hair with soft bangs and bright sky-blue eyes"
     folder: stories/sebastian
     audio_folder: audio/sebastian
 
@@ -625,11 +627,11 @@ stories:
       transcription: true
       chapters_text: true
       illustrations: true
-      narrated_audio_it: false
-      narrated_audio_en: false
-      video: false
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
       web_page: true
-    missing_assets: ["video", "narrated_audio"]
+    missing_assets: []
 
     assets:
       archive_audio:
@@ -638,53 +640,137 @@ stories:
       story_audio:
         mp3: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/audio_originale.mp3
         ogg: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/audio_originale.ogg
+      narrated_audio:
+        it: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/narrated_it.mp3
+        en: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/karaoke_it.json
+        en: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/karaoke_en.json
+      title_audio:
+        it: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/title_it.mp3
+        en: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/title_en.mp3
+      hover_video: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/hover_preview.mp4
       readme: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/README.md
       web_page: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/index.html
+      video:
+        file: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/video_cavalletto_marie_camion.mp4
+        model: gemini-omni-flash-preview
+        resolution: "1280x720"
+        duration_seconds: 40
       pages:
         - page: 1
           title: "Il Piccolo Cavalletto Marie e il Soffio Magico"
           title_en: "Little Pony Marie and the Magic Gust"
+          title_fr: "Le Petit Poney Marie et le Souffle Magique"
+          title_de: "Das Kleine Pony Marie und der Zauberhauch"
+          title_pt: "O Pequeno Pônei Marie e o Sopro Mágico"
           image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena1_cavalletto_marie_soffio_tunnel.jpg
           summary: "In una radura incantata, Sebi incontra il cavalletto Marie che sputa una potente folata d'aria fatata aprendo un tunnel dimensionale."
           paragraphs_it:
-            - "In una radura luminosa e piena di mistero, il piccolo Sebastian fece un incontro davvero speciale: davanti a lui c'era un cavalletto, un cavallino in miniatura di nome Marie, pronunciato alla francese!"
-            - "Marie fece un respiro profondo e sputò una potente folata d'aria scintillante che cominciò a girare vorticosamente fino ad aprire un magico tunnel dimensionale verso l'ignoto."
+            - "In una radura luminosa e piena di mistero, il piccolo Sebastian — con i suoi capelli biondo scuro e i grandi occhi azzurri — fece un incontro davvero speciale: davanti a lui c'era un tenero «cavalletto», ovvero un cavallino bianco in miniatura con gli zoccoli dorati!"
+            - "Quel piccolo cavallino magico si chiamava Marie, pronunciato alla francese proprio come il nome di Maria, e guardava Seby con due occhioni dolci e pieni di meraviglia."
+            - "All'improvviso Marie fece un respiro profondo e sputò dalla bocca una potente folata d'aria scintillante! Quel soffio fatato prese a girare come un vortice di stelle fino a scavare nell'aria un incredibile tunnel dimensionale verso un altro mondo."
           paragraphs_en:
-            - "In a bright, mysterious clearing, little Sebastian had a truly special encounter: standing before him was Marie, a miniature magic pony with a French name!"
-            - "Marie took a deep breath and blew a powerful gust of shimmering air that began to swirl, opening a magical dimensional tunnel into the unknown."
+            - "In a sunlit, mysterious forest clearing, little Sebastian—with his dark-blonde hair and bright sky-blue eyes—had a truly special encounter: standing right before him was a sweet little “cavalletto,” a miniature white pony with sparkling golden hooves!"
+            - "That magical little pony was named Marie, pronounced the French way just like Maria, and looked at Seby with big, gentle eyes full of wonder."
+            - "Suddenly, Marie took a deep breath and blew a powerful gust of shimmering fairy air from his mouth! The sparkling breeze began to spin like a whirlpool of stars, carving an extraordinary dimensional vortex tunnel into another world."
+          paragraphs_fr:
+            - "Dans une clairière lumineuse et pleine de mystère, le petit Sebastian — avec ses cheveux blond foncé et ses grands yeux bleus — fit une rencontre vraiment spéciale : devant lui se tenait un adorable petit poney blanc miniature aux sabots dorés !"
+            - "Ce petit cheval magique s'appelait Marie, prononcé à la française, et regardait Seby avec de grands yeux doux remplis d'émerveillement."
+            - "Tout à coup, Marie prit une grande inspiration et souffla par la bouche un puissant tourbillon d'air étincelant ! Ce souffle féerique se mit à tournoyer jusqu'à ouvrir un incroyable tunnel dimensionnel vers un autre monde."
+          paragraphs_de:
+            - "Auf einer sonnigen, geheimnisvollen Waldlichtung hatte der kleine Sebastian — mit seinen dunkelblonden Haaren und den strahlend blauen Augen — eine ganz besondere Begegnung: Vor ihm stand ein niedliches kleines weißes Zwergpony mit goldenen Hufen!"
+            - "Dieses zauberhafte kleine Pferdchen hieß Marie, französisch ausgesprochen wie Maria, und schaute Seby mit großen, sanften Augen voller Staunen an."
+            - "Plötzlich holte Marie tief Luft und pustete einen kräftigen Hauch aus glitzernder Feenluft aus dem Maul! Der funkelnde Wirbel drehte sich immer schneller, bis sich ein magischer Dimensionstunnel in eine andere Welt öffnete."
+          paragraphs_pt:
+            - "Numa clareira iluminada e cheia de mistério, o pequeno Sebastian — com seus cabelos loiro-escuros e grandes olhos azuis — teve um encontro muito especial: diante dele estava um cavalinho branco em miniatura com cascos dourados!"
+            - "Aquele pequeno pônei mágico chamava-se Marie, pronunciado à francesa como Maria, e olhava para Seby com olhos doces e cheios de encanto."
+            - "De repente, Marie respirou fundo e soprou pela boca uma forte rajada de ar cintilante! Aquele sopro encantado começou a girar como um redemoinho de estrelas até abrir um incrível túnel dimensional para outro mundo."
         - page: 2
           title: "Il Vortice Dimensionale e il Reame dei Cavalli"
           title_en: "The Dimensional Vortex and the Realm of Horses"
+          title_fr: "Le Vortex Dimensionnel et le Royaume des Chevaux"
+          title_de: "Der Dimensionswirbel und das Reich der Pferde"
+          title_pt: "O Vórtice Dimensional e o Reino dos Cavalos"
           image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena2_vortice_dimensionale_mondo_cavalli.jpg
           summary: "Sebi attraversa il vortice di comete ed entra nel Mondo dei Cavalli, dove tutto è a misura di puledro e gli animali desiderano visitare la Terra."
           paragraphs_it:
-            - "Sebi attraversò il tunnel vorticoso e arrivò nel Mondo dei Cavalli: un reame incantato dove le case avevano la forma di ferri di cavallo e i cavalli erano completamente liberi."
-            - "Ascoltando i racconti di Sebi, nei loro cuori nacque un grande desiderio: volevano tutti andare a visitare il mondo degli umani!"
+            - "Senza alcuna paura, Seby attraversò il tunnel vorticoso insieme a Marie e sbucò nel leggendario Mondo dei Cavalli: un reame fatato dove quasi tutto era fatto a forma di cavallo, dalle graziose casette con i tetti a ferro di cavallo fino agli alberi scolpiti come puledri!"
+            - "In quella terra incantata persino le morbide giacche calde erano tessute con il pelo lasciato dai saggi cavalli dei tempi antichi, e tutti i cavalli vivevano liberi e felici di fare tutto ciò che volevano da mattina a sera."
+            - "Eppure, ascoltando i racconti di Seby, anche nei cuori degli abitanti del Mondo dei Cavalli nacque un desiderio grandissimo: volevano partire tutti insieme per andare a scoprire il meraviglioso mondo delle persone!"
           paragraphs_en:
-            - "Sebi crossed the swirling tunnel and arrived in the World of Horses: an enchanted kingdom with horseshoe-shaped cottages where horses were completely free."
-            - "Listening to Sebi's stories, a grand wish blossomed in their hearts: they all wanted to travel to the human world!"
+            - "Without a hint of fear, Seby stepped through the swirling vortex tunnel with Marie and emerged into the legendary World of Horses: an enchanted realm where almost everything was horse-themed, from cozy cottages with horseshoe roofs to horse-shaped trees!"
+            - "In that magical land, even the warm, soft jackets were woven from the coats of wise horses from ancient times, and every horse lived completely free to do whatever their heart desired all day long."
+            - "Yet as they listened to Seby's stories, a grand wish blossomed in the hearts of the horses too: they all wanted to travel together to visit the wonderful world of humans!"
+          paragraphs_fr:
+            - "Sans la moindre peur, Seby traversa le tunnel tourbillonnant avec Marie et arriva dans le légendaire Monde des Chevaux : un royaume féerique où presque tout évoquait les chevaux, des maisonnettes en fer à cheval jusqu'aux arbres taillés comme des poulains !"
+            - "Dans ce pays enchanté, même les vestes douces et chaudes étaient tissées avec le pelage des sages chevaux d'autrefois, et tous les chevaux vivaient libres de faire tout ce qu'ils voulaient."
+            - "Pourtant, en écoutant Seby, un grand souhait naquit dans leur cœur : même dans le Monde des Chevaux, ils voulaient tous partir visiter le monde des humains !"
+          paragraphs_de:
+            - "Ganz ohne Furcht durchquerte Seby mit Marie den wirbelnden Tunnel und trat hinaus in die sagenhafte Welt der Pferde: ein Zauberreich, in dem fast alles nach Pferden gestaltet war, von den Hufeisen-Häuschen bis zu den grünen Pferdebäumen!"
+            - "In diesem Wunderreich waren sogar die warmen Jacken aus dem weichen Fell weiser Pferde aus uralten Zeiten gewebt, und alle Pferde konnten den ganzen Tag frei tun und lassen, was sie wollten."
+            - "Doch als sie Sebys Geschichten lauschten, wuchs in ihren Herzen ein großer Wunsch: Sie wollten alle gemeinsam aufbrechen, um die Welt der Menschen zu besuchen!"
+          paragraphs_pt:
+            - "Sem nenhum medo, Seby atravessou o túnel rodopiante com Marie e chegou ao lendário Mundo dos Cavalos: um reino encantado onde quase tudo tinha forma de cavalo, desde as casinhas com telhados de ferradura até as árvores!"
+            - "Naquela terra mágica, até os casacos macios eram tecidos com o pelo dos sábios cavalos dos tempos antigos, e todos os cavalos viviam livres para fazer tudo o que quisessem."
+            - "Mas, ouvindo as histórias de Seby, nasceu um grande desejo no coração deles: todos queriam viajar juntos para conhecer o mundo das pessoas!"
         - page: 3
           title: "Il Grande Camion Camper e la Partenza per la Terra"
           title_en: "The Grand Camper Truck and the Departure for Earth"
+          title_fr: "Le Grand Camion Camping-Car et le Départ pour la Terre"
+          title_de: "Der Große Wohnmobil-LKW und die Fahrt zur Erde"
+          title_pt: "O Grande Caminhão Trailer e a Partida para a Terra"
           image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena3_camion_camper_tutti_cavalli.jpg
           summary: "Sebi trova un gigante camion camper con comode stalle e cuccette, carica a bordo tutta la mandria e parte a tutto gas verso il portale."
           paragraphs_it:
-            - "Sebi trovò un veicolo spettacolare: un enorme Camion Camper, perfetto sia per viverci dentro con letti e cucina, sia per ospitare comodamente tutti i cavalli."
-            - "Saliti tutti a bordo con nitriti festosi, Sebi si mise al volante come un vero camionista e guidò a tutto gas dritto verso il tunnel magico!"
+            - "Proprio lì nel Mondo dei Cavalli, Seby trovò il veicolo dei suoi sogni: un gigantesco e coloratissimo Camion Camper, così grande che poteva portare tutti i cavalli del reame e dove ci si poteva persino vivere dentro!"
+            - "Al piano superiore c'erano letti a castello morbidissimi e una vera cucina da camper per preparare la merenda, mentre nel grande rimorchio panoramico c'erano stalle spaziose con i finestrini aperti per tutti i cavalli."
+            - "Con nitriti di gioia i cavalli salirono a bordo; Seby si mise al volante felice come un vero capitano della strada e partì a tutto gas attraversando il tunnel vorticoso verso il mondo umano!"
           paragraphs_en:
-            - "Sebi found an extraordinary vehicle: a giant Camper Truck, perfect both to live in with cozy beds and kitchen, and to comfortably shelter all the horses."
-            - "With joyful neighs all aboard, Sebi took the steering wheel like a true trucker and sped toward the magic portal!"
+            - "Right there in the World of Horses, Seby discovered the vehicle of his dreams: a gigantic, colorful Camper Truck big enough to carry every horse in the kingdom—and where you could even live inside!"
+            - "Upstairs featured cozy bunk beds and a real camper kitchen for snacks, while the spacious panoramic trailer in the back had comfortable stalls and open windows for all the horses."
+            - "With joyful neighs the horses climbed aboard; beaming with happiness, Seby took the steering wheel like a true captain of the road and drove full-throttle through the swirling vortex tunnel toward the human world!"
+          paragraphs_fr:
+            - "C'est là que Seby découvrit le véhicule de ses rêves : un gigantesque et très coloré Camion Camping-Car, assez grand pour transporter tous les chevaux du royaume et dans lequel on pouvait même habiter !"
+            - "À l'étage se trouvaient des lits superposés douillets et une vraie petite cuisine, tandis que la grande remorque panoramique offrait des stalles confortables avec des fenêtres ouvertes pour tous les chevaux."
+            - "Avec des hennissements joyeux, les chevaux montèrent à bord ; tout heureux, Seby prit le volant et fonça à travers le tunnel tourbillonnant vers le monde des humains !"
+          paragraphs_de:
+            - "Genau dort fand Seby das Fahrzeug seiner Träume: einen riesigen, kunterbunten Pferde-Wohnmobil-LKW, in dem man alle Pferde mitnehmen und sogar richtig drin wohnen konnte!"
+            - "Oben gab es gemütliche Etagenbetten und eine kleine Wohnmobilküche, während im großen Panorama-Anhänger geräumige Boxen mit offenen Fenstern für alle Pferde bereitstanden."
+            - "Mit fröhlichem Wiehern stiegen alle Pferde ein; glücklich setzte sich Seby ans Steuer und fuhr mit Vollgas durch den wirbelnden Tunnel in Richtung Menschenwelt!"
+          paragraphs_pt:
+            - "Bem ali no Mundo dos Cavalos, Seby encontrou o veículo dos seus sonhos: um gigantesco e colorido Caminhão Trailer, onde cabiam todos os cavalos do reino e onde dava até para morar dentro!"
+            - "No andar de cima havia beliches fofinhos e uma cozinha de verdade, enquanto no grande reboque panorâmico havia baias espaçosas com janelas abertas para todos os cavalos."
+            - "Com relinchos de alegria, os cavalos subiram a bordo; radiante de felicidade, Seby assumiu o volante e partiu a todo vapor pelo túnel dimensional rumo ao mundo humano!"
         - page: 4
           title: "Marie sale a Bordo e il Portale si Chiude per Sempre"
           title_en: "Marie Climbs Aboard and the Portal Closes Forever"
+          title_fr: "Marie Monte à Bord et le Portail se Ferme pour Toujours"
+          title_de: "Marie Steigt Ein und das Portal Schließt Sich für Immer"
+          title_pt: "Marie Sobe a Bordo e o Portal se Fecha para Sempre"
           image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena4_marie_chiude_tunnel_mondo_umani.jpg
           summary: "Sebi recupera il piccolo cavalletto Marie prima che il portale svanisca. Sigillato il passaggio, vivono tutti felici e contenti nel mondo degli umani."
           paragraphs_it:
-            - "Nel tunnel Sebi si accorse che mancava proprio Marie, il piccolo cavalletto magico! Fece subito inversione, aprì la portiera e lo fece salire in cabina accanto a sé."
-            - "Marie richiuse il tunnel con un ultimo soffio e il camion camper sbucò nel mondo delle persone, dove rimasero tutti felici e inseparabili per sempre!"
+            - "Appena passato il tunnel con il camion camper, Seby contò i suoi amici nello specchietto e gridò: «Ma il mio camion non è ancora pieno... manca un cavallo! Manca proprio il cavalletto che ha fatto il tunnel!»"
+            - "Allora Seby fermò subito il camion, aprì la portiera della cabina, prese il piccolo Marie con gli zoccoli dorati e lo fece accomodare sul sedile del passeggero proprio accanto a sé, accarezzandogli la criniera bianca."
+            - "Con un ultimo soffio di stelline d'oro, Marie chiuse il tunnel dimensionale dietro di loro; il grande camion camper proseguì sotto il sole del mondo umano e Seby, Marie e tutti i cavalli vissero insieme felici per sempre!"
           paragraphs_en:
-            - "Inside the tunnel, Sebi noticed that Marie, the little magic pony, was missing! He immediately turned back, opened the cabin door, and welcomed him aboard."
-            - "Marie sealed the portal with one final breath, and the camper truck rolled into the human world, where everyone lived happily ever after!"
+            - "Just after passing through the tunnel in the camper truck, Seby checked the mirror and gasped: “Wait—my truck isn't full yet... one horse is missing! It's the little pony who made the tunnel!”"
+            - "Seby immediately stopped the truck, opened the cabin door, scooped up little golden-hoofed Marie, and sat him right on the passenger seat beside him, gently stroking his fluffy white mane."
+            - "With one last puff of golden stardust, Marie closed the dimensional tunnel behind them; the grand camper truck rolled out under the bright sun of the human world, and Seby, Marie, and all the horses lived happily ever after!"
+          paragraphs_fr:
+            - "Juste après avoir passé le tunnel avec le camion, Seby regarda dans le rétroviseur et s'écria : « Mais mon camion n'est pas plein... il manque un cheval ! Il manque le petit poney qui a créé le tunnel ! »"
+            - "Alors Seby arrêta vite le camion, ouvrit la portière de la cabine, prit le petit Marie aux sabots dorés et l'installa sur le siège passager juste à côté de lui en caressant sa crinière blanche."
+            - "D'un dernier souffle d'étoiles dorées, Marie referma le tunnel dimensionnel derrière eux ; le grand camion poursuivit sa route sous le soleil du monde humain, et Seby, Marie et tous les chevaux vécurent heureux pour toujours !"
+          paragraphs_de:
+            - "Kaum war er mit dem LKW durch den Tunnel gefahren, blickte Seby in den Spiegel und rief: „Aber mein LKW ist noch gar nicht voll... es fehlt noch ein Pferd! Es fehlt das kleine Pony, das den Tunnel gemacht hat!“"
+            - "Sofort hielt Seby an, öffnete die Fahrertür, holte die kleine Marie mit den goldenen Hufen herein und setzte sie direkt neben sich auf den Beifahrersitz, wo er ihre weiße Mähne streichelte."
+            - "Mit einem letzten Hauch aus goldenem Sternenstaub schloss Marie den Dimensionstunnel hinter ihnen; der große Wohnmobil-LKW rollte in den Sonnenschein der Menschenwelt, und Seby, Marie und alle Pferde lebten glücklich für immer!"
+          paragraphs_pt:
+            - "Logo depois de passar pelo túnel com o caminhão, Seby olhou pelo retrovisor e exclamou: “Mas o meu caminhão ainda não está cheio... falta um cavalo! Falta justamente o cavalinho que fez o túnel!”"
+            - "Então Seby parou o caminhão na hora, abriu a porta da cabine, pegou o pequeno Marie de cascos dourados e colocou-o no banco do passageiro bem ao seu lado, fazendo carinho na sua crina branca."
+            - "Com um último sopro de estrelinhas douradas, Marie fechou o túnel dimensional atrás deles; o grande caminhão trailer seguiu sob o sol do mundo humano, e Seby, Marie e todos os cavalos viveram felizes para sempre!"
     transcript:
       - speaker: "Papà Riccardo"
         text: "Ermete, abbiamo una storia per te da parte di Sebi da mettere nel film Kids' Own Stories, quindi sbobbina l'audio e pronto... vai Sebi, raccontaci!"

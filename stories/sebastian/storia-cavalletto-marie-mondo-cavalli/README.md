@@ -5,10 +5,12 @@
 
 ---
 
-## 🎙️ Ascolta la Registrazione Vocale Originale
+## 🎙️ Ascolta la Registrazione Vocale Originale e l'Audiolibro Narrato
 
-* **Formato MP3**: [audio_originale.mp3](audio_originale.mp3)
-* **Formato OGG (Opus/Vorbis)**: [audio_originale.ogg](audio_originale.ogg)
+* **Audiolibro Narrato (Italiano, Voce + Pianino)**: [narrated_it.mp3](narrated_it.mp3)
+* **Audiolibro Narrato (English, Voice + Piano)**: [narrated_en.mp3](narrated_en.mp3)
+* **Registrazione Vocale Originale (MP3)**: [audio_originale.mp3](audio_originale.mp3)
+* **Registrazione Vocale Originale (OGG)**: [audio_originale.ogg](audio_originale.ogg)
 * **Archivio audio globale**: `audio/sebastian/2026-11-08-storia-cavalletto-marie-mondo-cavalli.mp3`
 
 ---
@@ -93,3 +95,12 @@ Proprio quando i cavalli si chiedevano come fare per attraversare il vortice tut
 Mentre il camion camper rombava dentro il tunnel di luce, Sebi diede un'occhiata allo specchietto retrovisore. «Un momento... il camion non è ancora pieno! Manca il passeggero più importante di tutti!» esclamò. All'imbocco del vortice c'era rimasto **Marie**, il piccolo cavalletto che aveva soffiato il portale!
 
 Sebi frenò di colpo, aprì la portiera della cabina e con un gran sorriso fece saltare Marie sul sedile del passeggero accanto a sé. Subito dopo, Marie diede un ultimo soffio fatato: il tunnel dimensionale alle loro spalle si richiuse in una cascata di scintillanti stelline d'oro, sigillando il passaggio. Il grande camion camper sbucò sull'asfalto del mondo delle persone sotto un sole splendente. Da quel giorno in poi, Sebi, Marie e tutti i cavalli rimasero insieme, liberi, felici e inseparabili per sempre!
+
+---
+
+## 🎬 Il Video Ufficiale (40 Secondi — 4 Atti × 10s)
+
+* **Film Animato 40s (MP4 720p HD, Narrato in Italiano)**: [video_cavalletto_marie_camion.mp4](video_cavalletto_marie_camion.mp4)
+* **Anteprima Hover 5s**: [hover_preview.mp4](hover_preview.mp4)
+* **Pagina Web Interattiva**: [index.html](index.html)
+

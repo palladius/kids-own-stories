@@ -91,6 +91,25 @@ STORIES = [
             "scena4_abbraccio_tramonto_lido.jpg",
         ],
     },
+    {
+        "slug": "storia-cavalletto-marie-mondo-cavalli",
+        "folder": ROOT / "stories/sebastian/storia-cavalletto-marie-mondo-cavalli",
+        "title_prompt_it": (
+            "Leggi questo titolo di fiaba con voce femminile dolcissima, suadente, calda, calma e rassicurante: "
+            "«Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli. Una fiaba di Sebastian.»"
+        ),
+        "title_prompt_en": (
+            "Read this fairy tale title in a soothing, warm, calm, gentle female storytelling voice: "
+            "'Sebastian, Marie the Magic Pony, and the Horses' Camper Truck. A story by Sebastian.'"
+        ),
+        "existing_video": "video_cavalletto_marie_camion.mp4",
+        "scenes": [
+            "scena1_cavalletto_marie_soffio_tunnel.jpg",
+            "scena2_vortice_dimensionale_mondo_cavalli.jpg",
+            "scena3_camion_camper_tutti_cavalli.jpg",
+            "scena4_marie_chiude_tunnel_mondo_umani.jpg",
+        ],
+    },
 ]
 
 
@@ -324,6 +343,7 @@ def create_5s_hover_clip(src_mp4: Path, out_hover_mp4: Path):
 def main():
     parser = argparse.ArgumentParser(description="Generate Hover WOW assets (title TTS + Veo video + 5s clip)")
     parser.add_argument("--slug", help="Only generate for this specific story slug", default=None)
+    parser.add_argument("--titles-only", action="store_true", help="Only generate title_it.mp3 and title_en.mp3")
     args = parser.parse_args()
 
     if not API_KEY:
@@ -341,6 +361,9 @@ def main():
         folder = st["folder"]
         build_title_mp3(st["title_prompt_it"], chime_wav, folder / "title_it.mp3")
         build_title_mp3(st["title_prompt_en"], chime_wav, folder / "title_en.mp3")
+
+        if args.titles_only:
+            continue
 
         full_video = folder / st["existing_video"]
         if not full_video.exists() and "veo_prompt" in st:
