@@ -2,6 +2,14 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.8.4] - 2026-11-08
+
+### Fixed & Changed
+- 🇬🇧 **British English (`en-GB`) Obbligatorio su Tutti gli Audio Inglesi e Pronuncia Europea di `"Sebastian"` (`bin/generate_hover_wow_assets.py`, `bin/generate_story_audiobooks.py`, `index.html`, `GEMINI.md`)**:
+  - **Addio pronuncia americana *"Shebashtian"* (`en-US`)**: impostato `languageCode: "en-GB"` in `speechConfig` di Gemini 2.5 TTS, `en: 'en-GB'` in Web Speech API (`index.html`) e istruzioni di regia vocale British RP (*UK Received Pronunciation / BBC CBeebies bedtime story*), forzando la pronuncia europea/britannica cristallina **`"Se-bas-ti-an"`** (`/sɪˈbæstɪən/`, con *t-i-an* nitido e MAI *"Suh-bas-chun"*).
+  - **Fix Fade-Out Precoce su `title_it.mp3` e `title_en.mp3` (`bin/generate_hover_wow_assets.py`)**: rimosso il fade-out hardcoded a `st=4.5s` che tagliava la fine dei titoli più lunghi (*"A story by Sebastian"* / *"Una fiaba di Sebastian"*), calcolando dinamicamente `fade_start = voice_dur + 0.15s` sulla durata reale del parlato.
+  - Rigenerati tutti i file `title_it.mp3`, `title_en.mp3`, `narrated_en.mp3` e `karaoke_en.json` in British English (`en-GB`).
+
 ## [0.8.3] - 2026-11-08
 
 ### Fixed & Changed

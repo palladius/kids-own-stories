@@ -131,8 +131,16 @@ def main() -> int:
         if title_it_rel and (ROOT / title_it_rel).exists():
             info = probe_media(ROOT / title_it_rel)
             dur = float(info.get("format", {}).get("duration", 0) or 0)
-            if dur < 2.0:
-                errors.append(f"[{slug}] title_audio.it duration too short ({dur:.1f}s): {title_it_rel}")
+            if dur < 5.0:
+                errors.append(f"[{slug}] title_audio.it duration too short ({dur:.1f}s < 5.0s): {title_it_rel}")
+                hover_ok = False
+        else:
+            hover_ok = False
+        if title_en_rel and (ROOT / title_en_rel).exists():
+            info = probe_media(ROOT / title_en_rel)
+            dur = float(info.get("format", {}).get("duration", 0) or 0)
+            if dur < 5.0:
+                errors.append(f"[{slug}] title_audio.en duration too short ({dur:.1f}s < 5.0s): {title_en_rel}")
                 hover_ok = False
         else:
             hover_ok = False

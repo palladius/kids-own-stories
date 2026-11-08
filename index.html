@@ -1973,7 +1973,7 @@
 
     async function initApp() {
       try {
-        const res = await fetch('stories.yaml?v=0.8.1', { cache: 'no-cache' });
+        const res = await fetch('stories.yaml?v=0.8.4', { cache: 'no-cache' });
         if (res.ok && window.jsyaml) {
           const text = await res.text();
           const parsed = window.jsyaml.load(text);
@@ -2039,7 +2039,7 @@
       if (karaokeCache[key]) return karaokeCache[key];
       const url = story.assets?.karaoke_timings?.[lang] || `${story.folder}/karaoke_${lang}.json`;
       try {
-        const res = await fetch(`${url}?v=0.8.1`, { cache: 'no-cache' });
+        const res = await fetch(`${url}?v=0.8.4`, { cache: 'no-cache' });
         if (res.ok) {
           const data = await res.json();
           karaokeCache[key] = data;
@@ -2177,8 +2177,8 @@
       });
       const utteranceText = textParts.join(' ');
       const utter = new SpeechSynthesisUtterance(utteranceText);
-      const bcpMap = { it: 'it-IT', en: 'en-US', fr: 'fr-FR', de: 'de-DE', pt: 'pt-BR' };
-      utter.lang = bcpMap[currentLang] || 'en-US';
+      const bcpMap = { it: 'it-IT', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', pt: 'pt-BR' };
+      utter.lang = bcpMap[currentLang] || 'en-GB';
       utter.rate = Math.max(0.5, Math.min(2.0, currentPlaybackSpeed));
 
       const highlightByIndex = (localIdx) => {
@@ -2548,8 +2548,8 @@
             onfocusout="onCardHoverEnd(this)"
             onclick="onCardHoverEnd(this); selectTab('${s.slug}')">
             <div class="card-media-wrap">
-              <img src="${pages[0]?.image || ''}?v=0.8.1" alt="${title}" loading="lazy">
-              ${hoverVideo ? `<video class="card-hover-video" src="${hoverVideo}?v=0.8.1" muted loop playsinline preload="metadata"></video>` : ''}
+              <img src="${pages[0]?.image || ''}?v=0.8.4" alt="${title}" loading="lazy">
+              ${hoverVideo ? `<video class="card-hover-video" src="${hoverVideo}?v=0.8.4" muted loop playsinline preload="metadata"></video>` : ''}
               <span class="hover-wow-badge">🎬 Film 40s • 🔊 Voce</span>
             </div>
             <div class="index-card-body">
@@ -2668,7 +2668,7 @@
 
         if (vid.getAttribute('data-src') !== hoverVideo) {
           vid.setAttribute('data-src', hoverVideo);
-          vid.src = `${hoverVideo}?v=0.8.1`;
+          vid.src = `${hoverVideo}?v=0.8.4`;
         }
         vid.currentTime = 0;
         vid.play().catch(() => {});
@@ -2732,7 +2732,7 @@
           type: 'video',
           pageNum: pages.length + 1,
           totalPages: pages.length + 1,
-          video: `${story.assets.video.file}?v=0.8.1`,
+          video: `${story.assets.video.file}?v=0.8.4`,
           durationSec: durSec,
           poster: pages[0]?.image || lastPage.image || '',
           title: currentLang === 'it'
@@ -2864,7 +2864,7 @@
 
       document.getElementById('cinemaDialogBody').innerHTML = `
         <div style="position:relative;background:#05070c;border-radius:16px;overflow:hidden;border:2px solid rgba(255,183,3,0.55);box-shadow:0 16px 40px rgba(0,0,0,0.85);margin-bottom:14px;">
-          <img src="${p.image}?v=0.8.2" alt="${escapeHtml(pTitle)}"
+          <img src="${p.image}?v=0.8.4" alt="${escapeHtml(pTitle)}"
             style="width:100%;aspect-ratio:16/9;max-height:70vh;object-fit:contain;display:block;margin:0 auto;">
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;">
@@ -2896,7 +2896,7 @@
       if (bookVid && !bookVid.paused) bookVid.pause();
 
       const storyTitle = getLocalizedField(story, 'title');
-      const videoUrl = `${story.assets.video.file}?v=0.8.1`;
+      const videoUrl = `${story.assets.video.file}?v=0.8.4`;
       const acts = getMovieActsForStory(story);
 
       document.getElementById('cinemaDialogTitle').textContent = currentLang === 'it'
@@ -3090,7 +3090,7 @@
           return `
             <button type="button" class="filmstrip-thumb-btn video-thumb ${sIdx === idx ? 'active' : ''}"
               onclick="jumpToStoryMovie(false)" title="Guarda il Film Animato 16:9 (40s)">
-              <img src="${sItem.poster}?v=0.8.2" alt="Film 40s">
+              <img src="${sItem.poster}?v=0.8.4" alt="Film 40s">
               <span class="filmstrip-thumb-label">🎬 Film 40s</span>
             </button>
           `;
@@ -3099,7 +3099,7 @@
         return `
           <button type="button" class="filmstrip-thumb-btn ${sIdx === idx ? 'active' : ''}"
             onclick="goToPage(${sIdx})" title="${escapeHtml(sItem.title)}">
-            <img src="${sItem.image}?v=0.8.2" alt="${pLabel}">
+            <img src="${sItem.image}?v=0.8.4" alt="${pLabel}">
             <span class="filmstrip-thumb-label">${pLabel}</span>
           </button>
         `;
@@ -3118,14 +3118,14 @@
           : (currentLang === 'it' ? '🔇 Attiva Audio (IT)' : '🔇 Unmute Audio (IT)');
 
         leftEl.innerHTML = `
-          <div class="video-ambient-backdrop" style="background-image:url('${slide.poster}?v=0.8.2')"></div>
+          <div class="video-ambient-backdrop" style="background-image:url('${slide.poster}?v=0.8.4')"></div>
           <div class="netflix-player-shell">
             <div class="netflix-video-stage" ondblclick="maximizeBookMovieToFullscreen()" title="Doppio clic o clicca sul quadratino per Tutto Schermo">
               <button type="button" class="netflix-corner-expand-btn" onclick="maximizeBookMovieToFullscreen()" title="Ingrandisci a Tutto Schermo (Stile Netflix)">
                 ${squareSvg}
                 <span>${netflixMaxLabel}</span>
               </button>
-              <video id="bookSpreadVideo" controls autoplay loop ${shouldStartUnmuted ? '' : 'muted'} playsinline width="1280" height="720" preload="metadata" poster="${slide.poster}?v=0.8.2">
+              <video id="bookSpreadVideo" controls autoplay loop ${shouldStartUnmuted ? '' : 'muted'} playsinline width="1280" height="720" preload="metadata" poster="${slide.poster}?v=0.8.4">
                 <source src="${slide.video}" type="video/mp4">
               </video>
             </div>
@@ -3156,14 +3156,14 @@
         leftEl.classList.remove('is-video-page');
         bookEl.classList.toggle('book-wide-theater', isBookWideTheater);
         leftEl.innerHTML = `
-          <div class="video-ambient-backdrop" style="background-image:url('${slide.image}?v=0.8.2')"></div>
+          <div class="video-ambient-backdrop" style="background-image:url('${slide.image}?v=0.8.4')"></div>
           <div class="left-art-shell">
             <div class="left-art-frame" onclick="openPhotoLightbox(${idx})" title="Clicca per ingrandire l'illustrazione 16:9 a Tutto Schermo">
               <button type="button" class="netflix-corner-expand-btn" onclick="event.stopPropagation(); openPhotoLightbox(${idx})" title="Ingrandisci Illustrazione 16:9 a Tutto Schermo">
                 ${squareSvg}
                 <span>${netflixMaxLabel}</span>
               </button>
-              <img src="${slide.image}?v=0.8.2" alt="${escapeHtml(slide.title)}">
+              <img src="${slide.image}?v=0.8.4" alt="${escapeHtml(slide.title)}">
             </div>
           </div>
           <div class="left-filmstrip-bar">

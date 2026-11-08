@@ -33,8 +33,8 @@ STORIES = [
             "«La Storia dello Zaino Magico, del Drago e dei Puffins. Una fiaba di Alessandro.»"
         ),
         "title_prompt_en": (
-            "Read this fairy tale title in a soothing, warm, calm, gentle female storytelling voice: "
-            "'The Story of the Magic Backpack, the Dragon, and the Puffins. A story by Alessandro.'"
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice: "
+            "\"The Story of the Magic Backpack, the Dragon, and the Puffins. A story by Alessandro.\""
         ),
         "existing_video": "video_drago_puffins.mp4",
     },
@@ -46,8 +46,8 @@ STORIES = [
             "«La Famiglia di Scheletri e gli Zombie Assetati di Tè. Una fiaba di Alessandro.»"
         ),
         "title_prompt_en": (
-            "Read this fairy tale title in a soothing, warm, calm, gentle female storytelling voice: "
-            "'The Skeleton Family and the Tea-Thirsty Zombies. A story by Alessandro.'"
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice: "
+            "\"The Skeleton Family and the Tea-Thirsty Zombies. A story by Alessandro.\""
         ),
         "existing_video": "video_scheletri_zombie_te.mp4",
         "veo_prompt": (
@@ -72,8 +72,9 @@ STORIES = [
             "«Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi. Una fiaba di Sebastian.»"
         ),
         "title_prompt_en": (
-            "Read this fairy tale title in a soothing, warm, calm, gentle female storytelling voice: "
-            "'Seby, Sweet Pupurabbu, and the Enchanted Hot Wheels Track at Lido degli Estensi. A story by Sebastian.'"
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice. "
+            "Pronounce the name Sebastian in the clear European/British way as \"Se-bas-ti-an\" (with a clear T-I-A-N, never American \"Suh-bas-chun\"): "
+            "\"Seby, Sweet Pupurabbu, and the Enchanted Hot Wheels Track at Lido degli Estensi. A story by Se-bas-ti-an.\""
         ),
         "existing_video": "video_pupurabbu_hotwheels.mp4",
         "veo_prompt": (
@@ -99,8 +100,9 @@ STORIES = [
             "«Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli. Una fiaba di Sebastian.»"
         ),
         "title_prompt_en": (
-            "Read this fairy tale title in a soothing, warm, calm, gentle female storytelling voice: "
-            "'Sebastian, Marie the Magic Pony, and the Horses' Camper Truck. A story by Sebastian.'"
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice. "
+            "Pronounce the name Sebastian in the clear European/British way as \"Se-bas-ti-an\" (with a clear T-I-A-N, never American \"Suh-bas-chun\"): "
+            "\"Sebastian, Marie the Magic Pony, and the Horses' Camper Truck. A story by Se-bas-ti-an.\""
         ),
         "existing_video": "video_cavalletto_marie_camion.mp4",
         "scenes": [
@@ -141,13 +143,14 @@ def generate_warm_chime_wav(out_wav: Path, duration_sec: float = 10.0, sample_ra
         wf.writeframes(bytes(raw))
 
 
-def synthesize_tts_pcm(prompt_text: str) -> bytes:
+def synthesize_tts_pcm(prompt_text: str, lang_code: str = "en-GB") -> bytes:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key={API_KEY}"
     payload = {
         "contents": [{"parts": [{"text": prompt_text}]}],
         "generationConfig": {
             "responseModalities": ["AUDIO"],
             "speechConfig": {
+                "languageCode": lang_code,
                 "voiceConfig": {
                     "prebuiltVoiceConfig": {
                         "voiceName": "Aoede"
@@ -170,9 +173,11 @@ def synthesize_tts_pcm(prompt_text: str) -> bytes:
     raise RuntimeError("Failed to synthesize title TTS")
 
 
-def build_title_mp3(prompt_text: str, chime_wav: Path, out_mp3: Path):
-    print(f"🎙️ Generating calm title voiceover: {out_mp3.relative_to(ROOT)} ...")
-    pcm = synthesize_tts_pcm(prompt_text)
+def build_title_mp3(prompt_text: str, chime_wav: Path, out_mp3: Path, lang_code: str = "en-GB"):
+    print(f"🎙️ Generating calm title voiceover ({lang_code}): {out_mp3.relative_to(ROOT)} ...")
+    pcm = synthesize_tts_pcm(prompt_text, lang_code=lang_code)
+    voice_dur = len(pcm) / (24000.0 * 2.0)
+    fade_start = max(1.0, voice_dur + 0.15)
     voice_wav = Path(f"/tmp/title_voice_{out_mp3.stem}_{out_mp3.parent.name}.wav")
     with wave.open(str(voice_wav), "wb") as wf:
         wf.setnchannels(1)
@@ -185,16 +190,16 @@ def build_title_mp3(prompt_text: str, chime_wav: Path, out_mp3: Path):
         "-i", str(voice_wav),
         "-i", str(chime_wav),
         "-filter_complex",
-        "[0:a]volume=1.5,apad=pad_dur=0.6[v];"
-        "[1:a]volume=0.22[bg];"
-        "[v][bg]amix=inputs=2:duration=first:dropout_transition=1,afade=t=out:st=4.5:d=0.8[out]",
+        f"[0:a]volume=1.5,apad=pad_dur=0.8[v];"
+        f"[1:a]volume=0.22[bg];"
+        f"[v][bg]amix=inputs=2:duration=first:dropout_transition=1,afade=t=out:st={fade_start:.2f}:d=0.65[out]",
         "-map", "[out]",
         "-codec:a", "libmp3lame",
         "-qscale:a", "2",
         str(out_mp3),
     ]
     subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    print(f"✅ Saved {out_mp3.relative_to(ROOT)}")
+    print(f"✅ Saved {out_mp3.relative_to(ROOT)} ({voice_dur + 0.8:.1f}s)")
 
 
 def try_generate_veo_video_gemini_api(prompt: str, image_path: Path, out_mp4: Path) -> bool:
@@ -351,7 +356,7 @@ def main():
         sys.exit(1)
 
     chime_wav = Path("/tmp/warm_title_chime.wav")
-    generate_warm_chime_wav(chime_wav)
+    generate_warm_chime_wav(chime_wav, duration_sec=16.0)
 
     stories = STORIES
     if args.slug:
@@ -359,8 +364,8 @@ def main():
 
     for st in stories:
         folder = st["folder"]
-        build_title_mp3(st["title_prompt_it"], chime_wav, folder / "title_it.mp3")
-        build_title_mp3(st["title_prompt_en"], chime_wav, folder / "title_en.mp3")
+        build_title_mp3(st["title_prompt_it"], chime_wav, folder / "title_it.mp3", lang_code="it-IT")
+        build_title_mp3(st["title_prompt_en"], chime_wav, folder / "title_en.mp3", lang_code="en-GB")
 
         if args.titles_only:
             continue

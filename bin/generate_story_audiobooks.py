@@ -86,12 +86,16 @@ def generate_gentle_piano_wav(output_path: Path, duration_sec: float = 280.0, sa
 def synthesize_gemini_tts_chunk(api_key: str, text: str, lang: str, voice_name: str = "Aoede") -> bytes:
     """Calls Gemini 2.5 TTS REST API for a paragraph/chunk and returns raw 24kHz 16-bit PCM bytes."""
     if lang == "it":
+        lang_code = "it-IT"
         instruction = (
             "Leggi questa parte di fiaba per bambini con voce femminile dolce, calma e rassicurante:\n\n" + text
         )
     else:
+        lang_code = "en-GB"
         instruction = (
-            "Read this part of a children's bedtime fairy tale in a calm, warm, reassuring female voice:\n\n" + text
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime fairy tale) female voice. "
+            "Always pronounce the name Sebastian in the clear British/European way as \"Se-bas-ti-an\" (with a crisp T-I-A-N, never American \"Suh-bas-chun\"):\n\n"
+            + text
         )
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key={api_key}"
@@ -100,6 +104,7 @@ def synthesize_gemini_tts_chunk(api_key: str, text: str, lang: str, voice_name: 
         "generationConfig": {
             "responseModalities": ["AUDIO"],
             "speechConfig": {
+                "languageCode": lang_code,
                 "voiceConfig": {
                     "prebuiltVoiceConfig": {
                         "voiceName": voice_name
@@ -206,6 +211,7 @@ def build_single_audiobook(api_key: str, story: dict, lang: str, piano_wav: Path
 def main():
     parser = argparse.ArgumentParser(description="Generate bilingual narrated audiobooks from stories.yaml")
     parser.add_argument("--slug", help="Only generate for this specific story slug", default=None)
+    parser.add_argument("--lang", help="Only generate for this language (it or en)", default=None)
     args = parser.parse_args()
 
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -219,11 +225,12 @@ def main():
         stories = [s for s in stories if s.get("slug") == args.slug]
 
     piano_wav = generate_gentle_piano_wav(PIANO_WAV, duration_sec=320.0)
+    langs = [args.lang] if args.lang in ("it", "en") else ["it", "en"]
 
     tasks = []
     with ThreadPoolExecutor(max_workers=2) as executor:
         for story in stories:
-            for lang in ("it", "en"):
+            for lang in langs:
                 tasks.append(executor.submit(build_single_audiobook, api_key, story, lang, piano_wav))
         for fut in as_completed(tasks):
             fut.result()

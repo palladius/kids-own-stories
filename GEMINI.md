@@ -9,6 +9,7 @@ Questo documento definisce **per filo e per segno** l'architettura, le convenzio
 L'obiettivo di questo repository è **raccogliere e immortalare le idee e le storie inventate dai figli di Riccardo**:
 * 👦 **Alessandro ("Ale")** — nato nel 2018 (`author: alessandro`). Fattezze fisiche per illustrazioni/video: bimbo di 8 anni, **capelli castani lisci con frangetta** e **occhi castani/nocciola espressivi**.
 * 🧒 **Sebastian ("Seby" / "Sebi")** — nato nel 2020 (`author: sebastian`). Fattezze fisiche per illustrazioni/video: bimbo di 6 anni, **capelli biondo scuro / dorati con frangetta morbida** (*dark blonde hair*, MAI capelli neri o castano scuro!) e **grandi occhi azzurri limpidi** (*bright sky-blue eyes*, MAI occhi marroni!).
+* 🇬🇧 **Regola Linguistica Inglese (`en-GB` British English OBBLIGATORIO)**: Tutti i testi e gli audio inglesi (`title_en.mp3`, `narrated_en.mp3`, Web Speech API) DEVONO usare **British English (`en-GB`, UK Received Pronunciation)** e MAI l'accento americano (`en-US`). Il nome *"Sebastian"* deve essere sempre pronunciato all'europea/britannica (`/sɪˈbæstɪən/`, *"Se-bas-ti-an"* con *t-i-an* nitido, MAI *"Shebashtian"* / *"Suh-bas-chun"*).
 
 Il flusso parte sempre dal **dato grezzo autentico** (idealmente la **registrazione vocale al microfono** in cui il bimbo racconta la storia, spesso dialogando con papà Riccardo) e usa l'AI generativa per costruire attorno a quel seme un intero pacchetto multimediale:
 1. 🎙️ **Audio Originale Raw** (`.ogg`, `.mp3`, `.m4a`, `.wav`) — la viva voce del bambino, intatta.
