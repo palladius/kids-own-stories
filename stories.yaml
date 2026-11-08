@@ -586,3 +586,129 @@ stories:
     transcript:
       - speaker: "Papà Riccardo (on behalf of Sebastian)"
         text: "Allora, questo è Papino che parla on behalf of Sebastian. Allora, Seby adora il suo amico Pupurabbu, che è un pupazzo viola di peluche, e adora le... come si chiamano le macchinine... le Hot Wheels! Quindi una qualunque storia che abbia a che fare con le Hot Wheels, e magari ambientata a Lido degli Estensi, ehm... con il Pupurabbu e magari un portale fatato che ti porta in un mondo... in un mondo diverso, pieno di magia, sarebbe molto figo. E anche molto cutie, perché Seby comunque ha sei anni, quindi ancora ama i pupazzi, quindi qualcosa del genere. Questi sono gli ingredienti che mi piacerebbe vedere. Grazie!"
+
+  - id: 2026-11-08-storia-cavalletto-marie-mondo-cavalli
+    slug: storia-cavalletto-marie-mondo-cavalli
+    short_title: "Cavalletto Marie e Camion"
+    short_title_en: "Pony Marie and Camper Truck"
+    short_title_fr: "Poney Marie et Camping-Car"
+    short_title_de: "Pony Marie und Wohnmobil-LKW"
+    short_title_pt: "Pônei Marie e Caminhão Trailer"
+    title: "Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli"
+    title_en: "Sebastian, Marie the Magic Pony, and the Horses' Camper Truck"
+    title_fr: "Sebastian, Marie le Poney Magique et le Camping-Car des Chevaux"
+    title_de: "Sebastian, das Zauberpony Marie und der Pferde-Wohnmobil-LKW"
+    title_pt: "Sebastian, o Pônei Mágico Marie e o Caminhão Trailer dos Cavalos"
+    emoji: "🐴🚛🌀"
+    author: sebastian
+    author_age_at_recording: 6
+    co_authors: ["papà Riccardo"]
+    created_at: "2026-11-08"
+    location: "Zurigo"
+    language: "it"
+    folder: stories/sebastian/storia-cavalletto-marie-mondo-cavalli
+    quote: "«Mancava un cavallo nel camion! Ho preso Marie, l'ho messo dentro, poi ha chiuso il tunnel e siamo felici per sempre!» — Sebastian C."
+    quote_en: "“One horse was missing from the truck! I took Marie, put him inside, then he closed the tunnel and we are happy forever!” — Sebastian C."
+    quote_fr: "« Il manquait un cheval dans le camion ! J'ai pris Marie, je l'ai mis dedans, puis il a fermé le tunnel et nous sommes heureux pour toujours ! » — Sebastian C."
+    quote_de: "„Ein Pferd fehlte im LKW! Ich habe Marie mit reingenommen, dann hat er den Tunnel geschlossen und wir sind für immer glücklich!“ — Sebastian C."
+    quote_pt: "“Faltava um cavalo no caminhão! Peguei o Marie, coloquei ele dentro, aí ele fechou o túnel e fomos felizes para sempre!” — Sebastian C."
+    rating:
+      score: 8.5
+      votes: 1
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
+    status: complete
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      narrated_audio_it: false
+      narrated_audio_en: false
+      video: false
+      web_page: true
+    missing_assets: ["video", "narrated_audio"]
+
+    assets:
+      archive_audio:
+        mp3: audio/sebastian/2026-11-08-storia-cavalletto-marie-mondo-cavalli.mp3
+        ogg: audio/sebastian/2026-11-08-storia-cavalletto-marie-mondo-cavalli.ogg
+      story_audio:
+        mp3: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/audio_originale.mp3
+        ogg: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/audio_originale.ogg
+      readme: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/README.md
+      web_page: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/index.html
+      pages:
+        - page: 1
+          title: "Il Piccolo Cavalletto Marie e il Soffio Magico"
+          title_en: "Little Pony Marie and the Magic Gust"
+          image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena1_cavalletto_marie_soffio_tunnel.jpg
+          summary: "In una radura incantata, Sebi incontra il cavalletto Marie che sputa una potente folata d'aria fatata aprendo un tunnel dimensionale."
+          paragraphs_it:
+            - "In una radura luminosa e piena di mistero, il piccolo Sebastian fece un incontro davvero speciale: davanti a lui c'era un cavalletto, un cavallino in miniatura di nome Marie, pronunciato alla francese!"
+            - "Marie fece un respiro profondo e sputò una potente folata d'aria scintillante che cominciò a girare vorticosamente fino ad aprire un magico tunnel dimensionale verso l'ignoto."
+          paragraphs_en:
+            - "In a bright, mysterious clearing, little Sebastian had a truly special encounter: standing before him was Marie, a miniature magic pony with a French name!"
+            - "Marie took a deep breath and blew a powerful gust of shimmering air that began to swirl, opening a magical dimensional tunnel into the unknown."
+        - page: 2
+          title: "Il Vortice Dimensionale e il Reame dei Cavalli"
+          title_en: "The Dimensional Vortex and the Realm of Horses"
+          image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena2_vortice_dimensionale_mondo_cavalli.jpg
+          summary: "Sebi attraversa il vortice di comete ed entra nel Mondo dei Cavalli, dove tutto è a misura di puledro e gli animali desiderano visitare la Terra."
+          paragraphs_it:
+            - "Sebi attraversò il tunnel vorticoso e arrivò nel Mondo dei Cavalli: un reame incantato dove le case avevano la forma di ferri di cavallo e i cavalli erano completamente liberi."
+            - "Ascoltando i racconti di Sebi, nei loro cuori nacque un grande desiderio: volevano tutti andare a visitare il mondo degli umani!"
+          paragraphs_en:
+            - "Sebi crossed the swirling tunnel and arrived in the World of Horses: an enchanted kingdom with horseshoe-shaped cottages where horses were completely free."
+            - "Listening to Sebi's stories, a grand wish blossomed in their hearts: they all wanted to travel to the human world!"
+        - page: 3
+          title: "Il Grande Camion Camper e la Partenza per la Terra"
+          title_en: "The Grand Camper Truck and the Departure for Earth"
+          image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena3_camion_camper_tutti_cavalli.jpg
+          summary: "Sebi trova un gigante camion camper con comode stalle e cuccette, carica a bordo tutta la mandria e parte a tutto gas verso il portale."
+          paragraphs_it:
+            - "Sebi trovò un veicolo spettacolare: un enorme Camion Camper, perfetto sia per viverci dentro con letti e cucina, sia per ospitare comodamente tutti i cavalli."
+            - "Saliti tutti a bordo con nitriti festosi, Sebi si mise al volante come un vero camionista e guidò a tutto gas dritto verso il tunnel magico!"
+          paragraphs_en:
+            - "Sebi found an extraordinary vehicle: a giant Camper Truck, perfect both to live in with cozy beds and kitchen, and to comfortably shelter all the horses."
+            - "With joyful neighs all aboard, Sebi took the steering wheel like a true trucker and sped toward the magic portal!"
+        - page: 4
+          title: "Marie sale a Bordo e il Portale si Chiude per Sempre"
+          title_en: "Marie Climbs Aboard and the Portal Closes Forever"
+          image: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/scena4_marie_chiude_tunnel_mondo_umani.jpg
+          summary: "Sebi recupera il piccolo cavalletto Marie prima che il portale svanisca. Sigillato il passaggio, vivono tutti felici e contenti nel mondo degli umani."
+          paragraphs_it:
+            - "Nel tunnel Sebi si accorse che mancava proprio Marie, il piccolo cavalletto magico! Fece subito inversione, aprì la portiera e lo fece salire in cabina accanto a sé."
+            - "Marie richiuse il tunnel con un ultimo soffio e il camion camper sbucò nel mondo delle persone, dove rimasero tutti felici e inseparabili per sempre!"
+          paragraphs_en:
+            - "Inside the tunnel, Sebi noticed that Marie, the little magic pony, was missing! He immediately turned back, opened the cabin door, and welcomed him aboard."
+            - "Marie sealed the portal with one final breath, and the camper truck rolled into the human world, where everyone lived happily ever after!"
+    transcript:
+      - speaker: "Papà Riccardo"
+        text: "Ermete, abbiamo una storia per te da parte di Sebi da mettere nel film Kids' Own Stories, quindi sbobbina l'audio e pronto... vai Sebi, raccontaci!"
+      - speaker: "Sebastian"
+        text: "Io ero come in un posto con un cavalletto e poi il cavalletto ha spuntato..."
+      - speaker: "Papà Riccardo"
+        text: "Cavalletto vuol dire un piccolo cavallo?"
+      - speaker: "Sebastian"
+        text: "Sì, ha sputato dell'aria che ha fatto un tunnel. L'ho passato e poi ho trovato un mondo dei cavalli, e poi lì ho trovato un camion dove potevo portare tutti i cavalli e ci potevo anche vivere. Ho passato il tunnel..."
+      - speaker: "Papà Riccardo"
+        text: "Tipo un camion camper, diciamo, che porta i cavalli e ci vivi dentro?"
+      - speaker: "Sebastian"
+        text: "Ok sì, ho passato il tunnel così con il camion e poi ero felice. E poi ho detto: ma poi il mio camion non era pieno, cioè mancava un cavallo! E poi il cavallo che ha fatto il tunnel l'ho preso, l'ho messo dentro, e poi l'ho fatto chiudere il tunnel... e poi ha chiuso il tunnel, e poi siamo felici per sempre!"
+      - speaker: "Papà Riccardo"
+        text: "Fantastico! Come si chiama questo cavallo che ha fatto il tunnel e poi ha chiuso il tunnel?"
+      - speaker: "Sebastian"
+        text: "Si chiama Marie! Marie come nome francese di Maria."
+      - speaker: "Papà Riccardo"
+        text: "E dimmi una cosa: cosa c'era dentro quel tunnel, come lo vedi quel tunnel?"
+      - speaker: "Sebastian"
+        text: "È come un tunnel... come un vortice che lo passi e poi passi in un altro mondo."
+      - speaker: "Papà Riccardo"
+        text: "Ah, tipo un vortice dimensionale, una cosa fantasy! Wow, ok! E nell'altro mondo, parlami del mondo dei cavalli: cosa vedi nel mondo dei cavalli?"
+      - speaker: "Sebastian"
+        text: "Quasi tutto è fatto di cavalli: le case, le giacche sono fatte di pelo di cavalli già morti... e loro potevano fare tutto quello che volevano! Ma poi anche nel mondo dei cavalli hanno voluto andare via nel mondo delle persone. E così sono andato nel camion e poi sono andate nel mondo umano."
+      - speaker: "Papà Riccardo"
+        text: "Ok perfetto, penso che ne abbiamo abbastanza. Grazie Sebi!"

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sebastian, il Cavalletto Marie e il Camion Camper dei Cavalli - Sebastian C.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      --primary: #f59e0b;
+      --gold: #fbbf24;
+      --trucker-orange: #f97316;
+      --horse-sky: #38bdf8;
+      --bg-dark: #0f1423;
+      --card-bg: #1a2238;
+      --text-light: #f8f9fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at top, #312e81 0%, #0d1117 100%);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    h1, h2, h3, h4 {
+      text-wrap: balance;
+    }
+
+    p, blockquote, li, .dialogue-box {
+      text-wrap: pretty;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(251, 191, 36, 0.15);
+      transform: translateX(-3px);
+    }
+
+    header {
+      text-align: center;
+      padding: 24px 20px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--trucker-orange), var(--gold));
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .author-tag {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .author-tag span {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .audio-player-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+      text-align: center;
+    }
+
+    .audio-player-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      color: #fde68a;
+      margin-bottom: 8px;
+    }
+
+    .audio-player-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    audio {
+      width: 100%;
+      max-width: 500px;
+      height: 48px;
+      border-radius: 30px;
+      outline: none;
+    }
+
+    .quote-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 5px solid var(--gold);
+      padding: 16px 20px;
+      border-radius: 0 16px 16px 0;
+      margin-bottom: 35px;
+      font-style: italic;
+      color: #fef08a;
+      font-size: 1.1rem;
+    }
+
+    .chapter-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(245, 158, 11, 0.18);
+    }
+
+    .chapter-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .chapter-content {
+      padding: 24px 28px;
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .chapter-num {
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+    }
+
+    .chapter-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.35rem;
+      color: #f8fafc;
+    }
+
+    .chapter-text {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-top: 10px;
+      border-left: 3px solid var(--horse-sky);
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .dialogue-box strong {
+      color: var(--horse-sky);
+    }
+
+    .transcript-section {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 20px;
+      padding: 26px 30px;
+      margin-bottom: 45px;
+    }
+
+    .transcript-section h2 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--gold);
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .transcript-box {
+      background: #090d16;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #1f2937;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #e2e8f0;
+    }
+
+    .transcript-box p {
+      margin-bottom: 12px;
+    }
+
+    .transcript-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px 40px;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <nav class="top-nav">
+      <a href="../../index.html" class="back-link">
+        ← Torna al Libro di Ale &amp; Seby
+      </a>
+    </nav>
+
+    <header>
+      <div class="badge">🧒 Storia Ufficiale di Seby &bull; 8 Novembre 2026</div>
+      <h1>🐴🚛 Sebastian, il Cavalletto Marie e il Camion Camper dei Cavalli</h1>
+      <div class="author-tag">
+        Raccontata a voce da <span>Sebastian Carlesso</span> (6 anni, Primary 1) con papà Riccardo
+      </div>
+    </header>
+
+    <div class="quote-box">
+      «Mancava un cavallo nel camion! Ho preso Marie, l'ho messo dentro, poi ha chiuso il tunnel e siamo felici per sempre!» &mdash; Sebastian C.
+    </div>
+
+    <div class="audio-player-card">
+      <h3>🎙️ Ascolta la Voce Originale di Sebastian</h3>
+      <p>Registrazione autentica al microfono con botta e risposta insieme a papà Riccardo</p>
+      <audio controls>
+        <source src="audio_originale.mp3" type="audio/mpeg">
+        <source src="audio_originale.ogg" type="audio/ogg">
+        Il tuo browser non supporta il tag audio.
+      </audio>
+    </div>
+
+    <!-- CAPITOLO 1 -->
+    <div class="chapter-card">
+      <img src="scena1_cavalletto_marie_soffio_tunnel.jpg" alt="Capitolo 1 - Il Piccolo Cavalletto Marie e il Soffio Magico" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">1</div>
+          <h2 class="chapter-title">Il Piccolo Cavalletto Marie e il Soffio Magico</h2>
+        </div>
+        <p class="chapter-text">
+          In una radura incantata, Sebi incontra un misterioso cavallino in miniatura di nome Marie. Marie non è un semplice puledro: fa un grande respiro e sputa una potente folata d'aria che si trasforma in un tunnel dimensionale a forma di vortice luminoso!
+        </p>
+        <div class="dialogue-box">
+          <strong>Sebi:</strong> «Ha sputato dell'aria che ha fatto un tunnel. Si chiama Marie, come nome francese di Maria!»
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 2 -->
+    <div class="chapter-card">
+      <img src="scena2_vortice_dimensionale_mondo_cavalli.jpg" alt="Capitolo 2 - Il Vortice Dimensionale e il Fantastico Mondo dei Cavalli" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">2</div>
+          <h2 class="chapter-title">Il Vortice Dimensionale e il Reame dei Cavalli</h2>
+        </div>
+        <p class="chapter-text">
+          Attraversato il vortice di comete, Sebi sbarca nel meraviglioso Mondo dei Cavalli. Qui ogni casa ha la forma di un ferro di cavallo e i cavalli sono completamente liberi di correre e fare tutto ciò che desiderano. Eppure, ascoltando Sebi, decidono che vogliono visitare il mondo degli umani!
+        </p>
+        <div class="dialogue-box">
+          <strong>Sebi:</strong> «Quasi tutto è fatto di cavalli, le case, le giacche... e loro potevano fare tutto quello che volevano, ma hanno voluto andare via nel mondo delle persone!»
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 3 -->
+    <div class="chapter-card">
+      <img src="scena3_camion_camper_tutti_cavalli.jpg" alt="Capitolo 3 - Il Grande Camion Camper e la Partenza per la Terra" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">3</div>
+          <h2 class="chapter-title">Il Grande Camion Camper e la Partenza per la Terra</h2>
+        </div>
+        <p class="chapter-text">
+          Per portarli tutti con sé, Sebi trova un veicolo straordinario: un gigante camion camper, perfetto sia per viverci dentro come una vera casa, sia per trasportare comodamente tutta la mandria. Sebi accende il motore e guida a tutta birra verso il tunnel magico!
+        </p>
+        <div class="dialogue-box">
+          <strong>Papà Riccardo:</strong> «Tipo un camion camper, diciamo, che porta i cavalli e ci vivi dentro?»<br>
+          <strong>Sebi:</strong> «Sì! Ho passato il tunnel così con il camion ed ero felice!»
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 4 -->
+    <div class="chapter-card">
+      <img src="scena4_marie_chiude_tunnel_mondo_umani.jpg" alt="Capitolo 4 - Marie sale a Bordo e il Portale si Chiude per Sempre" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">4</div>
+          <h2 class="chapter-title">Marie sale a Bordo e il Portale si Chiude per Sempre</h2>
+        </div>
+        <p class="chapter-text">
+          Prima di uscire dal tunnel, Sebi si accorge che all'appello manca proprio Marie, il piccolo cavalletto creatore del vortice! Sebi fa un'inversione a U, lo carica a bordo con sé e Marie fa richiudere il tunnel per sempre. Ora vivono tutti felici e contenti nel mondo degli umani!
+        </p>
+        <div class="dialogue-box">
+          <strong>Sebi:</strong> «Il cavallo che ha fatto il tunnel l'ho preso, l'ho messo dentro, poi ha chiuso il tunnel e siamo felici per sempre!»
+        </div>
+      </div>
+    </div>
+
+    <!-- SBOBINATURA FEDELE -->
+    <section class="transcript-section">
+      <h2>📝 Sbobinatura Fedele Parola-per-Parola</h2>
+      <div class="transcript-box">
+        <p><strong>Papà Riccardo:</strong> «Ermete, abbiamo una storia per te da parte di Sebi da mettere nel film Kids' Own Stories, quindi sbobbina l'audio e pronto... vai Sebi, raccontaci!»</p>
+        <p><strong>Sebi:</strong> «Io ero come in un posto con un cavalletto e poi il cavalletto ha spuntato...»</p>
+        <p><strong>Papà Riccardo:</strong> «Cavalletto vuol dire un piccolo cavallo?»</p>
+        <p><strong>Sebi:</strong> «Sì, ha sputato dell'aria che ha fatto un tunnel, l'ho passato e poi ho trovato un mondo dei cavalli e poi lì ho trovato un camion dove potevo portare tutti i cavalli e ci potevo anche vivere. Ho passato il tunnel...»</p>
+        <p><strong>Papà Riccardo:</strong> «Tipo un camion camper, diciamo, che porta i cavalli e ci vivi dentro?»</p>
+        <p><strong>Sebi:</strong> «Ok sì, ho passato il tunnel così con il camion e poi ero felice. E poi ho detto: ma poi il mio camion non era pieno, cioè mancava un cavallo! E poi il cavallo che ha fatto il tunnel l'ho preso, l'ho messo dentro, e poi l'ho fatto chiudere il tunnel... e poi ha chiuso il tunnel, e poi siamo felici per sempre!»</p>
+        <p><strong>Papà Riccardo:</strong> «Fantastico! Come si chiama questo cavallo che ha fatto il tunnel e poi ha chiuso il tunnel?»</p>
+        <p><strong>Sebi:</strong> «Si chiama Marie! Marie come nome francese di Maria.»</p>
+        <p><strong>Papà Riccardo:</strong> «E dimmi una cosa: cosa c'era dentro quel tunnel, come lo vedi quel tunnel?»</p>
+        <p><strong>Sebi:</strong> «È come un tunnel... come un vortice che lo passi e poi passi in un altro mondo.»</p>
+        <p><strong>Papà Riccardo:</strong> «Ah, tipo un vortice dimensionale, una cosa fantasy! Wow, ok! E nell'altro mondo, parlami del mondo dei cavalli: cosa vedi nel mondo dei cavalli?»</p>
+        <p><strong>Sebi:</strong> «Quasi tutto è fatto di cavalli: le case, le giacche sono fatte di pelo di cavalli già morti... e loro potevano fare tutto quello che volevano! Ma poi anche nel mondo dei cavalli hanno voluto andare via nel mondo delle persone. E così sono andato nel camion e poi sono andate nel mondo umano.»</p>
+        <p><strong>Papà Riccardo:</strong> «Ok perfetto, penso che ne abbiamo abbastanza. Grazie Sebi!»</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Progetto <strong>Kids' Own Stories</strong> &bull; Curato con 💛 da papà Riccardo &amp; Ermete Bottazzi 🚛</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

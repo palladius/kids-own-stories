@@ -2,6 +2,20 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.8.0] - 2026-11-08
+
+### Added
+- 🐴🚛🌀 **Nuova Storia di Sebastian (6 anni): *Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli***:
+  - **Audio Originale Archiviato e Convertito**: salvato in `audio/sebastian/2026-11-08-storia-cavalletto-marie-mondo-cavalli.{mp3,ogg}` e dentro la cartella dedicata `stories/sebastian/storia-cavalletto-marie-mondo-cavalli/audio_originale.{mp3,ogg}`.
+  - **Sbobinatura Integrale Fedele**: dialogo spontaneo parola-per-parola tra Sebi e papà Riccardo con Marie, il piccolo cavalletto magico, il tunnel vortice, il mondo dei cavalli e il camion camper gigante.
+  - **4 Illustrazioni di Scena 3D Pixar Generate con Gemini Flash Image (16:9 1K)**:
+    1. `scena1_cavalletto_marie_soffio_tunnel.jpg`: Sebi incontra Marie che soffia il tunnel vorticoso.
+    2. `scena2_vortice_dimensionale_mondo_cavalli.jpg`: Sebi attraversa il vortice ed entra nel Mondo dei Cavalli con case a ferro di cavallo.
+    3. `scena3_camion_camper_tutti_cavalli.jpg`: Sebi guida il grande camion camper con tutta la mandria a bordo verso il portale.
+    4. `scena4_marie_chiude_tunnel_mondo_umani.jpg`: Sebi carica Marie in cabina, il tunnel si sigilla e tutti vivono felici nel mondo umano.
+  - **Vetrina Web Dedicata (`index.html`) e Documentazione (`README.md`)**: con card illustrate, box dialoghi, player audio e trascrizione.
+  - **Registro Deterministico Aggiornato (`stories.yaml`)**: nuova scheda storia completa per il libro interattivo.
+
 ## [0.7.1] - 2026-11-07
 
 ### Added & Changed
