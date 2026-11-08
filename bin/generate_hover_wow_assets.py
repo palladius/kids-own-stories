@@ -112,6 +112,26 @@ STORIES = [
             "scena4_marie_chiude_tunnel_mondo_umani.jpg",
         ],
     },
+    {
+        "slug": "storia-sebi-campione-pony-club-pupurabbu",
+        "folder": ROOT / "stories/alessandro/storia-sebi-campione-pony-club-pupurabbu",
+        "title_prompt_it": (
+            "Leggi questo titolo di fiaba con voce femminile dolcissima, suadente, calda, calma e rassicurante: "
+            "«Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu. Una fiaba di Alessandro per il fratellino Sebi.»"
+        ),
+        "title_prompt_en": (
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice. "
+            "Pronounce Sebi as \"Se-bi\" and Sebastian as \"Se-bas-ti-an\" (with a clear T-I-A-N, never American \"Suh-bas-chun\"): "
+            "\"Sebi, the Light-Speed Pony Club Champion, and the Disco Party with Pupurabbu. A story by Alessandro for his little brother Se-bas-ti-an.\""
+        ),
+        "existing_video": "video_sebi_campione_pony_club.mp4",
+        "scenes": [
+            "scena1_sebi_pony_club_cavalli_giganti.jpg",
+            "scena2_salto_impossibile_velocita_luce.jpg",
+            "scena3_primo_tutto_pony_club_coppa.jpg",
+            "scena4_disco_party_regenbogen_pupurabbu_gigante.jpg",
+        ],
+    },
 ]
 
 

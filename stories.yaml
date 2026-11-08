@@ -798,3 +798,203 @@ stories:
         text: "Quasi tutto è fatto di cavalli: le case, le giacche sono fatte di pelo di cavalli già morti... e loro potevano fare tutto quello che volevano! Ma poi anche nel mondo dei cavalli hanno voluto andare via nel mondo delle persone. E così sono andato nel camion e poi sono andate nel mondo umano."
       - speaker: "Papà Riccardo"
         text: "Ok perfetto, penso che ne abbiamo abbastanza. Grazie Sebi!"
+
+  - id: 2026-11-08-storia-sebi-campione-pony-club-pupurabbu
+    slug: storia-sebi-campione-pony-club-pupurabbu
+    short_title: "Sebi Campione al Pony Club"
+    short_title_en: "Sebi Pony Club Champion"
+    short_title_fr: "Sebi Champion du Pony Club"
+    short_title_de: "Sebi Pony-Club-Champion"
+    short_title_pt: "Sebi Campeão do Pony Club"
+    title: "Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu"
+    title_en: "Sebi, the Light-Speed Pony Club Champion, and the Disco Party with Pupurabbu"
+    title_fr: "Sebi, le Champion du Pony Club à la Vitesse de la Lumière et la Disco Party avec Pupurabbu"
+    title_de: "Sebi, der Lichtgeschwindigkeits-Champion vom Pony-Club und die Disco-Party mit Pupurabbu"
+    title_pt: "Sebi, o Campeão do Pony Club na Velocidade da Luz e a Disco Party com Pupurabbu"
+    emoji: "🏆🐴🌈"
+    author: alessandro
+    author_age_at_recording: 8
+    co_authors: ["fratellino Sebastian", "papà Riccardo"]
+    created_at: "2026-11-08"
+    location: "Zurigo"
+    language: "it"
+    folder: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu
+    quote: "«Era velocità della luce, nessuno l'ha potuto vedere! Era il primo di tutta la Pony Club... e alla end c'è la disco party, un rainbow Regenbogen e Pupurabbu grandissimo che lo abbraccia e dice: \"Wow, Sebi, sei grande!\"» — Alessandro C."
+    quote_en: "“He went at the speed of light—nobody could even see him! He came first in the whole Pony Club... and at the end there is a disco party, a rainbow Regenbogen, and giant Pupurabbu hugging him and saying: ‘Wow, Sebi, you are great!’” — Alessandro C."
+    quote_fr: "« Il allait à la vitesse de la lumière, personne n'a pu le voir ! Il était le premier de tout le Pony Club... et à la fin il y a une disco party, un arc-en-ciel Regenbogen et un immense Pupurabbu qui le serre dans ses bras ! » — Alessandro C."
+    quote_de: "„Er war schnell wie das Licht, niemand konnte ihn sehen! Er war der Erste im ganzen Pony-Club... und am Ende gibt es eine Disco-Party, einen Regenbogen und einen riesigen Pupurabbu, der ihn umarmt und sagt: ‚Wow, Sebi, du bist großartig!‘“ — Alessandro C."
+    quote_pt: "“Ele ia na velocidade da luz, ninguém conseguiu vê-lo! Foi o primeiro de todo o Pony Club... e no final tem uma disco party, um arco-íris Regenbogen e o Pupurabbu gigante abraçando ele!” — Alessandro C."
+    rating:
+      score: 9.2
+      votes: 1
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
+    status: complete
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
+      web_page: true
+    missing_assets: []
+
+    assets:
+      archive_audio:
+        mp3: audio/alessandro/2026-11-08-sebi-campione-pony-club.mp3
+        ogg: audio/alessandro/2026-11-08-sebi-campione-pony-club.ogg
+      story_audio:
+        mp3: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/audio_originale.mp3
+        ogg: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/audio_originale.ogg
+      narrated_audio:
+        it: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/narrated_it.mp3
+        en: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/karaoke_it.json
+        en: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/karaoke_en.json
+      title_audio:
+        it: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/title_it.mp3
+        en: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/title_en.mp3
+      hover_video: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/hover_preview.mp4
+      readme: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/README.md
+      web_page: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/index.html
+      video:
+        file: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/video_sebi_campione_pony_club.mp4
+        model: veo-2.0-generate-001
+        resolution: "1280x720"
+        duration_seconds: 40
+      pages:
+        - page: 1
+          title: "Sebi al Pony Club tra i Grandissimi Cavalli (e il tifo di Ale!)"
+          title_en: "Sebi at the Pony Club Among the Giant Horses (with Ale Cheering!)"
+          title_fr: "Sebi au Pony Club Parmi les Grands Chevaux (et les Encouragements d'Ale !)"
+          title_de: "Sebi im Pony-Club unter den Riesigen Pferden (und Ales Jubel!)"
+          title_pt: "Sebi no Pony Club Entre os Grandes Cavalos (com a Torcida do Ale!)"
+          image: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/scena1_sebi_pony_club_cavalli_giganti.jpg
+          summary: "Il fratello maggiore Ale racconta al microfono l'impresa di Sebi, schierato in sella al suo pony bianco fianco a fianco con i grandissimi cavalli."
+          paragraphs_it:
+            - "C'era una volta una splendida mattina di sole al Pony Club di Zurigo. A bordo campo, appoggiato alla staccionata con un microfono dorato da narratore ufficiale e gli occhi nocciola che brillavano d'orgoglio, c'era il fratello maggiore Alessandro, pronto a raccontare l'impresa del suo fratellino Sebi!"
+            - "Sebi, con i suoi capelli biondo scuro sotto il caschetto blu e i grandi occhi azzurri limpidi, era in sella al suo agile pony bianco: era così forte e coraggioso che si era schierato sulla linea di partenza insieme ai grandissimi cavalli da corsa, alti il doppio di lui!"
+            - "«Forza Sebi, sei il più veloce e coraggioso di tutti!» esclamò Ale al microfono facendo il tifo con tutto il fiato, mentre la campana del Pony Club suonava l'inizio della grande competizione."
+          paragraphs_en:
+            - "Once upon a sunny morning at the Zurich Pony Club, standing right by the wooden arena fence with a golden storyteller microphone and proud hazel-brown eyes was big brother Alessandro, ready to narrate the legendary adventure of his little brother Sebastian—Sebi!"
+            - "Sebi, with his dark-blonde hair tucked under a royal-blue riding helmet and his bright sky-blue eyes shining with determination, sat astride his nimble snow-white pony: he was so strong and brave that he lined up right alongside the giant thoroughbred racehorses twice his size!"
+            - "“Go Sebi, you are the bravest and fastest of them all!” cheered Ale into his microphone as the Pony Club bell rang to start the grand competition."
+          paragraphs_fr:
+            - "Il était une fois, par un beau matin ensoleillé au Pony Club de Zurich, le grand frère Alessandro qui se tenait près de la barrière avec un microphone doré de conteur et les yeux noisette brillants de fierté, prêt à raconter l'exploit de son petit frère Sebi !"
+            - "Sebi, avec ses cheveux blond foncé sous sa bombe bleue et ses grands yeux bleu ciel, montait son agile poney blanc : il était si fort et courageux qu'il s'était aligné au départ aux côtés des très grands chevaux de course !"
+            - "« Allez Sebi, tu es le plus rapide et le plus courageux de tous ! » s'écria Ale dans son micro tandis que la cloche du Pony Club sonnait le départ."
+          paragraphs_de:
+            - "Es war einmal an einem sonnigen Morgen im Zürcher Pony-Club: Am Holzzaun der Arena stand der große Bruder Alessandro mit einem goldenen Erzähler-Mikrofon und stolzen haselnussbraunen Augen, bereit, das große Abenteuer seines kleinen Bruders Sebi zu erzählen!"
+            - "Sebi, mit seinen dunkelblonden Haaren unter dem Reithelm und den strahlend himmelblauen Augen, saß auf seinem flinken weißen Pony: Er war so stark und mutig, dass er direkt neben den riesiggroßen Turnierpferden an den Start ging!"
+            - "„Los Sebi, du bist der Schnellste und Mutigste von allen!“, feuerte Ale ihn begeistert an, als die Startglocke läutete."
+          paragraphs_pt:
+            - "Era uma vez, numa linda manhã de sol no Pony Club de Zurique, o irmão mais velho Alessandro, que estava junto à cerca com um microfone dourado de narrador e os olhos castanhos brilhando de orgulho para contar a aventura do seu irmãozinho Sebi!"
+            - "Sebi, com seus cabelos loiro-escuros sob o capacete azul e grandes olhos azuis brilhantes, montava seu ágil pônei branco: ele era tão forte e corajoso que alinhou na largada ao lado dos cavalos gigantes de corrida!"
+            - "“Vai Sebi, você é o mais rápido e corajoso de todos!” gritou Ale no microfone enquanto o sino anunciava o início da competição."
+        - page: 2
+          title: "Il Salto Mai Provato e la Velocità della Luce!"
+          title_en: "The Never-Tried Jump and the Speed of Light!"
+          title_fr: "Le Saut Jamais Essayé et la Vitesse de la Lumière !"
+          title_de: "Der Nie Versuchte Sprung und die Lichtgeschwindigkeit!"
+          title_pt: "O Salto Nunca Tentado e a Velocidade da Luz!"
+          image: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/scena2_salto_impossibile_velocita_luce.jpg
+          summary: "Sebi affronta salti altissimi mai provati prima, sfrecciando alla velocità della luce in una scia dorata sotto lo sguardo entusiasta di Ale."
+          paragraphs_it:
+            - "Al centro del campo si alzavano ostacoli altissimi e scintillanti, dei salti da veri campioni che Sebi non aveva mai provato a fare prima di quel giorno!"
+            - "Ma non appena partì al galoppo, Sebi diventò il più veloce di tutti: andava alla velocità della luce! Era così incredibilmente veloce che nessuno sugli spalti riusciva quasi a vederlo passare, se non come un lampo dorato di stelle e scintille!"
+            - "Con un balzo prodigioso il pony bianco volò sopra l'ostacolo più alto lasciando a bocca aperta i grandissimi cavalli, mentre il fratello maggiore Ale saltava di gioia lungo la staccionata gridando: «È velocità della luce!»"
+          paragraphs_en:
+            - "In the centre of the arena stood towering, glittering obstacles—daring show-jumping hurdles that Sebi had never even tried to jump before that day!"
+            - "Yet the moment he galloped forward, Sebi became the fastest rider of all: he rode at the speed of light! He was so astonishingly fast that nobody in the stands could barely even see him pass, except as a dazzling golden streak of stars and sparks!"
+            - "With a prodigious leap, the white pony soared right over the highest hurdle, leaving the giant horses wide-eyed in amazement while big brother Ale jumped with joy by the fence, shouting: “He's travelling at the speed of light!”"
+          paragraphs_fr:
+            - "Au milieu du terrain se dressaient d'immenses obstacles étincelants, des sauts vertigineux que Sebi n'avait encore jamais essayé de franchir !"
+            - "Mais dès qu'il s'élança au galop, Sebi devint le plus rapide de tous : il filait à la vitesse de la lumière ! Il allait si vite que personne ne pouvait presque le voir passer, sinon comme un éclair doré d'étoiles !"
+            - "D'un bond prodigieux, le poney blanc survola l'obstacle le plus haut sous les yeux ébahis des grands chevaux, tandis que son grand frère Ale sautait de joie en criant : « C'est la vitesse de la lumière ! »"
+          paragraphs_de:
+            - "Mitten auf dem Platz ragten riesige, funkelnde Hindernisse empor — gewaltige Sprünge, die Sebi noch nie zuvor ausprobiert hatte!"
+            - "Doch kaum galoppierte er los, war Sebi der Schnellste von allen: Er ritt mit Lichtgeschwindigkeit! Er war so unglaublich schnell, dass ihn fast niemand sehen konnte, außer als funkelnden Goldschweif aus Sternen!"
+            - "Mit einem mächtigen Satz flog das weiße Pony über das höchste Hindernis, während die großen Pferde staunten und sein großer Bruder Ale am Zaun jubelte: „Das ist Lichtgeschwindigkeit!“"
+          paragraphs_pt:
+            - "No meio da arena erguiam-se obstáculos altíssimos e brilhantes, saltos incríveis que Sebi nunca tinha tentado fazer antes daquele dia!"
+            - "Mas assim que partiu a galope, Sebi tornou-se o mais rápido de todos: ele corria na velocidade da luz! Era tão veloz que quase ninguém conseguia vê-lo passar, a não ser como um rastro dourado de estrelas!"
+            - "Com um salto espetacular, o pônei branco voou sobre o obstáculo mais alto deixando os cavalos gigantes de queixo caído, enquanto o irmão mais velho Ale pulava de alegria gritando: “É a velocidade da luz!”"
+        - page: 3
+          title: "Il Primo Assoluto di Tutto il Pony Club!"
+          title_en: "First Place in the Entire Pony Club!"
+          title_fr: "Le Premier de Tout le Pony Club !"
+          title_de: "Der Erste im Ganzen Pony-Club!"
+          title_pt: "O Primeiro de Todo o Pony Club!"
+          image: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/scena3_primo_tutto_pony_club_coppa.jpg
+          summary: "Sebi taglia il traguardo per primo e alza la Coppa d'Oro sul podio mentre il fratello maggiore Ale gli batte il cinque."
+          paragraphs_it:
+            - "Con un atterraggio perfetto in una nuvola di polvere dorata, Sebi tagliò il traguardo davanti a tutti: quel giorno era stato velocissimo e bravissimo, conquistando il primo posto assoluto di tutta la Pony Club!"
+            - "Salito sul gradino più alto del podio accanto al suo fedele pony bianco, Sebi sollevò al cielo la grande Coppa d'Oro dei Campioni mentre una pioggia di coriandoli brillava nel sole."
+            - "Il fratello maggiore Ale corse subito accanto al podio per dargli un cinque fortissimo con un sorriso gigante, mentre tutti i grandissimi cavalli si inchinavano con ammirazione davanti al piccolo campione."
+          paragraphs_en:
+            - "Landing with championship grace in a cloud of golden stardust, Sebi crossed the finish line ahead of everyone: that day he had been super fast and super brilliant, winning first place in the entire Pony Club!"
+            - "Standing on the top step of the podium beside his faithful white pony, Sebi lifted the grand Golden Champion Trophy toward the sky as shimmering confetti rained down in the sunshine."
+            - "Big brother Ale ran right up to the podium to give him a huge proud high-five with a beaming smile, while all the giant horses bowed their heads in admiration before the young champion."
+          paragraphs_fr:
+            - "Après un atterrissage parfait dans un nuage de poussière d'or, Sebi franchit la ligne d'arrivée en tête : ce jour-là, il avait été super rapide et super fort, remportant la première place de tout le Pony Club !"
+            - "Sur la plus haute marche du podium, à côté de son fidèle poney blanc, Sebi souleva la grande Coupe d'Or des Champions sous une pluie de confettis."
+            - "Son grand frère Ale courut aussitôt près du podium pour lui taper dans la main avec un immense sourire, tandis que les grands chevaux s'inclinaient avec admiration."
+          paragraphs_de:
+            - "Mit einer perfekten Landung in einer Wolke aus Goldstaub überquerte Sebi als Erster die Ziellinie: An diesem Tag war er superschnell und supergut gewesen und wurde der Erste im ganzen Pony-Club!"
+            - "Auf der obersten Stufe des Siegerpodests hob Sebi neben seinem treuen weißen Pony den großen goldenen Siegerpokal in den Himmel, während glitzerndes Konfetti herabregnete."
+            - "Sein großer Bruder Ale lief sofort zum Podest, um mit ihm stolz abzuklatschen, während sich alle großen Pferde ehrfürchtig vor dem kleinen Champion verneigten."
+          paragraphs_pt:
+            - "Com um pouso perfeito numa nuvem de poeira dourada, Sebi cruzou a linha de chegada na frente de todos: naquele dia ele foi super veloz e brilhante, conquistando o primeiro lugar de todo o Pony Club!"
+            - "No degrau mais alto do pódio, ao lado do seu fiel pônei branco, Sebi ergueu a grande Taça de Ouro dos Campeões sob uma chuva de confetes brilhantes."
+            - "O irmão mais velho Ale correu logo até o pódio para bater um toca-aqui cheio de orgulho, enquanto todos os cavalos gigantes faziam uma reverência ao pequeno campeão."
+        - page: 4
+          title: "Disco Party, Regenbogen e l'Abbraccio di Pupurabbu Gigante!"
+          title_en: "Disco Party, Regenbogen, and Giant Pupurabbu's Hug!"
+          title_fr: "Disco Party, Regenbogen et le Câlin de Pupurabbu Géant !"
+          title_de: "Disco-Party, Regenbogen und die Umarmung vom Riesigen Pupurabbu!"
+          title_pt: "Disco Party, Regenbogen e o Abraço do Pupurabbu Gigante!"
+          image: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/scena4_disco_party_regenbogen_pupurabbu_gigante.jpg
+          summary: "Alla fine scoppia una magica Disco Party sotto un arcobaleno Regenbogen, e un Pupurabbu grandissimo abbraccia Sebi dicendo: «Wow, Sebi, sei grande!»"
+          paragraphs_it:
+            - "Ma come racconta Ale aggiungendo il tocco fantasy più bello, alla «end» della gara scoppiò una festa straordinaria per Sebi: una sfavillante Disco Party con luci colorate e una palla a specchi, sormontata in cielo da un magico arcobaleno — un vero «Rainbow, Regenbogen»!"
+            - "Proprio sotto l'arcobaleno apparve una sorpresa meravigliosa: un Pupurabbu grandissimo, il soffice coniglio di peluche viola dalle lunghe orecchie lavanda, diventato gigante come una nuvola per festeggiare il suo amico!"
+            - "Pupurabbu strinse Sebi in un abbraccio morbidissimo e gli disse: «Wow, Sebi, sei grande!» mentre il fratello maggiore Ale ballava felice sotto le luci della disco party ed esclamava sorridendo: «Finito!»"
+          paragraphs_en:
+            - "And as big brother Ale tells it with the best fantasy twist of all, at the “end” of the race an extraordinary celebration began for Sebi: a dazzling open-air Disco Party with colourful lights and a mirror ball, crowned in the sky by a glowing rainbow—a true “Rainbow, Regenbogen”!"
+            - "Right beneath the rainbow appeared a wonderful surprise: a gigantic Pupurabbu, the soft purple plush bunny with long lavender ears, now as tall and fluffy as a cloud to celebrate his best friend!"
+            - "Giant Pupurabbu wrapped Sebi in the warmest, fluffiest hug and said: “Wow, Sebi, you are great!” while big brother Ale danced happily under the disco lights and smiled: “Finished!”"
+          paragraphs_fr:
+            - "Et comme le raconte Ale avec une touche fantastique, à la « end » de la course éclata une fête extraordinaire pour Sebi : une étincelante Disco Party avec boule à facettes, couronnée dans le ciel par un arc-en-ciel magique — un vrai « Rainbow, Regenbogen » !"
+            - "Juste sous l'arc-en-ciel apparut une merveilleuse surprise : un Pupurabbu géant, le doux lapin en peluche violet aux longues oreilles lavande, devenu grand comme un nuage !"
+            - "Pupurabbu serra Sebi dans un immense câlin tout doux en disant : « Wow, Sebi, tu es grand ! » tandis que son grand frère Ale dansait joyeusement sous les lumières en s'écriant : « Fini ! »"
+          paragraphs_de:
+            - "Und wie der große Bruder Ale mit einer fantastischen Wendung erzählt, gab es am „End“ des Rennens eine riesige Feier für Sebi: eine funkelnde Disco-Party mit Glitzerkugel, über der am Himmel ein leuchtender „Rainbow, Regenbogen“ strahlte!"
+            - "Genau unter dem Regenbogen erschien eine wunderbare Überraschung: ein riesengroßer Pupurabbu, der flauschige lila Plüschhase mit den langen lavendelfarbenen Ohren!"
+            - "Der riesige Pupurabbu schloss Sebi in eine kuschelweiche Umarmung und sagte: „Wow, Sebi, du bist großartig!“, während Bruder Ale fröhlich unter den Discolichtern tanzte und lächelnd rief: „Fertig!“"
+          paragraphs_pt:
+            - "E como conta o irmão mais velho Ale com um toque de fantasia, na “end” da corrida começou uma festa extraordinária para Sebi: uma brilhante Disco Party com globo espelhado, coroada no céu por um arco-íris mágico — um verdadeiro “Rainbow, Regenbogen”!"
+            - "Bem debaixo do arco-íris apareceu uma surpresa maravilhosa: um Pupurabbu grandíssimo, o fofo coelho de pelúcia roxo de longas orelhas lavanda, agora gigante como uma nuvem!"
+            - "O Pupurabbu gigante deu um abraço super fofinho em Sebi e disse: “Uau, Sebi, você é grande!” enquanto o irmão Ale dançava feliz sob as luzes da discoteca e sorria dizendo: “Acabou!”"
+    transcript:
+      - speaker: "Papà Riccardo"
+        text: "Ermete, Alessandro qui ha una storia per te. Vai! Vai Ale."
+      - speaker: "Alessandro"
+        text: "Una volta c'era Sebi e è andato a Pony Club, e era il più veloce di tutti! Era così veloce che andava... ehm... con i grandissimi cavalli! Era così... ehm... forte e coraggioso! E andava... ehm... a competire..."
+      - speaker: "Papà Riccardo"
+        text: "A fare competizione."
+      - speaker: "Alessandro"
+        text: "...competizione dei salti che non ha mai provato da fare! Ma poi, quel giorno, era il primo! Era così veloce che nessuno l'ha potuto vedere! Era velocità della luce, e era velocissimo e bravissimo! Era il primo di tutta la Pony Club!"
+      - speaker: "Papà Riccardo"
+        text: "Wow! Devi metterci degli elementi un po' fantasy, degli elementi interessanti della storia... per ora hai solo detto che ha fatto molto..."
+      - speaker: "Alessandro"
+        text: "Poi alla... alla... ehm... end, c'è un... una celebrazione per Sebi, come che fanno la disco party, e sì, e poi c'è un rainbow, Regenbogen, e c'è anche Pupurabbu grandissimo che lo abbraccia e dice: \"Wow, Sebi, sei grande!\" Eee... sì..."
+      - speaker: "Papà Riccardo"
+        text: "Quando hai finito puoi chiedere?"
+      - speaker: "Alessandro"
+        text: "Finito!"

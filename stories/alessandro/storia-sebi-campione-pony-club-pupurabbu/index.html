@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu - Alessandro C.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      --primary: #f59e0b;
+      --gold: #fbbf24;
+      --trucker-orange: #ec4899;
+      --horse-sky: #38bdf8;
+      --bg-dark: #0f1423;
+      --card-bg: #1a2238;
+      --text-light: #f8f9fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at top, #312e81 0%, #0d1117 100%);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    h1, h2, h3, h4 {
+      text-wrap: balance;
+    }
+
+    p, blockquote, li, .dialogue-box {
+      text-wrap: pretty;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(251, 191, 36, 0.15);
+      transform: translateX(-3px);
+    }
+
+    header {
+      text-align: center;
+      padding: 24px 20px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--trucker-orange), var(--gold));
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .author-tag {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .author-tag span {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .audio-player-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+      text-align: center;
+    }
+
+    .audio-player-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      color: #fde68a;
+      margin-bottom: 8px;
+    }
+
+    .audio-player-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    audio {
+      width: 100%;
+      max-width: 500px;
+      height: 48px;
+      border-radius: 30px;
+      outline: none;
+    }
+
+    .quote-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 5px solid var(--gold);
+      padding: 16px 20px;
+      border-radius: 0 16px 16px 0;
+      margin-bottom: 35px;
+      font-style: italic;
+      color: #fef08a;
+      font-size: 1.1rem;
+    }
+
+    .chapter-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(245, 158, 11, 0.18);
+    }
+
+    .chapter-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .chapter-content {
+      padding: 24px 28px;
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .chapter-num {
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+    }
+
+    .chapter-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.35rem;
+      color: #f8fafc;
+    }
+
+    .chapter-text {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-top: 10px;
+      border-left: 3px solid var(--horse-sky);
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .dialogue-box strong {
+      color: var(--horse-sky);
+    }
+
+    .transcript-section {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 20px;
+      padding: 26px 30px;
+      margin-bottom: 45px;
+    }
+
+    .transcript-section h2 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--gold);
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .transcript-box {
+      background: #090d16;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #1f2937;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #e2e8f0;
+    }
+
+    .transcript-box p {
+      margin-bottom: 12px;
+    }
+
+    .transcript-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .video-section {
+      background: linear-gradient(180deg, #1a2238 0%, #0f1423 100%);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      border: 2px solid var(--gold);
+      margin-bottom: 40px;
+    }
+
+    .video-section h2 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px 40px;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <nav class="top-nav" aria-label="Navigazione storia">
+      <a href="../../../index.html#storia-sebi-campione-pony-club-pupurabbu" class="back-link">
+        ← Torna al Libro di Ale &amp; Seby
+      </a>
+    </nav>
+
+    <header>
+      <div class="badge">👦 Storia di Ale per il fratellino Sebi &bull; 8 Novembre 2026</div>
+      <h1>🏆🐴🌈 Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu</h1>
+      <div class="author-tag">
+        Inventata e narrata da <span>Alessandro C. ("Ale", 8 anni, Primary 3)</span> per <span>Sebastian ("Sebi", 6 anni)</span> con papà Riccardo
+      </div>
+    </header>
+
+    <div class="quote-box">
+      «Era velocità della luce, nessuno l'ha potuto vedere! Era il primo di tutta la Pony Club... e alla end c'è la disco party, un rainbow Regenbogen e Pupurabbu grandissimo che lo abbraccia e dice: "Wow Sebi, sei grande!"» &mdash; Alessandro C.
+    </div>
+
+    <!-- BOX AUDIO NARRATO (IT & EN) -->
+    <div class="audio-player-card">
+      <h3>🎧 Audiolibro Narrato (Voce Calma + Pianino)</h3>
+      <p>Ascolta la fiaba inventata da Ale per Sebi al Pony Club, narrata in italiano o in British English con sottofondo di pianoforte!</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center; margin-bottom:18px;">
+        <div>
+          <div style="font-size:0.85rem; color:#fbbf24; font-weight:700; margin-bottom:4px;">🇮🇹 Italiano</div>
+          <audio controls preload="metadata">
+            <source src="narrated_it.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div>
+          <div style="font-size:0.85rem; color:#38bdf8; font-weight:700; margin-bottom:4px;">🇬🇧 British English</div>
+          <audio controls preload="metadata">
+            <source src="narrated_en.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
+        <div style="font-size:0.85rem; color:#fde68a; font-weight:700; margin-bottom:6px;">🎙️ Registrazione Vocale Originale di Alessandro con Papà Riccardo</div>
+        <audio controls preload="metadata">
+          <source src="audio_originale.mp3" type="audio/mpeg">
+          <source src="audio_originale.ogg" type="audio/ogg">
+          Il tuo browser non supporta il tag audio.
+        </audio>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 1 -->
+    <div class="chapter-card">
+      <img src="scena1_sebi_pony_club_cavalli_giganti.jpg" alt="Capitolo 1 - Sebi al Pony Club tra i Grandissimi Cavalli e il tifo di Ale" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">1</div>
+          <h2 class="chapter-title">Sebi al Pony Club tra i Grandissimi Cavalli (e il tifo di Ale!)</h2>
+        </div>
+        <p class="chapter-text">
+          Al Pony Club di Zurigo il fratello maggiore Ale impugna il microfono dorato da narratore ufficiale a bordo campo per raccontare l'impresa del fratellino Sebi! In sella al suo candido pony bianco, Sebi si schiera senza paura fianco a fianco con i grandissimi cavalli da corsa, alti il doppio di lui.
+        </p>
+        <div class="dialogue-box">
+          <strong>Ale:</strong> «Una volta c'era Sebi e è andato a Pony Club, e era il più veloce di tutti! Era così veloce che andava con i grandissimi cavalli, era così forte e coraggioso!»
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 2 -->
+    <div class="chapter-card">
+      <img src="scena2_salto_impossibile_velocita_luce.jpg" alt="Capitolo 2 - Il Salto Mai Provato e la Velocità della Luce" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">2</div>
+          <h2 class="chapter-title">Il Salto Mai Provato e la Velocità della Luce!</h2>
+        </div>
+        <p class="chapter-text">
+          Sebi affronta in gara ostacoli altissimi che non aveva mai provato a saltare prima. Parte così forte da correre alla velocità della luce: nessuno riesce quasi a vederlo mentre vola sopra le barriere lasciando una scia dorata di stelle sotto gli occhi entusiasti di Ale!
+        </p>
+        <div class="dialogue-box">
+          <strong>Ale:</strong> «Andava a fare competizione dei salti che non ha mai provato da fare! Era così veloce che nessuno l'ha potuto vedere: era velocità della luce!»
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 3 -->
+    <div class="chapter-card">
+      <img src="scena3_primo_tutto_pony_club_coppa.jpg" alt="Capitolo 3 - Il Primo Assoluto di Tutto il Pony Club" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">3</div>
+          <h2 class="chapter-title">Il Primo Assoluto di Tutto il Pony Club!</h2>
+        </div>
+        <p class="chapter-text">
+          Tagliato il traguardo in un lampo di luce, Sebi sale sul gradino più alto del podio insieme al suo pony bianco e alza al cielo la Coppa d'Oro di tutto il Pony Club, mentre il fratello maggiore Ale gli batte il cinque sotto una pioggia di coriandoli!
+        </p>
+        <div class="dialogue-box">
+          <strong>Ale:</strong> «Era velocissimo e bravissimo! Era il primo di tutta la Pony Club!»
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITOLO 4 -->
+    <div class="chapter-card">
+      <img src="scena4_disco_party_regenbogen_pupurabbu_gigante.jpg" alt="Capitolo 4 - Disco Party, Regenbogen e l'Abbraccio di Pupurabbu Gigante" loading="lazy">
+      <div class="chapter-content">
+        <div class="chapter-header">
+          <div class="chapter-num">4</div>
+          <h2 class="chapter-title">Disco Party, Regenbogen e l'Abbraccio di Pupurabbu Gigante!</h2>
+        </div>
+        <p class="chapter-text">
+          Per festeggiare il campione esplode una magica Disco Party sotto un arcobaleno lucente ("Rainbow, Regenbogen!"). All'improvviso arriva un Pupurabbu grandissimo che stringe Sebi in un abbraccio soffice e gli dice: «Wow, Sebi, sei grande!» mentre Ale balla felice ed esclama: «Finito!»
+        </p>
+        <div class="dialogue-box">
+          <strong>Ale:</strong> «Alla end c'è una celebrazione per Sebi come che fanno la disco party, e poi c'è un rainbow, Regenbogen, e c'è anche Pupurabbu grandissimo che lo abbraccia e dice: "Wow, Sebi, sei grande!" Finito!»
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+      <h2>🎬 Film Completo (40 Secondi): Gemini Omni Flash</h2>
+      <p>Guarda il film animato completo di <strong>40 secondi (4 atti × 10s)</strong> narrato in italiano dell'avventura di Sebi al Pony Club raccontata dal fratello maggiore Ale!</p>
+      <video controls loading="lazy" playsinline width="1280" height="720" preload="metadata" poster="scena4_disco_party_regenbogen_pupurabbu_gigante.jpg">
+        <source src="video_sebi_campione_pony_club.mp4" type="video/mp4">
+      </video>
+      <div style="margin-top: 14px; font-weight: bold; color: #38bdf8;">
+        Modello: <code>veo-2.0-generate-001</code> • Durata: 40s (4 Atti × 10s) • 720p HD • Narrato in Italiano
+      </div>
+    </section>
+
+    <!-- SBOBINATURA FEDELE -->
+    <section class="transcript-section">
+      <h2>📝 Sbobinatura Fedele Parola-per-Parola</h2>
+      <div class="transcript-box">
+        <p><strong>Papà Riccardo:</strong> «Ermete, Alessandro qui ha una storia per te. Vai! Vai Ale.»</p>
+        <p><strong>Alessandro:</strong> «Una volta c'era Sebi e è andato a Pony Club, e era il più veloce di tutti! Era così veloce che andava... ehm... con i grandissimi cavalli! Era così... ehm... forte e coraggioso! E andava... ehm... a competire...»</p>
+        <p><strong>Papà Riccardo:</strong> «A fare competizione.»</p>
+        <p><strong>Alessandro:</strong> «...competizione dei salti che non ha mai provato da fare! Ma poi, quel giorno, era il primo! Era così veloce che nessuno l'ha potuto vedere! Era velocità della luce, e era velocissimo e bravissimo! Era il primo di tutta la Pony Club!»</p>
+        <p><strong>Papà Riccardo:</strong> «Wow! Devi metterci degli elementi un po' fantasy, degli elementi interessanti della storia... per ora hai solo detto che ha fatto molto...»</p>
+        <p><strong>Alessandro:</strong> «Poi alla... alla... ehm... end, c'è un... una celebrazione per Sebi, come che fanno la disco party, e sì, e poi c'è un rainbow, Regenbogen, e c'è anche Pupurabbu grandissimo che lo abbraccia e dice: "Wow, Sebi, sei grande!" Eee... sì...»</p>
+        <p><strong>Papà Riccardo:</strong> «Quando hai finito puoi chiedere?»</p>
+        <p><strong>Alessandro:</strong> «Finito!»</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Progetto <strong>Kids' Own Stories</strong> &bull; Creato con 💛 da <strong>Alessandro, Sebastian &amp; Papà Riccardo</strong><br>
+      <a href="../../../index.html">📚 Torna alla Vetrina Principale</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('audio').forEach((el) => {
+      el.preservesPitch = true;
+      el.defaultPlaybackRate = 1.1;
+      el.playbackRate = 1.1;
+      el.addEventListener('loadedmetadata', () => { el.playbackRate = 1.1; });
+      el.addEventListener('play', () => { if (el.playbackRate === 1) el.playbackRate = 1.1; });
+    });
+  </script>
+</body>
+</html>

@@ -37,6 +37,7 @@ kids-own-stories/
 ## 📖 Indice delle Storie
 
 ### 👦 Alessandro (Ale)
+* 🏆🐴🌈 **[Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu](stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/)** *(8 Novembre 2026)* — Una storia dolcissima inventata e narrata da Ale per il fratellino Sebi: in sella al suo pony bianco, Sebi sfida i grandissimi cavalli al Pony Club, vola sugli ostacoli alla velocità della luce col tifo di Ale al microfono, vince la Coppa d'Oro e festeggia con una Disco Party sotto un arcobaleno (*Rainbow / Regenbogen*) abbracciato da un **Pupurabbu grandissimo**! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/))
 * 🎒🐉🐧 **[La Storia dello Zaino Magico, del Drago e dei Puffins](stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/)** *(6 Novembre 2026)* — Storia completa con registrazione audio originale, sbobinatura integrale, 4 illustrazioni 3D e video animato con Gemini Omni Flash! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/))
 * 💀🧟☕ **[La Famiglia di Scheletri e gli Zombie Assetati di Tè](stories/alessandro/storia-scheletri-zombie-te/)** *(4 Novembre 2026)* — Alessandro ci racconta di zombies gentili che amano il tè servito da una famiglia di scheletri! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-scheletri-zombie-te/))
 

@@ -2,6 +2,20 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.9.0] - 2026-11-08
+
+### Added & Changed
+- 🏆🐴🌈 **5ª Storia Completa: *Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu* (`stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/`, Issue `#2`)**:
+  - Promossa da `inbox/2026-11-08-alessandro-sebi-campione-pony-club/` la nuova storia inventata e raccontata a voce da **Alessandro ("Ale", 8 anni)** per il fratellino **Sebastian ("Sebi", 6 anni)** insieme a papà Riccardo.
+  - **Sbobinatura Fedele Riascoltata all'Audio Originale**: corretta l'attribuzione delle battute di papà Riccardo e preservata la perla multilingue di Ale (*"poi c'è un rainbow, Regenbogen!"*).
+  - **4 Illustrazioni 16:9 Widescreen Pixar 3D (`1376x768`) con Entrambi i Fratelli**:
+    - **Sebi** (6 anni, capelli biondo scuro con frangetta morbida, grandi occhi azzurri limpidi, giacca da equitazione blu) in sella al suo pony bianco;
+    - **Ale** (8 anni, capelli castani lisci con frangetta, occhi nocciola espressivi, felpa blu/rossa e microfono dorato da narratore/cronista ufficiale) che fa il tifo a bordo campo, esulta al salto alla velocità della luce, batte il cinque sul podio della Coppa d'Oro e balla alla **Disco Party** sotto il **Regenbogen** insieme a **Pupurabbu gigante**!
+  - **Pacchetto Multimediale Completo (`just test` 100% PASS)**:
+    - Testo del Cantastorie in **5 lingue** (`it`, `en-GB`, `fr`, `de`, `pt`) in [`stories.yaml`](stories.yaml).
+    - Audiolibri Studio con pianoforte (`narrated_it.mp3`, `narrated_en.mp3` in British English `en-GB`) + Karaoke Whisper parola-per-parola (`karaoke_it.json`, `karaoke_en.json`).
+    - Film animato completo da **40 secondi (`4 × 10s`)** (`video_sebi_campione_pony_club.mp4`) + anteprima Hover 5s (`hover_preview.mp4`) + annunci vocali del titolo (`title_it.mp3`, `title_en.mp3` in `en-GB`).
+
 ## [0.8.4] - 2026-11-08
 
 ### Fixed & Changed

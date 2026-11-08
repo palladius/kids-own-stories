@@ -325,6 +325,72 @@ STORY_SPECS = [
             },
         ],
     },
+    {
+        "slug": "storia-sebi-campione-pony-club-pupurabbu",
+        "title": "Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu",
+        "folder": ROOT / "stories/alessandro/storia-sebi-campione-pony-club-pupurabbu",
+        "output_mp4": "video_sebi_campione_pony_club.mp4",
+        "acts": [
+            {
+                "act": 1,
+                "first_frame": "scena1_sebi_pony_club_cavalli_giganti.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame at the sunny Zurich Pony Club arena against green Swiss mountains, "
+                    "8-year-old big brother Ale (brown hair with bangs, hazel eyes, navy-and-red hoodie) holds a golden "
+                    "microphone by the wooden fence and cheers enthusiastically as 6-year-old Sebi (dark blonde hair, "
+                    "bright sky-blue eyes, royal-blue riding jacket and helmet) sits bravely on his spirited snow-white "
+                    "pony at the starting line between two towering giant thoroughbred racehorses! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Al Pony Club il fratello maggiore Ale fa il tifo al microfono mentre il coraggioso Sebi sul suo pony bianco sfida i grandissimi cavalli!\" "
+                    "Accompanied by a starting bell, spirited horse whinnies, and heroic orchestral adventure music."
+                ),
+            },
+            {
+                "act": 2,
+                "first_frame": "scena2_salto_impossibile_velocita_luce.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame, 6-year-old Sebi (dark blonde hair, bright sky-blue eyes) and his "
+                    "snow-white pony soar mid-air over a towering crystal-and-gold star show-jumping obstacle at the "
+                    "speed of light, trailing dazzling golden sonic rings and rainbow stardust! Below, the giant horses "
+                    "watch in wide-eyed awe while 8-year-old big brother Ale jumps with excitement by the fence cheering into his golden microphone! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Sebi affronta salti mai provati prima sfrecciando alla velocità della luce: è così veloce che nessuno riesce a vederlo!\" "
+                    "Accompanied by a supersonic starlight whoosh, magical chimes, and soaring triumphant brass."
+                ),
+            },
+            {
+                "act": 3,
+                "first_frame": "scena3_primo_tutto_pony_club_coppa.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame, 6-year-old Sebi (dark blonde hair with soft bangs, bright sky-blue "
+                    "eyes, holding his riding helmet under one arm) stands on the 1st-place podium beside his ribboned "
+                    "white pony, raising the gleaming golden Pony Club Champion Trophy high as confetti rains down "
+                    "and his proud 8-year-old big brother Ale gives him an enthusiastic high-five! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Velocissimo e bravissimo, Sebi vince la Coppa d'Oro come primo assoluto di tutto il Pony Club, festeggiato dal fratello Ale!\" "
+                    "Accompanied by crowd applause, triumphant fanfare, and joyful laughter."
+                ),
+            },
+            {
+                "act": 4,
+                "first_frame": "scena4_disco_party_regenbogen_pupurabbu_gigante.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame at twilight under a glowing double rainbow ('Rainbow Regenbogen') "
+                    "and a spinning mirror disco ball over colorful glowing dance-floor tiles on the grass, a giant, "
+                    "super-fluffy purple plush bunny with long lavender ears (Pupurabbu) wraps 6-year-old Sebi (dark "
+                    "blonde hair, bright sky-blue eyes) in a huge warm hug while 8-year-old big brother Ale and the "
+                    "white pony dance joyfully beside them! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Alla fine scoppia la Disco Party sotto il Regenbogen, e Pupurabbu grandissimo abbraccia Sebi dicendo: Wow Sebi, sei grande! Finito!\" "
+                    "Accompanied by upbeat disco funk music, magical rainbow sparkles, and joyful cheering."
+                ),
+            },
+        ],
+    },
 ]
 
 
