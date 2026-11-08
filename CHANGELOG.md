@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.9.2] - 2026-11-08
+
+### Changed & Fixed
+- 📖 **Impaginazione a Doppia Pagina Asimmetrica (`76% / 24%` in base alla Parità) con Illustrazione 16:9 in Alto e Testo in Basso su Entrambe le Pagine ([`index.html`](index.html))**:
+  - Ogni pagina del libro aperto (Sinistra = pagine dispari `1, 3, 5`; Destra = pagine pari `2, 4`) è ora un'unità narrativa completa con **Illustrazione 16:9 in alto** e **Testo della storia in basso** (con pulsante **`⇅ Testo in Alto / Foto in Alto`** per invertire istantaneamente l'ordine verticale e **`↔️ 84% / 16%`** per regolare la proporzione).
+  - La pagina attiva in **primo piano** occupa il **76% (`70–80%`)** della larghezza del libro (`.open-book.focus-left` sulle pagine dispari `1, 3, 5`; `.open-book.focus-right` sulle pagine pari `2, 4`), mentre la pagina adiacente resta visibile sull'altro lato al **24% (`20–30%`)** in *minore importanza* con miniatura 16:9, titolo, anteprima del testo e clic diretto per voltare pagina.
+- 🔇 **Rimozione dei Sottotitoli di Pagina dalla Pronuncia Vocale e dal Karaoke ([`index.html`](index.html), [`bin/generate_story_audiobooks.py`](bin/generate_story_audiobooks.py), [`bin/build_karaoke_timings.py`](bin/build_karaoke_timings.py), `stories/*/*/narrated_{it,en}.mp3`, `stories/*/*/karaoke_{it,en}.json`)**:
+  - I sottotitoli di capitolo (`h2.book-chapter-title`) restano visibili graficamente in testa a ogni pagina, ma **non vengono più pronunciati** dalla voce narrante né nel Karaoke Live, evitando di interrompere il flusso della fiaba ogni 2–3 paragrafi.
+  - Rimossi chirurgicamente i segmenti vocali dei sottotitoli di pagina da tutti i 10 audiolibri (`5 storie × IT/EN`) e ricalibrati al millisecondo tutti i 10 file `karaoke_{it,en}.json` (`title_words: []`).
+
 ## [0.9.1] - 2026-11-08
 
 ### Changed
