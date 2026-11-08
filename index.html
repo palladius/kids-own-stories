@@ -2197,9 +2197,8 @@
   </div>
   <audio id="hoverTitleAudio" preload="auto"></audio>
 
-  <!-- 2A. CARLESSIAN L1 SYNOPTIC TABLE + VETRINA CARDS (SHOWN WHEN ON 'INDICE' TAB) -->
+  <!-- 2A. VETRINA CARDS (SHOWN WHEN ON 'INDICE' TAB) -->
   <main id="indexView" class="index-view" hidden>
-    <div class="synoptic-table-wrap" id="synopticTableWrap"></div>
     <div class="index-grid" id="indexGrid"></div>
   </main>
 
@@ -3101,81 +3100,8 @@
     function renderIndexView() {
       const allStories = catalog.stories || [];
       const stories = getFilteredStories();
-      const tableWrap = document.getElementById('synopticTableWrap');
       const grid = document.getElementById('indexGrid');
-
-      const colStory = currentLang === 'en' ? 'Story' : 'Storia';
-      const colAuthor = currentLang === 'en' ? 'Author' : 'Autore';
-      const colDate = currentLang === 'en' ? 'Date' : 'Data';
-      const colPages = currentLang === 'en' ? 'Pages' : 'Pagine';
-      const colDuration = currentLang === 'en' ? 'Movie' : 'Film';
-      const colAction = currentLang === 'en' ? 'Actions' : 'Azioni';
       const ageUnit = currentLang === 'en' ? 'yo' : 'a';
-
-      const bookSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
-      const filmSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
-
-      if (tableWrap) {
-        const rowsHtml = stories.map((s) => {
-          const origIdx = allStories.indexOf(s) + 1;
-          const shortTitle = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
-          const fullTitle = getLocalizedField(s, 'title');
-          const conciseTitle = shortTitle.length > 48 ? shortTitle.slice(0, 46) + '…' : shortTitle;
-          const pagesCount = (s.assets?.pages || []).length;
-          const durSec = s.assets?.video?.duration_seconds || 40;
-          const isSeby = s.author === 'sebastian';
-          const kidClass = isSeby ? 'kid-badge--seby' : 'kid-badge--ale';
-          const dotColor = isSeby ? '#3b82f6' : '#ef4444';
-          const kidShort = isSeby ? 'Seby' : 'Ale';
-          const openLabel = currentLang === 'en' ? 'Read' : 'Leggi';
-          const movieLabel = currentLang === 'en' ? '40s' : '40s';
-
-          return `
-            <tr onclick="selectTab('${s.slug}')" title="${escapeHtml(fullTitle)}">
-              <td class="num-col"><span class="num-chip">${origIdx}</span></td>
-              <td><time class="iso-date" datetime="${escapeHtml(s.created_at || '')}">${escapeHtml(s.created_at || '')}</time></td>
-              <td>
-                <span class="kid-badge ${kidClass}">
-                  <span class="kid-dot" style="background:${dotColor};"></span>
-                  <span>${kidShort} (${s.author_age_at_recording}${ageUnit})</span>
-                </span>
-              </td>
-              <td style="font-weight:700;color:#f8fafc;">${escapeHtml(conciseTitle)}</td>
-              <td class="num-col"><span class="num-chip">${pagesCount}p</span></td>
-              <td class="num-col"><span class="num-chip">${durSec}s</span></td>
-              <td class="num-col" onclick="event.stopPropagation()">
-                <div class="synoptic-row-actions" style="justify-content:flex-end;">
-                  <button type="button" class="synoptic-action-btn primary" onclick="selectTab('${s.slug}')">
-                    ${bookSvg}<span>${openLabel}</span>
-                  </button>
-                  <button type="button" class="synoptic-action-btn" onclick="openStoryMovieFromIndex('${s.slug}')">
-                    ${filmSvg}<span>${movieLabel}</span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          `;
-        }).join('');
-
-        tableWrap.innerHTML = `
-          <table class="synoptic-table" aria-label="Synoptic Story Index">
-            <thead>
-              <tr>
-                <th class="num-col">#</th>
-                <th>${colDate}</th>
-                <th>${colAuthor}</th>
-                <th>${colStory}</th>
-                <th class="num-col">${colPages}</th>
-                <th class="num-col">${colDuration}</th>
-                <th class="num-col">${colAction}</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${rowsHtml}
-            </tbody>
-          </table>
-        `;
-      }
 
       grid.innerHTML = stories.map((s) => {
         const origIdx = allStories.indexOf(s) + 1;
