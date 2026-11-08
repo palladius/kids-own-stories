@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.8.2] - 2026-11-08
+
+### Fixed & Changed
+- 🎬 **Fix Video Orizzontale 16:9 a Pagina 5 + Controlli "Tutto Schermo" in Stile Netflix (`index.html`)**:
+  - **Risolto il bug del video tagliato in verticale**: rimosso `height: 100%; object-fit: cover` sul `<video>` di `.book-page-left` che costringeva il film 16:9 dentro il formato verticale della pagina sinistra tagliando i lati. Ora la pagina del film (`.book-page-left.is-video-page`) monta un **Netflix-style 16:9 Widescreen Player Frame** (`aspect-ratio: 16 / 9; object-fit: contain`) su sfondo ambient sfocato, mostrando il 100% dell'inquadratura orizzontale.
+  - **Bottone col Quadratino `[ ⛶ Tutto Schermo ]` in Stile Netflix + Modalità `↔️ Allarga Player`**:
+    - Aggiunto il pulsante con l'icona del quadratino **`[ ⛶ Tutto Schermo ]`** sia in sovraimpressione nell'angolo in alto a destra del video, sia nella barra di controllo Netflix sotto al player, sia sulla pagina destra (oltre al doppio clic sul video), che massimizza il film nella Sala Cinema mantenendo il secondo esatto di riproduzione (`currentTime`) e con pulsante per il Fullscreen nativo del browser (`requestFullscreen()`).
+    - Aggiunto il pulsante **`↔️ Allarga Player`** (`.open-book.book-wide-theater`) per allargare la pagina sinistra del cinema dentro il libro.
+  - **Fix Griglia dei 4 Atti sulla Pagina Destra**: usato `grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)` e `.book-prose.movie-program-prose` eliminando lo spazio vuoto in alto, il capolettera gigante sulla descrizione e la scrollbar orizzontale.
+
 ## [0.8.1] - 2026-11-08
 
 ### Added & Fixed
