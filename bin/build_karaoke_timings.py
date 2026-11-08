@@ -349,13 +349,12 @@ def build_karaoke_for_story_lang(model, story: dict, lang: str):
     pages_out = []
     for idx, p in enumerate(pages):
         p_start, p_end = page_spans[idx]
-        page_title = p.get("title_en" if lang == "en" else f"title_{lang}" if lang != "it" else "title", p["title"])
         paras = p.get(f"paragraphs_{lang}", [])
 
+        # Note: page_title is displayed visually on the page but NOT read aloud in TTS
         segments_words = []
         if idx == 0:
             segments_words.append(story_title.split())
-        segments_words.append(page_title.split())
         for para in paras:
             segments_words.append(para.split())
 
@@ -366,12 +365,12 @@ def build_karaoke_for_story_lang(model, story: dict, lang: str):
 
         if idx == 0:
             story_title_aligned = aligned[0]
-            page_title_aligned = aligned[1]
-            paras_aligned = aligned[2:]
+            page_title_aligned = []
+            paras_aligned = aligned[1:]
         else:
             story_title_aligned = []
-            page_title_aligned = aligned[0]
-            paras_aligned = aligned[1:]
+            page_title_aligned = []
+            paras_aligned = aligned
 
         pages_out.append({
             "page": p["page"],

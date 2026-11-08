@@ -177,10 +177,11 @@ def build_single_audiobook(api_key: str, story: dict, lang: str, piano_wav: Path
     title = story.get("title_en") if lang == "en" else story.get("title")
     chunks = []
     for idx, p in enumerate(pages):
-        page_title = p.get("title_en") if lang == "en" else p.get("title")
+        # Chapter subtitle (page_title) is shown visually on the page but NOT read aloud
+        # so the narrative flows continuously without interrupting every 2-3 paragraphs.
         paras = " ".join(p.get(f"paragraphs_{lang}", []))
         prefix = f"{title}. " if idx == 0 else ""
-        chunks.append(f"{prefix}{page_title}. {paras}")
+        chunks.append(f"{prefix}{paras}")
 
     print(f"🎙️  [{slug} - {lang.upper()}] Synthesizing {len(chunks)} pages in parallel with Gemini TTS (Aoede)...", flush=True)
     pcm_parts = [None] * len(chunks)

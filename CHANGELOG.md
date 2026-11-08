@@ -2,6 +2,13 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.9.1] - 2026-11-08
+
+### Changed
+- ⚡🐴 **Nuova Illustrazione Epica `16:9` per la Scena 2 + Rigenerazione Atto 2 del Film 40s (`stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/scena2_salto_impossibile_velocita_luce.jpg`)**:
+  - Sostituita la precedente Scena 2 con un'inquadratura Pixar d'azione dal basso ad altissima energia: Sebi e il suo pony bianco sfrecciano sopra un colossale ostacolo da Grand Prix (stanghe bianco-rosse, ali blu/oro e stella d'oro in cima) attraversando un cono d'onda d'urto supersonico con fulmini al plasma dorati/blu e vortice di sabbia, mentre i grandissimi cavalli sotto sgranano gli occhi e il fratello maggiore Ale salta con i capelli spettinati dal boom sonico esultando al microfono d'oro!
+  - Rigenerato l'Atto 2 (`10s`) e riassemblato `video_sebi_campione_pony_club.mp4` (`40s`).
+
 ## [0.9.0] - 2026-11-08
 
 ### Added & Changed
