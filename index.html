@@ -43,7 +43,8 @@
     html, body {
       height: 100%;
       font-family: 'Nunito', sans-serif;
-      background: radial-gradient(circle at 50% 20%, #1a233a 0%, #090d16 100%);
+      background-color: #0b0f19;
+      background-image: radial-gradient(circle at 50% 20%, #161f33 0%, #090d16 100%);
       color: #f8fafc;
       overflow-x: hidden;
     }
@@ -97,8 +98,9 @@
       background: none;
       border: none;
       color: #fff;
+      text-decoration: none;
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.08rem;
+      font-size: 1.04rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
@@ -108,8 +110,134 @@
       flex-shrink: 0;
     }
 
+    .brand-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
     .brand-btn span.gold {
-      color: var(--gold);
+      background: linear-gradient(135deg, #ffb703, #ff5e36);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* CARLESSIAN LIVE SEARCH INPUT (FOCUS WITH '/') */
+    .live-search-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .live-search-input {
+      width: 148px;
+      background: #111520;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      color: #f8fafc;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      outline: none;
+      transition: width 0.2s ease, border-color 0.2s ease;
+    }
+
+    .live-search-input:focus {
+      width: 190px;
+      border-color: var(--gold);
+    }
+
+    /* CARLESSIAN JOINED SEGMENTED RADIOGROUP FOR AUTHOR FILTER */
+    .segmented-radiogroup {
+      display: inline-flex;
+      align-items: center;
+      background: #111319;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 2px;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .seg-radio-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      padding: 3px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .seg-radio-btn:hover {
+      color: #f8fafc;
+    }
+
+    .seg-radio-btn.active,
+    .seg-radio-btn[aria-checked="true"] {
+      background: #252b38;
+      color: #f8fafc;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .kid-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .kid-dot--ale {
+      background: #ef4444;
+    }
+
+    .kid-dot--seby {
+      background: #3b82f6;
+    }
+
+    /* SOFT-TINTED NUMERIC MICRO-CARDS (CARLESSIAN RULE 3.3) */
+    .num-chip {
+      display: inline-block;
+      min-width: 48px;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'Nunito', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "zero" 1;
+    }
+
+    .num-chip--ok {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      color: #34d399;
+    }
+
+    .num-chip--warn {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.28);
+      color: #fbbf24;
+    }
+
+    .num-chip--paper {
+      background: rgba(154, 52, 18, 0.11);
+      border: 1px solid rgba(154, 52, 18, 0.26);
+      color: #7c2d12;
     }
 
     /* STORY TABS IN HEADER */
@@ -1267,67 +1395,82 @@
     }
 
     /* =========================================================================
-       3. HUGE BOTTOM ACTION DOCK UNDER THE BOOK (CINEMA 40S, REGENERATE, NEW STORY, ORIGINAL VOICE)
+       3. SOBER CARLESSIAN FOOTER (v<VERSION>, ENV BADGE, STORY TOOLS & GH/GHP/GHI)
        ========================================================================= */
-    .micro-footer {
-      width: min(1360px, 96vw);
-      flex-shrink: 0;
-      text-align: center;
-      padding: 4px 10px 2px;
+    .carlessian-footer {
+      width: 100%;
+      background: #0d111a;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 18px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      z-index: 20;
+      gap: 8px 16px;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+      z-index: 40;
     }
 
-    .bottom-huge-btn {
+    .footer-left,
+    .footer-center,
+    .footer-links {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+    }
+
+    .carlessian-footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .carlessian-footer a:hover {
+      color: var(--gold);
+    }
+
+    .env-badge {
+      font-family: 'Nunito', monospace;
+      font-variant-numeric: tabular-nums;
+      font-size: 0.72rem;
+      padding: 1px 7px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: #38bdf8;
+    }
+
+    .footer-action-btn {
       font-family: 'Fredoka', sans-serif;
-      font-size: clamp(0.84rem, 1.08vw, 1rem);
-      font-weight: 700;
-      padding: 9px 18px;
-      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
-      white-space: nowrap;
+      gap: 5px;
+      transition: all 0.15s ease;
     }
 
-    .bottom-huge-btn:hover {
-      transform: translateY(-2px) scale(1.02);
-      filter: brightness(1.08);
-    }
-
-    .bottom-huge-btn.cinema-cta {
-      background: linear-gradient(135deg, #7c3aed, #db2777, #f59e0b);
+    .footer-action-btn:hover {
+      border-color: var(--gold);
       color: #fff;
-      border: 2px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 6px 22px rgba(219, 39, 119, 0.45);
+      background: rgba(255, 183, 3, 0.12);
     }
 
-    .bottom-huge-btn.regen-cta {
-      background: linear-gradient(135deg, #ff5e36, #ffb703);
-      color: #0b0f19;
-      border: 2px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 6px 20px rgba(255, 94, 54, 0.45);
-    }
-
-    .bottom-huge-btn.mic-cta {
-      background: linear-gradient(135deg, #10b981, #34d399);
-      color: #06281e;
-      border: 2px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-    }
-
-    .bottom-huge-btn.raw-cta {
-      background: rgba(30, 41, 59, 0.92);
-      color: var(--gold);
-      border: 2px solid rgba(255, 183, 3, 0.55);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    .footer-action-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.85;
     }
 
     /* =========================================================================
@@ -1412,33 +1555,103 @@
     }
 
     /* =========================================================================
-       5. COMPACT INDEX / VETRINA VIEW (WHEN ON "INDICE" TAB)
+       5. CARLESSIAN L1 SYNOPTIC TABLE + VETRINA CARDS (WHEN ON "INDICE" TAB)
        ========================================================================= */
     .index-view {
-      max-width: 1040px;
-      margin: 24px auto;
+      max-width: 1180px;
+      width: 100%;
+      margin: 12px auto 20px;
       padding: 0 20px;
+      flex: 1 1 auto;
     }
 
-    .index-intro {
-      text-align: center;
-      margin-bottom: 24px;
+    .synoptic-table-wrap {
+      width: 100%;
+      background: #13161e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 18px;
     }
 
-    .index-intro h1 {
-      font-size: 2rem;
-      margin-bottom: 6px;
+    table.synoptic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Nunito', system-ui, sans-serif;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "zero" 1;
+      font-size: 0.85rem;
     }
 
-    .index-intro p {
+    table.synoptic-table thead th {
+      text-align: left;
+      padding: 8px 12px;
+      background: #10131a;
       color: #94a3b8;
-      font-size: 0.98rem;
+      font-weight: 700;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    table.synoptic-table tbody tr {
+      background-color: #16181d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: background-color 0.14s ease;
+    }
+
+    table.synoptic-table tbody tr:nth-child(even) {
+      background-color: #1b1e26;
+    }
+
+    table.synoptic-table tbody tr:hover {
+      background-color: #232834;
+    }
+
+    table.synoptic-table td {
+      padding: 6px 12px;
+      color: #e2e8f0;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .kid-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .kid-avatar-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #fff;
+      background: #1e293b;
+      flex-shrink: 0;
+    }
+
+    .kid-avatar-circle.ale {
+      border: 2px solid #ef4444;
+    }
+
+    .kid-avatar-circle.seby {
+      border: 2px solid #3b82f6;
     }
 
     .index-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 22px;
+      gap: 18px;
     }
 
     .index-card {
@@ -1912,29 +2125,44 @@
 </head>
 <body>
 
-  <!-- 1. ESSENTIAL RESPONSIVE TOPBAR -->
+  <!-- 1. CARLESSIAN HEADER: BRAND HOME LINK, TABS, AUTHOR RADIOGROUP, LIVE SEARCH ('/') & LANG SWITCHER -->
   <header class="topbar">
-    <button type="button" class="brand-btn" onclick="selectTab('indice')" title="Torna all'indice dei libri">
-      📚 <span>Kids' Own <span class="gold">Stories</span></span>
-    </button>
+    <a href="?tab=indice" data-home-link class="brand-btn" onclick="event.preventDefault(); selectTab('indice')" title="Indice Sinottico delle Storie">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Kids' Own <span class="gold">Stories</span></span>
+    </a>
+
+    <div class="segmented-radiogroup" role="radiogroup" aria-label="Filtra per autore">
+      <button type="button" class="seg-radio-btn active" role="radio" aria-checked="true" aria-pressed="true" data-filter="all" onclick="setKidFilter('all')">Tutte</button>
+      <button type="button" class="seg-radio-btn" role="radio" aria-checked="false" aria-pressed="false" data-filter="alessandro" onclick="setKidFilter('alessandro')">
+        <span class="kid-dot kid-dot--ale"></span>Ale
+      </button>
+      <button type="button" class="seg-radio-btn" role="radio" aria-checked="false" aria-pressed="false" data-filter="sebastian" onclick="setKidFilter('sebastian')">
+        <span class="kid-dot kid-dot--seby"></span>Seby
+      </button>
+    </div>
 
     <nav class="tabs-strip" id="tabsStrip" role="tablist" aria-label="Scegli una storia"></nav>
 
     <div class="topbar-right" id="topbarRight">
+      <div class="live-search-wrap">
+        <input type="search" id="liveSearchInput" data-search class="live-search-input" placeholder="Cerca… (/)" aria-label="Cerca storie" oninput="onLiveSearchInput(this.value)">
+      </div>
+
       <button type="button" class="vote-pill-btn" id="voteTopBtn" onclick="openVoteModal()" title="Vota la storia (sblocca FR, DE, PT-BR sopra 8/10!)">
         ⭐ <span id="voteTopScore">7.8/10</span>
       </button>
 
       <button type="button" class="new-story-pill" onclick="openNewStoryModal()" title="Registra una nuova storia al microfono">
-        🎙️ <span class="new-story-text">+ Nuova Storia</span>
+        🎙️ <span class="new-story-text">+ Nuova</span>
       </button>
 
       <div class="lang-switch" role="group" aria-label="Lingua della storia e della voce narrante">
-        <button type="button" class="lang-btn active" id="langBtnIt" onclick="setLanguage('it')">🇮🇹 IT</button>
-        <button type="button" class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">🇬🇧 EN</button>
-        <button type="button" class="lang-btn locked" id="langBtnFr" onclick="handleLockedLang('fr', '🇫🇷 Français')" title="Sbloccabile con voto >= 8/10">🇫🇷🔒</button>
-        <button type="button" class="lang-btn locked" id="langBtnDe" onclick="handleLockedLang('de', '🇩🇪 Deutsch')" title="Sbloccabile con voto >= 8/10">🇩🇪🔒</button>
-        <button type="button" class="lang-btn locked" id="langBtnPt" onclick="handleLockedLang('pt', '🇧🇷 Português (BR)')" title="Sbloccabile con voto >= 8/10">🇧🇷🔒</button>
+        <button type="button" class="lang-btn active" id="langBtnIt" data-lang="it" aria-pressed="true" onclick="setLanguage('it')">🇮🇹 IT</button>
+        <button type="button" class="lang-btn" id="langBtnEn" data-lang="en" aria-pressed="false" onclick="setLanguage('en')">🇬🇧 EN</button>
+        <button type="button" class="lang-btn locked" id="langBtnFr" data-lang="fr" aria-pressed="false" onclick="handleLockedLang('fr', '🇫🇷 Français')" title="Sbloccabile con voto >= 8/10">🇫🇷🔒</button>
+        <button type="button" class="lang-btn locked" id="langBtnDe" data-lang="de" aria-pressed="false" onclick="handleLockedLang('de', '🇩🇪 Deutsch')" title="Sbloccabile con voto >= 8/10">🇩🇪🔒</button>
+        <button type="button" class="lang-btn locked" id="langBtnPt" data-lang="pt" aria-pressed="false" onclick="handleLockedLang('pt', '🇧🇷 Português (BR)')" title="Sbloccabile con voto >= 8/10">🇧🇷🔒</button>
       </div>
     </div>
 
@@ -1969,12 +2197,9 @@
   </div>
   <audio id="hoverTitleAudio" preload="auto"></audio>
 
-  <!-- 2A. COMPACT BOOKSHELF INDEX (ONLY SHOWN WHEN ON 'INDICE' TAB) -->
+  <!-- 2A. CARLESSIAN L1 SYNOPTIC TABLE + VETRINA CARDS (SHOWN WHEN ON 'INDICE' TAB) -->
   <main id="indexView" class="index-view" hidden>
-    <div class="index-intro">
-      <h1 id="indexHeading" tabindex="-1">Scegli un Libro da Sfogliare ✨</h1>
-      <p id="indexSubtitle">Clicca su una storia per aprire il libro illustrato a schermo intero e ascoltare la voce narrante in Italiano o Inglese.</p>
-    </div>
+    <div class="synoptic-table-wrap" id="synopticTableWrap"></div>
     <div class="index-grid" id="indexGrid"></div>
   </main>
 
@@ -1985,35 +2210,48 @@
         <!-- 3D PHYSICAL TURNING PAGE LEAF OVERLAY -->
         <div class="page-turn-leaf" id="pageTurnLeaf" aria-hidden="true"></div>
 
-        <!-- LEFT PAGE: SCENE ILLUSTRATION OR VIDEO -->
+        <!-- LEFT PAGE: ODD PAGES (1, 3, 5) IN 76% PRIMO PIANO OR EVEN COMPANION IN 24% -->
         <div class="book-page-left" id="bookPageLeft"></div>
 
-        <!-- RIGHT PAGE: STORYBOOK TEXT (2-3 PARAGRAPHS) + PAGE CONTROLS -->
+        <!-- RIGHT PAGE: EVEN PAGES (2, 4) IN 76% PRIMO PIANO OR ODD COMPANION IN 24% -->
         <div class="book-page-right" id="bookPageRight"></div>
       </article>
     </div>
-
-    <!-- 3. HUGE BOTTOM ACTION DOCK UNDER THE BOOK -->
-    <footer class="micro-footer">
-      <button type="button" class="bottom-huge-btn cinema-cta" id="watchMovieDockBtn" onclick="jumpToStoryMovie(true)">
-        🎬 Guarda il Film (40s)
-      </button>
-      <button type="button" class="bottom-huge-btn regen-cta" id="regenerateStoryBtn" onclick="openRegenerateModal()">
-        🔄 La storia non mi piace, rigenerala!
-      </button>
-      <button type="button" class="bottom-huge-btn mic-cta" id="bottomNewStoryBtn" onclick="openNewStoryModal()">
-        🎙️ + Racconta una Nuova Storia
-      </button>
-      <button type="button" class="bottom-huge-btn raw-cta" id="behindScenesBtn" onclick="openBehindScenesModal()">
-        📝 Audio Originale &amp; Sbobinatura di Alessandro
-      </button>
-    </footer>
   </main>
+
+  <!-- 3. CANONICAL CARLESSIAN FOOTER (v<VERSION>, ENV BADGE, SOBER STORY TOOLS & GH/GHP/GHI) -->
+  <footer class="carlessian-footer">
+    <div class="footer-left">
+      <strong>Kids' Own Stories</strong>
+      <a href="CHANGELOG.md" data-version="0.9.3" target="_blank" rel="noopener">v0.9.3</a>
+      <span class="env-badge" data-env="development" id="footerEnvBadge">ENV: development</span>
+    </div>
+    <div class="footer-center" id="footerStoryActions">
+      <button type="button" class="footer-action-btn" id="watchMovieDockBtn" onclick="jumpToStoryMovie(true)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Film 40s</span>
+      </button>
+      <button type="button" class="footer-action-btn" id="behindScenesBtn" onclick="openBehindScenesModal()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        <span>Audio Originale &amp; Sbobinatura</span>
+      </button>
+      <button type="button" class="footer-action-btn" id="regenerateStoryBtn" onclick="openRegenerateModal()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+        <span>Rigenera</span>
+      </button>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/palladius/kids-own-stories" target="_blank" rel="noopener">GH Repo</a>
+      <a href="https://palladius.github.io/kids-own-stories/" target="_blank" rel="noopener">GHP Live</a>
+      <a href="https://github.com/palladius/kids-own-stories/issues" target="_blank" rel="noopener">GHI Issues</a>
+      <a id="add-bug-link" href="https://github.com/palladius/kids-own-stories/issues/new" target="_blank" rel="noopener">🐛 Add a Bug</a>
+    </div>
+  </footer>
 
   <!-- 4A-0. SALA CINEMA MODAL (40-SECOND FULL STORY MOVIE WITH 4 ACTS) -->
   <dialog id="cinemaDialog" class="subpage-dialog" style="width:min(1040px,95vw);max-height:92vh;" closedby="any" aria-labelledby="cinemaDialogTitle">
     <div class="subpage-header">
-      <h3 id="cinemaDialogTitle">🍿 Sala Cinema: Il Film Completo (40 Secondi • 4 Atti)</h3>
+      <h3 id="cinemaDialogTitle">Sala Cinema 40s</h3>
       <button type="button" class="page-turn-btn" onclick="closeCinemaModal()">✕ Chiudi Cinema</button>
     </div>
     <div class="subpage-body" id="cinemaDialogBody" style="max-height:calc(92vh - 64px);padding:16px 20px;"></div>
@@ -2022,7 +2260,7 @@
   <!-- 4A. HIDDEN-BY-DEFAULT SUBPAGE MODAL FOR RAW AUDIO & VERBATIM TRANSCRIPT -->
   <dialog id="behindScenesDialog" class="subpage-dialog" closedby="any" aria-labelledby="behindScenesTitle">
     <div class="subpage-header">
-      <h3 id="behindScenesTitle">📝 Dietro le Quinte: L'Ispirazione Originale di Alessandro</h3>
+      <h3 id="behindScenesTitle">Voce Originale</h3>
       <button type="button" class="page-turn-btn" onclick="document.getElementById('behindScenesDialog').close()">✕ Chiudi</button>
     </div>
     <div class="subpage-body" id="behindScenesBody"></div>
@@ -2031,7 +2269,7 @@
   <!-- 4B. MODAL 1: "LA STORIA NON MI PIACE, RIGENERALA" -->
   <dialog id="regenerateDialog" class="subpage-dialog" closedby="any" aria-labelledby="regenerateTitle">
     <div class="subpage-header">
-      <h3 id="regenerateTitle">🔄 Rigenera o Modifica questa Storia</h3>
+      <h3 id="regenerateTitle">Rigenera Storia</h3>
       <button type="button" class="page-turn-btn" onclick="document.getElementById('regenerateDialog').close()">✕ Chiudi</button>
     </div>
     <div class="subpage-body">
@@ -2063,7 +2301,7 @@
   <!-- 4C. MODAL 2: "NEW STORY" AL MICROFONO -->
   <dialog id="newStoryDialog" class="subpage-dialog" closedby="any" aria-labelledby="newStoryModalTitle">
     <div class="subpage-header">
-      <h3 id="newStoryModalTitle">🎙️ Racconta una Nuova Storia al Microfono</h3>
+      <h3 id="newStoryModalTitle">Nuova Storia</h3>
       <button type="button" class="page-turn-btn" onclick="closeNewStoryModal()">✕ Chiudi</button>
     </div>
     <div class="subpage-body">
@@ -2106,7 +2344,7 @@
   <!-- 4D. MODAL 3: SISTEMA DI VOTING STORIA & SBLOCCO LINGUE EXTRA (FR / DE / PT-BR >= 8/10) -->
   <dialog id="voteStoryDialog" class="subpage-dialog" closedby="any" aria-labelledby="voteDialogTitle">
     <div class="subpage-header">
-      <h3 id="voteDialogTitle">⭐ Vota la Storia &amp; Sblocca FR / DE / PT-BR</h3>
+      <h3 id="voteDialogTitle">Vota la Storia</h3>
       <button type="button" class="page-turn-btn" onclick="document.getElementById('voteStoryDialog').close()">✕ Chiudi</button>
     </div>
     <div class="subpage-body">
@@ -2135,12 +2373,144 @@
   </dialog>
 
   <script>
+    const APP_VERSION = '0.9.3';
+    const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
     let currentLang = 'it'; // 'it' | 'en' | 'fr' | 'de' | 'pt'
+    let activeKidFilter = 'all'; // 'all' | 'alessandro' | 'sebastian'
+    let searchQuery = '';
     let pendingLangCode = null;
     const pageIndexBySlug = {};
     let unmuteNextVideoRender = false;
+
+    function getFilteredStories() {
+      const all = catalog.stories || [];
+      return all.filter(s => {
+        if (activeKidFilter !== 'all' && s.author !== activeKidFilter) return false;
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          const haystack = [
+            s.title, s.title_en, s.short_title, s.short_title_en, s.author, s.slug,
+            ...(s.assets?.pages || []).map(p => `${p.title || ''} ${p.title_en || ''} ${p.summary || ''}`)
+          ].join(' ').toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
+        return true;
+      });
+    }
+
+    function applyHeaderControlsState() {
+      document.documentElement.lang = currentLang;
+      const langMap = { it: 'langBtnIt', en: 'langBtnEn', fr: 'langBtnFr', de: 'langBtnDe', pt: 'langBtnPt' };
+      Object.entries(langMap).forEach(([code, btnId]) => {
+        const el = document.getElementById(btnId);
+        if (el) {
+          const isAct = (code === currentLang);
+          el.classList.toggle('active', isAct);
+          el.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+        }
+      });
+
+      document.querySelectorAll('[data-filter]').forEach(btn => {
+        const fVal = btn.getAttribute('data-filter');
+        const isAct = (fVal === activeKidFilter);
+        btn.classList.toggle('active', isAct);
+        btn.setAttribute('aria-checked', isAct ? 'true' : 'false');
+        btn.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+      });
+
+      const searchEl = document.getElementById('liveSearchInput');
+      if (searchEl && searchEl.value !== searchQuery) {
+        searchEl.value = searchQuery;
+      }
+
+      // Update Carlessian Footer ENV & Add-a-Bug Permalink
+      const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      const envName = isLocal ? 'development' : 'gh-pages';
+      const envBadge = document.getElementById('footerEnvBadge');
+      if (envBadge) {
+        envBadge.setAttribute('data-env', envName);
+        envBadge.textContent = `ENV: ${envName}`;
+      }
+      const bugLink = document.getElementById('add-bug-link');
+      if (bugLink) {
+        const bugTitle = encodeURIComponent(`[Bug v${APP_VERSION}] Issue on ${activeTab}`);
+        const bugBody = encodeURIComponent(
+          `### 🐛 Bug Report\n- **URL Permalink:** ${window.location.href}\n- **Version:** \`v${APP_VERSION}\`\n- **ENV:** \`${envName}\`\n- **Active Tab:** \`${activeTab}\`\n- **Language:** \`${currentLang}\`\n`
+        );
+        bugLink.href = `https://github.com/palladius/kids-own-stories/issues/new?title=${bugTitle}&body=${bugBody}`;
+      }
+    }
+
+    function syncStateToUrl() {
+      const curPageIdx = pageIndexBySlug[activeTab] || 0;
+      const stateObj = {
+        tab: activeTab,
+        page: curPageIdx + 1,
+        lang: currentLang,
+        kid: activeKidFilter,
+        q: searchQuery
+      };
+      try {
+        localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(stateObj));
+      } catch (_) {}
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', activeTab);
+      if (activeTab !== 'indice' && curPageIdx > 0) {
+        url.searchParams.set('page', String(curPageIdx + 1));
+      } else {
+        url.searchParams.delete('page');
+      }
+      if (currentLang && currentLang !== 'it') {
+        url.searchParams.set('lang', currentLang);
+      } else {
+        url.searchParams.delete('lang');
+      }
+      if (activeKidFilter && activeKidFilter !== 'all') {
+        url.searchParams.set('kid', activeKidFilter);
+      } else {
+        url.searchParams.delete('kid');
+      }
+      if (searchQuery) {
+        url.searchParams.set('q', searchQuery);
+      } else {
+        url.searchParams.delete('q');
+      }
+      url.hash = '';
+      window.history.replaceState(stateObj, '', url);
+      applyHeaderControlsState();
+    }
+
+    function hydrateStateFromUrlAndStorage() {
+      let saved = {};
+      try {
+        saved = JSON.parse(localStorage.getItem(STATE_STORAGE_KEY) || '{}') || {};
+      } catch (_) {}
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const rawHash = window.location.hash.replace(/^#/, '');
+      const [hashTab, hashPage] = rawHash.split(':');
+
+      const langParam = urlParams.get('lang') || saved.lang || 'it';
+      if (['it', 'en', 'fr', 'de', 'pt'].includes(langParam)) {
+        currentLang = langParam;
+      }
+
+      const kidParam = urlParams.get('kid') || saved.kid || 'all';
+      if (['all', 'alessandro', 'sebastian'].includes(kidParam)) {
+        activeKidFilter = kidParam;
+      }
+
+      searchQuery = urlParams.get('q') ?? saved.q ?? '';
+
+      const tabCandidate = urlParams.get('tab') || urlParams.get('story') || hashTab || saved.tab || '';
+      const pageCandidate = urlParams.get('page') || hashPage || (saved.tab === tabCandidate ? saved.page : null);
+
+      applyHeaderControlsState();
+      return { tabCandidate, pageCandidate };
+    }
 
     function getLocalizedField(obj, baseField, lang = currentLang) {
       if (!obj) return '';
@@ -2157,8 +2527,10 @@
     }
 
     async function initApp() {
+      const { tabCandidate, pageCandidate } = hydrateStateFromUrlAndStorage();
+
       try {
-        const res = await fetch('stories.yaml?v=0.9.2', { cache: 'no-cache' });
+        const res = await fetch(`stories.yaml?v=${APP_VERSION}`, { cache: 'no-cache' });
         if (res.ok && window.jsyaml) {
           const text = await res.text();
           const parsed = window.jsyaml.load(text);
@@ -2173,13 +2545,10 @@
       const stories = catalog.stories || [];
       stories.forEach(s => { pageIndexBySlug[s.slug] = 0; });
 
-      // Determine initial tab from URL hash; default to first story so user goes straight to the book!
-      const rawHash = window.location.hash.replace(/^#/, '');
-      const [hash, hashPage] = rawHash.split(':');
-      if (hash === 'indice' || hash === 'vetrina') {
+      if (tabCandidate === 'indice' || tabCandidate === 'vetrina') {
         activeTab = 'indice';
-      } else if (stories.some(s => s.slug === hash || s.id === hash)) {
-        const matched = stories.find(s => s.slug === hash || s.id === hash);
+      } else if (stories.some(s => s.slug === tabCandidate || s.id === tabCandidate)) {
+        const matched = stories.find(s => s.slug === tabCandidate || s.id === tabCandidate);
         activeTab = matched.slug;
       } else if (stories.length > 0) {
         activeTab = stories[0].slug;
@@ -2187,16 +2556,14 @@
         activeTab = 'indice';
       }
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const pageParam = hashPage || urlParams.get('page');
-      if (pageParam && activeTab !== 'indice') {
+      if (pageCandidate && activeTab !== 'indice') {
         const matchedStory = stories.find(s => s.slug === activeTab);
         if (matchedStory) {
           const totalSlides = getSlidesForStory(matchedStory).length;
-          if (pageParam === 'video' || pageParam === 'film') {
+          if (pageCandidate === 'video' || pageCandidate === 'film') {
             pageIndexBySlug[activeTab] = Math.max(0, totalSlides - 1);
           } else {
-            const pNum = parseInt(pageParam, 10);
+            const pNum = parseInt(pageCandidate, 10);
             if (!isNaN(pNum) && pNum >= 1) {
               pageIndexBySlug[activeTab] = Math.min(totalSlides - 1, pNum - 1);
             }
@@ -2632,12 +2999,23 @@
       const narratorAudio = document.getElementById('narratorAudio');
       if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
       currentLang = lang;
-      const map = { it: 'langBtnIt', en: 'langBtnEn', fr: 'langBtnFr', de: 'langBtnDe', pt: 'langBtnPt' };
-      Object.entries(map).forEach(([code, btnId]) => {
-        const el = document.getElementById(btnId);
-        if (el) el.classList.toggle('active', code === lang);
-      });
+      syncStateToUrl();
       renderAll();
+    }
+
+    function setKidFilter(kid) {
+      activeKidFilter = kid || 'all';
+      syncStateToUrl();
+      renderAll();
+    }
+
+    function onLiveSearchInput(val) {
+      searchQuery = (val || '').trim();
+      syncStateToUrl();
+      renderTabsStrip();
+      if (activeTab === 'indice') {
+        renderIndexView();
+      }
     }
 
     function selectTab(tabSlug) {
@@ -2645,9 +3023,11 @@
       const narratorAudio = document.getElementById('narratorAudio');
       if (narratorAudio) narratorAudio.pause();
 
+      activeTab = tabSlug;
+      syncStateToUrl();
+      renderTabsStrip();
+
       const updateDom = () => {
-        activeTab = tabSlug;
-        history.replaceState(null, '', `#${tabSlug}`);
         renderAll();
       };
 
@@ -2659,44 +3039,58 @@
     }
 
     function renderAll() {
+      applyHeaderControlsState();
       renderTabsStrip();
+      const storyActionsEl = document.getElementById('footerStoryActions');
       if (activeTab === 'indice') {
         document.getElementById('indexView').hidden = false;
         document.getElementById('bookViewport').hidden = true;
         document.getElementById('narratorBar').hidden = true;
+        if (storyActionsEl) storyActionsEl.hidden = true;
         renderIndexView();
       } else {
         document.getElementById('indexView').hidden = true;
         document.getElementById('bookViewport').hidden = false;
+        if (storyActionsEl) storyActionsEl.hidden = false;
         renderActiveBook();
       }
     }
 
     function renderTabsStrip() {
       const strip = document.getElementById('tabsStrip');
-      const stories = catalog.stories || [];
-      const allMap = { it: '📚 Tutte', en: '📚 All', fr: '📚 Toutes', de: '📚 Alle', pt: '📚 Todas' };
-      const indiceLabel = allMap[currentLang] || '📚 All';
+      const allStories = catalog.stories || [];
+      const filteredStories = getFilteredStories();
+      const allMap = { it: 'Indice', en: 'Index', fr: 'Index', de: 'Index', pt: 'Índice' };
+      const indiceLabel = allMap[currentLang] || 'Index';
+
+      const gridSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`;
 
       const indiceBtn = `
         <button type="button" role="tab" class="tab-pill"
+          data-tab="indice"
           aria-selected="${activeTab === 'indice'}"
           onclick="selectTab('indice')">
-          ${indiceLabel} (${stories.length})
+          ${gridSvg}
+          <span>${indiceLabel}</span>
+          <span class="num-chip">${filteredStories.length}/${allStories.length}</span>
         </button>
       `;
 
-      const storyBtns = stories.map((s, idx) => {
+      const storyBtns = filteredStories.map((s) => {
+        const origIdx = allStories.indexOf(s) + 1;
         const label = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
+        const dotColor = s.author === 'sebastian' ? '#3b82f6' : '#ef4444';
         return `
           <button type="button" role="tab" class="tab-pill"
+            data-tab="${s.slug}"
             aria-selected="${activeTab === s.slug}"
             onmouseenter="onTabHoverStart(event, '${s.slug}')"
             onmouseleave="onTabHoverEnd()"
             onfocus="onTabHoverStart(event, '${s.slug}')"
             onblur="onTabHoverEnd()"
             onclick="onTabHoverEnd(); selectTab('${s.slug}')">
-            <span>${s.emoji || '📖'} ${idx + 1}. ${label}</span>
+            <span class="kid-dot" style="background:${dotColor};"></span>
+            <span>${origIdx}. ${escapeHtml(label)}</span>
           </button>
         `;
       }).join('');
@@ -2705,25 +3099,97 @@
     }
 
     function renderIndexView() {
-      document.getElementById('indexHeading').textContent = currentLang === 'it'
-        ? 'Scegli un Libro da Sfogliare ✨ (Passa il mouse per l\'anteprima + Film Completo 40s!)'
-        : 'Choose a Storybook to Read ✨ (Hover for Preview + Full 40s Animated Movie!)';
-      document.getElementById('indexSubtitle').textContent = currentLang === 'it'
-        ? 'Fai hover su una storia per vedere l\'anteprima e ascoltare la voce che recita il titolo, clicca per sfogliare il libro 3D oppure guarda subito il Film Animato da 40 secondi!'
-        : 'Hover over any story to watch the preview and hear the soothing voice recite the title, click to open the 3D book, or jump straight to the 40-second Animated Movie!';
-
+      const allStories = catalog.stories || [];
+      const stories = getFilteredStories();
+      const tableWrap = document.getElementById('synopticTableWrap');
       const grid = document.getElementById('indexGrid');
-      const stories = catalog.stories || [];
-      grid.innerHTML = stories.map((s, idx) => {
+
+      const colStory = currentLang === 'en' ? 'Story' : 'Storia';
+      const colAuthor = currentLang === 'en' ? 'Author' : 'Autore';
+      const colDate = currentLang === 'en' ? 'Date' : 'Data';
+      const colPages = currentLang === 'en' ? 'Pages' : 'Pagine';
+      const colDuration = currentLang === 'en' ? 'Movie' : 'Film';
+      const colAction = currentLang === 'en' ? 'Actions' : 'Azioni';
+      const ageUnit = currentLang === 'en' ? 'yo' : 'a';
+
+      const bookSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+      const filmSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+
+      if (tableWrap) {
+        const rowsHtml = stories.map((s) => {
+          const origIdx = allStories.indexOf(s) + 1;
+          const shortTitle = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
+          const fullTitle = getLocalizedField(s, 'title');
+          const conciseTitle = shortTitle.length > 48 ? shortTitle.slice(0, 46) + '…' : shortTitle;
+          const pagesCount = (s.assets?.pages || []).length;
+          const durSec = s.assets?.video?.duration_seconds || 40;
+          const isSeby = s.author === 'sebastian';
+          const kidClass = isSeby ? 'kid-badge--seby' : 'kid-badge--ale';
+          const dotColor = isSeby ? '#3b82f6' : '#ef4444';
+          const kidShort = isSeby ? 'Seby' : 'Ale';
+          const openLabel = currentLang === 'en' ? 'Read' : 'Leggi';
+          const movieLabel = currentLang === 'en' ? '40s' : '40s';
+
+          return `
+            <tr onclick="selectTab('${s.slug}')" title="${escapeHtml(fullTitle)}">
+              <td class="num-col"><span class="num-chip">${origIdx}</span></td>
+              <td><time class="iso-date" datetime="${escapeHtml(s.created_at || '')}">${escapeHtml(s.created_at || '')}</time></td>
+              <td>
+                <span class="kid-badge ${kidClass}">
+                  <span class="kid-dot" style="background:${dotColor};"></span>
+                  <span>${kidShort} (${s.author_age_at_recording}${ageUnit})</span>
+                </span>
+              </td>
+              <td style="font-weight:700;color:#f8fafc;">${escapeHtml(conciseTitle)}</td>
+              <td class="num-col"><span class="num-chip">${pagesCount}p</span></td>
+              <td class="num-col"><span class="num-chip">${durSec}s</span></td>
+              <td class="num-col" onclick="event.stopPropagation()">
+                <div class="synoptic-row-actions" style="justify-content:flex-end;">
+                  <button type="button" class="synoptic-action-btn primary" onclick="selectTab('${s.slug}')">
+                    ${bookSvg}<span>${openLabel}</span>
+                  </button>
+                  <button type="button" class="synoptic-action-btn" onclick="openStoryMovieFromIndex('${s.slug}')">
+                    ${filmSvg}<span>${movieLabel}</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        tableWrap.innerHTML = `
+          <table class="synoptic-table" aria-label="Synoptic Story Index">
+            <thead>
+              <tr>
+                <th class="num-col">#</th>
+                <th>${colDate}</th>
+                <th>${colAuthor}</th>
+                <th>${colStory}</th>
+                <th class="num-col">${colPages}</th>
+                <th class="num-col">${colDuration}</th>
+                <th class="num-col">${colAction}</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+        `;
+      }
+
+      grid.innerHTML = stories.map((s) => {
+        const origIdx = allStories.indexOf(s) + 1;
+        const shortTitle = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
         const title = getLocalizedField(s, 'title');
         const pages = s.assets?.pages || [];
         const firstPara = getLocalizedParagraphs(pages[0])[0] || pages[0]?.summary || '';
         const hoverVideo = s.assets?.hover_video || s.assets?.video?.file || '';
-        const cta = currentLang === 'it' ? `📖 Sfoglia Libro (${pages.length} pag.)` : `📖 Open Book (${pages.length} p.)`;
-        const movieCta = currentLang === 'it' ? `🎬 Film Completo (40s)` : `🎬 Full Movie (40s)`;
-        const authorObj = catalog.authors?.[s.author] || { name: s.author || 'Alessandro', emoji: '👦' };
-        const ageUnit = currentLang === 'en' ? 'yo' : 'anni';
-        const storyLabel = currentLang === 'en' ? 'Story' : 'Storia';
+        const cta = currentLang === 'it' ? `Sfoglia (${pages.length} pag.)` : `Read (${pages.length} p.)`;
+        const movieCta = currentLang === 'it' ? `Film 40s` : `40s Movie`;
+        const isSeby = s.author === 'sebastian';
+        const kidClass = isSeby ? 'kid-badge--seby' : 'kid-badge--ale';
+        const dotColor = isSeby ? '#3b82f6' : '#ef4444';
+        const authorObj = catalog.authors?.[s.author] || { name: s.author || 'Alessandro' };
         return `
           <article class="index-card"
             tabindex="0"
@@ -2733,21 +3199,25 @@
             onfocusout="onCardHoverEnd(this)"
             onclick="onCardHoverEnd(this); selectTab('${s.slug}')">
             <div class="card-media-wrap">
-              <img src="${pages[0]?.image || ''}?v=0.9.2" alt="${title}" loading="lazy">
-              ${hoverVideo ? `<video class="card-hover-video" src="${hoverVideo}?v=0.9.2" muted loop playsinline preload="metadata"></video>` : ''}
-              <span class="hover-wow-badge">🎬 Film 40s • 🔊 Voce</span>
+              <img src="${pages[0]?.image || ''}?v=${APP_VERSION}" alt="${escapeHtml(title)}" loading="lazy">
+              ${hoverVideo ? `<video class="card-hover-video" src="${hoverVideo}?v=${APP_VERSION}" muted loop playsinline preload="metadata"></video>` : ''}
+              <span class="hover-wow-badge">40s HD • Audio</span>
             </div>
             <div class="index-card-body">
-              <div style="font-size:0.82rem;color:var(--gold);font-weight:700;">
-                ${s.emoji || '📖'} ${storyLabel} #${idx + 1} • ${authorObj.emoji} ${authorObj.name} (${s.author_age_at_recording} ${ageUnit})
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                <span class="kid-badge ${kidClass}">
+                  <span class="kid-dot" style="background:${dotColor};"></span>
+                  <span>#${origIdx} · ${escapeHtml(authorObj.name)} (${s.author_age_at_recording}${ageUnit})</span>
+                </span>
+                <time class="iso-date" datetime="${escapeHtml(s.created_at || '')}">${escapeHtml(s.created_at || '')}</time>
               </div>
-              <h2>${title}</h2>
-              <p>${firstPara}</p>
+              <h2>${escapeHtml(shortTitle)}</h2>
+              <div style="font-size:0.84rem;font-weight:700;color:#cbd5e1;">${escapeHtml(title)}</div>
+              <p>${escapeHtml(firstPara)}</p>
               <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
                 <span class="page-turn-btn primary">${cta}</span>
                 ${s.assets?.video?.file ? `
                   <button type="button" class="page-turn-btn"
-                    style="background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border-color:transparent;"
                     onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); openStoryMovieFromIndex('${s.slug}')">
                     ${movieCta}
                   </button>
@@ -2770,7 +3240,7 @@
         pageIndexBySlug[storySlug] = Math.max(0, slides.length - 1);
       }
       unmuteNextVideoRender = true;
-      history.replaceState(null, '', `#${storySlug}`);
+      syncStateToUrl();
       renderAll();
     }
 
@@ -2952,6 +3422,7 @@
       lastManualTurnTimestamp = Date.now();
       playPageFlipRustle('next');
       pageIndexBySlug[story.slug] = videoSlideIdx;
+      syncStateToUrl();
       renderActiveBook('next');
     }
 
@@ -3214,38 +3685,27 @@
       pageIndexBySlug[story.slug] = idx;
       const slide = slides[idx];
 
-      // Update huge bottom buttons under the book
+      // Update compact story actions in the Carlessian footer
       const authorName = catalog.authors?.[story.author]?.name || 'Alessandro';
       const watchMovieBtn = document.getElementById('watchMovieDockBtn');
-      const regenBtn = document.getElementById('regenerateStoryBtn');
-      const micBtn = document.getElementById('bottomNewStoryBtn');
-      const behindBtn = document.getElementById('behindScenesBtn');
+      const watchMovieLabel = document.getElementById('watchMovieDockLabel');
+      const regenLabel = document.getElementById('regenerateStoryLabel');
+      const behindLabel = document.getElementById('behindScenesLabel');
       if (watchMovieBtn) {
         watchMovieBtn.hidden = !story.assets?.video?.file;
-        if (slide.type === 'video') {
-          watchMovieBtn.textContent = currentLang === 'it'
-            ? '🍿 Apri Sala Cinema (Schermo Intero 40s)'
-            : '🍿 Open Fullscreen Cinema (40s)';
-        } else {
-          watchMovieBtn.textContent = currentLang === 'it'
-            ? '🎬 Guarda il Film (40s)'
-            : '🎬 Watch Full Movie (40s)';
-        }
       }
-      if (regenBtn) {
-        regenBtn.textContent = currentLang === 'it'
-          ? '🔄 La storia non mi piace, rigenerala!'
-          : '🔄 Don\'t like this story? Regenerate it!';
+      if (watchMovieLabel) {
+        watchMovieLabel.textContent = slide.type === 'video'
+          ? (currentLang === 'it' ? 'Sala Cinema 40s' : 'Cinema 40s')
+          : (currentLang === 'it' ? 'Film 40s' : '40s Movie');
       }
-      if (micBtn) {
-        micBtn.textContent = currentLang === 'it'
-          ? '🎙️ + Racconta una Nuova Storia'
-          : '🎙️ + Record a New Story';
+      if (regenLabel) {
+        regenLabel.textContent = currentLang === 'it' ? 'Rigenera' : 'Regenerate';
       }
-      if (behindBtn) {
-        behindBtn.textContent = currentLang === 'it'
-          ? `📝 Audio Originale & Sbobinatura di ${authorName}`
-          : `📝 ${authorName}'s Original Voice & Transcript`;
+      if (behindLabel) {
+        behindLabel.textContent = currentLang === 'it'
+          ? `Voce di ${authorName}`
+          : `${authorName}'s Voice`;
       }
 
       // Match current slide to karaoke page timings (for video slide, use last page's karaoke timings)
@@ -3481,13 +3941,9 @@
         `;
       }).join('');
 
-      const sideParityLabel = isLeftPrimary
-        ? (currentLang === 'it' ? '📖 Pagina Sinistra (76%)' : '📖 Left Page (76%)')
-        : (currentLang === 'it' ? '📖 Pagina Destra (76%)' : '📖 Right Page (76%)');
-
-      const kickerRightHint = slide.type === 'video'
-        ? '🎬 Gemini Omni 1.2 Flash • 40s HD'
-        : (currentLang === 'it' ? '🎤 Tocca una parola per ascoltare da lì' : '🎤 Tap any word to listen from there');
+      const pageChipText = currentLang === 'it'
+        ? `Pag. ${slide.pageNum} / ${slide.totalPages}`
+        : `Page ${slide.pageNum} / ${slide.totalPages}`;
 
       const primaryPageHtml = `
         <div class="page-main-stack">
@@ -3497,7 +3953,7 @@
               <div class="book-text-header">
                 <div class="book-kicker">
                   <span>${story.emoji || '📖'} ${storyTitleKaraokeHtml}</span>
-                  <span>${pageBadgeText} (${sideParityLabel}) • <small style="text-transform:none;opacity:0.82;">${kickerRightHint}</small></span>
+                  <span class="num-chip num-chip--paper">${pageChipText}</span>
                 </div>
                 <h2 class="book-chapter-title" id="activePageHeading" tabindex="-1">${chapterTitleStaticHtml}</h2>
               </div>
@@ -3528,13 +3984,13 @@
       const companionMediaImg = companionSlide.type === 'video' ? companionSlide.poster : companionSlide.image;
       const companionBadge = companionSlide.type === 'video'
         ? '🎬 Film 40s'
-        : (currentLang === 'it' ? `📖 Pagina ${companionSlide.pageNum} / ${companionSlide.totalPages}` : `📖 Page ${companionSlide.pageNum} / ${companionSlide.totalPages}`);
+        : `Pag. ${companionSlide.pageNum} / ${companionSlide.totalPages}`;
       const companionRoleKicker = companionIdx > idx
-        ? (currentLang === 'it' ? `PAGINA ACCANTO (DESTRA • 24%) ›` : `NEXT PAGE (RIGHT • 24%) ›`)
-        : (currentLang === 'it' ? `‹ PAGINA ACCANTO (SINISTRA • 24%)` : `‹ PREVIOUS PAGE (LEFT • 24%)`);
+        ? (currentLang === 'it' ? `PAGINA ${companionSlide.pageNum} ›` : `PAGE ${companionSlide.pageNum} ›`)
+        : (currentLang === 'it' ? `‹ PAGINA ${companionSlide.pageNum}` : `‹ PAGE ${companionSlide.pageNum}`);
       const companionFlipCta = companionIdx > idx
-        ? (currentLang === 'it' ? `Leggi Pagina ${companionSlide.pageNum} ›` : `Read Page ${companionSlide.pageNum} ›`)
-        : (currentLang === 'it' ? `‹ Torna a Pagina ${companionSlide.pageNum}` : `‹ Back to Page ${companionSlide.pageNum}`);
+        ? (currentLang === 'it' ? `Pagina ${companionSlide.pageNum} ›` : `Page ${companionSlide.pageNum} ›`)
+        : (currentLang === 'it' ? `‹ Pagina ${companionSlide.pageNum}` : `‹ Page ${companionSlide.pageNum}`);
       const companionParasHtml = (companionSlide.paragraphs || []).map(p => `<p>${escapeHtml(p)}</p>`).join('');
 
       const companionPageHtml = `
@@ -3685,6 +4141,7 @@
         const dir = delta > 0 ? 'next' : 'prev';
         playPageFlipRustle(dir);
         pageIndexBySlug[story.slug] = next;
+        syncStateToUrl();
         renderActiveBook(dir);
       }
     }
@@ -3699,6 +4156,7 @@
       const dir = index > cur ? 'next' : 'prev';
       playPageFlipRustle(dir);
       pageIndexBySlug[story.slug] = index;
+      syncStateToUrl();
       renderActiveBook(dir);
     }
 
@@ -3800,8 +4258,20 @@
       });
     }
 
-    // Keyboard Left/Right arrows flip pages in the open book
+    // Keyboard Left/Right arrows flip pages in the open book, and '/' focuses live search
     window.addEventListener('keydown', (e) => {
+      const activeEl = document.activeElement;
+      const isTyping = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
+      if (e.key === '/' && !isTyping) {
+        const searchEl = document.getElementById('liveSearchInput');
+        if (searchEl) {
+          e.preventDefault();
+          searchEl.focus();
+          searchEl.select();
+          return;
+        }
+      }
+      if (isTyping) return;
       const regenDialog = document.getElementById('regenerateDialog');
       const newStoryDialog = document.getElementById('newStoryDialog');
       if (behindDialog.open || cinemaDialog?.open || regenDialog?.open || newStoryDialog?.open || activeTab === 'indice') return;

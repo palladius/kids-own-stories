@@ -2,6 +2,21 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.9.3] - 2026-11-08
+
+### Changed
+- 🏛️ **Carlessian WebApp Decluttering & 100% `audit_webapp.mjs` Compliance ([`index.html`](index.html))**:
+  - **R1–R3 (Zero "Fuffa" & Progressive Disclosure)**:
+    - Eliminato il pulsante duplicato *"+ Racconta una Nuova Storia"* che compariva due volte (in alto a destra e in fondo alla pagina).
+    - Rimossi i testi tutorial ridondanti tra parentesi dall'header delle pagine del libro (*"🎤 Tocca una parola per ascoltare da lì"*, *"📖 Pagina Sinistra (76%)"*, *"PAGINA ACCANTO (DESTRA • 24%) ›"*) e il banner prolisso sopra la vista Indice, sostituiti da chip compatti (`Pag. 1 / 4`).
+    - Aggiunta la **Tabella Sinottica L1 (`#synopticTableWrap`)** nella vista Indice (`?tab=indice`) con `font-variant-numeric: tabular-nums`, date ISO `YYYY-MM-DD` perfettamente incolonnate al pixel, badge autore stilizzati (`Ale` `#ef4444` / `Seby` `#3b82f6`), icone SVG monocromatiche `currentColor` e zebra striping sottile.
+  - **R4–R5 (Permalinks `?tab=...&page=...&kid=...&lang=...&q=...` & Sopravvivenza al Reload `F5`)**:
+    - Ogni cambio di storia, pagina del libro, filtro autore (`all` / `alessandro` / `sebastian`), lingua (`it` / `en` / `fr` / `de` / `pt`) e ricerca live aggiorna in tempo reale la query string dell'URL (`window.history.replaceState`) e `localStorage`, preservando lo stato esatto al `F5` reload.
+  - **R6–R8 (Header & Footer Canonici Carlessiani)**:
+    - Header con link Home (`data-home-link`), **Segmented Control `role="radiogroup"`** per filtrare le storie per autore (`Tutte` | `Ale` | `Seby` senza doppie emoji), **Live Search (`/` shortcut)** e selettore lingua con `data-lang="it|en|..."`.
+    - Footer canonico (`<footer>`) con versione cliccabile (`v0.9.3`), badge ambiente (`ENV: development` / `ENV: production`), azioni compatte con icone SVG monocromatiche (`Film 40s`, `Voce di Ale/Seby`, `Rigenera`) e i 4 link canonici (`GH Repo`, `GHP Live`, `GHI Issues`, `🐛 Add a Bug`).
+    - Superati al **100%** sia l'audit deterministico CDP `audit_webapp.mjs` (`9/9` sulla vista Libro e `20/20` sulla vista Indice) sia `just test` (`python3 bin/test_stories.py`).
+
 ## [0.9.2] - 2026-11-08
 
 ### Changed & Fixed
