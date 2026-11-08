@@ -172,9 +172,10 @@ Il file [`stories.yaml`](stories.yaml) nella root del repository permette di ris
           summary: "Breve riassunto della pagina per il libro multi-pagina."
 ```
 
-### Come verificare lo stato ("C'è tutto? Manca qualcosa?")
-Quando l'utente chiede uno stato delle storie o una verifica di integrità:
-1. Leggi [`stories.yaml`](stories.yaml).
-2. Verifica sul filesystem che tutti i file referenziati sotto `assets` esistano davvero e non siano vuoti (`0 byte`).
-3. Controlla se ci sono file audio in `audio/` non ancora associati a una storia in `stories.yaml` o cartelle orfane in `stories/`.
-4. Riporta una tabella riassuntiva con: **Titolo**, **Bimbo (Ale/Seby)**, **Data**, **Status**, e **Cosa manca (`missing_assets`)**.
+### Come verificare lo stato ("C'è tutto? Manca qualcosa?" — `just test`)
+Prima di ogni commit (o quando l'utente chiede una verifica di integrità), esegui **`just test`** (`python3 bin/test_stories.py`), che fallisce con exit code `1` se a qualsiasi storia manca anche solo uno tra:
+- `archive_audio.{mp3,ogg}` e `story_audio.{mp3,ogg}`
+- **Hover WOW assets**: `hover_preview.mp4` (`5s`), `title_it.mp3` e `title_en.mp3` (`bin/generate_hover_wow_assets.py`)
+- **Audiolibri Studio + Karaoke Whisper**: `narrated_{it,en}.mp3` (`bin/generate_story_audiobooks.py`) e `karaoke_{it,en}.json` (`bin/build_karaoke_timings.py`)
+- **Film 40s (`4 × 10s`)**: `video_*.mp4` (`>= 35s`, `bin/generate_40s_story_videos.py`)
+- **Illustrazioni 16:9 Orizzontali** (`width > height`) e testo in **5 lingue** (`it`, `en`, `fr`, `de`, `pt`).

@@ -311,13 +311,13 @@
       perspective: 2000px;
     }
 
-    /* PHYSICAL HARDCOVER BOOK SPREAD */
+    /* PHYSICAL HARDCOVER BOOK SPREAD (ASYMMETRIC WIDESCREEN ALBUM FOR 16:9 ARTWORK) */
     .open-book {
       width: 100%;
       height: 100%;
       max-height: 100%;
       display: grid;
-      grid-template-columns: 1.06fr 1fr;
+      grid-template-columns: 1.32fr 0.94fr;
       grid-template-rows: minmax(0, 1fr);
       background: var(--paper-bg);
       border-radius: 18px;
@@ -335,8 +335,8 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 51.9%;
-      width: 48.1%;
+      left: 58.4%;
+      width: 41.6%;
       pointer-events: none;
       z-index: 30;
       opacity: 0;
@@ -438,22 +438,145 @@
       100% { transform: rotateY(0deg); opacity: 1; }
     }
 
-    /* LEFT PAGE: ILLUSTRATION OR VIDEO */
+    /* LEFT PAGE: 16:9 HORIZONTAL ARTWORK STAGE + VISUAL STORYBOARD FILMSTRIP (ZERO CROPPING!) */
     .book-page-left {
       position: relative;
-      background: #14110f;
+      background: radial-gradient(circle at center, #1e1612 0%, #0b0908 100%);
       overflow: hidden;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      border-right: 1px solid rgba(0, 0, 0, 0.25);
+      justify-content: space-between;
+      padding: clamp(10px, 1.4vw, 18px) clamp(12px, 1.6vw, 22px);
+      gap: 10px;
+      border-right: 1px solid rgba(0, 0, 0, 0.35);
     }
 
-    .book-page-left img {
+    .left-art-shell {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .left-art-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 100%;
+      background: #090d16;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 183, 3, 0.55);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.82), 0 0 24px rgba(255, 183, 3, 0.14);
+      cursor: zoom-in;
+    }
+
+    .left-art-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #090d16;
+      transition: transform 0.25s ease;
+    }
+
+    .left-art-frame:hover img {
+      transform: scale(1.012);
+    }
+
+    /* Bottom 16:9 Storyboard Filmstrip on Left Page */
+    .left-filmstrip-bar {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(11, 15, 25, 0.76);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 183, 3, 0.28);
+      border-radius: 14px;
+      padding: 8px 10px;
+    }
+
+    .left-filmstrip-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.76rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .left-filmstrip-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+      gap: 7px;
+      width: 100%;
+    }
+
+    .filmstrip-thumb-btn {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: #000;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .filmstrip-thumb-btn img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      opacity: 0.72;
+      transition: opacity 0.18s ease;
+    }
+
+    .filmstrip-thumb-btn:hover img,
+    .filmstrip-thumb-btn.active img {
+      opacity: 1;
+    }
+
+    .filmstrip-thumb-btn.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(255, 183, 3, 0.45), 0 4px 12px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .filmstrip-thumb-label {
+      position: absolute;
+      bottom: 3px;
+      left: 4px;
+      right: 4px;
+      background: rgba(11, 15, 25, 0.84);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 5px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .filmstrip-thumb-btn.video-thumb .filmstrip-thumb-label {
+      background: linear-gradient(135deg, #e50914, #db2777);
     }
 
     /* 16:9 HORIZONTAL NETFLIX-STYLE MINI-THEATER ON LEFT PAGE (NEVER VERTICAL/CROPPED) */
@@ -2719,6 +2842,40 @@
       }
     }
 
+    function openPhotoLightbox(pageIdx = 0) {
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      if (!story) return;
+      const pages = story.assets?.pages || [];
+      const clampedIdx = Math.max(0, Math.min(pageIdx, pages.length - 1));
+      const p = pages[clampedIdx];
+      if (!p) return;
+
+      const storyTitle = getLocalizedField(story, 'title');
+      const pTitle = getLocalizedField(p, 'title');
+      document.getElementById('cinemaDialogTitle').textContent =
+        `🖼️ ${story.emoji || '📖'} ${storyTitle} — Pagina ${clampedIdx + 1}/${pages.length}: ${pTitle}`;
+
+      const thumbsBtns = pages.map((pg, i) => `
+        <button type="button" class="page-turn-btn ${i === clampedIdx ? 'primary' : ''}"
+          onclick="openPhotoLightbox(${i})">
+          🖼️ Pag. ${i + 1}: ${escapeHtml(getLocalizedField(pg, 'title').replace(/^(Capitolo|Chapter|Chapitre|Kapitel|Capítulo)\s+\d+\s*[—\-:]\s*/i, ''))}
+        </button>
+      `).join('');
+
+      document.getElementById('cinemaDialogBody').innerHTML = `
+        <div style="position:relative;background:#05070c;border-radius:16px;overflow:hidden;border:2px solid rgba(255,183,3,0.55);box-shadow:0 16px 40px rgba(0,0,0,0.85);margin-bottom:14px;">
+          <img src="${p.image}?v=0.8.2" alt="${escapeHtml(pTitle)}"
+            style="width:100%;aspect-ratio:16/9;max-height:70vh;object-fit:contain;display:block;margin:0 auto;">
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;">
+          ${thumbsBtns}
+        </div>
+      `;
+
+      const dialog = document.getElementById('cinemaDialog');
+      if (!dialog.open) dialog.showModal();
+    }
+
     function updateBookMovieActHighlight(currentTimeSec) {
       const actIdx = Math.min(3, Math.max(0, Math.floor((currentTimeSec || 0) / 10)));
       document.querySelectorAll('.movie-act-card[data-act-idx]').forEach(btn => {
@@ -2920,6 +3077,34 @@
       const shouldStartUnmuted = unmuteNextVideoRender;
       unmuteNextVideoRender = false;
 
+      const squareSvg = `<svg class="netflix-square-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      const netflixMaxLabel = currentLang === 'it'
+        ? 'Tutto Schermo'
+        : 'Fullscreen';
+      const widenLabel = isBookWideTheater
+        ? (currentLang === 'it' ? '📖 Riduci Pagina' : '📖 Standard Split')
+        : (currentLang === 'it' ? '↔️ Allarga Pagina' : '↔️ Widen Page');
+
+      const filmstripThumbsHtml = slides.map((sItem, sIdx) => {
+        if (sItem.type === 'video') {
+          return `
+            <button type="button" class="filmstrip-thumb-btn video-thumb ${sIdx === idx ? 'active' : ''}"
+              onclick="jumpToStoryMovie(false)" title="Guarda il Film Animato 16:9 (40s)">
+              <img src="${sItem.poster}?v=0.8.2" alt="Film 40s">
+              <span class="filmstrip-thumb-label">🎬 Film 40s</span>
+            </button>
+          `;
+        }
+        const pLabel = currentLang === 'it' ? `Pag. ${sIdx + 1}` : `P. ${sIdx + 1}`;
+        return `
+          <button type="button" class="filmstrip-thumb-btn ${sIdx === idx ? 'active' : ''}"
+            onclick="goToPage(${sIdx})" title="${escapeHtml(sItem.title)}">
+            <img src="${sItem.image}?v=0.8.2" alt="${pLabel}">
+            <span class="filmstrip-thumb-label">${pLabel}</span>
+          </button>
+        `;
+      }).join('');
+
       if (slide.type === 'video') {
         // Pause audiobook narrator when entering the movie spread so voices don't overlap
         if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
@@ -2931,23 +3116,16 @@
         const soundBtnLabel = shouldStartUnmuted
           ? (currentLang === 'it' ? '🔊 Audio IT Attivo' : '🔊 Audio Active')
           : (currentLang === 'it' ? '🔇 Attiva Audio (IT)' : '🔇 Unmute Audio (IT)');
-        const widenLabel = isBookWideTheater
-          ? (currentLang === 'it' ? '📖 Riduci Pagina' : '📖 Standard Split')
-          : (currentLang === 'it' ? '↔️ Allarga Player' : '↔️ Widen Player');
-        const netflixMaxLabel = currentLang === 'it'
-          ? 'Tutto Schermo'
-          : 'Fullscreen';
-        const squareSvg = `<svg class="netflix-square-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
         leftEl.innerHTML = `
-          <div class="video-ambient-backdrop" style="background-image:url('${slide.poster}?v=0.8.1')"></div>
+          <div class="video-ambient-backdrop" style="background-image:url('${slide.poster}?v=0.8.2')"></div>
           <div class="netflix-player-shell">
             <div class="netflix-video-stage" ondblclick="maximizeBookMovieToFullscreen()" title="Doppio clic o clicca sul quadratino per Tutto Schermo">
               <button type="button" class="netflix-corner-expand-btn" onclick="maximizeBookMovieToFullscreen()" title="Ingrandisci a Tutto Schermo (Stile Netflix)">
                 ${squareSvg}
                 <span>${netflixMaxLabel}</span>
               </button>
-              <video id="bookSpreadVideo" controls autoplay loop ${shouldStartUnmuted ? '' : 'muted'} playsinline width="1280" height="720" preload="metadata" poster="${slide.poster}?v=0.8.1">
+              <video id="bookSpreadVideo" controls autoplay loop ${shouldStartUnmuted ? '' : 'muted'} playsinline width="1280" height="720" preload="metadata" poster="${slide.poster}?v=0.8.2">
                 <source src="${slide.video}" type="video/mp4">
               </video>
             </div>
@@ -2956,7 +3134,7 @@
                 <button type="button" class="netflix-bar-btn ${shouldStartUnmuted ? 'sound-active' : ''}" id="bookVideoSoundBtn" onclick="toggleBookVideoSound()">
                   ${soundBtnLabel}
                 </button>
-                <button type="button" class="netflix-bar-btn" id="bookWideTheaterBtn" onclick="toggleBookWideTheater()" title="Allarga il player 16:9 nel libro">
+                <button type="button" class="netflix-bar-btn" id="bookWideTheaterBtn" onclick="toggleBookWideTheater()" title="Allarga la pagina sinistra 16:9 nel libro">
                   ${widenLabel}
                 </button>
               </div>
@@ -2966,14 +3144,37 @@
               </button>
             </div>
           </div>
-          <span class="left-page-badge">🎬 Film 16:9 HD (40s • 4 Atti) • ${pageBadgeText}</span>
+          <div class="left-filmstrip-bar">
+            <div class="left-filmstrip-header">
+              <span>🎬 Film 16:9 HD (40s • 4 Atti) • ${pageBadgeText}</span>
+              <span>Tocca una miniatura per cambiare pagina</span>
+            </div>
+            <div class="left-filmstrip-thumbs">${filmstripThumbsHtml}</div>
+          </div>
         `;
       } else {
         leftEl.classList.remove('is-video-page');
-        bookEl.classList.remove('book-wide-theater');
+        bookEl.classList.toggle('book-wide-theater', isBookWideTheater);
         leftEl.innerHTML = `
-          <img src="${slide.image}?v=0.8.1" alt="${slide.title}">
-          <span class="left-page-badge">${story.emoji || '📖'} ${pageBadgeText}</span>
+          <div class="video-ambient-backdrop" style="background-image:url('${slide.image}?v=0.8.2')"></div>
+          <div class="left-art-shell">
+            <div class="left-art-frame" onclick="openPhotoLightbox(${idx})" title="Clicca per ingrandire l'illustrazione 16:9 a Tutto Schermo">
+              <button type="button" class="netflix-corner-expand-btn" onclick="event.stopPropagation(); openPhotoLightbox(${idx})" title="Ingrandisci Illustrazione 16:9 a Tutto Schermo">
+                ${squareSvg}
+                <span>${netflixMaxLabel}</span>
+              </button>
+              <img src="${slide.image}?v=0.8.2" alt="${escapeHtml(slide.title)}">
+            </div>
+          </div>
+          <div class="left-filmstrip-bar">
+            <div class="left-filmstrip-header">
+              <span>${story.emoji || '📖'} Illustrazione 16:9 Originale • ${pageBadgeText}</span>
+              <button type="button" class="netflix-bar-btn" id="bookWideTheaterBtn" style="padding:3px 9px;font-size:0.72rem;" onclick="toggleBookWideTheater()">
+                ${widenLabel}
+              </button>
+            </div>
+            <div class="left-filmstrip-thumbs">${filmstripThumbsHtml}</div>
+          </div>
         `;
       }
 

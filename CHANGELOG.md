@@ -2,6 +2,17 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.8.3] - 2026-11-08
+
+### Fixed & Changed
+- 🖼️ **Impaginazione Intelligente "Widescreen Album 16:9" per Tutte le Illustrazioni del Libro (`index.html`)**:
+  - **Zero Cropping Orizzontale sulle Foto 16:9**: eliminato `height: 100%; object-fit: cover` su `.book-page-left img` che tagliava i lati destro e sinistro delle illustrazioni 16:9 (es. il muso dello Scania e il vortice a Pagina 3 di *Cavalletto Marie*, o metà di Pupurabbu a Pagina 1 di *Seby & Pupurabbu*).
+  - **Griglia Libro Asimmetrica (`1.32fr : 0.94fr`) + Cornice 16:9 + Storyboard Filmstrip**:
+    - La pagina sinistra dedica ora il 58% della larghezza del libro alla tavola illustrata orizzontale (`aspect-ratio: 16 / 9; object-fit: contain`) incorniciata su sfondo ambient sfocato, con pulsante **`[ ⛶ Tutto Schermo ]`** (`openPhotoLightbox()`) nell'angolo in alto a destra per ingrandire qualsiasi illustrazione a pieno schermo.
+    - Nella fascia inferiore della pagina sinistra è stata aggiunta la **Storyboard Filmstrip 16:9** (`Pag. 1`, `Pag. 2`, `Pag. 3`, `Pag. 4`, `🎬 Film 40s`) con miniature orizzontali cliccabili e pulsante `↔️ Allarga Pagina`, riempiendo armoniosamente l'altezza della pagina senza mai tagliare un solo pixel delle foto.
+- 🧪 **Test Deterministico di Integrità `just test` (`justfile`, `bin/test_stories.py`, `GEMINI.md`)**:
+  - Aggiunto `just test` (`python3 bin/test_stories.py`) che verifica con `ffprobe` e JSON schema tutte le storie in `stories.yaml` e **fallisce (`exit 1`)** se a una storia manca l'hover video (`hover_preview.mp4`), l'annuncio vocale del titolo (`title_it.mp3`, `title_en.mp3`), l'audiolibro (`narrated_it.mp3`, `narrated_en.mp3`), il Karaoke Whisper (`karaoke_it.json`, `karaoke_en.json`), il film da 40s (`video_*.mp4 >= 35s`), le illustrazioni 16:9 orizzontali (`width > height`) o le 5 lingue (`it`, `en`, `fr`, `de`, `pt`).
+
 ## [0.8.2] - 2026-11-08
 
 ### Fixed & Changed
