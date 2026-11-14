@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.11.1] - 2026-11-14
+
+### Changed
+- 🎬✨ **Film Animato Pixar 3D Romanzato da 40s per la Sardegna (`video_sardegna_famiglia.mp4` + `hover_preview.mp4` + `bin/generate_40s_story_videos.py`)**:
+  - Sostituita la semplice carrellata statica di foto con un vero **film d'animazione 3D stile Pixar (*Luca* / *Up*) di 40 secondi (4 atti da 10s generati con Gemini Omni Flash)** a partire dalle 4 trasposizioni Pixar fedeli delle foto reali (`pixar_act1_cala_gonone.jpg` .. `pixar_act4_arbatax_magia.jpg`):
+    1. **Atto 1 (Cala Gonone)**: Mamma Kate col boccaglio giallo, Papà Riccardo col doppio segno di vittoria, Ale e Seby con le maschere da sub si tuffano in un mare di cristallo circondati da un banco magico di pesci d'argento luminosi.
+    2. **Atto 2 (Golfo di Orosei)**: A bordo del gommone sotto le falesie di Cala Luna e Cala Goloritzè, Capitan Nonna Lucilla col giubbotto di salvataggio arancione guida Mamma Kate, Seby e Ale mentre i delfini saltano in festa tra le onde turchesi.
+    3. **Atto 3 (Supramonte)**: In cima al grande canyon bianco del Supramonte al tramonto, Seby e Ale si stringono in un abbraccio fraterno mentre un'aquila reale dorata plana nel cielo lasciando una scia di stelle.
+    4. **Atto 4 (Arbatax Park)**: Sulla penisola di Arbatax davanti agli scogli di granito rosa e alla barca a vela bianca, Mamma Kate scocca una freccia d'oro tra gli applausi di Nonna Lucilla e Papà Riccardo, mentre Seby con la maglia azzurra #10 di Maradona del Napoli e Ale accarezzano il tenero asinello sardo sorridente.
+
 ## [0.11.0] - 2026-11-14
 
 ### Added & Changed

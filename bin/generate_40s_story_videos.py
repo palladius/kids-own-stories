@@ -455,6 +455,72 @@ STORY_SPECS = [
             },
         ],
     },
+    {
+        "slug": "storia-sardegna-cala-gonone-arbatax-famiglia",
+        "title": "La Grande Avventura in Sardegna: Cala Gonone, il Gommone con Nonna Lucilla e Arbatax",
+        "folder": ROOT / "stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia",
+        "output_mp4": "video_sardegna_famiglia.mp4",
+        "acts": [
+            {
+                "act": 1,
+                "first_frame": "pixar_act1_cala_gonone.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated Pixar-style family feature film (like Luca), 16:9 HD. "
+                    "Starting from the first frame in the sparkling crystal-clear turquoise bay of Cala Gonone in Sardinia, "
+                    "cartoon Dad Riccardo with beard and glasses flashing two victory peace signs, cartoon Mum Kate holding "
+                    "her bright yellow snorkel, and cartoon brothers Ale and Seby wearing diving masks splash joyfully "
+                    "as a magical school of glowing silver fish and golden sea bubbles dance in a circle around them! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Atterrati in Sardegna a Cala Gonone, Mamma Kate, Papà Riccardo, Ale e Seby si tuffano in un mare di cristallo tra pesci d'argento incantati!\" "
+                    "Accompanied by joyful water splashes, sparkling magical chimes, and sunny Mediterranean orchestral adventure music."
+                ),
+            },
+            {
+                "act": 2,
+                "first_frame": "pixar_act2_gommone_nonna.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated Pixar-style family feature film (like Luca or Moana), 16:9 HD. "
+                    "Starting from the first frame aboard an inflatable speedboat cruising along the towering white limestone "
+                    "cliffs and sea caves of the Gulf of Orosei in Sardinia: cartoon Grandma Nonna Lucilla in the center "
+                    "proudly wears her bright orange lifejacket and round glasses like a heroic sea captain, flanked by "
+                    "cartoon Mum Kate in sunglasses hugging little Seby in his shark shirt and big brother Ale smiling on the right, "
+                    "while playful dolphins leap in synchronized arcs across the turquoise waves behind the boat! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"A bordo del gommone nel Golfo di Orosei, Capitan Nonna Lucilla col giubbotto arancione guida Mamma Kate, Ale e Seby tra falesie giganti e delfini in festa!\" "
+                    "Accompanied by speedboat wave splashes, joyful dolphin clicks, and heroic nautical orchestral strings."
+                ),
+            },
+            {
+                "act": 3,
+                "first_frame": "pixar_act3_supramonte_fratelli.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated Pixar-style family adventure film (like Up), 16:9 HD. "
+                    "Starting from the first frame high atop the dramatic white limestone canyon of the Supramonte mountains "
+                    "in Sardinia at golden hour, 6-year-old cartoon Seby in his blue shirt wraps his arm tightly around the "
+                    "shoulders of his 8-year-old big brother Ale in his green frog t-shirt in a warm brotherly hug, while "
+                    "a majestic golden eagle soars gracefully across the sunlit mountain peaks trailing golden stardust! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Saliti fino alle vette selvagge del Supramonte, i fratelli Ale e Seby si stringono in un grande abbraccio mentre l'aquila reale vola nel cielo dorato!\" "
+                    "Accompanied by a gentle mountain breeze, eagle cry, and soaring emotional orchestral melody."
+                ),
+            },
+            {
+                "act": 4,
+                "first_frame": "pixar_act4_arbatax_magia.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated Pixar-style family feature film (like Luca), 16:9 HD. "
+                    "Starting from the first frame on the sunny peninsula of Arbatax Park overlooking the emerald bay with "
+                    "pink granite rocks and a white sailboat gliding across the water: on the left, cartoon Mum Kate draws her "
+                    "wooden bow and releases a dazzling golden arrow of light while cartoon Grandma Nonna Lucilla and cartoon "
+                    "Dad Riccardo with blue swim goggles around his neck clap and cheer; on the right, cartoon Seby in his "
+                    "light-blue Napoli Mars jersey and brother Ale happily pet a smiling Sardinian miniature donkey! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Ad Arbatax Mamma Kate scocca una freccia d'oro tra gli applausi di Nonna e Papà, mentre Seby con la maglia di Maradona e Ale accarezzano il dolce asinello sardo!\" "
+                    "Accompanied by a magical golden arrow whoosh, happy applause, cute donkey bray, and a triumphant heartwarming orchestral finale."
+                ),
+            },
+        ],
+    },
 ]
 
 
