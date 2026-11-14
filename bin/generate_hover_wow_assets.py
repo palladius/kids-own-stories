@@ -151,6 +151,27 @@ STORIES = [
             "scena4_desk_camera_ale.jpg",
         ],
     },
+    {
+        "slug": "storia-sardegna-cala-gonone-arbatax-famiglia",
+        "folder": ROOT / "stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia",
+        "title_prompt_it": (
+            "Leggi questo titolo di fiaba con voce femminile dolcissima, suadente, calda, calma e rassicurante: "
+            "«La Grande Avventura in Sardegna: Cala Gonone, il Gommone con Nonna Lucilla e Mamma Kate, e Arbatax. Una storia di famiglia per Alessandro e Sebastian.»"
+        ),
+        "title_prompt_en": (
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice: "
+            "\"The Great Sardinia Family Adventure: Cala Gonone, the Speedboat with Grandma Lucilla and Mummy Kate, and Arbatax. A family story for Alessandro and Se-bas-ti-an.\""
+        ),
+        "existing_video": "video_sardegna_famiglia.mp4",
+        "scenes": [
+            "scena1_cala_gonone_mare.jpg",
+            "scena2_cena_nonna_lucilla.jpg",
+            "scena3_gommone_golfo_orosei.jpg",
+            "scena4_supramonte_fratelli.jpg",
+            "scena5_arbatax_arco_asinelli.jpg",
+            "scena6_scogli_arbatax_snorkeling.jpg",
+        ],
+    },
 ]
 
 

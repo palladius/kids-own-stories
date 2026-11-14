@@ -2,6 +2,21 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.11.0] - 2026-11-14
+
+### Added & Changed
+- 🏝️🚤🏹 **7ª Storia Completa di Famiglia (6 Pagine con Foto Reali da Immich): *La Grande Avventura in Sardegna: Cala Gonone, il Gommone con Nonna Lucilla e Arbatax* (`stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/`)**:
+  - Racconta la vacanza di famiglia dal 25 settembre al 2 ottobre 2026 in 6 pagine illustrate con le vere foto da Immich (`Sinologo`) in formato `16:9` widescreen:
+    1. *Benvenuti a Cala Gonone: Acqua di Cristallo e Maschere da Sub!* (`scena1_cala_gonone_mare.jpg`)
+    2. *Tramonto a Cala Gonone: Cena sul Mare con Nonna Lucilla e la Luna Piena* (`scena2_cena_nonna_lucilla.jpg`)
+    3. *Capitan Nonna Lucilla e Mamma Kate: In Gommone nel Golfo di Orosei!* (`scena3_gommone_golfo_orosei.jpg`)
+    4. *Fratelli sul tetto della Sardegna: L'Abbraccio tra i Monti del Supramonte* (`scena4_supramonte_fratelli.jpg`)
+    5. *Arbatax Park Resort: Le Frecce di Mamma Kate, Maradona #10 e l'Asinello di Seby!* (`scena5_arbatax_arco_asinelli.jpg`)
+    6. *Gli Esploratori degli Scogli di Ogliastra: Arrivederci Sardegna!* (`scena6_scogli_arbatax_snorkeling.jpg`)
+  - Include i bollini cartoon anche per **Mamma Kate (`assets/avatars/kate.png`)** e **Nonna Lucilla (`assets/avatars/lucilla.png`)**, audiolibri studio bilingui (`narrated_it.mp3`, `narrated_en.mp3`), Karaoke Whisper a 6 pagine (`karaoke_it.json`, `karaoke_en.json`), audio hover del titolo (`title_it.mp3`, `title_en.mp3`) e film da 40s (`video_sardegna_famiglia.mp4`).
+- 🍿 **Pulsanti Netflix Espliciti & Catalogo Offline ([`index.html`](index.html), [`netflix.html`](netflix.html), [`stories_catalog.js`](stories_catalog.js))**:
+  - Rinominato il tab nella topbar in **`🍿 Netflix (StorieFlix)`** e aggiunti i pulsanti rapidi **`🎬 Film 40s`** e **`🍿 Netflix (StorieFlix)`** direttamente nella barra del Karaoke sopra il libro.
+
 ## [0.10.0] - 2026-11-14
 
 ### Added & Changed
