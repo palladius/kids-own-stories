@@ -2567,7 +2567,7 @@
         <option value="0.5">0.5x</option>
         <option value="0.75">0.75x</option>
         <option value="0.9">0.9x</option>
-        <option value="1">1.0x</option>
+        <option value="1.0">1.0x</option>
         <option value="1.1" selected>1.1x (+10%)</option>
         <option value="1.2">1.2x</option>
         <option value="1.25">1.25x</option>
@@ -2575,6 +2575,12 @@
         <option value="1.75">1.75x</option>
         <option value="2">2.0x</option>
       </select>
+      <button type="button" class="tab-pill netflix-tab-pill" style="padding:3px 10px;font-size:0.76rem;" onclick="openCinemaModal(0)" title="Guarda il Film Animato di 40s di questa storia a Tutto Schermo">
+        🎬 Film 40s
+      </button>
+      <a href="netflix.html" class="tab-pill netflix-tab-pill" style="padding:3px 10px;font-size:0.76rem;text-decoration:none;" title="Apri la pagina Netflix StorieFlix con tutti i film">
+        🍿 Netflix (StorieFlix)
+      </a>
     </div>
   </header>
 
@@ -3492,18 +3498,24 @@
     function getKidAvatarUrl(authorId) {
       if (authorId === 'sebastian') return 'assets/avatars/seby.png';
       if (authorId === 'riccardo') return 'assets/avatars/riccardo.png';
+      if (authorId === 'kate') return 'assets/avatars/kate.png';
+      if (authorId === 'lucilla') return 'assets/avatars/lucilla.png';
       return 'assets/avatars/ale.png';
     }
 
     function getPersonAvatarClass(personId) {
       if (personId === 'sebastian') return 'seby';
       if (personId === 'riccardo') return 'riccardo';
+      if (personId === 'kate') return 'kate';
+      if (personId === 'lucilla') return 'lucilla';
       return 'ale';
     }
 
     function getPersonDisplayName(personId) {
       if (personId === 'sebastian') return 'Sebastian (Seby)';
       if (personId === 'riccardo') return 'Papà Riccardo';
+      if (personId === 'kate') return 'Mamma Kate';
+      if (personId === 'lucilla') return 'Nonna Lucilla';
       return 'Alessandro (Ale)';
     }
 
@@ -3518,16 +3530,17 @@
       const primaryClass = getPersonAvatarClass(story.author);
       const primaryLabel = getPersonDisplayName(story.author);
 
-      let secondBubbleHtml = '';
-      const recipients = Array.isArray(story.recipients) ? story.recipients : [];
-      const firstRecipient = recipients.find(r => r !== story.author);
-      if (firstRecipient) {
-        const recAvatar = getKidAvatarUrl(firstRecipient);
-        const recClass = getPersonAvatarClass(firstRecipient);
-        const recLabel = getPersonDisplayName(firstRecipient);
-        secondBubbleHtml = `<span class="card-kid-avatar-bubble ${recClass} co-star" title="Storia dedicata a: ${recLabel}"><img src="${recAvatar}" alt="${recLabel}"></span>`;
+      let extraBubblesHtml = '';
+      const recipients = (Array.isArray(story.recipients) ? story.recipients : []).filter(r => r !== story.author);
+      if (recipients.length > 0) {
+        extraBubblesHtml = recipients.map(rId => {
+          const recAvatar = getKidAvatarUrl(rId);
+          const recClass = getPersonAvatarClass(rId);
+          const recLabel = getPersonDisplayName(rId);
+          return `<span class="card-kid-avatar-bubble ${recClass} co-star" title="Storia dedicata a: ${recLabel}"><img src="${recAvatar}" alt="${recLabel}"></span>`;
+        }).join('');
       } else if (hasSebyCoStar(story)) {
-        secondBubbleHtml = `<span class="card-kid-avatar-bubble seby co-star" title="Co-protagonista: Sebastian (Seby)"><img src="assets/avatars/seby.png" alt="Seby"></span>`;
+        extraBubblesHtml = `<span class="card-kid-avatar-bubble seby co-star" title="Co-protagonista: Sebastian (Seby)"><img src="assets/avatars/seby.png" alt="Seby"></span>`;
       }
 
       return `
@@ -3535,7 +3548,7 @@
           <span class="card-kid-avatar-bubble ${primaryClass}" title="Scritta da: ${primaryLabel}">
             <img src="${primaryAvatar}" alt="${primaryLabel}">
           </span>
-          ${secondBubbleHtml}
+          ${extraBubblesHtml}
         </div>
       `;
     }
@@ -3568,7 +3581,7 @@
           onclick="selectTab('netflix')"
           title="Modalità Netflix: solo i video, partono in piccolo in hover e in grande al click!">
           ${tvSvg}
-          <span>StorieFlix</span>
+          <span>🍿 Netflix (StorieFlix)</span>
         </button>
       `;
 

@@ -47,6 +47,28 @@ authors:
     appearance: "Friendly Italian dad with glasses, warm smile, short brown hair and groomed beard"
     folder: stories/alessandro
     audio_folder: audio/alessandro
+  kate:
+    id: kate
+    name: "Mamma Kate"
+    nicknames: ["Mummy", "Kate"]
+    emoji: "👩🏼"
+    color: "#A855F7"
+    avatar: assets/avatars/kate.png
+    avatar_video: assets/avatars/kate.mp4
+    appearance: "Warm blonde mum with bright smile"
+    folder: stories/alessandro
+    audio_folder: audio/alessandro
+  lucilla:
+    id: lucilla
+    name: "Nonna Lucilla"
+    nicknames: ["Nonna", "Lucilla"]
+    emoji: "👵🏻"
+    color: "#EC4899"
+    avatar: assets/avatars/lucilla.png
+    avatar_video: assets/avatars/lucilla.mp4
+    appearance: "Loving Italian grandmother with dark curly hair and pearl necklace"
+    folder: stories/alessandro
+    audio_folder: audio/alessandro
 
 stories:
   - id: 2026-11-06-storia-dello-zaino-del-drago-e-dei-puffins
@@ -1206,4 +1228,250 @@ stories:
         text: "Questa è la storia della nascita di Sguisatazzo, il computer di Alessandro: un Raspberry Pi 400 la cui tastiera bianca e rosa un giorno si svegliò, prese coscienza e si staccò da un computer cattivo per diventare un computer esso stesso!"
       - speaker: "Papà Riccardo"
         text: "Scappato di casa, Sguisatazzo si trovò a Zurigo e suonò al campanello di Casa Carlesso, dove il tenero Alessandro lo adottò. Da allora questa bellissima tastiera bianco/rosa è sul suo desk in camera da letto di Ale a fargli compagnia con giochi e programmi educativi!"
+
+  - id: 2026-10-02-storia-sardegna-cala-gonone-arbatax-famiglia
+    slug: storia-sardegna-cala-gonone-arbatax-famiglia
+    short_title: "Sardegna: Cala Gonone & Arbatax"
+    short_title_en: "Sardinia: Cala Gonone & Arbatax"
+    short_title_fr: "Sardaigne : Cala Gonone & Arbatax"
+    short_title_de: "Sardinien: Cala Gonone & Arbatax"
+    short_title_pt: "Sardenha: Cala Gonone & Arbatax"
+    title: "La Grande Avventura in Sardegna: Cala Gonone, il Gommone con Nonna Lucilla e Arbatax"
+    title_en: "The Great Sardinia Family Adventure: Cala Gonone, the Speedboat with Grandma Lucilla, and Arbatax"
+    title_fr: "La Grande Aventure en Sardaigne : Cala Gonone, le Bateau avec Mamie Lucilla et Arbatax"
+    title_de: "Das Große Familienabenteuer auf Sardinien: Cala Gonone, das Schlauchboot mit Oma Lucilla und Arbatax"
+    title_pt: "A Grande Aventura na Sardenha: Cala Gonone, o Bote com a Vovó Lucilla e Arbatax"
+    emoji: "🏝️🚤🏹"
+    author: riccardo
+    authors: ["riccardo", "kate", "lucilla"]
+    recipients: ["alessandro", "sebastian", "kate", "lucilla"]
+    author_age_at_recording: 50
+    co_authors: ["Alessandro", "Sebastian", "Mamma Kate", "Nonna Lucilla"]
+    created_at: "2026-10-02"
+    location: "Cala Gonone & Arbatax (Sardegna)"
+    language: "it"
+    folder: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia
+    quote: "«Da Cala Gonone al Golfo di Orosei sul gommone con Nonna Lucilla e Mamma Kate, fino alle frecce e agli asinelli di Arbatax: la Sardegna insieme è pura magia!» — Famiglia Carlesso"
+    quote_en: "“From Cala Gonone to the Gulf of Orosei on the speedboat with Grandma Lucilla and Mummy Kate, all the way to archery and donkeys in Arbatax: Sardinia together is pure magic!” — Carlesso Family"
+    quote_fr: "« De Cala Gonone au Golfe d'Orosei en bateau avec Mamie Lucilla et Maman Kate, jusqu'au tir à l'arc et aux petits ânes d'Arbatax : la Sardaigne ensemble est pure magie ! » — Famille Carlesso"
+    quote_de: "„Von Cala Gonone mit Oma Lucilla und Mama Kate im Schlauchboot durch den Golf von Orosei bis zum Bogenschießen und den Eseln in Arbatax: Sardinien zusammen ist pure Magie!“ — Familie Carlesso"
+    quote_pt: "“De Cala Gonone ao Golfo de Orosei de bote com a Vovó Lucilla e a Mamãe Kate, até o arco e flecha e os burrinhos de Arbatax: a Sardenha em família é pura magia!” — Família Carlesso"
+    rating:
+      score: 9.9
+      votes: 5
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
+    status: complete
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
+      web_page: true
+    missing_assets: []
+
+    assets:
+      archive_audio:
+        mp3: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_it.mp3
+        ogg: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_it.mp3
+      story_audio:
+        mp3: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_it.mp3
+        ogg: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_it.mp3
+      narrated_audio:
+        it: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_it.mp3
+        en: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/karaoke_it.json
+        en: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/karaoke_en.json
+      title_audio:
+        it: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/title_it.mp3
+        en: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/title_en.mp3
+      hover_video: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/hover_preview.mp4
+      readme: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/README.md
+      web_page: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/index.html
+      video:
+        file: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/video_sardegna_famiglia.mp4
+        model: gemini-omni-flash-preview
+        resolution: "1280x720"
+        duration_seconds: 40
+      pages:
+        - page: 1
+          title: "Benvenuti a Cala Gonone: Acqua di Cristallo e Maschere da Sub!"
+          title_en: "Welcome to Cala Gonone: Crystal Water and Snorkel Masks!"
+          title_fr: "Bienvenue à Cala Gonone : Eau Cristalline et Masques de Plongée !"
+          title_de: "Willkommen in Cala Gonone: Kristallklares Wasser und Schnorchelmasken!"
+          title_pt: "Bem-vindos a Cala Gonone: Água Cristalina e Máscaras de Mergulho!"
+          image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena1_cala_gonone_mare.jpg
+          summary: "Atterrati a Olbia da Zurigo e da Bologna con Nonna Lucilla, Mamma Kate, Papà Riccardo, Ale e Seby si tuffano nelle acque trasparenti di Cala Gonone."
+          paragraphs_it:
+            - "Che emozione atterrare a Olbia per la grande vacanza di famiglia in Sardegna! Da Zurigo sono arrivati Papà Riccardo, Mamma Kate, Alessandro e Sebastian, mentre da Bologna è volata la mitica Nonna Lucilla: tutti insieme sono scesi tra i profumi di mirto fino all'Albergo L'Oasi di Cala Gonone, dove li aspettava anche lo zio Massimo."
+            - "Appena posate le valigie, nessuno ha resistito al richiamo del mare! Sulla spiaggia dorata di Cala Gonone l'acqua era così limpida e scintillante che sembrava fatta di vetro azzurro e diamanti."
+            - "Mamma Kate con il boccaglio giallo in mano, Papà Riccardo con il segno della vittoria e i fratellini Ale e Seby con le maschere da sub si sono tuffati insieme tra i pesciolini argentati: l'avventura sarda era ufficialmente cominciata!"
+          paragraphs_en:
+            - "What a thrill to land in Olbia for the great family holiday in Sardinia! From Zurich arrived Daddy Riccardo, Mummy Kate, Alessandro, and Sebastian, while wonderful Grandma Lucilla flew in from Bologna: together they drove down through the scent of wild myrtle to Albergo L'Oasi in Cala Gonone, where cousin Massimo welcomed them."
+            - "The moment the suitcases were set down, nobody could resist the call of the sea! On the golden beach of Cala Gonone, the water was so clear and sparkling that it looked like blue glass and diamonds."
+            - "Mummy Kate holding her yellow snorkel, Daddy Riccardo flashing a double victory sign, and brothers Ale and Seby with their diving masks splashed right in among the silver fish: the Sardinian adventure had officially begun!"
+          paragraphs_fr:
+            - "Quelle émotion d'atterrir à Olbia pour les grandes vacances en famille en Sardaigne ! De Zurich sont arrivés Papa Riccardo, Maman Kate, Alessandro et Sebastian, tandis que Mamie Lucilla est venue de Bologne jusqu'à Cala Gonone, où les attendait aussi le cousin Massimo."
+            - "À peine les valises posées, personne n'a pu résister à l'appel de la mer ! Sur la plage dorée de Cala Gonone, l'eau était si limpide et étincelante qu'elle ressemblait à du cristal bleu."
+            - "Maman Kate avec son tuba jaune, Papa Riccardo faisant le signe de la victoire et les frères Ale et Seby avec leurs masques de plongée ont sauté ensemble parmi les petits poissons argentés !"
+          paragraphs_de:
+            - "Was für eine Freude, in Olbia für den großen Familienurlaub auf Sardinien zu landen! Aus Zürich kamen Papa Riccardo, Mama Kate, Alessandro und Sebastian, während Oma Lucilla aus Bologna einflog, um sich in Cala Gonone mit Cousin Massimo zu treffen."
+            - "Kaum waren die Koffer abgestellt, hielt es niemanden mehr am Strand! In der Bucht von Cala Gonone war das Wasser so glasklar und funkelnd wie flüssige Diamanten."
+            - "Mama Kate mit dem gelben Schnorchel, Papa Riccardo mit dem Siegeszeichen und die Brüder Ale und Seby mit ihren Taucherbrillen sprangen gemeinsam ins türkisblaue Meer!"
+          paragraphs_pt:
+            - "Que emoção pousar em Olbia para as grandes férias em família na Sardenha! De Zurique chegaram Papai Riccardo, Mamãe Kate, Alessandro e Sebastian, enquanto de Bolonha voou a querida Vovó Lucilla até Cala Gonone, onde o primo Massimo os esperava."
+            - "Mal deixaram as malas, ninguém resistiu ao chamado do mar! Na praia dourada de Cala Gonone, a água era tão transparente e brilhante que parecia feita de cristal azul."
+            - "Mamãe Kate com o snorkel amarelo, Papai Riccardo fazendo o sinal da vitória e os irmãos Ale e Seby com suas máscaras de mergulho pularam juntos entre os peixinhos prateados!"
+        - page: 2
+          title: "Tramonto a Cala Gonone: Cena sul Mare con Nonna Lucilla e la Luna Piena"
+          title_en: "Sunset in Cala Gonone: Dinner by the Sea with Grandma Lucilla and the Full Moon"
+          title_fr: "Coucher de Soleil à Cala Gonone : Dîner sur le Port avec Mamie Lucilla et la Pleine Lune"
+          title_de: "Sonnenuntergang in Cala Gonone: Abendessen am Meer mit Oma Lucilla und dem Vollmond"
+          title_pt: "Pôr do Sol em Cala Gonone: Jantar à Beira-Mar com a Vovó Lucilla e a Lua Cheia"
+          image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena2_cena_nonna_lucilla.jpg
+          summary: "Dopo il parco avventura sugli alberi, tutta la famiglia cena sulla terrazza del Ristorante Calaluna mentre sorge la luna piena sul porto."
+          paragraphs_it:
+            - "Dopo un pomeriggio spericolato tra i pini del parco avventura, dove Ale e Seby hanno camminato sui ponti tibetani sospesi tra gli alberi con caschetto e imbrago, la sera ha dipinto il cielo di Cala Gonone di rosa e di viola."
+            - "Sulla terrazza panoramica del Ristorante Calaluna, proprio sopra le onde che accarezzavano gli scogli e le barchette del porto, Papà Riccardo e Nonna Lucilla con la sua collana di perle hanno brindato sorridendo alla bellezza di ritrovarsi tutti insieme."
+            - "In alto, sopra l'orizzonte del Mar Tirreno, una grande luna piena bianca si è accesa come una lanterna magica per augurare la buonanotte ai piccoli esploratori prima della grande traversata dell'indomani!"
+          paragraphs_en:
+            - "After a thrilling afternoon high among the pine trees of the adventure park, where Ale and Seby crossed rope bridges wearing helmets and harnesses, evening painted the sky of Cala Gonone in soft shades of pink and violet."
+            - "On the panoramic terrace of Ristorante Calaluna, right above the gentle waves and the little boats in the harbour, Daddy Riccardo and Grandma Lucilla in her pearl necklace raised their glasses with a warm smile to celebrate being together."
+            - "High above the horizon of the Tyrrhenian Sea, a glowing white full moon rose like a magic lantern to wish the young explorers goodnight before the next day's grand sea voyage!"
+          paragraphs_fr:
+            - "Après un après-midi d'aventure dans les pins où Ale et Seby ont traversé des ponts suspendus avec casque et baudrier, le soir a teinté le ciel de Cala Gonone de rose et de violet."
+            - "Sur la terrasse panoramique du Ristorante Calaluna, juste au-dessus des vagues et des bateaux du port, Papa Riccardo et Mamie Lucilla avec son collier de perles ont trinqué avec bonheur."
+            - "Tout là-haut, au-dessus de la mer Tyrrhénienne, une grande pleine lune blanche s'est allumée comme une lanterne magique pour veiller sur toute la famille !"
+          paragraphs_de:
+            - "Nach einem aufregenden Nachmittag im Kletterwald, wo Ale und Seby mit Helm und Klettergurt über Hängebrücken zwischen den Pinien balancierten, färbte der Abend den Himmel von Cala Gonone zartrosa."
+            - "Auf der Panoramaterrasse des Ristorante Calaluna, direkt über den Wellen und den Booten im Hafen, stießen Papa Riccardo und Oma Lucilla mit ihrer Perlenkette lächelnd auf das gemeinsame Familienglück an."
+            - "Hoch über dem Horizont des Tyrrhenischen Meeres ging ein leuchtender Vollmond wie eine Zauberlaterne auf!"
+          paragraphs_pt:
+            - "Depois de uma tarde emocionante no parque de arvorismo, onde Ale e Seby atravessaram pontes suspensas entre os pinheiros com capacete e cadeirinha, a noite pintou o céu de Cala Gonone de rosa e lilás."
+            - "No terraço panorâmico do Ristorante Calaluna, bem acima das ondas e dos barquinhos do porto, Papai Riccardo e a Vovó Lucilla com seu colar de pérolas brindaram sorrindo à alegria de estarem juntos."
+            - "Lá no alto, sobre o horizonte do Mar Tirreno, uma linda lua cheia branca se acendeu como uma lanterna mágica!"
+        - page: 3
+          title: "Capitan Nonna Lucilla e Mamma Kate: In Gommone nel Golfo di Orosei!"
+          title_en: "Captain Grandma Lucilla and Mummy Kate: By Speedboat Across the Gulf of Orosei!"
+          title_fr: "Capitaine Mamie Lucilla et Maman Kate : En Bateau dans le Golfe d'Orosei !"
+          title_de: "Kapitänin Oma Lucilla und Mama Kate: Mit dem Schlauchboot durch den Golf von Orosei!"
+          title_pt: "Capitã Vovó Lucilla e Mamãe Kate: De Bote pelo Golfo de Orosei!"
+          image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena3_gommone_golfo_orosei.jpg
+          summary: "Mamma Kate, Seby, Nonna Lucilla con il giubbotto arancione e Ale sfrecciano in gommone tra Cala Luna, Cala Mariolu e la guglia di Goloritzè."
+          paragraphs_it:
+            - "Il giorno seguente è arrivata l'avventura più leggendaria della vacanza: la spedizione in gommone lungo le scogliere giganti del Golfo di Orosei! Con il vento tra i capelli e il sole sul viso, l'equipaggio Carlesso ha preso il largo."
+            - "Guardate che squadra meravigliosa a bordo del gommone: Mamma Kate con gli occhiali da sole stringe Seby con la maglietta degli squali, al centro troneggia Capitan Nonna Lucilla con il suo fiammante giubbotto di salvataggio arancione, e a destra sorride fiero il navigatore Alessandro!"
+            - "Insieme hanno costeggiato le grotte segrete di Cala Luna, le acque turchesi di Cala Mariolu e l'altissima guglia di pietra di Cala Goloritzè e Pedra Longa, tuffandosi direttamente dalla barca in un mare blu cobalto!"
+          paragraphs_en:
+            - "The next morning brought the most legendary adventure of the holiday: the speedboat expedition along the giant limestone cliffs of the Gulf of Orosei! With the sea breeze in their hair and sunshine on their faces, the Carlesso crew set sail."
+            - "Look at that wonderful team aboard the boat: Mummy Kate in her sunglasses hugging Seby in his shark shirt, right in the centre sits Captain Grandma Lucilla in her bright orange lifejacket, and on the right smiles proud navigator Alessandro!"
+            - "Together they cruised past the secret sea caves of Cala Luna, the turquoise coves of Cala Mariolu, and the towering stone spires of Cala Goloritzè and Pedra Longa, diving straight off the boat into cobalt-blue water!"
+          paragraphs_fr:
+            - "Le lendemain eut lieu l'aventure la plus légendaire des vacances : l'expédition en bateau pneumatique le long des falaises géantes du Golfe d'Orosei ! Le vent dans les cheveux, l'équipage Carlesso a pris le large."
+            - "Quelle équipe magnifique à bord : Maman Kate avec ses lunettes de soleil serre Seby dans ses bras, au centre trône Capitaine Mamie Lucilla avec son gilet de sauvetage orange vif, et à droite sourit fièrement le navigateur Alessandro !"
+            - "Ensemble, ils ont longé les grottes de Cala Luna, les criques turquoise de Cala Mariolu et l'immense aiguille rocheuse de Cala Goloritzè et Pedra Longa !"
+          paragraphs_de:
+            - "Am nächsten Tag folgte das legendärste Abenteuer des Urlaubs: die Schlauchboot-Expedition entlang der gigantischen Kalksteinklippen im Golf von Orosei! Mit Meeresbrise im Haar stach die Carlesso-Crew in See."
+            - "Was für eine tolle Mannschaft an Bord: Mama Kate mit Sonnenbrille hält Seby im Arm, in der Mitte thront Kapitänin Oma Lucilla mit ihrer leuchtend orangefarbenen Rettungsweste, und rechts lächelt stolz Navigator Alessandro!"
+            - "Gemeinsam fuhren sie an den Höhlen von Cala Luna, dem türkisblauen Wasser von Cala Mariolu und der steilen Felsnadel von Cala Goloritzè und Pedra Longa vorbei!"
+          paragraphs_pt:
+            - "No dia seguinte chegou a aventura mais lendária das férias: a expedição de bote ao longo dos penhascos gigantes do Golfo de Orosei! Com a brisa do mar nos cabelos, a tripulação Carlesso partiu pelo mar azul."
+            - "Olhem que equipe maravilhosa a bordo: Mamãe Kate de óculos escuros abraçando Seby, no centro a Capitã Vovó Lucilla com seu colete salva-vidas laranja brilhante, e à direita o orgulhoso navegador Alessandro!"
+            - "Juntos navegaram pelas grutas de Cala Luna, pelas águas turquesa de Cala Mariolu e pela imensa agulha de pedra de Cala Goloritzè e Pedra Longa!"
+        - page: 4
+          title: "Fratelli sul tetto della Sardegna: L'Abbraccio tra i Monti del Supramonte"
+          title_en: "Brothers on Top of Sardinia: Hugging High in the Supramonte Mountains"
+          title_fr: "Frères sur le Toit de la Sardaigne : Câlin dans les Montagnes du Supramonte"
+          title_de: "Brüder auf dem Dach Sardiniens: Umarmung in den Bergen des Supramonte"
+          title_pt: "Irmãos no Topo da Sardenha: O Abraço nas Montanhas do Supramonte"
+          image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena4_supramonte_fratelli.jpg
+          summary: "Dopo aver provato i costumi tradizionali sardi a Dorgali, Ale e Seby si abbracciano in cima ai monti del Supramonte lungo la strada per Arbatax."
+          paragraphs_it:
+            - "Lasciata la costa di Cala Gonone e fatto un salto a Dorgali — dove Papà Riccardo e Mamma Kate hanno infilato il viso nelle sagome dei costumi tradizionali sardi facendo ridere a crepapelle Seby — la macchina è salita lungo le curve panoramiche dell'Orientale Sarda."
+            - "Lassù in alto, dove le aquile volano sopra le gole rocciose e le montagne bianche del Supramonte toccano le nuvole, la famiglia si è fermata sul belvedere per respirare il profumo del vento selvaggio."
+            - "Davanti a quell'immenso canyon di pietra, Seby con la maglietta blu ha stretto forte per le spalle il suo fratellone Ale con la maglietta verde delle ranocchie: un abbraccio fraterno pieno di complicità sul tetto della Sardegna!"
+          paragraphs_en:
+            - "Leaving the coast of Cala Gonone after a fun stop in Dorgali—where Daddy Riccardo and Mummy Kate poked their faces through a traditional Sardinian costume cut-out while Seby giggled—the family car climbed the scenic mountain curves of the Orientale Sarda road."
+            - "High up on the pass, where eagles soar above rocky gorges and the white limestone peaks of the Supramonte touch the clouds, everyone stopped at the lookout to breathe in the wild mountain air."
+            - "Standing before that vast stone canyon, Seby in his blue shirt wrapped his arm tightly around the shoulders of his big brother Ale in his green frog T-shirt: a true brotherly hug on the roof of Sardinia!"
+          paragraphs_fr:
+            - "Après avoir quitté Cala Gonone et fait une halte amusante à Dorgali, la voiture a grimpé les lacets panoramiques de la route Orientale Sarda à travers les montagnes."
+            - "Là-haut, où les aigles planent au-dessus des gorges rocheuses et où les sommets blancs du Supramonte touchent les nuages, toute la famille s'est arrêtée au belvédère."
+            - "Devant cet immense canyon de pierre, Seby en t-shirt bleu a serré très fort par les épaules son grand frère Ale en t-shirt vert : un câlin fraternel inoubliable sur le toit de la Sardaigne !"
+          paragraphs_de:
+            - "Nach einem lustigen Zwischenstopp in Dorgali fuhr das Familienauto die kurvenreiche Panoramastraße Orientale Sarda hinauf in die wilde Bergwelt."
+            - "Ganz oben auf dem Pass, wo Adler über tiefe Schluchten kreisen und die weißen Felsgipfel des Supramonte die Wolken berühren, hielten alle am Aussichtspunkt an."
+            - "Vor dieser gewaltigen Bergkulisse legte Seby im blauen Shirt seinen Arm fest um die Schultern seines großen Bruders Ale im grünen Frosch-T-Shirt: eine echte Brüder-Umarmung auf dem Dach Sardiniens!"
+          paragraphs_pt:
+            - "Depois de deixar Cala Gonone e fazer uma parada divertida em Dorgali, o carro da família subiu pelas curvas panorâmicas da estrada Orientale Sarda rumo às montanhas."
+            - "Lá no alto, onde as águias voam sobre os desfiladeiros e os picos brancos do Supramonte tocam as nuvens, todos pararam no mirante para admirar a paisagem."
+            - "Diante daquele imenso cânion de pedra, Seby de camiseta azul abraçou forte pelos ombros o seu irmãozão Ale de camiseta verde: um abraço fraterno inesquecível no topo da Sardenha!"
+        - page: 5
+          title: "Arbatax Park Resort: Le Frecce di Mamma Kate, Maradona #10 e l'Asinello di Seby!"
+          title_en: "Arbatax Park Resort: Mummy Kate's Archery, Maradona #10, and Seby's Donkey!"
+          title_fr: "Arbatax Park Resort : Le Tir à l'Arc de Maman Kate, Maradona #10 et l'Âne de Seby !"
+          title_de: "Arbatax Park Resort: Mama Kates Pfeil und Bogen, Maradona #10 und Sebys Esel!"
+          title_pt: "Arbatax Park Resort: O Arco da Mamãe Kate, Maradona #10 e o Burrinho do Seby!"
+          image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena5_arbatax_arco_asinelli.jpg
+          summary: "All'Arbatax Park Resort Telis, Mamma Kate tira con l'arco sotto lo sguardo di Nonna Lucilla, Ale e Seby camminano mano nella mano con la maglia di Maradona e Seby accarezza un asinello sardo."
+          paragraphs_it:
+            - "Arrivati nella penisola incantata dell'Arbatax Park Resort Telis, ogni giornata si è trasformata in una festa: nel bosco del tiro con l'arco, Mamma Kate ha teso un grande arco di legno come una vera regina degli arcieri, prendendo la mira perfetta mentre Nonna Lucilla la applaudiva ammirata!"
+            - "Lungo i viali fioriti che scendono verso il mare scintillante, Seby con la leggendaria maglia azzurra numero 10 di Maradona e suo fratello Ale hanno camminato mano nella mano, inseparabili compagni di ogni scoperta."
+            - "E dentro il Parco Faunistico Bellavista, tra daini, mufloni e pavoni, Seby con la storica maglia azzurra Mars del Napoli si è avvicinato dolcemente a un tenero asinello sardo, accarezzandogli il manto morbido con un sorriso pieno di meraviglia!"
+          paragraphs_en:
+            - "Once on the enchanted peninsula of Arbatax Park Resort Telis, every hour brought a new surprise: at the forest archery range, Mummy Kate drew back a tall wooden bow like a true champion archer, aiming straight for the bullseye while Grandma Lucilla cheered her on!"
+            - "Along the sunlit path leading down toward the sparkling sea, Seby in his legendary light-blue Maradona number 10 jersey and his big brother Ale walked hand in hand, inseparable partners in every discovery."
+            - "And inside the Bellavista Wildlife Park, among deer, mouflons, and peacocks, Seby in his classic Napoli Mars jersey gently approached a sweet Sardinian donkey, stroking its soft coat with a beaming smile!"
+          paragraphs_fr:
+            - "Sur la péninsule enchantée de l'Arbatax Park Resort Telis, chaque heure réservait une surprise : au tir à l'arc, Maman Kate a tendu un grand arc en bois comme une vraie championne sous les applaudissements de Mamie Lucilla !"
+            - "Sur le chemin ensoleillé descendant vers la mer, Seby avec son légendaire maillot bleu numéro 10 de Maradona et son frère Ale ont marché main dans la main, inséparables."
+            - "Et dans le Parc Animalier Bellavista, parmi les daims et les mouflons, Seby avec son maillot du Napoli a doucement caressé un adorable petit âne sarde avec un grand sourire !"
+          paragraphs_de:
+            - "Auf der zauberhaften Halbinsel des Arbatax Park Resort Telis wartete hinter jeder Ecke ein neues Erlebnis: Beim Bogenschießen spannte Mama Kate den großen Holzbogen wie eine echte Meisterbogenschützin, während Oma Lucilla begeistert zusah!"
+            - "Auf dem sonnigen Weg hinunter zum glitzernden Meer gingen Seby im legendären hellblauen Maradona-Trikot mit der Nummer 10 und sein Bruder Ale Hand in Hand."
+            - "Und im Naturpark Bellavista näherte sich Seby im klassischen Napoli-Mars-Trikot behutsam einem lieben sardischen Esel und streichelte glücklich sein weiches Fell!"
+          paragraphs_pt:
+            - "Na península encantada do Arbatax Park Resort Telis, cada dia trouxe uma nova alegria: no campo de arco e flecha, a Mamãe Kate puxou um grande arco de madeira como uma verdadeira campeã sob os aplausos da Vovó Lucilla!"
+            - "Pelo caminho ensolarado que desce até o mar brilhante, Seby com a lendária camisa azul número 10 do Maradona e seu irmão Ale caminharam de mãos dadas, inseparáveis."
+            - "E dentro do Parque Bellavista, Seby com a camisa clássica do Napoli acariciou com todo carinho um dócil burrinho sardo, abrindo um sorriso cheio de encanto!"
+        - page: 6
+          title: "Gli Esploratori degli Scogli di Ogliastra: Arrivederci Sardegna!"
+          title_en: "The Explorers of the Ogliastra Rocks: Until Next Time, Sardinia!"
+          title_fr: "Les Explorateurs des Rochers d'Ogliastra : Au Revoir la Sardaigne !"
+          title_de: "Die Entdecker der Felsen von Ogliastra: Auf Wiedersehen, Sardinien!"
+          title_pt: "Os Exploradores dos Rochedos de Ogliastra: Até Breve, Sardenha!"
+          image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena6_scogli_arbatax_snorkeling.jpg
+          summary: "Sugli scogli di granito rosa di Arbatax, Papà Riccardo, Ale e Seby con le maschere da sub salutano la barca a vela e il mare della Sardegna."
+          paragraphs_it:
+            - "Prima di ripartire, i tre esploratori del mare — Papà Riccardo con gli occhialini azzurri al collo, Alessandro e Sebastian con le loro maschere da snorkeling — si sono arrampicati sugli scogli dorati di granito delle calette segrete di Arbatax."
+            - "Sotto di loro l'acqua dell'Ogliastra brillava di mille sfumature di smeraldo, mentre sullo sfondo una grande barca a vela bianca dondolava placida davanti alle montagne verdi della Sardegna."
+            - "Con la mano alzata in un grande saluto, Ale, Seby, Papà Riccardo, Mamma Kate e Nonna Lucilla hanno chiuso nel cuore ogni onda, ogni risata e ogni abbraccio di questo viaggio indimenticabile: arrivederci Sardegna, torneremo presto!"
+          paragraphs_en:
+            - "Before heading home, the three sea explorers—Daddy Riccardo with his blue goggles around his neck, and Alessandro and Sebastian with their snorkel masks—climbed onto the golden granite rocks of Arbatax's secret coves."
+            - "Below them, the water of Ogliastra shimmered in a thousand shades of emerald, while in the background a white sailboat glided peacefully across the bay in front of the green Sardinian hills."
+            - "Raising a hand in a big joyful wave, Ale, Seby, Daddy Riccardo, Mummy Kate, and Grandma Lucilla tucked every wave, every laugh, and every hug of this unforgettable trip safely into their hearts: goodbye Sardinia, we will be back soon!"
+          paragraphs_fr:
+            - "Avant le retour, les trois explorateurs des mers — Papa Riccardo avec ses lunettes bleues autour du cou, Alessandro et Sebastian avec leurs masques de plongée — ont grimpé sur les rochers de granit doré des criques d'Arbatax."
+            - "En dessous d'eux, l'eau de l'Ogliastra scintillait de mille nuances d'émeraude, tandis qu'un grand voilier blanc glissait doucement devant les collines vertes de la Sardaigne."
+            - "Avec un grand salut joyeux de la main, Ale, Seby, Papa Riccardo, Maman Kate et Mamie Lucilla ont gardé dans leur cœur chaque sourire de ce voyage inoubliable : au revoir la Sardaigne !"
+          paragraphs_de:
+            - "Vor der Heimreise kletterten die drei Meeresforscher — Papa Riccardo mit seiner blauen Schwimmbrille, Alessandro und Sebastian mit ihren Schnorchelmasken — auf die goldenen Granitfelsen der Buchten von Arbatax."
+            - "Unter ihnen schimmerte das Wasser der Ogliastra in tausend Smaragdtönen, während im Hintergrund ein weißes Segelboot ruhig vor den grünen Hügeln Sardiniens dahinglitt."
+            - "Mit einem fröhlichen Winken schlossen Ale, Seby, Papa Riccardo, Mama Kate und Oma Lucilla jede Welle und jedes Lachen dieser unvergesslichen Reise tief in ihr Herz: Auf Wiedersehen, Sardinien!"
+          paragraphs_pt:
+            - "Antes de voltar para casa, os três exploradores do mar — Papai Riccardo com seus óculos azuis no pescoço, Alessandro e Sebastian com suas máscaras de snorkel — subiram nos rochedos dourados de granito das enseadas de Arbatax."
+            - "Abaixo deles, a água de Ogliastra brilhava em mil tons de esmeralda, enquanto ao fundo um lindo veleiro branco navegava tranquilo diante das montanhas verdes da Sardenha."
+            - "Com a mão erguida num grande aceno alegre, Ale, Seby, Papai Riccardo, Mamãe Kate e Vovó Lucilla guardaram no coração cada onda, cada risada e cada abraço desta viagem inesquecível: até breve, Sardenha!"
+    transcript:
+      - speaker: "Papà Riccardo"
+        text: "Questa è la storia della nostra meravigliosa vacanza di famiglia in Sardegna dal 25 settembre al 2 ottobre 2026 con Mamma Kate, Nonna Lucilla, Alessandro e Sebastian!"
+      - speaker: "Alessandro & Sebastian"
+        text: "Siamo partiti da Cala Gonone facendo snorkeling nell'acqua trasparente e il parco avventura sugli alberi, abbiamo navigato in gommone nel Golfo di Orosei con Nonna Lucilla e Mamma Kate, ci siamo abbracciati sui monti del Supramonte e all'Arbatax Park Resort abbiamo tirato con l'arco, accarezzato gli asinelli sardi e nuotato sugli scogli!"
 

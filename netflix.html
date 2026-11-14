@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="stories_catalog.js"></script>
   <style>
     :root {
       --nf-bg: #141414;
@@ -703,7 +704,7 @@
   </dialog>
 
   <script>
-    let catalog = { authors: {}, stories: [] };
+    let catalog = window.KOS_CATALOG || { authors: {}, stories: [] };
     let kidFilter = 'all';
     let featuredIndex = 0;
     let hoverSoundEnabled = true;
@@ -712,7 +713,9 @@
     const PERSON_META = {
       alessandro: { avatar: 'assets/avatars/ale.png', cls: 'ale', label: 'Alessandro (Ale)' },
       sebastian: { avatar: 'assets/avatars/seby.png', cls: 'seby', label: 'Sebastian (Seby)' },
-      riccardo: { avatar: 'assets/avatars/riccardo.png', cls: 'riccardo', label: 'Papà Riccardo (Papino)' }
+      riccardo: { avatar: 'assets/avatars/riccardo.png', cls: 'riccardo', label: 'Papà Riccardo (Papino)' },
+      kate: { avatar: 'assets/avatars/kate.png', cls: 'kate', label: 'Mamma Kate' },
+      lucilla: { avatar: 'assets/avatars/lucilla.png', cls: 'lucilla', label: 'Nonna Lucilla' }
     };
 
     function getPersonMeta(id) {
@@ -990,10 +993,11 @@
       vid.volume = 1.0;
 
       const pages = story.assets?.pages || story.pages || [];
+      const actDur = Math.max(5, Math.round(40 / Math.max(1, pages.length)));
       const actsBar = document.getElementById('cinemaActsBar');
-      actsBar.innerHTML = pages.slice(0, 4).map((p, idx) => {
-        const startSec = idx * 10;
-        const endSec = (idx + 1) * 10;
+      actsBar.innerHTML = pages.map((p, idx) => {
+        const startSec = idx * actDur;
+        const endSec = (idx + 1) * actDur;
         const imgUrl = p.image || `${story.folder}/page_0${idx + 1}.png`;
         return `
           <button type="button" class="cinema-act-btn ${idx === 0 ? 'active' : ''}" data-act="${idx}" onclick="seekModalToAct(${startSec})">
@@ -1007,7 +1011,7 @@
       }).join('');
 
       vid.ontimeupdate = () => {
-        const activeIdx = Math.min(3, Math.max(0, Math.floor((vid.currentTime || 0) / 10)));
+        const activeIdx = Math.min(pages.length - 1, Math.max(0, Math.floor((vid.currentTime || 0) / actDur)));
         actsBar.querySelectorAll('.cinema-act-btn').forEach((btn, idx) => {
           btn.classList.toggle('active', idx === activeIdx);
         });
