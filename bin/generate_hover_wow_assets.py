@@ -132,6 +132,25 @@ STORIES = [
             "scena4_disco_party_regenbogen_pupurabbu_gigante.jpg",
         ],
     },
+    {
+        "slug": "storia-nascita-sguisatazzo-computer-alessandro",
+        "folder": ROOT / "stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro",
+        "title_prompt_it": (
+            "Leggi questo titolo di fiaba con voce femminile dolcissima, suadente, calda, calma e rassicurante: "
+            "«La Nascita di Sguisatazzo, il Computer Magico di Alessandro. Una fiaba di Papino Riccardo per Alessandro.»"
+        ),
+        "title_prompt_en": (
+            "Speak with a warm, soothing, posh British English (UK Received Pronunciation / BBC CBeebies bedtime story) female voice: "
+            "\"The Birth of Sguisatazzo, Alessandro's Magic Keyboard-Computer. A story by Daddy Riccardo for Alessandro.\""
+        ),
+        "existing_video": "video_sguisatazzo.mp4",
+        "scenes": [
+            "scena1_risveglio_sguisatazzo.jpg",
+            "scena2_zurigo_campanello.jpg",
+            "scena3_adozione_alessandro.jpg",
+            "scena4_desk_camera_ale.jpg",
+        ],
+    },
 ]
 
 

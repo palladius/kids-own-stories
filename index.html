@@ -1626,8 +1626,8 @@
     }
 
     .kid-avatar-circle {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
@@ -1638,6 +1638,18 @@
       color: #fff;
       background: #1e293b;
       flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    }
+
+    .kid-avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 24%;
+      transform: translateY(10%) scale(1.54);
+      display: block;
     }
 
     .kid-avatar-circle.ale {
@@ -1646,6 +1658,68 @@
 
     .kid-avatar-circle.seby {
       border: 2px solid #3b82f6;
+    }
+
+    .kid-avatar-circle.riccardo {
+      border: 2px solid #f59e0b;
+    }
+
+    /* CARTOON FACE CIRCLE OVERLAY ON STORY CARD IMAGE & CARD BODY */
+    .card-kid-avatar-overlay {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .card-kid-avatar-bubble {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      background: #0f172a;
+      border: 3px solid #ef4444;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.72), 0 0 0 2px rgba(255, 255, 255, 0.22);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+      flex-shrink: 0;
+    }
+
+    .card-kid-avatar-bubble.seby {
+      border-color: #3b82f6;
+    }
+
+    .card-kid-avatar-bubble.riccardo {
+      border-color: #f59e0b;
+    }
+
+    .card-kid-avatar-bubble.co-star {
+      width: 40px;
+      height: 40px;
+      margin-left: -14px;
+      border-width: 2.5px;
+      z-index: 2;
+    }
+
+    .card-kid-avatar-bubble img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center 24% !important;
+      transform: translateY(10%) scale(1.54);
+      opacity: 1 !important;
+      transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1), object-position 0.34s ease !important;
+    }
+
+    .index-card:hover .card-kid-avatar-bubble {
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.85), 0 0 14px rgba(255, 183, 3, 0.55);
+    }
+
+    .index-card:hover .card-kid-avatar-bubble.co-star {
+      transform: scale(1.08) rotate(4deg) translateX(4px);
     }
 
     .index-grid {
@@ -1681,7 +1755,7 @@
       background: #090d16;
     }
 
-    .card-media-wrap img {
+    .card-media-wrap > img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -1704,7 +1778,7 @@
       opacity: 1;
     }
 
-    .index-card.is-hovering .card-media-wrap img {
+    .index-card.is-hovering .card-media-wrap > img {
       opacity: 0;
     }
 
@@ -1734,6 +1808,323 @@
       color: #0b0f19;
       border-color: transparent;
       transform: scale(1.05);
+    }
+
+    /* =========================================================================
+       NETFLIX VIEW ("STORIEFLIX") — VIDEO-ONLY HOVER PREVIEW + CLICK FULLSCREEN
+       ========================================================================= */
+    .tab-pill.netflix-tab-pill {
+      background: rgba(229, 9, 20, 0.16);
+      border: 1px solid rgba(229, 9, 20, 0.55);
+      color: #fecaca;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .tab-pill.netflix-tab-pill:hover {
+      background: rgba(229, 9, 20, 0.3);
+      border-color: #e50914;
+      color: #fff;
+    }
+
+    .tab-pill.netflix-tab-pill[aria-selected="true"] {
+      background: linear-gradient(135deg, #e50914, #b91c1c);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.5);
+    }
+
+    .netflix-view {
+      width: 100%;
+      flex: 1 1 auto;
+      background: #141414;
+      color: #fff;
+      padding-bottom: 48px;
+      overflow-x: hidden;
+    }
+
+    .nf-billboard {
+      position: relative;
+      width: 100%;
+      min-height: 410px;
+      max-height: 540px;
+      height: 52vh;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: flex-end;
+      padding: 34px clamp(20px, 4vw, 56px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nf-billboard video.nf-billboard-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+      filter: saturate(1.08);
+      pointer-events: none;
+    }
+
+    .nf-billboard::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(20, 20, 20, 0.94) 0%, rgba(20, 20, 20, 0.55) 48%, rgba(20, 20, 20, 0.1) 100%),
+        linear-gradient(180deg, rgba(20, 20, 20, 0.2) 0%, rgba(20, 20, 20, 0) 45%, #141414 100%);
+      pointer-events: none;
+    }
+
+    .nf-billboard-content {
+      position: relative;
+      z-index: 3;
+      max-width: 660px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nf-series-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: #e5e5e5;
+      font-weight: 700;
+    }
+
+    .nf-n-badge {
+      background: #e50914;
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 10px rgba(229, 9, 20, 0.6);
+    }
+
+    .nf-billboard-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+    }
+
+    .nf-billboard-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .nf-match-score {
+      color: #46d369;
+    }
+
+    .nf-hd-tag {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      color: #e5e5e5;
+    }
+
+    .nf-billboard-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .nf-play-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 6px;
+      border: none;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.16s ease, background 0.16s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+    }
+
+    .nf-play-btn:hover {
+      background: rgba(255, 255, 255, 0.85);
+      transform: scale(1.03);
+    }
+
+    .nf-secondary-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(109, 109, 110, 0.65);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.16s ease, transform 0.16s ease;
+    }
+
+    .nf-secondary-btn:hover {
+      background: rgba(109, 109, 110, 0.45);
+      transform: scale(1.02);
+    }
+
+    .nf-rows-container {
+      padding: 18px clamp(20px, 4vw, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .nf-row-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.28rem;
+      color: #e5e5e5;
+    }
+
+    .nf-row-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 26px;
+    }
+
+    @media (max-width: 560px) {
+      .nf-row-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* NETFLIX VIDEO-ONLY TILE: ZERO CLUTTER, AUTOPLAYS IN SMALL ON HOVER, FULLSCREEN ON CLICK */
+    .nf-video-tile {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      cursor: pointer;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.3s ease, z-index 0s;
+      z-index: 1;
+    }
+
+    .nf-video-tile:hover,
+    .nf-video-tile:focus-visible,
+    .nf-video-tile.is-playing-hover {
+      transform: scale(1.08);
+      z-index: 25;
+      border-color: #e50914;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.92), 0 0 22px rgba(229, 9, 20, 0.45);
+    }
+
+    .nf-video-tile video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+
+    /* Subtle bottom gradient for title pill + top-left kid cartoon face circle */
+    .nf-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 35%, transparent 55%, rgba(0,0,0,0.88) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 12px;
+      pointer-events: none;
+    }
+
+    .nf-tile-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .nf-tile-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .nf-tile-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+      line-height: 1.15;
+    }
+
+    .nf-tile-play-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.92);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .nf-video-tile:hover .nf-tile-play-circle {
+      transform: scale(1.12);
+      background: #fff;
+      color: #e50914;
+    }
+
+    .nf-tile-status-pill {
+      background: rgba(20, 20, 20, 0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #f8fafc;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .nf-video-tile.is-playing-hover .nf-tile-status-pill {
+      background: #e50914;
+      border-color: #ff4d4d;
+      color: #fff;
     }
 
     /* FLOATING HOVER PREVIEW POPOVER FOR TOPBAR STORY TABS */
@@ -2135,10 +2526,10 @@
     <div class="segmented-radiogroup" role="radiogroup" aria-label="Filtra per autore">
       <button type="button" class="seg-radio-btn active" role="radio" aria-checked="true" aria-pressed="true" data-filter="all" onclick="setKidFilter('all')">Tutte</button>
       <button type="button" class="seg-radio-btn" role="radio" aria-checked="false" aria-pressed="false" data-filter="alessandro" onclick="setKidFilter('alessandro')">
-        <span class="kid-dot kid-dot--ale"></span>Ale
+        <span class="kid-avatar-circle ale" style="width:18px;height:18px;"><img src="assets/avatars/ale.png" alt="Ale"></span>Ale
       </button>
       <button type="button" class="seg-radio-btn" role="radio" aria-checked="false" aria-pressed="false" data-filter="sebastian" onclick="setKidFilter('sebastian')">
-        <span class="kid-dot kid-dot--seby"></span>Seby
+        <span class="kid-avatar-circle seby" style="width:18px;height:18px;"><img src="assets/avatars/seby.png" alt="Seby"></span>Seby
       </button>
     </div>
 
@@ -2202,6 +2593,9 @@
     <div class="index-grid" id="indexGrid"></div>
   </main>
 
+  <!-- 2A-NETFLIX. STORIEFLIX VIDEO-ONLY VIEW (SHOWN WHEN ON 'NETFLIX' TAB) -->
+  <main id="netflixView" class="netflix-view" hidden></main>
+
   <!-- 2B. ZERO-SCROLL OPEN BOOK 3D CAROUSEL VIEWPORT -->
   <main id="bookViewport" class="book-viewport" hidden>
     <div class="open-book-stage">
@@ -2222,7 +2616,7 @@
   <footer class="carlessian-footer">
     <div class="footer-left">
       <strong>Kids' Own Stories</strong>
-      <a href="CHANGELOG.md" data-version="0.9.3" target="_blank" rel="noopener">v0.9.3</a>
+      <a href="CHANGELOG.md" data-version="0.10.0" target="_blank" rel="noopener">v0.10.0</a>
       <span class="env-badge" data-env="development" id="footerEnvBadge">ENV: development</span>
     </div>
     <div class="footer-center" id="footerStoryActions">
@@ -2383,14 +2777,23 @@
     const pageIndexBySlug = {};
     let unmuteNextVideoRender = false;
 
+    function storyMatchesKidFilter(story, filterVal) {
+      if (!filterVal || filterVal === 'all') return true;
+      if (story.author === filterVal) return true;
+      if (Array.isArray(story.authors) && story.authors.includes(filterVal)) return true;
+      if (Array.isArray(story.recipients) && story.recipients.includes(filterVal)) return true;
+      if (filterVal === 'sebastian' && (story.slug || '').includes('sebi')) return true;
+      return false;
+    }
+
     function getFilteredStories() {
       const all = catalog.stories || [];
       return all.filter(s => {
-        if (activeKidFilter !== 'all' && s.author !== activeKidFilter) return false;
+        if (!storyMatchesKidFilter(s, activeKidFilter)) return false;
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
           const haystack = [
-            s.title, s.title_en, s.short_title, s.short_title_en, s.author, s.slug,
+            s.title, s.title_en, s.short_title, s.short_title_en, s.author, ...(s.recipients || []), s.slug,
             ...(s.assets?.pages || []).map(p => `${p.title || ''} ${p.title_en || ''} ${p.summary || ''}`)
           ].join(' ').toLowerCase();
           if (!haystack.includes(q)) return false;
@@ -2457,7 +2860,7 @@
 
       const url = new URL(window.location.href);
       url.searchParams.set('tab', activeTab);
-      if (activeTab !== 'indice' && curPageIdx > 0) {
+      if (activeTab !== 'indice' && activeTab !== 'netflix' && curPageIdx > 0) {
         url.searchParams.set('page', String(curPageIdx + 1));
       } else {
         url.searchParams.delete('page');
@@ -2477,7 +2880,7 @@
       } else {
         url.searchParams.delete('q');
       }
-      url.hash = '';
+      url.hash = (activeTab === 'indice' || activeTab === 'netflix') ? `#${activeTab}` : '';
       window.history.replaceState(stateObj, '', url);
       applyHeaderControlsState();
     }
@@ -2504,12 +2907,25 @@
 
       searchQuery = urlParams.get('q') ?? saved.q ?? '';
 
-      const tabCandidate = urlParams.get('tab') || urlParams.get('story') || hashTab || saved.tab || '';
-      const pageCandidate = urlParams.get('page') || hashPage || (saved.tab === tabCandidate ? saved.page : null);
+      const tabCandidate = hashTab || urlParams.get('tab') || urlParams.get('story') || saved.tab || '';
+      const pageCandidate = hashPage || urlParams.get('page') || (saved.tab === tabCandidate ? saved.page : null);
 
       applyHeaderControlsState();
       return { tabCandidate, pageCandidate };
     }
+
+    window.addEventListener('hashchange', () => {
+      const rawHash = window.location.hash.replace(/^#/, '');
+      const [hashTab] = rawHash.split(':');
+      if (hashTab === 'indice' || hashTab === 'vetrina') {
+        selectTab('indice');
+      } else if (hashTab === 'netflix' || hashTab === 'storieflix' || hashTab === 'cinema') {
+        selectTab('netflix');
+      } else if (hashTab && (catalog.stories || []).some(s => s.slug === hashTab || s.id === hashTab)) {
+        const matched = (catalog.stories || []).find(s => s.slug === hashTab || s.id === hashTab);
+        if (matched) selectTab(matched.slug);
+      }
+    });
 
     function getLocalizedField(obj, baseField, lang = currentLang) {
       if (!obj) return '';
@@ -2546,6 +2962,8 @@
 
       if (tabCandidate === 'indice' || tabCandidate === 'vetrina') {
         activeTab = 'indice';
+      } else if (tabCandidate === 'netflix' || tabCandidate === 'storieflix' || tabCandidate === 'cinema') {
+        activeTab = 'netflix';
       } else if (stories.some(s => s.slug === tabCandidate || s.id === tabCandidate)) {
         const matched = stories.find(s => s.slug === tabCandidate || s.id === tabCandidate);
         activeTab = matched.slug;
@@ -2555,7 +2973,7 @@
         activeTab = 'indice';
       }
 
-      if (pageCandidate && activeTab !== 'indice') {
+      if (pageCandidate && activeTab !== 'indice' && activeTab !== 'netflix') {
         const matchedStory = stories.find(s => s.slug === activeTab);
         if (matchedStory) {
           const totalSlides = getSlidesForStory(matchedStory).length;
@@ -3014,6 +3432,8 @@
       renderTabsStrip();
       if (activeTab === 'indice') {
         renderIndexView();
+      } else if (activeTab === 'netflix') {
+        renderNetflixView();
       }
     }
 
@@ -3041,18 +3461,83 @@
       applyHeaderControlsState();
       renderTabsStrip();
       const storyActionsEl = document.getElementById('footerStoryActions');
+      const indexViewEl = document.getElementById('indexView');
+      const netflixViewEl = document.getElementById('netflixView');
+      const bookViewportEl = document.getElementById('bookViewport');
+      const narratorBarEl = document.getElementById('narratorBar');
+
       if (activeTab === 'indice') {
-        document.getElementById('indexView').hidden = false;
-        document.getElementById('bookViewport').hidden = true;
-        document.getElementById('narratorBar').hidden = true;
+        indexViewEl.hidden = false;
+        if (netflixViewEl) netflixViewEl.hidden = true;
+        bookViewportEl.hidden = true;
+        narratorBarEl.hidden = true;
         if (storyActionsEl) storyActionsEl.hidden = true;
         renderIndexView();
+      } else if (activeTab === 'netflix') {
+        indexViewEl.hidden = true;
+        if (netflixViewEl) netflixViewEl.hidden = false;
+        bookViewportEl.hidden = true;
+        narratorBarEl.hidden = true;
+        if (storyActionsEl) storyActionsEl.hidden = true;
+        renderNetflixView();
       } else {
-        document.getElementById('indexView').hidden = true;
-        document.getElementById('bookViewport').hidden = false;
+        indexViewEl.hidden = true;
+        if (netflixViewEl) netflixViewEl.hidden = true;
+        bookViewportEl.hidden = false;
         if (storyActionsEl) storyActionsEl.hidden = false;
         renderActiveBook();
       }
+    }
+
+    function getKidAvatarUrl(authorId) {
+      if (authorId === 'sebastian') return 'assets/avatars/seby.png';
+      if (authorId === 'riccardo') return 'assets/avatars/riccardo.png';
+      return 'assets/avatars/ale.png';
+    }
+
+    function getPersonAvatarClass(personId) {
+      if (personId === 'sebastian') return 'seby';
+      if (personId === 'riccardo') return 'riccardo';
+      return 'ale';
+    }
+
+    function getPersonDisplayName(personId) {
+      if (personId === 'sebastian') return 'Sebastian (Seby)';
+      if (personId === 'riccardo') return 'Papà Riccardo';
+      return 'Alessandro (Ale)';
+    }
+
+    function hasSebyCoStar(story) {
+      if (!story || story.author === 'sebastian') return false;
+      const co = (story.co_authors || []).join(' ').toLowerCase();
+      return co.includes('sebastian') || co.includes('sebi') || co.includes('seby');
+    }
+
+    function buildCardKidAvatarOverlayHtml(story) {
+      const primaryAvatar = getKidAvatarUrl(story.author);
+      const primaryClass = getPersonAvatarClass(story.author);
+      const primaryLabel = getPersonDisplayName(story.author);
+
+      let secondBubbleHtml = '';
+      const recipients = Array.isArray(story.recipients) ? story.recipients : [];
+      const firstRecipient = recipients.find(r => r !== story.author);
+      if (firstRecipient) {
+        const recAvatar = getKidAvatarUrl(firstRecipient);
+        const recClass = getPersonAvatarClass(firstRecipient);
+        const recLabel = getPersonDisplayName(firstRecipient);
+        secondBubbleHtml = `<span class="card-kid-avatar-bubble ${recClass} co-star" title="Storia dedicata a: ${recLabel}"><img src="${recAvatar}" alt="${recLabel}"></span>`;
+      } else if (hasSebyCoStar(story)) {
+        secondBubbleHtml = `<span class="card-kid-avatar-bubble seby co-star" title="Co-protagonista: Sebastian (Seby)"><img src="assets/avatars/seby.png" alt="Seby"></span>`;
+      }
+
+      return `
+        <div class="card-kid-avatar-overlay">
+          <span class="card-kid-avatar-bubble ${primaryClass}" title="Scritta da: ${primaryLabel}">
+            <img src="${primaryAvatar}" alt="${primaryLabel}">
+          </span>
+          ${secondBubbleHtml}
+        </div>
+      `;
     }
 
     function renderTabsStrip() {
@@ -3063,6 +3548,7 @@
       const indiceLabel = allMap[currentLang] || 'Index';
 
       const gridSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`;
+      const tvSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
 
       const indiceBtn = `
         <button type="button" role="tab" class="tab-pill"
@@ -3075,10 +3561,22 @@
         </button>
       `;
 
+      const netflixBtn = `
+        <button type="button" role="tab" class="tab-pill netflix-tab-pill"
+          data-tab="netflix"
+          aria-selected="${activeTab === 'netflix'}"
+          onclick="selectTab('netflix')"
+          title="Modalità Netflix: solo i video, partono in piccolo in hover e in grande al click!">
+          ${tvSvg}
+          <span>StorieFlix</span>
+        </button>
+      `;
+
       const storyBtns = filteredStories.map((s) => {
         const origIdx = allStories.indexOf(s) + 1;
         const label = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
-        const dotColor = s.author === 'sebastian' ? '#3b82f6' : '#ef4444';
+        const avatarClass = getPersonAvatarClass(s.author);
+        const avatarUrl = getKidAvatarUrl(s.author);
         return `
           <button type="button" role="tab" class="tab-pill"
             data-tab="${s.slug}"
@@ -3088,13 +3586,13 @@
             onfocus="onTabHoverStart(event, '${s.slug}')"
             onblur="onTabHoverEnd()"
             onclick="onTabHoverEnd(); selectTab('${s.slug}')">
-            <span class="kid-dot" style="background:${dotColor};"></span>
+            <span class="kid-avatar-circle ${avatarClass}" style="width:20px;height:20px;"><img src="${avatarUrl}" alt="${escapeHtml(s.author)}"></span>
             <span>${origIdx}. ${escapeHtml(label)}</span>
           </button>
         `;
       }).join('');
 
-      strip.innerHTML = indiceBtn + storyBtns;
+      strip.innerHTML = indiceBtn + netflixBtn + storyBtns;
     }
 
     function renderIndexView() {
@@ -3114,8 +3612,14 @@
         const movieCta = currentLang === 'it' ? `Film 40s` : `40s Movie`;
         const isSeby = s.author === 'sebastian';
         const kidClass = isSeby ? 'kid-badge--seby' : 'kid-badge--ale';
-        const dotColor = isSeby ? '#3b82f6' : '#ef4444';
+        const avatarClass = getPersonAvatarClass(s.author);
+        const avatarUrl = getKidAvatarUrl(s.author);
         const authorObj = catalog.authors?.[s.author] || { name: s.author || 'Alessandro' };
+        const recipients = Array.isArray(s.recipients) ? s.recipients : [];
+        const firstRecipient = recipients.find(r => r !== s.author);
+        const badgeText = firstRecipient
+          ? `#${origIdx} · ✍️ ${authorObj.name} → ❤️ ${getPersonDisplayName(firstRecipient)}`
+          : `#${origIdx} · ${authorObj.name} (${s.author_age_at_recording}${ageUnit})`;
         return `
           <article class="index-card"
             tabindex="0"
@@ -3127,13 +3631,16 @@
             <div class="card-media-wrap">
               <img src="${pages[0]?.image || ''}?v=${APP_VERSION}" alt="${escapeHtml(title)}" loading="lazy">
               ${hoverVideo ? `<video class="card-hover-video" src="${hoverVideo}?v=${APP_VERSION}" muted loop playsinline preload="metadata"></video>` : ''}
+              ${buildCardKidAvatarOverlayHtml(s)}
               <span class="hover-wow-badge">40s HD • Audio</span>
             </div>
             <div class="index-card-body">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
                 <span class="kid-badge ${kidClass}">
-                  <span class="kid-dot" style="background:${dotColor};"></span>
-                  <span>#${origIdx} · ${escapeHtml(authorObj.name)} (${s.author_age_at_recording}${ageUnit})</span>
+                  <span class="kid-avatar-circle ${avatarClass}">
+                    <img src="${avatarUrl}" alt="${escapeHtml(authorObj.name)}">
+                  </span>
+                  <span>${escapeHtml(badgeText)}</span>
                 </span>
                 <time class="iso-date" datetime="${escapeHtml(s.created_at || '')}">${escapeHtml(s.created_at || '')}</time>
               </div>
@@ -3153,6 +3660,140 @@
           </article>
         `;
       }).join('');
+    }
+
+    function buildNetflixVideoTileHtml(story, allStories) {
+      const origIdx = allStories.indexOf(story) + 1;
+      const shortTitle = getLocalizedField(story, 'short_title') || getLocalizedField(story, 'title');
+      const fullVideo = story.assets?.video?.file || story.assets?.hover_video || '';
+      const posterImg = story.assets?.pages?.[0]?.image || '';
+      const durSec = story.assets?.video?.duration_seconds || 40;
+      return `
+        <div class="nf-video-tile"
+          tabindex="0"
+          data-story-slug="${story.slug}"
+          onmouseenter="onNetflixTileHoverStart(this, '${story.slug}')"
+          onmouseleave="onNetflixTileHoverEnd(this)"
+          onfocusin="onNetflixTileHoverStart(this, '${story.slug}')"
+          onfocusout="onNetflixTileHoverEnd(this)"
+          onclick="onNetflixTileHoverEnd(this); openNetflixFullscreenMovie('${story.slug}')"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();onNetflixTileHoverEnd(this);openNetflixFullscreenMovie('${story.slug}');}">
+          <video src="${fullVideo}?v=${APP_VERSION}" poster="${posterImg}?v=${APP_VERSION}" muted loop playsinline preload="metadata"></video>
+          <div class="nf-tile-overlay">
+            <div class="nf-tile-top">
+              ${buildCardKidAvatarOverlayHtml(story).replace('class="card-kid-avatar-overlay"', 'style="display:inline-flex;align-items:center;"')}
+              <span class="nf-tile-status-pill" data-nf-status>${durSec}s HD</span>
+            </div>
+            <div class="nf-tile-bottom">
+              <div class="nf-tile-title">#${origIdx} · ${escapeHtml(shortTitle)}</div>
+              <span class="nf-tile-play-circle" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function onNetflixTileHoverStart(tileEl) {
+      tileEl.classList.add('is-playing-hover');
+      const statusPill = tileEl.querySelector('[data-nf-status]');
+      if (statusPill) {
+        statusPill.textContent = currentLang === 'it' ? '▶ IN RIPRODUZIONE' : '▶ PLAYING';
+      }
+      const vid = tileEl.querySelector('video');
+      if (vid) {
+        vid.muted = false;
+        vid.volume = 1.0;
+        vid.play().catch(() => {
+          vid.muted = true;
+          vid.play().catch(() => {});
+        });
+      }
+    }
+
+    function onNetflixTileHoverEnd(tileEl) {
+      if (!tileEl) return;
+      tileEl.classList.remove('is-playing-hover');
+      const statusPill = tileEl.querySelector('[data-nf-status]');
+      if (statusPill) {
+        statusPill.textContent = '40s HD';
+      }
+      const vid = tileEl.querySelector('video');
+      if (vid) {
+        vid.pause();
+        vid.currentTime = 0;
+      }
+    }
+
+    function openNetflixFullscreenMovie(storySlug) {
+      const story = (catalog.stories || []).find(s => s.slug === storySlug);
+      if (!story) return;
+      const prevTab = activeTab;
+      activeTab = storySlug;
+      openCinemaModal(0);
+      activeTab = prevTab;
+    }
+
+    function renderNetflixView() {
+      const container = document.getElementById('netflixView');
+      if (!container) return;
+      const allStories = catalog.stories || [];
+      const stories = getFilteredStories();
+      const featured = stories[stories.length - 1] || stories[0] || allStories[0];
+      if (!featured) {
+        container.innerHTML = '';
+        return;
+      }
+
+      const featTitle = getLocalizedField(featured, 'title');
+      const featVideo = featured.assets?.hover_video || featured.assets?.video?.file || '';
+      const featPoster = featured.assets?.pages?.[0]?.image || '';
+      const playNowLabel = currentLang === 'it' ? '▶ Riproduci in Grande (40s)' : '▶ Play Fullscreen (40s)';
+      const openStandaloneLabel = currentLang === 'it' ? '📺 Apri Pagina Netflix Dedicata' : '📺 Open Dedicated Netflix Page';
+
+      const rowsHtml = `
+        <section>
+          <div class="nf-row-header">
+            <span class="nf-n-badge">TOP</span>
+            <span>${currentLang === 'it' ? `Tutti i Film (${stories.length}) — Passa col mouse per l'anteprima, clicca per Tutto Schermo` : `All Movies (${stories.length}) — Hover to preview, click for Fullscreen`}</span>
+          </div>
+          <div class="nf-row-grid">
+            ${stories.map(s => buildNetflixVideoTileHtml(s, allStories)).join('')}
+          </div>
+        </section>
+      `;
+
+      container.innerHTML = `
+        <section class="nf-billboard">
+          <video class="nf-billboard-video" src="${featVideo}?v=${APP_VERSION}" poster="${featPoster}?v=${APP_VERSION}" autoplay muted loop playsinline></video>
+          <div class="nf-billboard-content">
+            <div class="nf-series-kicker">
+              <span class="nf-n-badge">STORIEFLIX</span>
+              <span>ORIGINALE KIDS' OWN STORIES</span>
+            </div>
+            <h1 class="nf-billboard-title">${escapeHtml(featTitle)}</h1>
+            <div class="nf-billboard-meta">
+              ${buildCardKidAvatarOverlayHtml(featured).replace('class="card-kid-avatar-overlay"', 'style="display:inline-flex;align-items:center;"')}
+              <span class="nf-match-score">99% Match</span>
+              <span>2026</span>
+              <span class="nf-hd-tag">16:9 HD</span>
+              <span class="nf-hd-tag">40s • 4 Atti</span>
+            </div>
+            <div class="nf-billboard-actions">
+              <button type="button" class="nf-play-btn" onclick="openNetflixFullscreenMovie('${featured.slug}')">
+                ${playNowLabel}
+              </button>
+              <a href="netflix.html" class="nf-secondary-btn">
+                ${openStandaloneLabel}
+              </a>
+            </div>
+          </div>
+        </section>
+        <div class="nf-rows-container">
+          ${rowsHtml}
+        </div>
+      `;
     }
 
     function openStoryMovieFromIndex(storySlug) {

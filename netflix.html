@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STORIEFLIX — I Film Animati di Ale & Seby</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    :root {
+      --nf-bg: #141414;
+      --nf-surface: #1f1f1f;
+      --nf-red: #e50914;
+      --nf-gold: #ffb703;
+      --ale-red: #ef4444;
+      --seby-blue: #3b82f6;
+      --riccardo-gold: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--nf-bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* TOPBAR NETFLIX */
+    header.nf-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px clamp(18px, 4vw, 52px);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.92) 0%, rgba(20, 20, 20, 0.86) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nf-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nf-logo {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--nf-red);
+      text-decoration: none;
+      text-shadow: 0 2px 14px rgba(229, 9, 20, 0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nf-logo span.n-pill {
+      background: var(--nf-red);
+      color: #fff;
+      padding: 2px 9px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+
+    /* PROFILE FILTER PILLS WITH KID CARTOON FACE AVATARS */
+    .nf-profiles-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 4px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nf-profile-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #d4d4d8;
+      background: transparent;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    .nf-profile-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nf-profile-btn.active {
+      background: var(--nf-red);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(229, 9, 20, 0.45);
+    }
+
+    .kid-avatar-mini {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: inline-flex;
+      flex-shrink: 0;
+      border: 2px solid var(--ale-red);
+      background: #0f172a;
+    }
+
+    .kid-avatar-mini.seby {
+      border-color: var(--seby-blue);
+    }
+
+    .kid-avatar-mini.riccardo {
+      border-color: var(--riccardo-gold);
+    }
+
+    .kid-avatar-mini img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 24%;
+      transform: translateY(10%) scale(1.54);
+      display: block;
+    }
+
+    .nf-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nf-sound-toggle {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e5e5;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+    }
+
+    .nf-sound-toggle.sound-on {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #34d399;
+      color: #a7f3d0;
+    }
+
+    .nf-back-link {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 7px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 183, 3, 0.45);
+      background: rgba(255, 183, 3, 0.14);
+      color: var(--nf-gold);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+    }
+
+    .nf-back-link:hover {
+      background: var(--nf-gold);
+      color: #0b0f19;
+    }
+
+    /* HERO BILLBOARD (FEATURED VIDEO) */
+    .nf-billboard {
+      position: relative;
+      width: 100%;
+      min-height: 400px;
+      max-height: 540px;
+      height: 52vh;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 36px clamp(20px, 4vw, 56px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .nf-billboard video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.76;
+      pointer-events: none;
+    }
+
+    .nf-billboard::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(20, 20, 20, 0.94) 0%, rgba(20, 20, 20, 0.5) 48%, rgba(20, 20, 20, 0.08) 100%),
+        linear-gradient(180deg, rgba(20, 20, 20, 0.25) 0%, rgba(20, 20, 20, 0) 45%, #141414 100%);
+      pointer-events: none;
+    }
+
+    .nf-billboard-content {
+      position: relative;
+      z-index: 3;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nf-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.84rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e5e5e5;
+    }
+
+    .nf-billboard-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.8rem, 3.4vw, 2.85rem);
+      font-weight: 700;
+      line-height: 1.08;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+    }
+
+    .nf-billboard-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .nf-match {
+      color: #46d369;
+    }
+
+    .nf-hd {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.72rem;
+    }
+
+    .nf-billboard-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .nf-btn-play {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: none;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+
+    .nf-btn-play:hover {
+      background: rgba(255, 255, 255, 0.86);
+      transform: scale(1.03);
+    }
+
+    .nf-btn-secondary {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 700;
+      padding: 11px 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(109, 109, 110, 0.65);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.16s ease, transform 0.16s ease;
+    }
+
+    .nf-btn-secondary:hover {
+      background: rgba(109, 109, 110, 0.45);
+      transform: scale(1.02);
+    }
+
+    /* VIDEO-ONLY ROWS */
+    main.nf-rows {
+      padding: 20px clamp(20px, 4vw, 56px) 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      flex: 1;
+    }
+
+    .nf-row-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.32rem;
+      color: #f4f4f5;
+    }
+
+    .nf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 28px;
+    }
+
+    @media (max-width: 560px) {
+      .nf-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* VIDEO-ONLY TILE: HOVER PLAYS SMALL, CLICK PLAYS BIG FULLSCREEN */
+    .nf-tile {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      cursor: pointer;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.3s ease;
+      z-index: 1;
+    }
+
+    .nf-tile:hover,
+    .nf-tile:focus-visible,
+    .nf-tile.is-hovering {
+      transform: scale(1.05);
+      z-index: 25;
+      border-color: var(--nf-red);
+      box-shadow: 0 26px 56px rgba(0, 0, 0, 0.94), 0 0 28px rgba(229, 9, 20, 0.5);
+    }
+
+    .nf-tile video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+
+    /* KID CARTOON FACE BUBBLE OVERLAY ON TILE */
+    .tile-kid-avatars {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .tile-kid-bubble {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #0f172a;
+      border: 3.5px solid var(--ale-red);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.82), 0 0 0 2px rgba(255, 255, 255, 0.24);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+    }
+
+    .tile-kid-bubble.seby {
+      border-color: var(--seby-blue);
+    }
+
+    .tile-kid-bubble.riccardo {
+      border-color: var(--riccardo-gold);
+    }
+
+    .tile-kid-bubble.co-star {
+      width: 46px;
+      height: 46px;
+      margin-left: -14px;
+      border-width: 3px;
+    }
+
+    .tile-kid-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 24%;
+      transform: translateY(10%) scale(1.54);
+      display: block;
+    }
+
+    .nf-tile:hover .tile-kid-bubble {
+      transform: scale(1.1) rotate(-3deg);
+    }
+
+    .nf-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.32) 0%, transparent 38%, transparent 52%, rgba(0,0,0,0.92) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px 18px;
+      pointer-events: none;
+    }
+
+    .nf-tile-top-right {
+      align-self: flex-end;
+      background: rgba(20, 20, 20, 0.86);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      color: #f8fafc;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .nf-tile.is-hovering .nf-tile-top-right {
+      background: var(--nf-red);
+      border-color: #ff4d4d;
+      color: #fff;
+    }
+
+    .nf-tile-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .nf-tile-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.24rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.18;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.95);
+    }
+
+    .nf-tile-play-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.94);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .nf-tile:hover .nf-tile-play-icon {
+      transform: scale(1.14);
+      background: #fff;
+      color: var(--nf-red);
+    }
+
+    /* FULLSCREEN CINEMA MODAL WHEN CLICKED */
+    dialog.cinema-modal {
+      margin: auto;
+      width: min(1180px, 96vw);
+      max-height: 94vh;
+      background: #09090b;
+      color: #fff;
+      border: 1px solid rgba(229, 9, 20, 0.5);
+      border-radius: 18px;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 40px rgba(229, 9, 20, 0.25);
+    }
+
+    dialog.cinema-modal::backdrop {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .cinema-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      background: #141414;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cinema-modal-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cinema-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cinema-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cinema-btn.primary {
+      background: var(--nf-red);
+      border-color: transparent;
+    }
+
+    .cinema-video-wrap {
+      width: 100%;
+      background: #000;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      max-height: 72vh;
+    }
+
+    .cinema-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+
+    .cinema-acts-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 12px 18px;
+      background: #141414;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cinema-act-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 6px 8px;
+      color: #e5e5e5;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Nunito', sans-serif;
+      transition: all 0.16s ease;
+    }
+
+    .cinema-act-btn:hover,
+    .cinema-act-btn.active {
+      border-color: var(--nf-red);
+      background: rgba(229, 9, 20, 0.2);
+      color: #fff;
+    }
+
+    .cinema-act-btn img {
+      width: 48px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 760px) {
+      .cinema-acts-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nf-billboard {
+        height: 44vh;
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nf-topbar">
+    <div class="nf-brand-group">
+      <a href="netflix.html" class="nf-logo">
+        <span class="n-pill">N</span>
+        <span>STORIEFLIX</span>
+      </a>
+
+      <div class="nf-profiles-bar" role="group" aria-label="Filtra per autore o destinatario">
+        <button type="button" class="nf-profile-btn active" id="nfAllCountBtn" data-kid="all" onclick="setKidFilter('all')">
+          🍿 Tutti (6)
+        </button>
+        <button type="button" class="nf-profile-btn" data-kid="alessandro" onclick="setKidFilter('alessandro')">
+          <span class="kid-avatar-mini ale"><img src="assets/avatars/ale.png" alt="Ale"></span>
+          <span>Ale</span>
+        </button>
+        <button type="button" class="nf-profile-btn" data-kid="sebastian" onclick="setKidFilter('sebastian')">
+          <span class="kid-avatar-mini seby"><img src="assets/avatars/seby.png" alt="Seby"></span>
+          <span>Seby</span>
+        </button>
+        <button type="button" class="nf-profile-btn" data-kid="riccardo" onclick="setKidFilter('riccardo')">
+          <span class="kid-avatar-mini riccardo"><img src="assets/avatars/riccardo.png" alt="Papino"></span>
+          <span>Papino</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nf-topbar-right">
+      <button type="button" class="nf-sound-toggle sound-on" id="hoverSoundToggleBtn" onclick="toggleHoverSound()">
+        🔊 Audio Hover: ATTIVO
+      </button>
+      <a href="index.html#indice" class="nf-back-link">
+        📚 Indice &amp; Libri Sfogliabili
+      </a>
+    </div>
+  </header>
+
+  <section id="nfBillboard" class="nf-billboard" aria-label="Film in evidenza"></section>
+
+  <main id="nfRowsContainer" class="nf-rows" aria-label="Catalogo Video StorieFlix"></main>
+
+  <dialog id="cinemaModal" class="cinema-modal" closedby="any">
+    <div class="cinema-modal-header">
+      <div class="cinema-modal-title" id="cinemaModalTitle">🎬 Film</div>
+      <div class="cinema-modal-actions">
+        <button type="button" class="cinema-btn primary" onclick="requestNativeFullscreen()">
+          ⛶ Tutto Schermo
+        </button>
+        <a id="cinemaOpenBookLink" href="index.html" class="cinema-btn" style="text-decoration:none;">
+          📖 Apri Libro
+        </a>
+        <button type="button" class="cinema-btn" onclick="closeCinemaModal()">
+          ✕ Chiudi
+        </a>
+      </div>
+    </div>
+    <div class="cinema-video-wrap">
+      <video id="cinemaModalVideo" controls playsinline preload="metadata"></video>
+    </div>
+    <div class="cinema-acts-bar" id="cinemaActsBar"></div>
+  </dialog>
+
+  <script>
+    let catalog = { authors: {}, stories: [] };
+    let kidFilter = 'all';
+    let featuredIndex = 0;
+    let hoverSoundEnabled = true;
+    let activeModalStory = null;
+
+    const PERSON_META = {
+      alessandro: { avatar: 'assets/avatars/ale.png', cls: 'ale', label: 'Alessandro (Ale)' },
+      sebastian: { avatar: 'assets/avatars/seby.png', cls: 'seby', label: 'Sebastian (Seby)' },
+      riccardo: { avatar: 'assets/avatars/riccardo.png', cls: 'riccardo', label: 'Papà Riccardo (Papino)' }
+    };
+
+    function getPersonMeta(id) {
+      return PERSON_META[id] || PERSON_META.alessandro;
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderKidOverlayBubbles(story) {
+      const pMeta = getPersonMeta(story.author);
+      const recipients = Array.isArray(story.recipients) ? story.recipients : [story.author];
+      const coStars = recipients.filter(r => r !== story.author);
+      if (story.author === 'alessandro' && (story.slug || '').includes('sebi') && !coStars.includes('sebastian')) {
+        coStars.push('sebastian');
+      }
+      const coStarHtml = coStars.map(rId => {
+        const rMeta = getPersonMeta(rId);
+        return `<span class="tile-kid-bubble ${rMeta.cls} co-star" title="Storia per: ${escapeHtml(rMeta.label)}">
+             <img src="${rMeta.avatar}" alt="${escapeHtml(rMeta.label)}">
+           </span>`;
+      }).join('');
+      return `
+        <div class="tile-kid-avatars">
+          <span class="tile-kid-bubble ${pMeta.cls}" title="Scritta da: ${escapeHtml(pMeta.label)}">
+            <img src="${pMeta.avatar}" alt="${escapeHtml(pMeta.label)}">
+          </span>
+          ${coStarHtml}
+        </div>
+      `;
+    }
+
+    function setKidFilter(kid) {
+      kidFilter = kid;
+      document.querySelectorAll('.nf-profile-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-kid') === kid);
+      });
+      featuredIndex = 0;
+      renderAll();
+    }
+
+    function toggleHoverSound() {
+      hoverSoundEnabled = !hoverSoundEnabled;
+      const btn = document.getElementById('hoverSoundToggleBtn');
+      if (btn) {
+        btn.classList.toggle('sound-on', hoverSoundEnabled);
+        btn.textContent = hoverSoundEnabled
+          ? '🔊 Audio Hover: ATTIVO'
+          : '🔇 Audio Hover: OFF (Clicca per ON)';
+      }
+    }
+
+    function cycleFeatured(total) {
+      if (!total) return;
+      featuredIndex = (featuredIndex + 1) % total;
+      renderAll();
+    }
+
+    function getStoryMovieUrl(story) {
+      return story.assets?.video?.file || (typeof story.assets?.video === 'string' ? story.assets.video : '') || `${story.folder}/video_5s.mp4`;
+    }
+
+    function getStoryFallbackVideoUrl(story) {
+      return story.assets?.hover_video || story.assets?.hover_preview_video || `${story.folder}/hover_preview.mp4`;
+    }
+
+    function getStoryPosterUrl(story) {
+      return story.assets?.pages?.[0]?.image || `${story.folder}/${story.pages?.[0]?.image || 'page_01.png'}`;
+    }
+
+    function renderTile(story) {
+      const movieUrl = getStoryMovieUrl(story);
+      const fallbackUrl = getStoryFallbackVideoUrl(story);
+      const posterUrl = getStoryPosterUrl(story);
+      return `
+        <article class="nf-tile"
+          tabindex="0"
+          role="button"
+          aria-label="Guarda ${escapeHtml(story.title)} a tutto schermo"
+          onmouseenter="startTileHover(this)"
+          onmouseleave="stopTileHover(this)"
+          onfocus="startTileHover(this)"
+          onblur="stopTileHover(this)"
+          onclick="openCinemaModal('${story.slug}')">
+          <video muted loop playsinline preload="metadata" poster="${posterUrl}">
+            <source src="${movieUrl}" type="video/mp4">
+            <source src="${fallbackUrl}" type="video/mp4">
+          </video>
+          ${renderKidOverlayBubbles(story)}
+          <div class="nf-tile-overlay">
+            <span class="nf-tile-top-right">🎬 40s • Hover = Preview</span>
+            <div class="nf-tile-bottom">
+              <div class="nf-tile-title">${story.emoji || '🎬'} ${escapeHtml(story.title)}</div>
+              <span class="nf-tile-play-icon" title="Clicca per aprire a Tutto Schermo">▶</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function startTileHover(tileEl) {
+      if (!tileEl) return;
+      tileEl.classList.add('is-hovering');
+      const statusBadge = tileEl.querySelector('.nf-tile-top-right');
+      if (statusBadge) {
+        statusBadge.textContent = '▶️ In Riproduzione • Clicca = Tutto Schermo';
+      }
+      const bVid = document.getElementById('billboardVideo');
+      if (bVid && !bVid.paused) bVid.pause();
+
+      const vid = tileEl.querySelector('video');
+      if (vid) {
+        vid.muted = !hoverSoundEnabled;
+        vid.volume = 1.0;
+        const p = vid.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(() => {
+            vid.muted = true;
+            vid.play().catch(() => {});
+          });
+        }
+      }
+    }
+
+    function stopTileHover(tileEl) {
+      if (!tileEl) return;
+      tileEl.classList.remove('is-hovering');
+      const statusBadge = tileEl.querySelector('.nf-tile-top-right');
+      if (statusBadge) {
+        statusBadge.textContent = '🎬 40s • Hover = Preview';
+      }
+      const vid = tileEl.querySelector('video');
+      if (vid) {
+        vid.pause();
+      }
+      const modal = document.getElementById('cinemaModal');
+      const bVid = document.getElementById('billboardVideo');
+      if (bVid && (!modal || !modal.open)) {
+        bVid.play().catch(() => {});
+      }
+    }
+
+    function storyMatchesPerson(s, personId) {
+      if (personId === 'all') return true;
+      const authors = Array.isArray(s.authors) ? s.authors : [s.author];
+      const recipients = Array.isArray(s.recipients) ? s.recipients : [s.author];
+      if (personId === 'sebastian' && (s.slug || '').includes('sebi')) return true;
+      return s.author === personId || authors.includes(personId) || recipients.includes(personId);
+    }
+
+    function renderAll() {
+      const stories = catalog.stories || [];
+      const allBtn = document.getElementById('nfAllCountBtn');
+      if (allBtn && stories.length > 0) {
+        allBtn.textContent = `🍿 Tutti (${stories.length})`;
+      }
+      const filtered = stories.filter(s => storyMatchesPerson(s, kidFilter));
+      const pool = filtered.length > 0 ? filtered : stories;
+      const featured = pool[featuredIndex % pool.length] || stories[0];
+
+      const billboardEl = document.getElementById('nfBillboard');
+      if (featured && billboardEl) {
+        const movieUrl = getStoryMovieUrl(featured);
+        const fallbackUrl = getStoryFallbackVideoUrl(featured);
+        const posterUrl = getStoryPosterUrl(featured);
+        const pMeta = getPersonMeta(featured.author);
+        const recipients = Array.isArray(featured.recipients) ? featured.recipients : [featured.author];
+        const recipientOthers = recipients.filter(r => r !== featured.author);
+        const recipientSuffix = recipientOthers.length > 0
+          ? ` PER ${recipientOthers.map(r => getPersonMeta(r).label.toUpperCase()).join(' & ')}`
+          : '';
+
+        billboardEl.innerHTML = `
+          <video id="billboardVideo" autoplay muted loop playsinline preload="metadata" poster="${posterUrl}">
+            <source src="${movieUrl}" type="video/mp4">
+            <source src="${fallbackUrl}" type="video/mp4">
+          </video>
+          <div class="nf-billboard-content">
+            <div class="nf-kicker">
+              <span class="kid-avatar-mini ${pMeta.cls}" style="width:34px;height:34px;">
+                <img src="${pMeta.avatar}" alt="${escapeHtml(pMeta.label)}">
+              </span>
+              <span>FILM DI ${escapeHtml(pMeta.label.toUpperCase())}${escapeHtml(recipientSuffix)}</span>
+            </div>
+            <h1 class="nf-billboard-title">${featured.emoji || '🎬'} ${escapeHtml(featured.title)}</h1>
+            <div class="nf-billboard-meta">
+              <span class="nf-match">99% Compatibile</span>
+              <span>${featured.created_at || '2026'}</span>
+              <span class="nf-hd">16:9 HD • 40s</span>
+              <span class="nf-hd">4 Atti Pixar 3D</span>
+            </div>
+            <div class="nf-billboard-actions">
+              <button type="button" class="nf-btn-play" onclick="openCinemaModal('${featured.slug}')">
+                ▶️ Riproduci a Tutto Schermo
+              </button>
+              <button type="button" class="nf-btn-secondary" onclick="cycleFeatured(${pool.length})">
+                🔄 Cambia Film in Evidenza
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      const rowsEl = document.getElementById('nfRowsContainer');
+      if (!rowsEl) return;
+
+      let headerBadge = '🔥';
+      let headerTitle = `Tutti i Film Animati (${pool.length}) — Passa col mouse per l'anteprima, clicca per Tutto Schermo`;
+      if (kidFilter === 'alessandro') {
+        headerBadge = `<span class="kid-avatar-mini ale"><img src="assets/avatars/ale.png" alt="Ale"></span>`;
+        headerTitle = `I Film di o per Alessandro (Ale • ${pool.length})`;
+      } else if (kidFilter === 'sebastian') {
+        headerBadge = `<span class="kid-avatar-mini seby"><img src="assets/avatars/seby.png" alt="Seby"></span>`;
+        headerTitle = `I Film di o con Sebastian (Seby • ${pool.length})`;
+      } else if (kidFilter === 'riccardo') {
+        headerBadge = `<span class="kid-avatar-mini riccardo"><img src="assets/avatars/riccardo.png" alt="Papino"></span>`;
+        headerTitle = `I Film scritti da Papino Riccardo (${pool.length})`;
+      }
+
+      rowsEl.innerHTML = `
+        <section>
+          <div class="nf-row-header">
+            ${headerBadge}
+            <span>${headerTitle}</span>
+          </div>
+          <div class="nf-grid">${pool.map(renderTile).join('')}</div>
+        </section>
+      `;
+    }
+
+    function openCinemaModal(slug) {
+      const story = (catalog.stories || []).find(s => s.slug === slug);
+      if (!story) return;
+      activeModalStory = story;
+
+      // Pause any hovering tile videos so only the modal video plays with audio
+      document.querySelectorAll('.nf-tile video').forEach(v => v.pause());
+
+      const bVid = document.getElementById('billboardVideo');
+      if (bVid && !bVid.paused) bVid.pause();
+
+      const pMeta = getPersonMeta(story.author);
+      const titleEl = document.getElementById('cinemaModalTitle');
+      titleEl.innerHTML = `
+        <span class="kid-avatar-mini ${pMeta.cls}"><img src="${pMeta.avatar}" alt=""></span>
+        <span>${story.emoji || '🎬'} ${escapeHtml(story.title)}</span>
+      `;
+
+      const bookLink = document.getElementById('cinemaOpenBookLink');
+      if (bookLink) {
+        bookLink.href = `index.html?tab=${encodeURIComponent(story.slug)}`;
+      }
+
+      const movieUrl = getStoryMovieUrl(story);
+      const fallbackUrl = getStoryFallbackVideoUrl(story);
+      const posterUrl = getStoryPosterUrl(story);
+      const vid = document.getElementById('cinemaModalVideo');
+      vid.poster = posterUrl;
+      vid.onerror = () => {
+        if (vid.src && !vid.src.endsWith(fallbackUrl)) {
+          vid.src = fallbackUrl;
+          vid.muted = false;
+          vid.volume = 1.0;
+          vid.play().catch(() => {});
+        }
+      };
+      vid.src = movieUrl;
+      vid.currentTime = 0;
+      vid.muted = false;
+      vid.volume = 1.0;
+
+      const pages = story.assets?.pages || story.pages || [];
+      const actsBar = document.getElementById('cinemaActsBar');
+      actsBar.innerHTML = pages.slice(0, 4).map((p, idx) => {
+        const startSec = idx * 10;
+        const endSec = (idx + 1) * 10;
+        const imgUrl = p.image || `${story.folder}/page_0${idx + 1}.png`;
+        return `
+          <button type="button" class="cinema-act-btn ${idx === 0 ? 'active' : ''}" data-act="${idx}" onclick="seekModalToAct(${startSec})">
+            <img src="${imgUrl}" alt="Atto ${idx + 1}">
+            <div>
+              <div style="font-size:0.72rem;color:#fca5a5;font-weight:700;">Atto ${idx + 1} • 0:${String(startSec).padStart(2, '0')}–0:${String(endSec).padStart(2, '0')}</div>
+              <div style="font-size:0.84rem;font-weight:700;">${escapeHtml(p.title || `Capitolo ${idx + 1}`)}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      vid.ontimeupdate = () => {
+        const activeIdx = Math.min(3, Math.max(0, Math.floor((vid.currentTime || 0) / 10)));
+        actsBar.querySelectorAll('.cinema-act-btn').forEach((btn, idx) => {
+          btn.classList.toggle('active', idx === activeIdx);
+        });
+      };
+
+      const modal = document.getElementById('cinemaModal');
+      modal.showModal();
+      vid.play().catch(() => {
+        vid.muted = true;
+        vid.play().catch(() => {});
+      });
+    }
+
+    function seekModalToAct(sec) {
+      const vid = document.getElementById('cinemaModalVideo');
+      if (!vid) return;
+      vid.currentTime = sec;
+      vid.muted = false;
+      vid.play().catch(() => {});
+    }
+
+    function requestNativeFullscreen() {
+      const vid = document.getElementById('cinemaModalVideo');
+      if (!vid) return;
+      const fn = vid.requestFullscreen || vid.webkitRequestFullscreen || vid.webkitEnterFullscreen;
+      if (fn) fn.call(vid);
+    }
+
+    function closeCinemaModal() {
+      const modal = document.getElementById('cinemaModal');
+      const vid = document.getElementById('cinemaModalVideo');
+      if (vid) vid.pause();
+      if (modal && modal.open) modal.close();
+      const bVid = document.getElementById('billboardVideo');
+      if (bVid) bVid.play().catch(() => {});
+    }
+
+    document.getElementById('cinemaModal').addEventListener('close', () => {
+      const vid = document.getElementById('cinemaModalVideo');
+      if (vid) vid.pause();
+      const bVid = document.getElementById('billboardVideo');
+      if (bVid) bVid.play().catch(() => {});
+    });
+
+    async function initNetflix() {
+      const params = new URLSearchParams(window.location.search);
+      const kidParam = params.get('kid');
+      if (['all', 'alessandro', 'sebastian'].includes(kidParam)) {
+        kidFilter = kidParam;
+        document.querySelectorAll('.nf-profile-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-kid') === kidFilter);
+        });
+      }
+
+      try {
+        const res = await fetch('stories.yaml', { cache: 'no-cache' });
+        if (res.ok && window.jsyaml) {
+          const text = await res.text();
+          const parsed = window.jsyaml.load(text);
+          if (parsed && Array.isArray(parsed.stories)) {
+            catalog = parsed;
+          }
+        }
+      } catch (e) {
+        console.error('Failed to load stories.yaml', e);
+      }
+
+      renderAll();
+
+      const playSlug = params.get('play');
+      if (playSlug) {
+        openCinemaModal(playSlug);
+      }
+    }
+
+    initNetflix();
+  </script>
+</body>
+</html>

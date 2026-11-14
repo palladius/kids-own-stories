@@ -391,6 +391,70 @@ STORY_SPECS = [
             },
         ],
     },
+    {
+        "slug": "storia-nascita-sguisatazzo-computer-alessandro",
+        "title": "La Nascita di Sguisatazzo, il Computer Magico di Alessandro",
+        "folder": ROOT / "stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro",
+        "output_mp4": "video_sguisatazzo.mp4",
+        "acts": [
+            {
+                "act": 1,
+                "first_frame": "scena1_risveglio_sguisatazzo.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame inside a dark industrial server room where a towering grumpy black "
+                    "metal supercomputer looms, a compact white-and-raspberry-pink keyboard computer (Raspberry Pi 400) "
+                    "magical awakens with golden sparkles and cute glowing digital eyes! With a heroic tug, the white-and-pink "
+                    "keyboard unplugs its cable from the grumpy black tower and hops joyfully out the window toward freedom! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Un giorno la tastiera bianca e rosa Raspberry Pi 400 prese coscienza, si staccò dal computer cattivo e diventò Sguisatazzo!\" "
+                    "Accompanied by magical electronic chimes, a comic pop unplug sound, and heroic orchestral adventure music."
+                ),
+            },
+            {
+                "act": 2,
+                "first_frame": "scena2_zurigo_campanello.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame on a charming street in Zurich with the twin spires of Grossmünster in "
+                    "the background at golden hour, the cute sentient white-and-raspberry-pink Raspberry Pi 400 keyboard "
+                    "(Sguisatazzo) stands on the doorstep of Casa Carlesso, stretches its pink-and-white USB cable up like "
+                    "a clever little arm, and excitedly presses the glowing doorbell button! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Scappato fino a Zurigo, il piccolo Sguisatazzo arrivò a Casa Carlesso e con il suo cavetto suonò al campanello: DRIIIIN!\" "
+                    "Accompanied by a cheerful doorbell ring (DRIIIN!), playful footsteps, and warm whimsical strings."
+                ),
+            },
+            {
+                "act": 3,
+                "first_frame": "scena3_adozione_alessandro.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame at the warm sunlit front door of Casa Carlesso in Zurich, sweet 8-year-old "
+                    "Alessandro (a cute boy with straight brown hair with bangs and warm hazel-brown eyes) kneels on the "
+                    "doorstep with a tender beaming smile and gently hugs the adorable white-and-raspberry-pink Raspberry Pi 400 "
+                    "keyboard computer (Sguisatazzo) as its keys glow with hearts and its green LED blinks happily! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Il tenero Alessandro aprì la porta, vide la bellissima tastiera bianca e rosa tutta sola e la abbracciò adottandola subito!\" "
+                    "Accompanied by happy electronic beeps, a heartwarming harp glissando, and tender orchestral music."
+                ),
+            },
+            {
+                "act": 4,
+                "first_frame": "scena4_desk_camera_ale.jpg",
+                "prompt": (
+                    "<FIRST_FRAME> High-end 3D animated family feature film, 16:9 HD. "
+                    "Starting from the first frame inside Alessandro's cozy bedroom in Zurich, 8-year-old Alessandro "
+                    "(straight brown hair with bangs, warm hazel eyes) sits happily at his wooden bedroom desk typing on his "
+                    "beloved white-and-raspberry-pink Raspberry Pi 400 keyboard computer (Sguisatazzo), while colorful "
+                    "holograms of space rockets, friendly numbers, and educational games dance above the glowing monitor! "
+                    "Audio design: A warm, expressive Italian storyteller voice narrates in clear Italian: "
+                    "\"Da allora Sguisatazzo vive sul desk nella camera da letto di Ale, facendogli compagnia con giochi e programmi educativi!\" "
+                    "Accompanied by joyful arcade chimes, cheerful typing clicks, and a triumphant heartwarming orchestral finale."
+                ),
+            },
+        ],
+    },
 ]
 
 

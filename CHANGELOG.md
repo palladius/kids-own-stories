@@ -2,6 +2,19 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.10.0] - 2026-11-14
+
+### Added & Changed
+- 👦🏻🧔🏻 **Bollini Cartoon in Sovrimpressione & Modello `N:N` Autore ↔ Destinatario ([`index.html`](index.html), [`netflix.html`](netflix.html), [`stories.yaml`](stories.yaml), `assets/avatars/`)**:
+  - Aggiunti i cerchietti con le faccine cartoon in sovrimpressione sulle card per **Alessandro (Ale, anello rosso `#ef4444`)**, **Sebastian (Seby, anello azzurro `#3b82f6`)** e **Papà Riccardo (Papino, anello oro `#f59e0b`)**.
+  - Supporto completo per la relazione `N:N` **`authors` ("Scritta da") ↔ `recipients` ("Storia per")**: ogni card mostra sia chi ha inventato la storia sia a chi è dedicata (es. *Papino Riccardo ✍️ → per Alessandro ❤️*), e i filtri per persona mostrano sia le storie scritte da quel bimbo sia quelle dedicate a lui.
+- 🍿 **Vista "StorieFlix" in Stile Netflix Senza Duplicazioni ([`netflix.html`](netflix.html) e tab `#netflix` in [`index.html`](index.html))**:
+  - Pagina e vista dedicata **solo ai video** con tema scuro `#141414`, Hero Billboard in evidenza e **griglia unica con card giganti (`minmax(460px, 1fr)`)** senza righe duplicate: ogni film compare una sola volta in grande con i bollini cartoon in sovrimpressione.
+  - Passando col mouse (`:hover`) il film parte subito in anteprima nella card (con audio attivo); cliccando sulla card si apre il **Cinema Modal a Tutto Schermo** con barra interattiva dei 4 Atti (`0:00–0:40`).
+- 🍓⌨️🖥️ **6ª Storia Completa: *La Nascita di Sguisatazzo, il Computer Magico di Alessandro* (`stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/`)**:
+  - Storia inventata da **Papino Riccardo** per il suo **Alessandro (Ale)**: racconta di come una tastiera **Raspberry Pi 400** bianca e rosa-lampone prese coscienza, si staccò da un computer cattivo (`TITAN`) per diventare un computer libero (*Sguisatazzo*), scappò fino a **Zurigo**, suonò al campanello di **Casa Carlesso** (`DRIIIIN!`) e fu adottata dal tenero Alessandro, vivendo da allora sul desk nella sua camera da letto tra giochi e programmi educativi.
+  - Include 4 illustrazioni Pixar 3D `16:9`, testo in 5 lingue (`it`, `en`, `fr`, `de`, `pt`), audiolibri studio con pianoforte (`narrated_it.mp3`, `narrated_en.mp3`), Karaoke Whisper parola-per-parola (`karaoke_it.json`, `karaoke_en.json`), audio hover dei titoli (`title_it.mp3`, `title_en.mp3`) e film animato da 40 secondi (`video_sguisatazzo.mp4` + `hover_preview.mp4`).
+
 ## [0.9.3] - 2026-11-08
 
 ### Changed

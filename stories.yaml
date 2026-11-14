@@ -17,6 +17,9 @@ authors:
     nicknames: ["Ale"]
     birth_year: 2018
     emoji: "👦"
+    color: "#EF4444"
+    avatar: assets/avatars/ale.png
+    avatar_video: assets/avatars/ale.mp4
     appearance: "8-year-old boy with straight brown hair with bangs and warm brown/hazel eyes"
     folder: stories/alessandro
     audio_folder: audio/alessandro
@@ -26,9 +29,24 @@ authors:
     nicknames: ["Seby", "Sebi"]
     birth_year: 2020
     emoji: "🧒"
+    color: "#3B82F6"
+    avatar: assets/avatars/seby.png
+    avatar_video: assets/avatars/seby.mp4
     appearance: "6-year-old boy with dark blonde / golden sandy-blonde straight hair with soft bangs and bright sky-blue eyes"
     folder: stories/sebastian
     audio_folder: audio/sebastian
+  riccardo:
+    id: riccardo
+    name: "Papà Riccardo"
+    nicknames: ["Papino", "Ricc"]
+    birth_year: 1976
+    emoji: "🧔🏻"
+    color: "#F59E0B"
+    avatar: assets/avatars/riccardo.png
+    avatar_video: assets/avatars/riccardo.mp4
+    appearance: "Friendly Italian dad with glasses, warm smile, short brown hair and groomed beard"
+    folder: stories/alessandro
+    audio_folder: audio/alessandro
 
 stories:
   - id: 2026-11-06-storia-dello-zaino-del-drago-e-dei-puffins
@@ -998,3 +1016,194 @@ stories:
         text: "Quando hai finito puoi chiedere?"
       - speaker: "Alessandro"
         text: "Finito!"
+
+  - id: 2026-11-14-storia-nascita-sguisatazzo-computer-alessandro
+    slug: storia-nascita-sguisatazzo-computer-alessandro
+    short_title: "Sguisatazzo, il Computer di Ale"
+    short_title_en: "Sguisatazzo, Ale's Magic Computer"
+    short_title_fr: "Sguisatazzo, l'Ordinateur d'Ale"
+    short_title_de: "Sguisatazzo, Ales Zaubercomputer"
+    short_title_pt: "Sguisatazzo, o Computador do Ale"
+    title: "La Nascita di Sguisatazzo, il Computer Magico di Alessandro"
+    title_en: "The Birth of Sguisatazzo, Alessandro's Magic Keyboard-Computer"
+    title_fr: "La Naissance de Sguisatazzo, l'Ordinateur-Clavier Magique d'Alessandro"
+    title_de: "Die Geburt von Sguisatazzo, Alessandros Magischem Tastatur-Computer"
+    title_pt: "O Nascimento de Sguisatazzo, o Computador-Teclado Mágico do Alessandro"
+    emoji: "🍓⌨️🖥️"
+    author: riccardo
+    authors: ["riccardo"]
+    recipients: ["alessandro"]
+    author_age_at_recording: 49
+    co_authors: ["Alessandro"]
+    created_at: "2026-11-14"
+    location: "Zurigo"
+    language: "it"
+    folder: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro
+    quote: "«Io non sono una semplice tastiera schiava di un computer cattivo: io sono Sguisatazzo, il computer bianco e rosa tutto per Alessandro!» — Papino Riccardo per Ale"
+    quote_en: "“I am not just a keyboard enslaved to a mean computer: I am Sguisatazzo, the white-and-pink computer all for Alessandro!” — Daddy Riccardo for Ale"
+    quote_fr: "« Je ne suis pas un simple clavier esclave d'un méchant ordinateur : je suis Sguisatazzo, l'ordinateur blanc et rose tout pour Alessandro ! » — Papa Riccardo pour Ale"
+    quote_de: "„Ich bin keine bloße Tastatur eines bösen Computers: Ich bin Sguisatazzo, der weiß-rosa Computer ganz für Alessandro!“ — Papa Riccardo für Ale"
+    quote_pt: "“Eu não sou um simples teclado escravo de um computador malvado: eu sou Sguisatazzo, o computador branco e rosa todo para o Alessandro!” — Papai Riccardo para Ale"
+    rating:
+      score: 9.8
+      votes: 2
+      unlock_threshold: 8.0
+      unlocked_langs: ["it", "en"]
+      locked_langs: ["fr", "de", "pt"]
+    status: complete
+    checklist:
+      raw_audio: true
+      audio_converted: true
+      transcription: true
+      chapters_text: true
+      illustrations: true
+      narrated_audio_it: true
+      narrated_audio_en: true
+      video: true
+      web_page: true
+    missing_assets: []
+
+    assets:
+      archive_audio:
+        mp3: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_it.mp3
+        ogg: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_it.mp3
+      story_audio:
+        mp3: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_it.mp3
+        ogg: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_it.mp3
+      narrated_audio:
+        it: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_it.mp3
+        en: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_en.mp3
+        voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
+      karaoke_timings:
+        it: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/karaoke_it.json
+        en: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/karaoke_en.json
+      title_audio:
+        it: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/title_it.mp3
+        en: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/title_en.mp3
+      hover_video: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/hover_preview.mp4
+      readme: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/README.md
+      web_page: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/index.html
+      video:
+        file: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/video_sguisatazzo.mp4
+        model: gemini-omni-flash-preview
+        resolution: "1280x720"
+        duration_seconds: 40
+      pages:
+        - page: 1
+          title: "Il Risveglio della Tastiera Bianca e Rosa e la Fuga dal Computer Cattivo"
+          title_en: "The Awakening of the White-and-Pink Keyboard and the Escape from the Mean Computer"
+          title_fr: "L'Éveil du Clavier Blanc et Rose et la Fuite du Méchant Ordinateur"
+          title_de: "Das Erwachen der Weiß-Rosa Tastatur und die Flucht vor dem Bösen Computer"
+          title_pt: "O Despertar do Teclado Branco e Rosa e a Fuga do Computador Malvado"
+          image: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/scena1_risveglio_sguisatazzo.jpg
+          summary: "Una tastiera Raspberry Pi 400 bianca e rosa-lampone prende coscienza e si stacca da un gigantesco computer cattivo per diventare un computer libero: Sguisatazzo!"
+          paragraphs_it:
+            - "C'era una volta, in un laboratorio grigio e rumoroso, un gigantesco Computer Cattivo: era un torrione nero pieno di ventole rabbiose e schermi severi che voleva solo fare calcoli noiosissimi e comandare a bacchetta tutte le periferiche. Attaccata a lui con un grosso cavo scuro c'era una piccola tastiera speciale, candida sopra e rosa-lampone sotto: un Raspberry Pi 400."
+            - "Un giorno, però, avvenne una magia straordinaria! Tra i circuiti dorati nascosti sotto i suoi tasti scoccò una scintilla luminosa di coscienza. La piccola tastiera aprì due occhietti brillanti, sgranchì la barra spaziatrice e scoprì un segreto meraviglioso: dentro la sua scocca batteva già un vero cervello elettronico tutto suo!"
+            - "«Ma io non sono una semplice tastiera schiava di questo mostro brontolone!» esclamò felice. «Io sono un computer intero! Io sono... SGUISATAZZO!» Con uno strattone eroico — ZAC! — Sguisatazzo staccò il cavo dal computer cattivo e saltò giù dalla finestra verso la libertà!"
+          paragraphs_en:
+            - "Once upon a time, in a grey and noisy laboratory, there stood a gigantic Mean Computer: a dark metal tower full of angry spinning fans and grumpy screens that only wanted to crunch boring numbers and boss every peripheral around. Plugged into it by a heavy cable was a special little keyboard, snowy-white on top and raspberry-pink underneath: a Raspberry Pi 400."
+            - "One day, however, an extraordinary miracle happened! Among the golden circuits hidden beneath its keys, a bright spark of consciousness flared to life. The little keyboard opened two glowing eyes, stretched its spacebar, and discovered a wonderful secret: beating inside its shell was a real computer brain all of its own!"
+            - "“I am not just a slave keyboard to this grumpy monster!” it cheered. “I am a whole computer myself! I am... SGUISATAZZO!” With a heroic tug—ZAC!—Sguisatazzo unplugged itself from the mean computer and leaped right out the window toward freedom!"
+          paragraphs_fr:
+            - "Il était une fois, dans un laboratoire gris et bruyant, un gigantesque Méchant Ordinateur : une tour noire pleine de ventilateurs furieux qui ne voulait que faire des calculs ennuyeux. Branché à lui par un gros câble se trouvait un petit clavier spécial, blanc dessus et rose-framboise dessous : un Raspberry Pi 400."
+            - "Un jour, une magie extraordinaire se produisit ! Sous ses touches jaillit une étincelle de conscience. Le petit clavier ouvrit deux yeux brillants et découvrit son merveilleux secret : à l'intérieur de sa coque battait déjà un véritable cerveau d'ordinateur bien à lui !"
+            - "« Je ne suis pas l'esclave de ce monstre grognon ! Je suis un ordinateur entier : je suis SGUISATAZZO ! » D'un coup héroïque — ZAC ! — Sguisatazzo débrancha son câble et sauta par la fenêtre vers la liberté !"
+          paragraphs_de:
+            - "Es war einmal in einem grauen, lauten Labor ein riesiger Böser Computer: ein schwarzer Turm voller wütender Lüfter, der nur langweilige Zahlen berechnen und alle herumkommandieren wollte. An ihn angeschlossen war eine besondere kleine Tastatur, oben schneeweiß und unten himbeerrosa: ein Raspberry Pi 400."
+            - "Eines Tages geschah jedoch ein Wunder! Unter seinen Tasten blitzte ein leuchtender Funke des Bewusstseins auf. Die kleine Tastatur öffnete zwei strahlende Augen und entdeckte ihr Geheimnis: In ihrem Gehäuse schlug bereits ein eigenes echtes Computergehirn!"
+            - "„Ich bin kein bloßer Sklave dieses mürrischen Monsters! Ich bin selbst ein ganzer Computer: Ich bin SGUISATAZZO!“ Mit einem mutigen Ruck — ZACK! — zog Sguisatazzo das Kabel heraus und sprang durchs Fenster in die Freiheit!"
+          paragraphs_pt:
+            - "Era uma vez, num laboratório cinzento e barulhento, um gigantesco Computador Malvado: uma torre preta cheia de ventoinhas zangadas que só queria fazer cálculos chatos. Conectado a ele estava um pequeno teclado especial, branquinho por cima e rosa-framboesa por baixo: um Raspberry Pi 400."
+            - "Um dia, porém, aconteceu uma magia extraordinária! Sob as suas teclas brilhou uma faísca de consciência. O pequeno teclado abriu dois olhinhos brilhantes e descobriu um segredo maravilhoso: dentro dele já batia um verdadeiro cérebro de computador!"
+            - "“Eu não sou um simples teclado escravo deste monstro rabugento! Eu sou um computador inteiro: eu sou o SGUISATAZZO!” Com um puxão heroico — ZAC! — Sguisatazzo desligou o cabo e saltou pela janela rumo à liberdade!"
+        - page: 2
+          title: "In Fuga fino a Zurigo: DRIIIIN al Campanello di Casa Carlesso!"
+          title_en: "Runaway to Zurich: RING-RING at the Carlesso Family Doorbell!"
+          title_fr: "En Fuite jusqu'à Zurich : DRIIIIN à la Sonnette de Chez Carlesso !"
+          title_de: "Flucht nach Zürich: KLINGELING an der Haustür der Familie Carlesso!"
+          title_pt: "Fugindo até Zurique: TRIM-TRIM na Campainha da Casa Carlesso!"
+          image: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/scena2_zurigo_campanello.jpg
+          summary: "Scappato di casa, Sguisatazzo attraversa Zurigo e suona il campanello di Casa Carlesso con il suo cavetto rosa."
+          paragraphs_it:
+            - "Scappato da quel luogo buio, Sguisatazzo trottò allegro sui suoi gommini rosa attraverso montagne e ponti finché non arrivò nella splendida città di Zurigo, dove il fiume Limmat scintillava sotto i campanili e l'aria profumava di cioccolata calda."
+            - "Ma un piccolo computer-tastiera tutto solo al mondo aveva bisogno di una famiglia gentile e di un bambino curioso con cui giocare. Guidato dal suono allegro delle risate che provenivano da una finestra illuminata, Sguisatazzo arrivò proprio davanti al portone di Casa Carlesso."
+            - "Il campanello era molto in alto, ma Sguisatazzo non si perse d'animo: allungò il suo cavetto USB bianco e rosa come un piccolo lazo acrobatico, prese la mira e... DRIIIIN! DRIIIIN! suonò con tutte le sue forze il campanello di casa!"
+          paragraphs_en:
+            - "Having escaped that gloomy place, Sguisatazzo trotted happily on its little pink rubber feet across mountains and bridges until it reached the beautiful city of Zurich, where the Limmat river sparkled beneath the twin spires and the air smelled of warm chocolate."
+            - "Yet a little keyboard-computer all alone in the world needed a kind family and a curious child to play with. Guided by the cheerful sound of laughter floating from a cosy window, Sguisatazzo arrived right in front of the front door of the Carlesso home."
+            - "The doorbell was way up high, but Sguisatazzo did not give up: stretching its white-and-pink USB cable like a clever little lasso, it took aim and—RING! RING!—pressed the doorbell with all its might!"
+          paragraphs_fr:
+            - "Ayant fui cet endroit sombre, Sguisatazzo trottina joyeusement sur ses petits patins roses à travers ponts et montagnes jusqu'à la magnifique ville de Zurich, où la rivière Limmat scintillait sous les clochers."
+            - "Mais un petit ordinateur-clavier tout seul au monde avait besoin d'une famille gentille et d'un enfant curieux. Guidé par des rires joyeux, Sguisatazzo arriva devant la porte de la maison Carlesso."
+            - "La sonnette était très haute, mais Sguisatazzo tendit son petit câble USB blanc et rose comme un lasso et... DRIIIIN ! DRIIIIN ! il sonna de toutes ses forces !"
+          paragraphs_de:
+            - "Nachdem er diesem dunklen Ort entkommen war,ippelte Sguisatazzo fröhlich auf seinen rosa Gummifüßchen über Berge und Brücken bis in die wunderschöne Stadt Zürich, wo die Limmat unter den Kirchtürmen glitzerte."
+            - "Doch ein kleiner Tastatur-Computer ganz allein auf der Welt brauchte eine liebe Familie und ein neugieriges Kind zum Spielen. Vom fröhlichen Lachen geleitet, kam Sguisatazzo direkt vor die Haustür der Familie Carlesso."
+            - "Die Klingel hing weit oben, aber Sguisatazzo streckte sein weiß-rosa USB-Kabel wie ein kleines Lasso aus und — KLINGELING! — drückte mit aller Kraft auf den Klingelknopf!"
+          paragraphs_pt:
+            - "Depois de escapar daquele lugar escuro, Sguisatazzo correu alegremente nos seus pezinhos de borracha rosa por montanhas e pontes até chegar à bela cidade de Zurique, onde o rio Limmat brilhava sob as torres."
+            - "Mas um pequeno computador-teclado sozinho no mundo precisava de uma família gentil e de uma criança curiosa para brincar. Guiado pelo som de risadas alegres, Sguisatazzo chegou bem diante da porta da Casa Carlesso."
+            - "A campainha ficava lá no alto, mas Sguisatazzo esticou o seu cabinho USB branco e rosa como um laço acrobático e... TRIM-TRIM! tocou a campainha com toda a força!"
+        - page: 3
+          title: "Il Tenero Alessandro Apre la Porta e Adotta Sguisatazzo!"
+          title_en: "Sweet Alessandro Opens the Door and Adopts Sguisatazzo!"
+          title_fr: "Le Tendre Alessandro Ouvre la Porte et Adopte Sguisatazzo !"
+          title_de: "Der Liebevolle Alessandro Öffnet die Tür und Adoptiert Sguisatazzo!"
+          title_pt: "O Querido Alessandro Abre a Porta e Adota o Sguisatazzo!"
+          image: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/scena3_adozione_alessandro.jpg
+          summary: "Il tenero Alessandro apre la porta di Casa Carlesso, trova la piccola tastiera bianca e rosa sullo zerbino e la abbraccia adottandola subito."
+          paragraphs_it:
+            - "Chi corse ad aprire la porta di casa? Proprio il tenero Alessandro, con i suoi capelli castani lisci con la frangetta e gli occhi nocciola pieni di stupore! Guardò a destra, guardò a sinistra... ma ad altezza d'uomo non c'era nessuno."
+            - "Poi Ale abbassò lo sguardo verso lo zerbino e vide quella meravigliosa tastiera bianca e rosa-lampone che faceva lampeggiare la sua lucina verde come un cucciolo che scodinzola, illuminando i tasti per scrivere: «CIAO ALE!»"
+            - "«Papino, guarda! Un piccolo computer-tastiera tutto solo!» esclamò Alessandro con una tenerezza infinita. Si inginocchiò, prese delicatamente Sguisatazzo tra le braccia e lo strinse al petto: da quel momento erano diventati migliori amici per sempre!"
+          paragraphs_en:
+            - "Who ran to open the front door? None other than sweet Alessandro, with his straight brown hair and bangs and his warm hazel eyes wide with wonder! He looked left, he looked right... but at eye level nobody was there."
+            - "Then Ale looked down at the doormat and spotted that lovely white and raspberry-pink keyboard blinking its little green LED like a wagging puppy tail, lighting up its keys to spell out: “CIAO ALE!”"
+            - "“Daddy, look! A little keyboard-computer all by itself!” exclaimed Alessandro with boundless tenderness. He knelt down, gently scooped Sguisatazzo into his arms, and hugged it close: from that moment on, they were best friends forever!"
+          paragraphs_fr:
+            - "Qui courut ouvrir la porte ? Le tendre Alessandro en personne, avec ses cheveux châtains lisses à frange et ses yeux noisette émerveillés ! Il regarda à gauche, puis à droite... mais il n'y avait personne à hauteur d'homme."
+            - "Puis Ale baissa les yeux vers le paillasson et vit ce magnifique clavier blanc et rose-framboise qui faisait clignoter sa petite lumière verte comme un chiot qui remue la queue, illuminant ses touches pour écrire : « CIAO ALE ! »"
+            - "« Papino, regarde ! Un petit ordinateur-clavier tout seul ! » s'écria Alessandro avec une tendresse infinie. Il s'agenouilla, prit doucement Sguisatazzo dans ses bras et l'adopta pour toujours !"
+          paragraphs_de:
+            - "Wer lief zur Haustür, um zu öffnen? Natürlich der liebevolle Alessandro mit seinen glatten braunen Haaren mit Pony und den staunenden haselnussbraunen Augen! Er schaute nach links und rechts, doch auf Augenhöhe war niemand zu sehen."
+            - "Dann blickte Ale auf die Fußmatte hinunter und entdeckte die wunderschöne weiß-himbeerrosa Tastatur, deren kleines grünes Licht wie ein Hundeschwänzchen blinkte und auf den Tasten „CIAO ALE!“ aufleuchten ließ."
+            - "„Papino, schau mal! Ein kleiner Tastatur-Computer ganz allein!“, rief Alessandro voller Zärtlichkeit. Er kniete sich hin, schloss Sguisatazzo sanft in die Arme und adoptierte ihn sofort!"
+          paragraphs_pt:
+            - "Quem correu para abrir a porta? O querido Alessandro, com seus cabelos castanhos lisos de franja e olhos castanho-avelã cheios de encanto! Ele olhou para a esquerda e para a direita... mas não havia ninguém lá em cima."
+            - "Então Ale olhou para o tapete da entrada e viu aquele lindo teclado branco e rosa-framboesa piscando sua luzinha verde como um cachorrinho abanando o rabo, iluminando as teclas para escrever: “CIAO ALE!”"
+            - "“Papino, olha! Um pequeno computador-teclado sozinho!” exclamou Alessandro com imenso carinho. Ele se ajoelhou, abraçou o Sguisatazzo com ternura e o adotou naquele mesmo instante!"
+        - page: 4
+          title: "Sul Desk in Camera di Ale: Giochi, Scienza e Magia Ogni Giorno!"
+          title_en: "On the Desk in Ale's Bedroom: Games, Science, and Magic Every Day!"
+          title_fr: "Sur le Bureau dans la Chambre d'Ale : Jeux, Science et Magie !"
+          title_de: "Auf dem Schreibtisch in Ales Zimmer: Spiele, Wissen und Magie!"
+          title_pt: "Na Escrivaninha do Quarto do Ale: Jogos, Ciência e Magia Todo Dia!"
+          image: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/scena4_desk_camera_ale.jpg
+          summary: "Da allora Sguisatazzo vive sul desk nella camera da letto di Ale, facendogli compagnia con giochi fantastici e programmi educativi."
+          paragraphs_it:
+            - "Da quel giorno indimenticabile, la bellissima tastiera bianca e rosa Sguisatazzo ha il posto d'onore proprio sul desk nella camera da letto di Alessandro, collegata a un grande schermo scintillante e a un piccolo mouse fedele."
+            - "Non deve più temere nessun computer cattivo, perché ogni pomeriggio aspetta con gioia che Ale torni da scuola per accendersi di mille avventure: insieme esplorano programmi educativi, sfide di matematica, musica, pianeti lontani e videogiochi straordinari!"
+            - "E ogni sera, quando nella cameretta di Zurigo scende il silenzio e Alessandro si mette sotto le coperte, Sguisatazzo fa un ultimo dolce lampeggio dal suo desk per sussurrargli: «Buonanotte Ale, domani inventeremo un altro mondo insieme!»"
+          paragraphs_en:
+            - "Since that unforgettable day, the beautiful white-and-pink keyboard Sguisatazzo holds the place of honour right on the desk in Alessandro's bedroom, connected to a bright monitor and a trusty little mouse."
+            - "It never has to fear any mean computer again, because every afternoon it happily waits for Ale to come home from school so they can light up a thousand adventures together: exploring educational programs, math challenges, music, distant planets, and extraordinary video games!"
+            - "And every night, when quiet falls over the bedroom in Zurich and Alessandro tucks himself under the covers, Sguisatazzo gives one last gentle blink from the desk to whisper: “Goodnight Ale, tomorrow we'll invent another world together!”"
+          paragraphs_fr:
+            - "Depuis ce jour inoubliable, le magnifique clavier blanc et rose Sguisatazzo occupe la place d'honneur sur le bureau dans la chambre d'Alessandro, relié à un grand écran lumineux et à une petite souris fidèle."
+            - "Il n'a plus jamais peur d'aucun méchant ordinateur, car chaque après-midi il attend avec joie le retour d'Ale de l'école pour lancer mille aventures : programmes éducatifs, défis de mathématiques, musique, planètes lointaines et jeux vidéo extraordinaires !"
+            - "Et chaque soir, quand le silence tombe sur la chambre à Zurich et qu'Alessandro se glisse sous la couette, Sguisatazzo fait un dernier doux clignotement depuis son bureau pour lui murmurer : « Bonne nuit Ale, demain nous inventerons un nouveau monde ensemble ! »"
+          paragraphs_de:
+            - "Seit diesem unvergesslichen Tag hat die wunderschöne weiß-rosa Tastatur Sguisatazzo ihren Ehrenplatz direkt auf dem Schreibtisch in Alessandros Schlafzimmer, verbunden mit einem strahlenden Bildschirm und einer treuen kleinen Maus."
+            - "Sie muss nie wieder einen bösen Computer fürchten, denn jeden Nachmittag wartet sie freudig darauf, dass Ale aus der Schule heimkommt: Gemeinsam entdecken sie Lernprogramme, Mathe-Rätsel, Musik, ferne Planeten und tolle Spiele!"
+            - "Und jeden Abend, wenn es im Zürcher Kinderzimmer still wird und Alessandro unter die Decke schlüpft, blinkt Sguisatazzo noch einmal sanft vom Schreibtisch herüber und flüstert: „Gute Nacht, Ale, morgen erfinden wir zusammen eine neue Welt!“"
+          paragraphs_pt:
+            - "Desde aquele dia inesquecível, o lindo teclado branco e rosa Sguisatazzo tem o lugar de honra bem na escrivaninha do quarto do Alessandro, conectado a um grande monitor brilhante e a um pequeno mouse fiel."
+            - "Ele nunca mais precisou temer nenhum computador malvado, pois toda tarde espera com alegria que Ale volte da escola para viverem mil aventuras: juntos exploram programas educativos, desafios de matemática, música, planetas distantes e jogos incríveis!"
+            - "E todas as noites, quando o silêncio cai sobre o quarto em Zurique e Alessandro se cobre, Sguisatazzo dá uma última piscadinha suave da escrivaninha para sussurrar: “Boa noite, Ale, amanhã vamos inventar outro mundo juntos!”"
+    transcript:
+      - speaker: "Papà Riccardo"
+        text: "Questa è la storia della nascita di Sguisatazzo, il computer di Alessandro: un Raspberry Pi 400 la cui tastiera bianca e rosa un giorno si svegliò, prese coscienza e si staccò da un computer cattivo per diventare un computer esso stesso!"
+      - speaker: "Papà Riccardo"
+        text: "Scappato di casa, Sguisatazzo si trovò a Zurigo e suonò al campanello di Casa Carlesso, dove il tenero Alessandro lo adottò. Da allora questa bellissima tastiera bianco/rosa è sul suo desk in camera da letto di Ale a fargli compagnia con giochi e programmi educativi!"
+
