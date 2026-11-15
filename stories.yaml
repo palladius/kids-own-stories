@@ -100,8 +100,8 @@ stories:
       score: 7.8
       votes: 3
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -125,13 +125,16 @@ stories:
       narrated_audio:
         it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_it.mp3
         en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_en.mp3
+        fr: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/karaoke_it.json
         en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/karaoke_en.json
+        fr: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/karaoke_fr.json
       title_audio:
         it: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_it.mp3
         en: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_en.mp3
+        fr: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/title_fr.mp3
       hover_video: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/hover_preview.mp4
       readme: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/README.md
       web_page: stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/index.html
@@ -304,8 +307,8 @@ stories:
       score: 7.5
       votes: 2
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -329,13 +332,16 @@ stories:
       narrated_audio:
         it: stories/alessandro/storia-scheletri-zombie-te/narrated_it.mp3
         en: stories/alessandro/storia-scheletri-zombie-te/narrated_en.mp3
+        fr: stories/alessandro/storia-scheletri-zombie-te/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/alessandro/storia-scheletri-zombie-te/karaoke_it.json
         en: stories/alessandro/storia-scheletri-zombie-te/karaoke_en.json
+        fr: stories/alessandro/storia-scheletri-zombie-te/karaoke_fr.json
       title_audio:
         it: stories/alessandro/storia-scheletri-zombie-te/title_it.mp3
         en: stories/alessandro/storia-scheletri-zombie-te/title_en.mp3
+        fr: stories/alessandro/storia-scheletri-zombie-te/title_fr.mp3
       hover_video: stories/alessandro/storia-scheletri-zombie-te/hover_preview.mp4
       readme: stories/alessandro/storia-scheletri-zombie-te/README.md
       web_page: stories/alessandro/storia-scheletri-zombie-te/index.html
@@ -472,8 +478,8 @@ stories:
       score: 7.9
       votes: 3
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -497,13 +503,16 @@ stories:
       narrated_audio:
         it: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/narrated_it.mp3
         en: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/narrated_en.mp3
+        fr: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/karaoke_it.json
         en: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/karaoke_en.json
+        fr: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/karaoke_fr.json
       title_audio:
         it: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/title_it.mp3
         en: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/title_en.mp3
+        fr: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/title_fr.mp3
       hover_video: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/hover_preview.mp4
       readme: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/README.md
       web_page: stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/index.html
@@ -658,8 +667,8 @@ stories:
       score: 8.5
       votes: 1
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -683,13 +692,16 @@ stories:
       narrated_audio:
         it: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/narrated_it.mp3
         en: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/narrated_en.mp3
+        fr: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/karaoke_it.json
         en: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/karaoke_en.json
+        fr: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/karaoke_fr.json
       title_audio:
         it: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/title_it.mp3
         en: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/title_en.mp3
+        fr: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/title_fr.mp3
       hover_video: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/hover_preview.mp4
       readme: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/README.md
       web_page: stories/sebastian/storia-cavalletto-marie-mondo-cavalli/index.html
@@ -868,8 +880,8 @@ stories:
       score: 9.2
       votes: 1
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -893,13 +905,16 @@ stories:
       narrated_audio:
         it: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/narrated_it.mp3
         en: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/narrated_en.mp3
+        fr: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/karaoke_it.json
         en: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/karaoke_en.json
+        fr: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/karaoke_fr.json
       title_audio:
         it: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/title_it.mp3
         en: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/title_en.mp3
+        fr: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/title_fr.mp3
       hover_video: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/hover_preview.mp4
       readme: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/README.md
       web_page: stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/index.html
@@ -1070,8 +1085,8 @@ stories:
       score: 9.8
       votes: 2
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -1095,13 +1110,16 @@ stories:
       narrated_audio:
         it: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_it.mp3
         en: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_en.mp3
+        fr: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/karaoke_it.json
         en: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/karaoke_en.json
+        fr: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/karaoke_fr.json
       title_audio:
         it: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/title_it.mp3
         en: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/title_en.mp3
+        fr: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/title_fr.mp3
       hover_video: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/hover_preview.mp4
       readme: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/README.md
       web_page: stories/alessandro/storia-nascita-sguisatazzo-computer-alessandro/index.html
@@ -1260,8 +1278,8 @@ stories:
       score: 9.9
       votes: 5
       unlock_threshold: 8.0
-      unlocked_langs: ["it", "en"]
-      locked_langs: ["fr", "de", "pt"]
+      unlocked_langs: ["it", "en", "fr"]
+      locked_langs: ["de", "pt"]
     status: complete
     checklist:
       raw_audio: true
@@ -1285,13 +1303,16 @@ stories:
       narrated_audio:
         it: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_it.mp3
         en: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_en.mp3
+        fr: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/narrated_fr.mp3
         voice: "Aoede (Gemini 2.5 Flash TTS + Soft Piano)"
       karaoke_timings:
         it: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/karaoke_it.json
         en: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/karaoke_en.json
+        fr: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/karaoke_fr.json
       title_audio:
         it: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/title_it.mp3
         en: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/title_en.mp3
+        fr: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/title_fr.mp3
       hover_video: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/hover_preview.mp4
       readme: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/README.md
       web_page: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/index.html
@@ -1312,15 +1333,15 @@ stories:
           paragraphs_it:
             - "Che emozione atterrare a Olbia per la grande vacanza di famiglia in Sardegna! Da Zurigo sono arrivati Papà Riccardo, Mamma Kate, Alessandro e Sebastian, mentre da Bologna è volata la mitica Nonna Lucilla: tutti insieme sono scesi tra i profumi di mirto fino all'Albergo L'Oasi di Cala Gonone, dove li aspettava anche lo zio Massimo."
             - "Appena posate le valigie, nessuno ha resistito al richiamo del mare! Sulla spiaggia dorata di Cala Gonone l'acqua era così limpida e scintillante che sembrava fatta di vetro azzurro e diamanti."
-            - "Mamma Kate con il boccaglio giallo in mano, Papà Riccardo con il segno della vittoria e i fratellini Ale e Seby con le maschere da sub si sono tuffati insieme tra i pesciolini argentati: l'avventura sarda era ufficialmente cominciata!"
+            - "Mamma Kate con il boccaglio giallo in mano, Papà Riccardo con il segno della vittoria e i fratellini Ale e Seby con le maschere da sub si sono tuffati insieme nelle onde turchesi: l'avventura sarda era ufficialmente cominciata!"
           paragraphs_en:
             - "What a thrill to land in Olbia for the great family holiday in Sardinia! From Zurich arrived Daddy Riccardo, Mummy Kate, Alessandro, and Sebastian, while wonderful Grandma Lucilla flew in from Bologna: together they drove down through the scent of wild myrtle to Albergo L'Oasi in Cala Gonone, where cousin Massimo welcomed them."
             - "The moment the suitcases were set down, nobody could resist the call of the sea! On the golden beach of Cala Gonone, the water was so clear and sparkling that it looked like blue glass and diamonds."
-            - "Mummy Kate holding her yellow snorkel, Daddy Riccardo flashing a double victory sign, and brothers Ale and Seby with their diving masks splashed right in among the silver fish: the Sardinian adventure had officially begun!"
+            - "Mummy Kate holding her yellow snorkel, Daddy Riccardo flashing a double victory sign, and brothers Ale and Seby with their diving masks splashed right into the turquoise waves: the Sardinian adventure had officially begun!"
           paragraphs_fr:
             - "Quelle émotion d'atterrir à Olbia pour les grandes vacances en famille en Sardaigne ! De Zurich sont arrivés Papa Riccardo, Maman Kate, Alessandro et Sebastian, tandis que Mamie Lucilla est venue de Bologne jusqu'à Cala Gonone, où les attendait aussi le cousin Massimo."
             - "À peine les valises posées, personne n'a pu résister à l'appel de la mer ! Sur la plage dorée de Cala Gonone, l'eau était si limpide et étincelante qu'elle ressemblait à du cristal bleu."
-            - "Maman Kate avec son tuba jaune, Papa Riccardo faisant le signe de la victoire et les frères Ale et Seby avec leurs masques de plongée ont sauté ensemble parmi les petits poissons argentés !"
+            - "Maman Kate avec son tuba jaune, Papa Riccardo faisant le signe de la victoire et les frères Ale et Seby avec leurs masques de plongée ont sauté ensemble dans les vagues turquoise !"
           paragraphs_de:
             - "Was für eine Freude, in Olbia für den großen Familienurlaub auf Sardinien zu landen! Aus Zürich kamen Papa Riccardo, Mama Kate, Alessandro und Sebastian, während Oma Lucilla aus Bologna einflog, um sich in Cala Gonone mit Cousin Massimo zu treffen."
             - "Kaum waren die Koffer abgestellt, hielt es niemanden mehr am Strand! In der Bucht von Cala Gonone war das Wasser so glasklar und funkelnd wie flüssige Diamanten."
@@ -1328,7 +1349,7 @@ stories:
           paragraphs_pt:
             - "Que emoção pousar em Olbia para as grandes férias em família na Sardenha! De Zurique chegaram Papai Riccardo, Mamãe Kate, Alessandro e Sebastian, enquanto de Bolonha voou a querida Vovó Lucilla até Cala Gonone, onde o primo Massimo os esperava."
             - "Mal deixaram as malas, ninguém resistiu ao chamado do mar! Na praia dourada de Cala Gonone, a água era tão transparente e brilhante que parecia feita de cristal azul."
-            - "Mamãe Kate com o snorkel amarelo, Papai Riccardo fazendo o sinal da vitória e os irmãos Ale e Seby com suas máscaras de mergulho pularam juntos entre os peixinhos prateados!"
+            - "Mamãe Kate com o snorkel amarelo, Papai Riccardo fazendo o sinal da vitória e os irmãos Ale e Seby com suas máscaras de mergulho pularam juntos nas ondas azul-turquesa!"
         - page: 2
           title: "Tramonto a Cala Gonone: Cena sul Mare con Nonna Lucilla e la Luna Piena"
           title_en: "Sunset in Cala Gonone: Dinner by the Sea with Grandma Lucilla and the Full Moon"
@@ -1395,23 +1416,23 @@ stories:
           summary: "Dopo aver provato i costumi tradizionali sardi a Dorgali, Ale e Seby si abbracciano in cima ai monti del Supramonte lungo la strada per Arbatax."
           paragraphs_it:
             - "Lasciata la costa di Cala Gonone e fatto un salto a Dorgali — dove Papà Riccardo e Mamma Kate hanno infilato il viso nelle sagome dei costumi tradizionali sardi facendo ridere a crepapelle Seby — la macchina è salita lungo le curve panoramiche dell'Orientale Sarda."
-            - "Lassù in alto, dove le aquile volano sopra le gole rocciose e le montagne bianche del Supramonte toccano le nuvole, la famiglia si è fermata sul belvedere per respirare il profumo del vento selvaggio."
+            - "Lassù in alto, dove le gole rocciose e le montagne bianche del Supramonte toccano le nuvole, la famiglia si è fermata sul belvedere panoramico per respirare il profumo della macchia mediterranea."
             - "Davanti a quell'immenso canyon di pietra, Seby con la maglietta blu ha stretto forte per le spalle il suo fratellone Ale con la maglietta verde delle ranocchie: un abbraccio fraterno pieno di complicità sul tetto della Sardegna!"
           paragraphs_en:
             - "Leaving the coast of Cala Gonone after a fun stop in Dorgali—where Daddy Riccardo and Mummy Kate poked their faces through a traditional Sardinian costume cut-out while Seby giggled—the family car climbed the scenic mountain curves of the Orientale Sarda road."
-            - "High up on the pass, where eagles soar above rocky gorges and the white limestone peaks of the Supramonte touch the clouds, everyone stopped at the lookout to breathe in the wild mountain air."
+            - "High up on the pass, where deep rocky gorges and the white limestone peaks of the Supramonte touch the clouds, everyone stopped at the panoramic lookout to breathe in the fresh mountain air."
             - "Standing before that vast stone canyon, Seby in his blue shirt wrapped his arm tightly around the shoulders of his big brother Ale in his green frog T-shirt: a true brotherly hug on the roof of Sardinia!"
           paragraphs_fr:
             - "Après avoir quitté Cala Gonone et fait une halte amusante à Dorgali, la voiture a grimpé les lacets panoramiques de la route Orientale Sarda à travers les montagnes."
-            - "Là-haut, où les aigles planent au-dessus des gorges rocheuses et où les sommets blancs du Supramonte touchent les nuages, toute la famille s'est arrêtée au belvédère."
+            - "Là-haut, où les gorges rocheuses et les sommets blancs du Supramonte touchent les nuages, toute la famille s'est arrêtée au belvédère panoramique pour admirer la vue."
             - "Devant cet immense canyon de pierre, Seby en t-shirt bleu a serré très fort par les épaules son grand frère Ale en t-shirt vert : un câlin fraternel inoubliable sur le toit de la Sardaigne !"
           paragraphs_de:
             - "Nach einem lustigen Zwischenstopp in Dorgali fuhr das Familienauto die kurvenreiche Panoramastraße Orientale Sarda hinauf in die wilde Bergwelt."
-            - "Ganz oben auf dem Pass, wo Adler über tiefe Schluchten kreisen und die weißen Felsgipfel des Supramonte die Wolken berühren, hielten alle am Aussichtspunkt an."
+            - "Ganz oben auf dem Pass, wo tiefe Schluchten und die weißen Felsgipfel des Supramonte die Wolken berühren, hielten alle am Aussichtspunkt an."
             - "Vor dieser gewaltigen Bergkulisse legte Seby im blauen Shirt seinen Arm fest um die Schultern seines großen Bruders Ale im grünen Frosch-T-Shirt: eine echte Brüder-Umarmung auf dem Dach Sardiniens!"
           paragraphs_pt:
             - "Depois de deixar Cala Gonone e fazer uma parada divertida em Dorgali, o carro da família subiu pelas curvas panorâmicas da estrada Orientale Sarda rumo às montanhas."
-            - "Lá no alto, onde as águias voam sobre os desfiladeiros e os picos brancos do Supramonte tocam as nuvens, todos pararam no mirante para admirar a paisagem."
+            - "Lá no alto, onde os desfiladeiros rochosos e os picos brancos do Supramonte tocam as nuvens, todos pararam no mirante para admirar a paisagem."
             - "Diante daquele imenso cânion de pedra, Seby de camiseta azul abraçou forte pelos ombros o seu irmãozão Ale de camiseta verde: um abraço fraterno inesquecível no topo da Sardenha!"
         - page: 5
           title: "Arbatax Park Resort: Le Frecce di Mamma Kate, Maradona #10 e l'Asinello di Seby!"
@@ -1442,25 +1463,25 @@ stories:
             - "Pelo caminho ensolarado que desce até o mar brilhante, Seby com a lendária camisa azul número 10 do Maradona e seu irmão Ale caminharam de mãos dadas, inseparáveis."
             - "E dentro do Parque Bellavista, Seby com a camisa clássica do Napoli acariciou com todo carinho um dócil burrinho sardo, abrindo um sorriso cheio de encanto!"
         - page: 6
-          title: "Gli Esploratori degli Scogli di Ogliastra: Arrivederci Sardegna!"
-          title_en: "The Explorers of the Ogliastra Rocks: Until Next Time, Sardinia!"
-          title_fr: "Les Explorateurs des Rochers d'Ogliastra : Au Revoir la Sardaigne !"
-          title_de: "Die Entdecker der Felsen von Ogliastra: Auf Wiedersehen, Sardinien!"
-          title_pt: "Os Exploradores dos Rochedos de Ogliastra: Até Breve, Sardenha!"
+          title: "Mille Pesciolini nelle Baie di Arbatax e la Promessa dell'Egitto!"
+          title_en: "A Thousand Little Fish in the Arbatax Bays and the Promise of Egypt!"
+          title_fr: "Mille Petits Poissons dans les Criques d'Arbatax et la Promesse de l'Égypte !"
+          title_de: "Tausend Kleine Fische in den Buchten von Arbatax und das Ägypten-Versprechen!"
+          title_pt: "Mil Peixinhos nas Baías de Arbatax e a Promessa do Egito!"
           image: stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/scena6_scogli_arbatax_snorkeling.jpg
-          summary: "Sugli scogli di granito rosa di Arbatax, Papà Riccardo, Ale e Seby con le maschere da sub salutano la barca a vela e il mare della Sardegna."
+          summary: "Nelle calette super trasparenti dell'albergo di Arbatax, Ale e Seby nuotano tra mille pesciolini e Papino promette di portarli in Egitto a vedere la barriera corallina!"
           paragraphs_it:
-            - "Prima di ripartire, i tre esploratori del mare — Papà Riccardo con gli occhialini azzurri al collo, Alessandro e Sebastian con le loro maschere da snorkeling — si sono arrampicati sugli scogli dorati di granito delle calette segrete di Arbatax."
-            - "Sotto di loro l'acqua dell'Ogliastra brillava di mille sfumature di smeraldo, mentre sullo sfondo una grande barca a vela bianca dondolava placida davanti alle montagne verdi della Sardegna."
-            - "Con la mano alzata in un grande saluto, Ale, Seby, Papà Riccardo, Mamma Kate e Nonna Lucilla hanno chiuso nel cuore ogni onda, ogni risata e ogni abbraccio di questo viaggio indimenticabile: arrivederci Sardegna, torneremo presto!"
+            - "Il momento più magico di tutti per i bambini è stato fare snorkeling nelle calette segrete tra gli scogli di granito rosa dell'albergo di Arbatax: l'acqua era super trasparente, cristallina come uno specchio di smeraldo, e piena di mille pesciolini argentei che nuotavano intorno a loro!"
+            - "Vedendoli nuotare con la maschera come due veri subacquei provetti, Papà Riccardo ha sorriso fiero e ha fatto una promessa speciale: «Siete talmente bravi che la prossima volta Papino vi porterà in Egitto a vedere dei pesci ancora più colorati e una vera barriera corallina come si deve!»"
+            - "Con la mano alzata sugli scogli davanti alla grande barca a vela bianca, Ale, Seby, Papino, Mamma Kate e Nonna Lucilla hanno salutato il mare della Sardegna sognando già i coralli del Mar Rosso!"
           paragraphs_en:
-            - "Before heading home, the three sea explorers—Daddy Riccardo with his blue goggles around his neck, and Alessandro and Sebastian with their snorkel masks—climbed onto the golden granite rocks of Arbatax's secret coves."
-            - "Below them, the water of Ogliastra shimmered in a thousand shades of emerald, while in the background a white sailboat glided peacefully across the bay in front of the green Sardinian hills."
-            - "Raising a hand in a big joyful wave, Ale, Seby, Daddy Riccardo, Mummy Kate, and Grandma Lucilla tucked every wave, every laugh, and every hug of this unforgettable trip safely into their hearts: goodbye Sardinia, we will be back soon!"
+            - "The most magical moment of all for the boys was snorkelling in the secret coves among the pink granite rocks of the Arbatax hotel: the water was ultra-transparent, crystal clear like emerald glass, and teeming with a thousand tiny silver fish swimming all around them!"
+            - "Watching them swim with their masks like two expert divers, Daddy Riccardo beamed with pride and made a special promise: “You are both so good at snorkelling that next time Daddy will take you to Egypt to see even more colourful fish and a real coral reef!”"
+            - "Waving from the sunny rocks in front of a white sailboat, Ale, Seby, Daddy, Mummy Kate, and Grandma Lucilla said goodbye to Sardinia while already dreaming of the Red Sea coral reefs!"
           paragraphs_fr:
-            - "Avant le retour, les trois explorateurs des mers — Papa Riccardo avec ses lunettes bleues autour du cou, Alessandro et Sebastian avec leurs masques de plongée — ont grimpé sur les rochers de granit doré des criques d'Arbatax."
-            - "En dessous d'eux, l'eau de l'Ogliastra scintillait de mille nuances d'émeraude, tandis qu'un grand voilier blanc glissait doucement devant les collines vertes de la Sardaigne."
-            - "Avec un grand salut joyeux de la main, Ale, Seby, Papa Riccardo, Maman Kate et Mamie Lucilla ont gardé dans leur cœur chaque sourire de ce voyage inoubliable : au revoir la Sardaigne !"
+            - "Le moment le plus magique pour les enfants a été de faire du snorkeling dans les criques secrètes de granit rose de l'hôtel d'Arbatax : l'eau était super transparente, cristalline comme une émeraude, et remplie de mille petits poissons argentés qui nageaient tout autour d'eux !"
+            - "En les voyant nager avec leurs masques comme deux vrais plongeurs, Papa Riccardo a souri fièrement et leur a fait une grande promesse : « Vous êtes tellement doués que la prochaine fois, Papino vous emmènera en Égypte voir une vraie barrière de corail et des poissons encore plus beaux ! »"
+            - "Debout sur les rochers devant un grand voilier blanc, Ale, Seby, Papino, Maman Kate et Mamie Lucilla ont salué la Sardaigne en rêvant déjà des coraux de la mer Rouge !"
           paragraphs_de:
             - "Vor der Heimreise kletterten die drei Meeresforscher — Papa Riccardo mit seiner blauen Schwimmbrille, Alessandro und Sebastian mit ihren Schnorchelmasken — auf die goldenen Granitfelsen der Buchten von Arbatax."
             - "Unter ihnen schimmerte das Wasser der Ogliastra in tausend Smaragdtönen, während im Hintergrund ein weißes Segelboot ruhig vor den grünen Hügeln Sardiniens dahinglitt."

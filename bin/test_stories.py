@@ -205,6 +205,29 @@ def main() -> int:
             f"{'✅ OK' if hover_ok else '❌ FAIL':<13} {'✅ OK' if karaoke_ok else '❌ FAIL'}"
         )
 
+    # 3. Validate Illustrated Kids Book bundle (16 watercolor pages + IT/FR/DE + Antolin questions)
+    kb_json = ROOT / "stories/alessandro/storia-sardegna-cala-gonone-arbatax-famiglia/kids_book_data.json"
+    if not kb_json.exists():
+        errors.append("Missing kids_book_data.json for storia-sardegna-cala-gonone-arbatax-famiglia")
+    else:
+        kb = json.loads(kb_json.read_text(encoding="utf-8"))
+        kb_pages = kb.get("pages", [])
+        if len(kb_pages) != 16:
+            errors.append(f"kids_book_data.json expected 16 pages, got {len(kb_pages)}")
+        for kp in kb_pages:
+            pno = kp.get("page")
+            w_img = kp.get("image", "")
+            if not w_img.endswith(f"wc_p{pno:02d}.jpg") or not (ROOT / w_img).exists():
+                errors.append(f"[KidsBook p.{pno}] missing watercolor image wc_p{pno:02d}.jpg: {w_img}")
+            for klang in ("it", "fr", "de"):
+                for lvl in ("seby", "ale"):
+                    ldata = kp.get("levels", {}).get(lvl, {}).get(klang, {})
+                    if not ldata.get("text") or not ldata.get("tokens"):
+                        errors.append(f"[KidsBook p.{pno} {lvl} {klang}] missing text or tokens")
+                qs = kp.get("questions", {}).get(klang, [])
+                if len(qs) != 3:
+                    errors.append(f"[KidsBook p.{pno} {klang}] expected 3 Antolin questions, got {len(qs)}")
+
     print("-" * 110)
     if errors:
         print(f"\n❌ TEST SUITE FAILED with {len(errors)} error(s):", file=sys.stderr)
@@ -212,7 +235,7 @@ def main() -> int:
             print(f"  - {err}", file=sys.stderr)
         return 1
 
-    print(f"\n✅ ALL {len(stories)} STORIES PASSED 100% DETERMINISTIC INTEGRITY CHECKS!")
+    print(f"\n✅ ALL {len(stories)} STORIES + 16-PAGE WATERCOLOR KIDS BOOK (IT/FR/DE) PASSED 100% DETERMINISTIC CHECKS!")
     return 0
 
 

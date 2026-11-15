@@ -73,8 +73,19 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             remaining -= len(chunk)
 
 
+import socket
+
+
+class DualStackServer(ThreadingHTTPServer):
+    address_family = socket.AF_INET6
+
+    def server_bind(self):
+        self.socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+        return super().server_bind()
+
+
 if __name__ == "__main__":
     os.chdir(ROOT)
-    server = ThreadingHTTPServer(("127.0.0.1", 8088), RangeRequestHandler)
-    print("Serving Kids' Own Stories on http://127.0.0.1:8088 (with HTTP 206 Range support)", flush=True)
+    server = DualStackServer(("::", 8088), RangeRequestHandler)
+    print("Serving Kids' Own Stories on http://localhost:8088 (IPv4+IPv6 with HTTP 206 Range support)", flush=True)
     server.serve_forever()

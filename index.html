@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="./src/puffin-login.js"></script>
+  <script src="./kids_books_catalog.js?v=0.12.1"></script>
   <style>
     @media (prefers-reduced-motion: no-preference) {
       @view-transition {
@@ -2512,6 +2514,521 @@
         padding: 7px 12px;
       }
     }
+
+    /* =========================================================================
+       ANTOLIN & ILLUSTRATED KIDS' COMIC/WATERCOLOR BOOK (70% IMAGE / 30% TEXT)
+       ========================================================================= */
+    .kids-mode-launch-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 6px 14px;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94));
+      border-bottom: 1px solid rgba(255, 183, 3, 0.35);
+      width: 100%;
+    }
+
+    .kids-img-launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid rgba(255, 183, 3, 0.65);
+      border-radius: 14px;
+      padding: 4px 12px 4px 5px;
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .kids-img-launch-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      border-color: #fde047;
+      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.35);
+    }
+
+    .kids-img-launch-btn.active-mode {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: #0b0f19;
+      border-color: #fff;
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.65);
+    }
+
+    .kids-img-launch-btn img {
+      width: 48px;
+      height: 34px;
+      object-fit: cover;
+      border-radius: 9px;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      flex-shrink: 0;
+    }
+
+    /* =========================================================================
+       IMMERSIVE FULLSCREEN KIDS NOTEBOOK SPREAD (2 PAGES 50/50 + BROSSURA CREASE)
+       ========================================================================= */
+    body.kids-fullscreen-book .topbar,
+    body.kids-fullscreen-book .carlessian-footer,
+    body.kids-fullscreen-book #kidsReadingLaunchBar {
+      display: none !important;
+    }
+
+    body.kids-fullscreen-book .book-viewport {
+      height: 100vh !important;
+      max-height: 100vh !important;
+      padding: 6px 10px !important;
+      background: radial-gradient(circle at center, #2b1d12 0%, #120c07 100%) !important;
+    }
+
+    body.kids-fullscreen-book .open-book,
+    .open-book.kids-notebook-spread {
+      grid-template-columns: 1fr 1fr !important;
+      max-width: min(1680px, 98.5vw) !important;
+      height: calc(100vh - 14px) !important;
+      border-radius: 22px !important;
+      background: #fdfaf2 !important;
+      border: 5px solid #78350f !important;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.75),
+        inset 0 0 0 2px #d97706 !important;
+      position: relative;
+    }
+
+    body.kids-fullscreen-book .open-book {
+      height: calc(100vh - 14px) !important;
+    }
+
+    .open-book.kids-notebook-spread:not(.is-fullscreen) {
+      height: calc(100vh - var(--header-h) - var(--footer-h) - 56px) !important;
+    }
+
+    /* Realistic Notebook Center Crease / Brossura that dips down at top & bottom */
+    .open-book.kids-notebook-spread::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      bottom: -6px;
+      left: 50%;
+      width: 44px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        90deg,
+        rgba(120, 53, 15, 0) 0%,
+        rgba(120, 53, 15, 0.14) 28%,
+        rgba(69, 26, 3, 0.42) 48%,
+        rgba(28, 10, 0, 0.62) 50%,
+        rgba(69, 26, 3, 0.42) 52%,
+        rgba(120, 53, 15, 0.14) 72%,
+        rgba(120, 53, 15, 0) 100%
+      );
+      pointer-events: none;
+      z-index: 35;
+    }
+
+    /* Top & Bottom V-notch dip to simulate open notebook binding (brossura) */
+    .open-book.kids-notebook-spread::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      width: 56px;
+      height: 18px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at top, #1c130c 0%, #1c130c 48%, transparent 52%);
+      pointer-events: none;
+      z-index: 36;
+    }
+
+    .open-book.kids-notebook-spread .book-page {
+      background: #fdfaf2 !important;
+      opacity: 1 !important;
+      filter: none !important;
+      cursor: default !important;
+      overflow: hidden !important;
+    }
+
+    .open-book.kids-notebook-spread .book-page-left {
+      border-right: 1px solid rgba(120, 53, 15, 0.28) !important;
+      box-shadow: inset -24px 0 36px -18px rgba(69, 26, 3, 0.25) !important;
+    }
+
+    .open-book.kids-notebook-spread .book-page-right {
+      box-shadow: inset 24px 0 36px -18px rgba(69, 26, 3, 0.25) !important;
+    }
+
+    /* Single Page inside the 2-Page Watercolor Notebook Spread */
+    .kids-watercolor-leaf {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #fdfaf2;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px 22px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Alternate Layout:
+       - patch-bottom: Watercolor illustration in top 2/3, white patch + story text in bottom 1/3
+       - patch-top: White patch + story text in top 1/3, watercolor illustration in bottom 2/3 */
+    .kids-watercolor-leaf.patch-bottom {
+      justify-content: flex-end;
+    }
+
+    .kids-watercolor-leaf.patch-top {
+      justify-content: flex-start;
+    }
+
+    .kids-leaf-art-zone {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 8px;
+      pointer-events: none;
+    }
+
+    .kids-leaf-art-zone > * {
+      pointer-events: auto;
+    }
+
+    /* White Watercolor Patch Overlay where text sits naturally with zero dark borders */
+    .kids-white-patch-text-zone {
+      position: relative;
+      z-index: 12;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(253, 250, 242, 0.96) 0%,
+        rgba(253, 250, 242, 0.91) 74%,
+        rgba(253, 250, 242, 0.75) 100%
+      );
+      backdrop-filter: blur(3px);
+      border-radius: 24px;
+      padding: 10px 16px;
+      box-shadow: 0 4px 20px rgba(253, 250, 242, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      border: 1.5px solid rgba(217, 119, 6, 0.18);
+    }
+
+    .kids-leaf-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.8rem;
+      color: #78350f;
+      font-weight: 700;
+    }
+
+    .kids-sentence-box {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(1.02rem, 1.32vw, 1.28rem);
+      font-weight: 800;
+      line-height: 1.55;
+      color: #0f172a;
+      background: transparent;
+      border: none;
+      padding: 2px 2px;
+      box-shadow: none;
+    }
+
+    .kids-sentence-box.uppercase-mode {
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Comic Speech Bubble Over Watercolor Art */
+    .kids-comic-bubble {
+      max-width: min(460px, 88%);
+      background: rgba(255, 255, 255, 0.95);
+      color: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 18px 18px 18px 4px;
+      padding: 6px 12px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(0.78rem, 0.98vw, 0.92rem);
+      line-height: 1.25;
+      cursor: pointer;
+      z-index: 15;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .kids-comic-bubble:hover {
+      transform: scale(1.02);
+      background: #fef9c3;
+    }
+
+    .kids-comic-speaker {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #fff;
+      background: #ea580c;
+      padding: 1px 7px;
+      border-radius: 999px;
+      margin-right: 5px;
+    }
+
+    /* Floating subtle top-right toolbar inside the open notebook */
+    .kids-notebook-floating-bar {
+      position: fixed;
+      top: 10px;
+      right: 18px;
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: rgba(253, 250, 242, 0.94);
+      border: 2px solid #d97706;
+      border-radius: 999px;
+      padding: 4px 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .kids-pill-control {
+      background: #fffbeb;
+      color: #451a03;
+      border: 1.5px solid rgba(217, 119, 6, 0.45);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.14s ease;
+    }
+
+    .kids-pill-control:hover {
+      border-color: #d97706;
+      background: #fef3c7;
+    }
+
+    .kids-pill-control.active {
+      background: #f59e0b;
+      color: #0b0f19;
+      border-color: #78350f;
+    }
+
+    /* Montessori Grammar Tokens + Masculine/Feminine Ending Colors (Desinenze) */
+    .kw-token {
+      position: relative;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+      padding: 0 3px;
+      margin: 0 1px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .kw-token:hover {
+      transform: translateY(-1px);
+      background: rgba(254, 240, 138, 0.85);
+      z-index: 25;
+    }
+
+    .kw-token.active {
+      background: linear-gradient(135deg, #fde047, #f59e0b) !important;
+      color: #0b0f19 !important;
+      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.45);
+      transform: scale(1.06);
+    }
+
+    /* Riccardo's Rule:
+       - Nouns: BLACK stem (#0f172a), with ending (desinenza) BLUE for masculine or PINK for feminine!
+       - Adjectives: GREEN stem (#047857), with ending (desinenza) BLUE for masculine or PINK for feminine!
+       - Verbs: RED (#dc2626)
+       - Adverbs: PURPLE (#7e22ce) */
+    .grammar-on .kw-token[data-pos="noun"] {
+      color: #0f172a;
+      border-bottom-color: rgba(15, 23, 42, 0.35);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .grammar-on .kw-token[data-pos="adj"] {
+      color: #047857;
+      border-bottom-color: #10b981;
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .grammar-on .kw-token[data-pos="verb"] {
+      color: #dc2626;
+      border-bottom-color: #ef4444;
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .grammar-on .kw-token[data-pos="adv"] {
+      color: #7e22ce;
+      border-bottom-color: #a855f7;
+      background: rgba(168, 85, 247, 0.08);
+    }
+
+    /* Masculine ending (O / I) in vivid Blue, Feminine ending (A / E) in vivid Pink */
+    .grammar-on .kw-end-m {
+      color: #2563eb !important;
+      font-weight: 900;
+      text-decoration: underline solid #3b82f6 2px;
+      text-underline-offset: 2px;
+    }
+
+    .grammar-on .kw-end-f {
+      color: #db2777 !important;
+      font-weight: 900;
+      text-decoration: underline solid #ec4899 2px;
+      text-underline-offset: 2px;
+    }
+
+    .kw-pos-icon {
+      display: none;
+      font-size: 0.72em;
+      line-height: 1;
+      opacity: 0.85;
+    }
+
+    .grammar-on .kw-pos-icon {
+      display: inline;
+    }
+
+    .kw-has-gloss {
+      text-decoration: underline dotted rgba(217, 119, 6, 0.75);
+      text-underline-offset: 4px;
+    }
+
+    .kw-gloss-popover {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 260px;
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1.5px solid #ffb703;
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.3;
+      text-transform: none !important;
+      letter-spacing: normal !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.65);
+      z-index: 60;
+      pointer-events: none;
+      white-space: normal;
+      text-align: left;
+    }
+
+    .kw-token:hover .kw-gloss-popover {
+      display: block;
+    }
+
+    .kids-didactic-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .kids-action-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1.5px solid #0f172a;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .kids-action-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .kids-action-btn.listen-verify {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border-color: #065f46;
+    }
+
+    .kids-action-btn.antolin-quiz-btn {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0b0f19;
+      border-color: #92400e;
+    }
+
+    .antolin-question-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 183, 3, 0.35);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    .antolin-opt-btn {
+      width: 100%;
+      text-align: left;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      color: #f8fafc;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 10px;
+      margin-top: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+    }
+
+    .antolin-opt-btn:hover:not(:disabled) {
+      border-color: var(--gold);
+      background: rgba(51, 65, 85, 0.95);
+    }
+
+    .antolin-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
+    }
+
+    .antolin-opt-btn.wrong {
+      background: rgba(239, 68, 68, 0.28) !important;
+      border-color: #ef4444 !important;
+      color: #fca5a5 !important;
+    }
   </style>
 </head>
 <body>
@@ -2548,10 +3065,16 @@
         🎙️ <span class="new-story-text">+ Nuova</span>
       </button>
 
+      <button type="button" class="vote-pill-btn" id="antolinDashBtn" onclick="openAntolinDashboardModal()" title="Dashboard Antolin Genitori &amp; Nonna (Risultati Letture e Quiz)">
+        📊 Dashboard
+      </button>
+
+      <puffin-login id="puffin-widget" app-id="kids-own-stories"></puffin-login>
+
       <div class="lang-switch" role="group" aria-label="Lingua della storia e della voce narrante">
         <button type="button" class="lang-btn active" id="langBtnIt" data-lang="it" aria-pressed="true" onclick="setLanguage('it')">🇮🇹 IT</button>
+        <button type="button" class="lang-btn" id="langBtnFr" data-lang="fr" aria-pressed="false" onclick="setLanguage('fr')" title="Leggi e ascolta in Français!">🇫🇷 FR</button>
         <button type="button" class="lang-btn" id="langBtnEn" data-lang="en" aria-pressed="false" onclick="setLanguage('en')">🇬🇧 EN</button>
-        <button type="button" class="lang-btn locked" id="langBtnFr" data-lang="fr" aria-pressed="false" onclick="handleLockedLang('fr', '🇫🇷 Français')" title="Sbloccabile con voto >= 8/10">🇫🇷🔒</button>
         <button type="button" class="lang-btn locked" id="langBtnDe" data-lang="de" aria-pressed="false" onclick="handleLockedLang('de', '🇩🇪 Deutsch')" title="Sbloccabile con voto >= 8/10">🇩🇪🔒</button>
         <button type="button" class="lang-btn locked" id="langBtnPt" data-lang="pt" aria-pressed="false" onclick="handleLockedLang('pt', '🇧🇷 Português (BR)')" title="Sbloccabile con voto >= 8/10">🇧🇷🔒</button>
       </div>
@@ -2593,6 +3116,7 @@
     </div>
   </div>
   <audio id="hoverTitleAudio" preload="auto"></audio>
+  <audio id="kidsStaticAudio" preload="auto"></audio>
 
   <!-- 2A. VETRINA CARDS (SHOWN WHEN ON 'INDICE' TAB) -->
   <main id="indexView" class="index-view" hidden>
@@ -2604,6 +3128,11 @@
 
   <!-- 2B. ZERO-SCROLL OPEN BOOK 3D CAROUSEL VIEWPORT -->
   <main id="bookViewport" class="book-viewport" hidden>
+    <!-- ROLE-AWARE KIDS READING LAUNCH BAR ("👦 Ale leggi qui!" / "🧒 Seby leggi qui!") -->
+    <div id="kidsReadingLaunchBar" class="kids-mode-launch-strip" hidden></div>
+    <!-- SUBTLE FLOATING NOTEBOOK PILL BAR IN FULLSCREEN KIDS MODE -->
+    <div id="kidsNotebookFloatingBar" class="kids-notebook-floating-bar" hidden></div>
+
     <div class="open-book-stage">
       <article class="open-book" id="openBookSpread" aria-live="polite">
         <!-- 3D PHYSICAL TURNING PAGE LEAF OVERLAY -->
@@ -2771,8 +3300,26 @@
     </div>
   </dialog>
 
+  <!-- 4E. MODAL 4: QUIZ ANTOLIN DELLA PAGINA (2 FACILI 🟢 + 1 DIFFICILE ⭐) -->
+  <dialog id="antolinQuizDialog" class="subpage-dialog" style="width:min(680px,95vw);" closedby="any" aria-labelledby="antolinQuizTitle">
+    <div class="subpage-header">
+      <h3 id="antolinQuizTitle">❓ Quiz Antolin della Pagina</h3>
+      <button type="button" class="page-turn-btn" onclick="document.getElementById('antolinQuizDialog').close()">✕ Chiudi</button>
+    </div>
+    <div class="subpage-body" id="antolinQuizBody"></div>
+  </dialog>
+
+  <!-- 4F. MODAL 5: DASHBOARD ANTOLIN GENITORI & NONNA (PROTETTA DA PUFFIN LOGIN) -->
+  <dialog id="antolinDashDialog" class="subpage-dialog" style="width:min(940px,95vw);max-height:90vh;" closedby="any" aria-labelledby="antolinDashTitle">
+    <div class="subpage-header">
+      <h3 id="antolinDashTitle">📊 Dashboard Famiglia Antolin (PuffinLogin &amp; Cloud Firestore)</h3>
+      <button type="button" class="page-turn-btn" onclick="document.getElementById('antolinDashDialog').close()">✕ Chiudi</button>
+    </div>
+    <div class="subpage-body" id="antolinDashBody" style="max-height:calc(90vh - 68px);overflow-y:auto;"></div>
+  </dialog>
+
   <script>
-    const APP_VERSION = '0.9.3';
+    const APP_VERSION = '0.13.0';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -2782,6 +3329,14 @@
     let pendingLangCode = null;
     const pageIndexBySlug = {};
     let unmuteNextVideoRender = false;
+
+    // Illustrated Kids Book & Antolin State
+    let kidsBookMode = null; // null (Adult Classic) | 'seby' (6-7 yo) | 'ale' (8-9 yo)
+    const kidsPageIndexBySlug = {};
+    let kidsGrammarEnabled = false; // Disabled by default per Riccardo!
+    let kidsUppercaseEnabled = false;
+    let kidsFullscreenEnabled = true; // Fullscreen notebook by default when opening Kids Book!
+    const kidsQuizAnswers = {}; // key: `${storySlug}_${mode}_${lang}_p${pageNum}_${qId}` -> { chosenIdx, isCorrect, qText, chosenText, correctText, difficulty, pageNum, timestamp }
 
     function storyMatchesKidFilter(story, filterVal) {
       if (!filterVal || filterVal === 'all') return true;
@@ -2852,13 +3407,16 @@
     }
 
     function syncStateToUrl() {
-      const curPageIdx = pageIndexBySlug[activeTab] || 0;
+      const curPageIdx = kidsBookMode
+        ? (kidsPageIndexBySlug[activeTab] || 0)
+        : (pageIndexBySlug[activeTab] || 0);
       const stateObj = {
         tab: activeTab,
         page: curPageIdx + 1,
         lang: currentLang,
         kid: activeKidFilter,
-        q: searchQuery
+        q: searchQuery,
+        mode: kidsBookMode || ''
       };
       try {
         localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(stateObj));
@@ -2866,6 +3424,11 @@
 
       const url = new URL(window.location.href);
       url.searchParams.set('tab', activeTab);
+      if (kidsBookMode) {
+        url.searchParams.set('mode', kidsBookMode);
+      } else {
+        url.searchParams.delete('mode');
+      }
       if (activeTab !== 'indice' && activeTab !== 'netflix' && curPageIdx > 0) {
         url.searchParams.set('page', String(curPageIdx + 1));
       } else {
@@ -2904,6 +3467,13 @@
       const langParam = urlParams.get('lang') || saved.lang || 'it';
       if (['it', 'en', 'fr', 'de', 'pt'].includes(langParam)) {
         currentLang = langParam;
+      }
+
+      const modeParam = urlParams.get('mode') || (urlParams.has('tab') ? '' : (saved.mode || ''));
+      if (modeParam === 'seby' || modeParam === 'ale') {
+        kidsBookMode = modeParam;
+      } else {
+        kidsBookMode = null;
       }
 
       const kidParam = urlParams.get('kid') || saved.kid || 'all';
@@ -2982,12 +3552,15 @@
       if (pageCandidate && activeTab !== 'indice' && activeTab !== 'netflix') {
         const matchedStory = stories.find(s => s.slug === activeTab);
         if (matchedStory) {
-          const totalSlides = getSlidesForStory(matchedStory).length;
-          if (pageCandidate === 'video' || pageCandidate === 'film') {
-            pageIndexBySlug[activeTab] = Math.max(0, totalSlides - 1);
+          const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+          const pNum = parseInt(pageCandidate, 10);
+          if (kidsBookMode && kb && !isNaN(pNum) && pNum >= 1) {
+            kidsPageIndexBySlug[activeTab] = Math.min(kb.pages.length - 1, pNum - 1);
           } else {
-            const pNum = parseInt(pageCandidate, 10);
-            if (!isNaN(pNum) && pNum >= 1) {
+            const totalSlides = getSlidesForStory(matchedStory).length;
+            if (pageCandidate === 'video' || pageCandidate === 'film') {
+              pageIndexBySlug[activeTab] = Math.max(0, totalSlides - 1);
+            } else if (!isNaN(pNum) && pNum >= 1) {
               pageIndexBySlug[activeTab] = Math.min(totalSlides - 1, pNum - 1);
             }
           }
@@ -3334,10 +3907,15 @@
         scoreEl.textContent = `${info.score}/10`;
       }
       const unlocked = info.score >= info.threshold;
-      ['Fr', 'De', 'Pt'].forEach(code => {
+      const frBtn = document.getElementById('langBtnFr');
+      if (frBtn) {
+        frBtn.textContent = '🇫🇷 FR';
+        frBtn.classList.remove('locked');
+      }
+      ['De', 'Pt'].forEach(code => {
         const btn = document.getElementById(`langBtn${code}`);
         if (btn) {
-          const flag = code === 'Fr' ? '🇫🇷' : (code === 'De' ? '🇩🇪' : '🇧🇷');
+          const flag = code === 'De' ? '🇩🇪' : '🇧🇷';
           btn.textContent = unlocked ? `${flag} ${code.toUpperCase()}` : `${flag}🔒`;
           btn.classList.toggle('locked', !unlocked);
           btn.title = unlocked
@@ -3428,6 +4006,20 @@
 
     function setKidFilter(kid) {
       activeKidFilter = kid || 'all';
+      // When viewing a story with a Kids Book (or clicking Ale/Seby at the very top), switch directly into Ale/Seby Kids Book version!
+      const currentKb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+      if (activeTab !== 'indice' && activeTab !== 'netflix' && currentKb) {
+        if (kid === 'alessandro') {
+          launchKidsBook(activeTab, 'ale');
+          return;
+        } else if (kid === 'sebastian') {
+          launchKidsBook(activeTab, 'seby');
+          return;
+        } else if (kid === 'all') {
+          exitKidsBookToAdult();
+          return;
+        }
+      }
       syncStateToUrl();
       renderAll();
     }
@@ -3443,10 +4035,20 @@
       }
     }
 
-    function selectTab(tabSlug) {
+    function selectTab(tabSlug, keepKidsMode = false) {
       stopBrowserKaraokeSpeech();
       const narratorAudio = document.getElementById('narratorAudio');
       if (narratorAudio) narratorAudio.pause();
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio) kidsAudio.pause();
+
+      if (!keepKidsMode) {
+        const hasKidsBook = Boolean(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[tabSlug]);
+        if (!hasKidsBook || tabSlug === 'indice' || tabSlug === 'netflix') {
+          kidsBookMode = null;
+          document.body.classList.remove('kids-fullscreen-book');
+        }
+      }
 
       activeTab = tabSlug;
       syncStateToUrl();
@@ -3471,8 +4073,11 @@
       const netflixViewEl = document.getElementById('netflixView');
       const bookViewportEl = document.getElementById('bookViewport');
       const narratorBarEl = document.getElementById('narratorBar');
+      const floatBarEl = document.getElementById('kidsNotebookFloatingBar');
 
       if (activeTab === 'indice') {
+        document.body.classList.remove('kids-fullscreen-book');
+        if (floatBarEl) floatBarEl.hidden = true;
         indexViewEl.hidden = false;
         if (netflixViewEl) netflixViewEl.hidden = true;
         bookViewportEl.hidden = true;
@@ -3480,6 +4085,8 @@
         if (storyActionsEl) storyActionsEl.hidden = true;
         renderIndexView();
       } else if (activeTab === 'netflix') {
+        document.body.classList.remove('kids-fullscreen-book');
+        if (floatBarEl) floatBarEl.hidden = true;
         indexViewEl.hidden = true;
         if (netflixViewEl) netflixViewEl.hidden = false;
         bookViewportEl.hidden = true;
@@ -3553,23 +4160,34 @@
       `;
     }
 
+    function openStudioVersionTab() {
+      const targetSlug = (activeTab !== 'indice' && activeTab !== 'netflix')
+        ? activeTab
+        : 'storia-sardegna-cala-gonone-arbatax-famiglia';
+      const mode = (activeKidFilter === 'alessandro') ? 'ale' : (kidsBookMode || 'seby');
+      launchKidsBook(targetSlug, mode);
+    }
+
     function renderTabsStrip() {
       const strip = document.getElementById('tabsStrip');
       const allStories = catalog.stories || [];
       const filteredStories = getFilteredStories();
-      const allMap = { it: 'Indice', en: 'Index', fr: 'Index', de: 'Index', pt: 'Índice' };
-      const indiceLabel = allMap[currentLang] || 'Index';
+      const allMap = { it: 'Storie Normali (Indice)', en: 'Normal Stories (Index)', fr: 'Histoires (Index)', de: 'Geschichten (Index)', pt: 'Histórias (Índice)' };
+      const indiceLabel = allMap[currentLang] || 'Storie Normali (Indice)';
 
       const gridSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`;
       const tvSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+      const bookSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+
+      const isStudioActive = Boolean(kidsBookMode && activeTab !== 'indice' && activeTab !== 'netflix');
 
       const indiceBtn = `
         <button type="button" role="tab" class="tab-pill"
           data-tab="indice"
-          aria-selected="${activeTab === 'indice'}"
-          onclick="selectTab('indice')">
+          aria-selected="${activeTab === 'indice' || (activeTab !== 'netflix' && !isStudioActive)}"
+          onclick="exitKidsBookToAdult(); selectTab('indice')">
           ${gridSvg}
-          <span>${indiceLabel}</span>
+          <span>📖 ${indiceLabel}</span>
           <span class="num-chip">${filteredStories.length}/${allStories.length}</span>
         </button>
       `;
@@ -3585,27 +4203,56 @@
         </button>
       `;
 
-      const storyBtns = filteredStories.map((s) => {
-        const origIdx = allStories.indexOf(s) + 1;
-        const label = getLocalizedField(s, 'short_title') || getLocalizedField(s, 'title');
-        const avatarClass = getPersonAvatarClass(s.author);
-        const avatarUrl = getKidAvatarUrl(s.author);
-        return `
-          <button type="button" role="tab" class="tab-pill"
-            data-tab="${s.slug}"
-            aria-selected="${activeTab === s.slug}"
-            onmouseenter="onTabHoverStart(event, '${s.slug}')"
-            onmouseleave="onTabHoverEnd()"
-            onfocus="onTabHoverStart(event, '${s.slug}')"
-            onblur="onTabHoverEnd()"
-            onclick="onTabHoverEnd(); selectTab('${s.slug}')">
-            <span class="kid-avatar-circle ${avatarClass}" style="width:20px;height:20px;"><img src="${avatarUrl}" alt="${escapeHtml(s.author)}"></span>
-            <span>${origIdx}. ${escapeHtml(label)}</span>
-          </button>
-        `;
-      }).join('');
+      const studioBtn = `
+        <button type="button" role="tab" class="tab-pill"
+          data-tab="studio"
+          aria-selected="${isStudioActive}"
+          style="${isStudioActive ? 'background:linear-gradient(135deg,#f59e0b,#ea580c);color:#0b0f19;border-color:#fff;' : 'border-color:rgba(245,158,11,0.55);'}"
+          onclick="openStudioVersionTab()"
+          title="Apri il Quaderno Illustrato ad Acquerello a Tutta Pagina (Studio Version • Ale & Seby + Antolin)">
+          ${bookSvg}
+          <span>🎨 Studio Version (Quaderno Bambini)</span>
+        </button>
+      `;
 
-      strip.innerHTML = indiceBtn + netflixBtn + storyBtns;
+      // Only the 3 main mode buttons in the top bar (no individual story clutter!)
+      strip.innerHTML = indiceBtn + netflixBtn + studioBtn;
+    }
+
+    function getVisibleKidModesForCurrentUser() {
+      const user = (window.PuffinLogin && typeof window.PuffinLogin.getCurrentUser === 'function')
+        ? window.PuffinLogin.getCurrentUser()
+        : null;
+      const uid = user?.id || '';
+      if (uid === 'seby') return ['seby'];
+      if (uid === 'ale') return ['ale'];
+      return ['seby', 'ale']; // Riccardo, Kate, Nonna Lucilla, or Guest see both!
+    }
+
+    function launchKidsBook(storySlug, mode) {
+      kidsBookMode = mode;
+      activeKidFilter = (mode === 'ale') ? 'alessandro' : 'sebastian';
+      kidsFullscreenEnabled = true;
+      if (!['it', 'fr', 'de'].includes(currentLang)) {
+        currentLang = 'it';
+      }
+      if (typeof kidsPageIndexBySlug[storySlug] !== 'number') {
+        kidsPageIndexBySlug[storySlug] = 0;
+      }
+      selectTab(storySlug, true);
+    }
+
+    function exitKidsBookToAdult() {
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio) kidsAudio.pause();
+      kidsBookMode = null;
+      document.body.classList.remove('kids-fullscreen-book');
+      const floatBarEl = document.getElementById('kidsNotebookFloatingBar');
+      if (floatBarEl) floatBarEl.hidden = true;
+      syncStateToUrl();
+      if (activeTab !== 'indice' && activeTab !== 'netflix') {
+        renderActiveBook();
+      }
     }
 
     function renderIndexView() {
@@ -3613,6 +4260,7 @@
       const stories = getFilteredStories();
       const grid = document.getElementById('indexGrid');
       const ageUnit = currentLang === 'en' ? 'yo' : 'a';
+      const visibleKidModes = getVisibleKidModesForCurrentUser();
 
       grid.innerHTML = stories.map((s) => {
         const origIdx = allStories.indexOf(s) + 1;
@@ -3633,6 +4281,29 @@
         const badgeText = firstRecipient
           ? `#${origIdx} · ✍️ ${authorObj.name} → ❤️ ${getPersonDisplayName(firstRecipient)}`
           : `#${origIdx} · ${authorObj.name} (${s.author_age_at_recording}${ageUnit})`;
+
+        const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[s.slug];
+        let kidsButtonsHtml = '';
+        if (kb) {
+          const sebyBtn = visibleKidModes.includes('seby') ? `
+            <button type="button" class="kids-img-launch-btn"
+              onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); launchKidsBook('${s.slug}', 'seby')"
+              title="Libro Illustrato Acquerello 16 pagine + Quiz Antolin per Seby (6-7 anni)">
+              <img src="assets/buttons/seby_leggi_qui.jpg" alt="Seby">
+              <span>${currentLang === 'fr' ? '🧒 Seby lis ici ! (16p)' : '🧒 Seby leggi qui! (16p)'}</span>
+            </button>
+          ` : '';
+          const aleBtn = visibleKidModes.includes('ale') ? `
+            <button type="button" class="kids-img-launch-btn"
+              onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); launchKidsBook('${s.slug}', 'ale')"
+              title="Libro Illustrato Acquerello 16 pagine + Quiz Antolin per Ale (8-9 anni)">
+              <img src="assets/buttons/ale_leggi_qui.jpg" alt="Ale">
+              <span>${currentLang === 'fr' ? '👦 Ale lis ici ! (16p)' : '👦 Ale leggi qui! (16p)'}</span>
+            </button>
+          ` : '';
+          kidsButtonsHtml = `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">${sebyBtn}${aleBtn}</div>`;
+        }
+
         return `
           <article class="index-card"
             tabindex="0"
@@ -3660,6 +4331,7 @@
               <h2>${escapeHtml(shortTitle)}</h2>
               <div style="font-size:0.84rem;font-weight:700;color:#cbd5e1;">${escapeHtml(title)}</div>
               <p>${escapeHtml(firstPara)}</p>
+              ${kidsButtonsHtml}
               <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
                 <span class="page-turn-btn primary">${cta}</span>
                 ${s.assets?.video?.file ? `
@@ -4218,11 +4890,702 @@
       dialog.close();
     }
 
+    function toggleKidsFullscreen() {
+      kidsFullscreenEnabled = !kidsFullscreenEnabled;
+      document.body.classList.toggle('kids-fullscreen-book', Boolean(kidsBookMode && kidsFullscreenEnabled));
+      renderActiveBook();
+    }
+
+    function renderKidsLaunchBar(story) {
+      const bar = document.getElementById('kidsReadingLaunchBar');
+      const floatBar = document.getElementById('kidsNotebookFloatingBar');
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story?.slug];
+      if (!kb) {
+        if (bar) { bar.hidden = true; bar.innerHTML = ''; }
+        if (floatBar) { floatBar.hidden = true; floatBar.innerHTML = ''; }
+        document.body.classList.remove('kids-fullscreen-book');
+        return;
+      }
+
+      const visibleModes = getVisibleKidModesForCurrentUser();
+      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+
+      if (kidsBookMode) {
+        document.body.classList.toggle('kids-fullscreen-book', Boolean(kidsFullscreenEnabled));
+        if (bar) bar.hidden = Boolean(kidsFullscreenEnabled);
+        if (floatBar) {
+          floatBar.hidden = false;
+          floatBar.innerHTML = `
+            <button type="button" class="kids-pill-control ${kidsBookMode === 'seby' ? 'active' : ''}"
+              onclick="launchKidsBook('${story.slug}', 'seby')" title="Versione Seby (6-7 anni)">
+              🧒 Seby
+            </button>
+            <button type="button" class="kids-pill-control ${kidsBookMode === 'ale' ? 'active' : ''}"
+              onclick="launchKidsBook('${story.slug}', 'ale')" title="Versione Ale (8-9 anni)">
+              👦 Ale
+            </button>
+            <span style="opacity:0.35;">|</span>
+            <button type="button" class="kids-pill-control ${lang === 'it' ? 'active' : ''}" onclick="setLanguage('it')">🇮🇹 IT</button>
+            <button type="button" class="kids-pill-control ${lang === 'fr' ? 'active' : ''}" onclick="setLanguage('fr')">🇫🇷 FR</button>
+            <button type="button" class="kids-pill-control ${lang === 'de' ? 'active' : ''}" onclick="setLanguage('de')" title="Deutsch per Papino e i bimbi!">🇩🇪 DE</button>
+            <span style="opacity:0.35;">|</span>
+            <button type="button" class="kids-pill-control ${kidsGrammarEnabled ? 'active' : ''}"
+              onclick="toggleKidsGrammar()"
+              title="Attiva/Disattiva Grammatica: Nomi NERI e Aggettivi VERDI con desinenza BLU (maschile) e ROSA (femminile)!">
+              🌈 ${lang === 'de' ? 'Grammatik' : (lang === 'fr' ? 'Grammaire' : 'Grammatica')}
+            </button>
+            <button type="button" class="kids-pill-control ${kidsUppercaseEnabled ? 'active' : ''}"
+              onclick="toggleKidsUppercase()"
+              title="STAMPATO MAIUSCOLO">
+              🔠 ABC
+            </button>
+            <button type="button" class="kids-pill-control ${kidsFullscreenEnabled ? 'active' : ''}"
+              onclick="toggleKidsFullscreen()"
+              title="Tutta Pagina (Immersivo senza barre)">
+              ⛶ ${kidsFullscreenEnabled ? 'Barra Menu' : 'Tutta Pagina'}
+            </button>
+            <button type="button" class="kids-pill-control" style="background:#fee2e2;color:#991b1b;border-color:#f87171;"
+              onclick="exitKidsBookToAdult()"
+              title="Chiudi il quaderno bambini e torna alla vista normale">
+              ✕ Esci
+            </button>
+          `;
+        }
+      } else {
+        document.body.classList.remove('kids-fullscreen-book');
+        if (floatBar) floatBar.hidden = true;
+        if (bar) bar.hidden = false;
+      }
+
+      if (!bar) return;
+      const sebyBtn = visibleModes.includes('seby') ? `
+        <button type="button" class="kids-img-launch-btn ${kidsBookMode === 'seby' ? 'active-mode' : ''}"
+          onclick="launchKidsBook('${story.slug}', 'seby')"
+          title="Apri a Tutta Pagina il Quaderno Illustrato Acquerello per Seby (6-7 anni)">
+          <img src="assets/buttons/seby_leggi_qui.jpg" alt="Seby">
+          <span>🧒 Seby leggi qui! (Quaderno 16p a Tutta Pagina)</span>
+        </button>
+      ` : '';
+
+      const aleBtn = visibleModes.includes('ale') ? `
+        <button type="button" class="kids-img-launch-btn ${kidsBookMode === 'ale' ? 'active-mode' : ''}"
+          onclick="launchKidsBook('${story.slug}', 'ale')"
+          title="Apri a Tutta Pagina il Quaderno Illustrato Acquerello per Ale (8-9 anni)">
+          <img src="assets/buttons/ale_leggi_qui.jpg" alt="Ale">
+          <span>👦 Ale leggi qui! (Quaderno 16p a Tutta Pagina)</span>
+        </button>
+      ` : '';
+
+      bar.innerHTML = `${sebyBtn}${aleBtn}`;
+    }
+
+    function getPosMeta(pos, lang) {
+      if (lang === 'fr') {
+        if (pos === 'noun') return { icon: '🌸', label: 'Nom' };
+        if (pos === 'verb') return { icon: '🏃', label: 'Verbe' };
+        if (pos === 'adj') return { icon: '🎨', label: 'Adjectif' };
+        if (pos === 'adv') return { icon: '⚡', label: 'Adverbe' };
+      } else if (lang === 'de') {
+        if (pos === 'noun') return { icon: '🌸', label: 'Nomen' };
+        if (pos === 'verb') return { icon: '🏃', label: 'Verb' };
+        if (pos === 'adj') return { icon: '🎨', label: 'Adjektiv' };
+        if (pos === 'adv') return { icon: '⚡', label: 'Adverb' };
+      } else {
+        if (pos === 'noun') return { icon: '🌸', label: 'Nome' };
+        if (pos === 'verb') return { icon: '🏃', label: 'Verbo' };
+        if (pos === 'adj') return { icon: '🎨', label: 'Aggettivo' };
+        if (pos === 'adv') return { icon: '⚡', label: 'Avverbio' };
+      }
+      return { icon: '', label: '' };
+    }
+
+    function formatWordWithGenderEnding(rawWord, pos, gender) {
+      if ((pos !== 'noun' && pos !== 'adj') || !gender) {
+        return escapeHtml(rawWord);
+      }
+      // Match leading punctuation/prefix, letters, and trailing punctuation
+      const m = String(rawWord).match(/^([^\wÀ-ÿÄÖÜäöüß]*)(.*?)([^\wÀ-ÿÄÖÜäöüß]*)$/);
+      if (!m) return escapeHtml(rawWord);
+      const [, pre, core, post] = m;
+      if (core.length < 3) return escapeHtml(rawWord);
+      const stem = core.slice(0, -1);
+      const ending = core.slice(-1);
+      const endCls = gender === 'f' ? 'kw-end-f' : 'kw-end-m';
+      return `${escapeHtml(pre)}<span class="kw-stem">${escapeHtml(stem)}</span><span class="${endCls}">${escapeHtml(ending)}</span>${escapeHtml(post)}`;
+    }
+
+    let kidsSentenceKaraokeRaf = null;
+
+    function playSingleWordAudio(mp3Url, oggUrl, tokenEl) {
+      const audio = document.getElementById('kidsStaticAudio');
+      if (!audio) return;
+      if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+      document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
+      if (tokenEl) tokenEl.classList.add('active');
+
+      audio.pause();
+      audio.src = `${mp3Url}?v=${APP_VERSION}`;
+      audio.playbackRate = 0.95;
+      audio.onended = () => {
+        if (tokenEl) tokenEl.classList.remove('active');
+      };
+      audio.play().catch(() => {
+        if (oggUrl) {
+          audio.src = `${oggUrl}?v=${APP_VERSION}`;
+          audio.play().catch(() => {});
+        }
+      });
+    }
+
+    function playKidsBubbleAudio(mp3Url, oggUrl) {
+      const audio = document.getElementById('kidsStaticAudio');
+      if (!audio || !mp3Url) return;
+      if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+      audio.pause();
+      audio.src = `${mp3Url}?v=${APP_VERSION}`;
+      audio.playbackRate = 1.0;
+      audio.play().catch(() => {
+        if (oggUrl) {
+          audio.src = `${oggUrl}?v=${APP_VERSION}`;
+          audio.play().catch(() => {});
+        }
+      });
+    }
+
+    function playKidsPageSentenceKaraoke(mp3Url, oggUrl, pageNum, rate = 0.95) {
+      const audio = document.getElementById('kidsStaticAudio');
+      if (!audio || !mp3Url) return;
+      if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+
+      audio.pause();
+      audio.src = `${mp3Url}?v=${APP_VERSION}`;
+      audio.preservesPitch = true;
+      audio.playbackRate = rate;
+
+      const scopeSelector = pageNum
+        ? `.kids-watercolor-leaf[data-page="${pageNum}"] .kw-token[data-start]`
+        : `#openBookSpread .kw-token[data-start]`;
+      const tokens = Array.from(document.querySelectorAll(scopeSelector));
+      const tick = () => {
+        const t = audio.currentTime;
+        tokens.forEach(sp => {
+          const s = parseFloat(sp.getAttribute('data-start')) || 0;
+          const e = parseFloat(sp.getAttribute('data-end')) || 0;
+          if (t >= s - 0.05 && t <= e + 0.1) {
+            sp.classList.add('active');
+          } else {
+            sp.classList.remove('active');
+          }
+        });
+        if (!audio.paused && !audio.ended) {
+          kidsSentenceKaraokeRaf = requestAnimationFrame(tick);
+        } else {
+          tokens.forEach(sp => sp.classList.remove('active'));
+        }
+      };
+
+      audio.onplay = () => {
+        kidsSentenceKaraokeRaf = requestAnimationFrame(tick);
+      };
+      audio.onended = () => {
+        tokens.forEach(sp => sp.classList.remove('active'));
+      };
+      audio.play().catch(() => {
+        if (oggUrl) {
+          audio.src = `${oggUrl}?v=${APP_VERSION}`;
+          audio.play().catch(() => {});
+        }
+      });
+    }
+
+    function toggleKidsGrammar() {
+      kidsGrammarEnabled = !kidsGrammarEnabled;
+      renderActiveBook();
+    }
+
+    function toggleKidsUppercase() {
+      kidsUppercaseEnabled = !kidsUppercaseEnabled;
+      renderActiveBook();
+    }
+
+    function getKidsPageQuizProgress(storySlug, mode, lang, pageNum, questions) {
+      let answered = 0;
+      let correct = 0;
+      (questions || []).forEach(q => {
+        const key = `${storySlug}_${mode}_${lang}_p${pageNum}_${q.id}`;
+        const ans = kidsQuizAnswers[key];
+        if (ans) {
+          answered++;
+          if (ans.isCorrect) correct++;
+        }
+      });
+      return { answered, correct, total: (questions || []).length };
+    }
+
+    function openKidsPageQuizModal(pageIdx) {
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+      if (!kb) return;
+      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+      const pageObj = kb.pages[pageIdx];
+      if (!pageObj) return;
+      const questions = pageObj.questions?.[lang] || pageObj.questions?.it || [];
+      const modeLabel = kidsBookMode === 'seby' ? 'Seby (6-7a)' : 'Ale (8-9a)';
+
+      document.getElementById('antolinQuizTitle').textContent = lang === 'fr'
+        ? `❓ Quiz Antolin — Page ${pageObj.page}/${kb.total_pages} (${modeLabel})`
+        : (lang === 'de'
+          ? `❓ Antolin-Quiz — Seite ${pageObj.page}/${kb.total_pages} (${modeLabel})`
+          : `❓ Quiz Antolin — Pagina ${pageObj.page}/${kb.total_pages} (${modeLabel})`);
+
+      renderAntolinQuizDialogBody(kb, pageObj, lang, questions);
+      const dlg = document.getElementById('antolinQuizDialog');
+      if (!dlg.open) dlg.showModal();
+    }
+
+    function renderAntolinQuizDialogBody(kb, pageObj, lang, questions) {
+      const isFr = lang === 'fr';
+      const isDe = lang === 'de';
+      const cardsHtml = questions.map((q, qIdx) => {
+        const key = `${kb.story_id}_${kidsBookMode}_${lang}_p${pageObj.page}_${q.id}`;
+        const existing = kidsQuizAnswers[key];
+        const diffBadge = q.difficulty === 'hard'
+          ? `<span class="num-chip num-chip--warn">⭐ ${isDe ? 'Schwer (Bonus)' : 'Difficile (Bonus)'}</span>`
+          : `<span class="num-chip num-chip--ok">🟢 ${isDe ? 'Leicht' : 'Facile'}</span>`;
+
+        const optsHtml = q.options.map((optText, oIdx) => {
+          let cls = 'antolin-opt-btn';
+          let icon = '';
+          if (existing) {
+            if (oIdx === q.correct) {
+              cls += ' correct';
+              icon = '✅';
+            } else if (oIdx === existing.chosenIdx && !existing.isCorrect) {
+              cls += ' wrong';
+              icon = '❌';
+            }
+          }
+          return `
+            <button type="button" class="${cls}"
+              onclick="answerAntolinQuestion('${kb.story_id}', ${pageObj.page}, '${q.id}', ${oIdx})">
+              <span>${escapeHtml(optText)}</span>
+              <span>${icon}</span>
+            </button>
+          `;
+        }).join('');
+
+        return `
+          <div class="antolin-question-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;">
+              <strong style="font-family:'Fredoka',sans-serif;color:var(--gold);font-size:0.96rem;">
+                ${qIdx + 1}. ${escapeHtml(q.q)}
+              </strong>
+              ${diffBadge}
+            </div>
+            <div>${optsHtml}</div>
+          </div>
+        `;
+      }).join('');
+
+      const prog = getKidsPageQuizProgress(kb.story_id, kidsBookMode, lang, pageObj.page, questions);
+      const nextPageIdx = pageObj.page; // 1-based page equals next 0-based index
+      const nextBtnHtml = (pageObj.page < kb.total_pages)
+        ? `<button type="button" class="page-turn-btn primary" onclick="document.getElementById('antolinQuizDialog').close(); ${pageObj.page % 2 === 1 ? `openKidsPageQuizModal(${nextPageIdx})` : `turnPage(1)`};">
+             ${pageObj.page % 2 === 1
+               ? (isDe ? `Quiz Seite ${pageObj.page + 1} ›` : (isFr ? `Quiz Page ${pageObj.page + 1} ›` : `Quiz Pagina ${pageObj.page + 1} ›`))
+               : (isDe ? 'Nächste Doppelseite ›' : (isFr ? 'Double Page Suivante ›' : 'Prossime 2 Pagine ›'))}
+           </button>`
+        : `<button type="button" class="page-turn-btn primary" onclick="document.getElementById('antolinQuizDialog').close(); openAntolinDashboardModal();">
+             🏆 ${isDe ? 'Ergebnisse im Dashboard!' : (isFr ? 'Voir le Tableau des Scores !' : 'Vedi Risultati nella Dashboard!')}
+           </button>`;
+
+      document.getElementById('antolinQuizBody').innerHTML = `
+        <div style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <span style="font-size:0.9rem;color:#cbd5e1;">
+            ${isDe ? 'Beantworte die 2 leichten Fragen 🟢 und die Bonus-Sternfrage ⭐!' : (isFr ? 'Réponds aux 2 questions faciles et à la question étoile !' : 'Rispondi alle 2 domande facili 🟢 e alla domanda stella ⭐!')}
+          </span>
+          <span class="num-chip ${prog.correct === prog.total ? 'num-chip--ok' : 'num-chip--warn'}">
+            ⭐ ${prog.correct} / ${prog.total}
+          </span>
+        </div>
+        ${cardsHtml}
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+          <button type="button" class="page-turn-btn" onclick="document.getElementById('antolinQuizDialog').close()">
+            ${isDe ? 'Zurück zum Buch' : (isFr ? 'Retour au cahier' : 'Torna al quaderno')}
+          </button>
+          ${nextBtnHtml}
+        </div>
+      `;
+    }
+
+    async function answerAntolinQuestion(storyId, pageNum, qId, chosenIdx) {
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[storyId];
+      if (!kb) return;
+      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+      const pageObj = kb.pages.find(p => p.page === pageNum);
+      if (!pageObj) return;
+      const questions = pageObj.questions?.[lang] || pageObj.questions?.it || [];
+      const q = questions.find(item => item.id === qId);
+      if (!q) return;
+
+      const isCorrect = (chosenIdx === q.correct);
+      const key = `${storyId}_${kidsBookMode}_${lang}_p${pageNum}_${qId}`;
+      const record = {
+        storyId,
+        mode: kidsBookMode || 'seby',
+        lang,
+        pageNum,
+        qId,
+        difficulty: q.difficulty,
+        qText: q.q,
+        chosenIdx,
+        chosenText: q.options[chosenIdx],
+        correctIdx: q.correct,
+        correctText: q.options[q.correct],
+        isCorrect,
+        timestamp: new Date().toISOString()
+      };
+      kidsQuizAnswers[key] = record;
+
+      try {
+        const logArr = JSON.parse(localStorage.getItem('kos_antolin_question_logs_v1') || '[]');
+        logArr.unshift({
+          ...record,
+          userId: (window.PuffinLogin && window.PuffinLogin.getCurrentUser()?.id) || kidsBookMode || 'guest',
+          userName: (window.PuffinLogin && window.PuffinLogin.getCurrentUser()?.name) || (kidsBookMode === 'ale' ? 'Ale' : 'Seby')
+        });
+        localStorage.setItem('kos_antolin_question_logs_v1', JSON.stringify(logArr.slice(0, 500)));
+      } catch (_) {}
+
+      renderAntolinQuizDialogBody(kb, pageObj, lang, questions);
+      renderActiveBook();
+
+      const prog = getKidsPageQuizProgress(storyId, kidsBookMode, lang, pageNum, questions);
+      if (prog.answered === prog.total && window.PuffinLogin && typeof window.PuffinLogin.submitScore === 'function') {
+        const pageLogs = questions.map(item => kidsQuizAnswers[`${storyId}_${kidsBookMode}_${lang}_p${pageNum}_${item.id}`]).filter(Boolean);
+        const points = pageLogs.reduce((acc, r) => acc + (r.isCorrect ? (r.difficulty === 'hard' ? 20 : 10) : 0), 0);
+        try {
+          await window.PuffinLogin.submitScore({
+            appId: 'kids-own-stories',
+            score: points,
+            level: `${storyId}:p${pageNum}:${kidsBookMode}:${lang}`,
+            extra: {
+              story_id: storyId,
+              reader_mode: kidsBookMode,
+              lang,
+              page: pageNum,
+              correct_count: prog.correct,
+              total_questions: prog.total,
+              question_logs: pageLogs
+            }
+          });
+        } catch (_) {}
+      }
+    }
+
+    async function openAntolinDashboardModal() {
+      const dlg = document.getElementById('antolinDashDialog');
+      const body = document.getElementById('antolinDashBody');
+      if (!dlg || !body) return;
+
+      const user = (window.PuffinLogin && typeof window.PuffinLogin.getCurrentUser === 'function')
+        ? window.PuffinLogin.getCurrentUser()
+        : null;
+
+      if (!user || user.id === 'guest') {
+        body.innerHTML = `
+          <div style="text-align:center;padding:36px 20px;background:rgba(15,23,42,0.85);border:2px dashed rgba(255,183,3,0.45);border-radius:18px;">
+            <div style="font-size:3rem;margin-bottom:10px;">🔒</div>
+            <h4 style="font-size:1.35rem;color:var(--gold);margin-bottom:8px;">Privato — Fai login per saperne di più</h4>
+            <p style="font-size:0.96rem;color:#cbd5e1;max-width:520px;margin:0 auto 18px;">
+              La Dashboard di lettura Antolin (con i progressi di <strong>Ale</strong> e <strong>Seby</strong>, le risposte esatte/sbagliate e le statistiche sulle domande da raffinare per Papino, Mamma Kate e Nonna Lucilla) è visibile solo ai membri della famiglia autenticati.
+            </p>
+            <button type="button" class="page-turn-btn primary" onclick="document.getElementById('antolinDashDialog').close(); document.getElementById('puffin-widget')?.shadowRoot?.querySelector('button')?.click();">
+              🔑 Accedi con PuffinLogin in alto a destra
+            </button>
+          </div>
+        `;
+        if (!dlg.open) dlg.showModal();
+        return;
+      }
+
+      body.innerHTML = `<p style="color:#cbd5e1;">⏳ Caricamento risultati da Cloud Firestore (PuffinLogin) e registro locale…</p>`;
+      if (!dlg.open) dlg.showModal();
+
+      let cloudScores = [];
+      if (window.PuffinLogin && typeof window.PuffinLogin.fetchScores === 'function') {
+        try {
+          cloudScores = await window.PuffinLogin.fetchScores('kids-own-stories', 40) || [];
+        } catch (_) {}
+      }
+
+      let localLogs = [];
+      try {
+        localLogs = JSON.parse(localStorage.getItem('kos_antolin_question_logs_v1') || '[]');
+      } catch (_) {}
+
+      const allQuestionLogs = [...localLogs];
+      cloudScores.forEach(cs => {
+        const qLogs = cs.extra?.question_logs;
+        if (Array.isArray(qLogs)) {
+          qLogs.forEach(ql => {
+            if (!allQuestionLogs.some(x => x.qId === ql.qId && x.timestamp === ql.timestamp)) {
+              allQuestionLogs.push({
+                ...ql,
+                userId: cs.userId,
+                userName: cs.userName
+              });
+            }
+          });
+        }
+      });
+
+      const qStatsMap = {};
+      allQuestionLogs.forEach(item => {
+        if (!item.qId) return;
+        if (!qStatsMap[item.qId]) {
+          qStatsMap[item.qId] = {
+            qId: item.qId,
+            pageNum: item.pageNum,
+            qText: item.qText,
+            difficulty: item.difficulty,
+            attempts: 0,
+            wrong: 0,
+            wrongAnswers: {}
+          };
+        }
+        qStatsMap[item.qId].attempts++;
+        if (!item.isCorrect) {
+          qStatsMap[item.qId].wrong++;
+          const wTxt = item.chosenText || '?';
+          qStatsMap[item.qId].wrongAnswers[wTxt] = (qStatsMap[item.qId].wrongAnswers[wTxt] || 0) + 1;
+        }
+      });
+      const qStatsList = Object.values(qStatsMap).sort((a, b) => (b.wrong / b.attempts) - (a.wrong / a.attempts));
+
+      const recentRowsHtml = allQuestionLogs.slice(0, 25).map(r => `
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+          <td style="padding:7px 8px;"><strong>${escapeHtml(r.userName || r.mode || 'Bambino')}</strong> <span class="num-chip">${escapeHtml((r.lang || 'it').toUpperCase())}</span></td>
+          <td style="padding:7px 8px;">Pag. ${r.pageNum || '?'} ${r.difficulty === 'hard' ? '⭐' : '🟢'}</td>
+          <td style="padding:7px 8px;">${escapeHtml(r.qText || '')}</td>
+          <td style="padding:7px 8px;">
+            ${r.isCorrect
+              ? `<span style="color:#34d399;font-weight:700;">✅ ${escapeHtml(r.chosenText || '')}</span>`
+              : `<span style="color:#f87171;font-weight:700;">❌ ${escapeHtml(r.chosenText || '')}</span> <br><small style="color:#94a3b8;">(Giusta: ${escapeHtml(r.correctText || '')})</small>`
+            }
+          </td>
+        </tr>
+      `).join('') || `<tr><td colspan="4" style="padding:14px;text-align:center;color:#94a3b8;">Nessuna domanda risposta finora in questa sessione. Apri "Seby leggi qui!" o "Ale leggi qui!" e prova un quiz!</td></tr>`;
+
+      const refineRowsHtml = qStatsList.map(st => {
+        const errRate = Math.round((st.wrong / st.attempts) * 100);
+        const topWrong = Object.entries(st.wrongAnswers).map(([k, v]) => `${k} (${v}x)`).join(', ') || '—';
+        return `
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <td style="padding:7px 8px;">Pag. ${st.pageNum} (<code>${escapeHtml(st.qId)}</code>)</td>
+            <td style="padding:7px 8px;">${escapeHtml(st.qText)}</td>
+            <td style="padding:7px 8px;"><span class="num-chip ${errRate > 40 ? 'num-chip--warn' : 'num-chip--ok'}">${st.wrong}/${st.attempts} errori (${errRate}%)</span></td>
+            <td style="padding:7px 8px;color:#fca5a5;">${escapeHtml(topWrong)}</td>
+          </tr>
+        `;
+      }).join('') || `<tr><td colspan="4" style="padding:12px;text-align:center;color:#94a3b8;">Ancora nessun dato statistico sulle domande.</td></tr>`;
+
+      body.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);padding:10px 14px;border-radius:12px;">
+          <div>
+            👋 Ciao <strong>${escapeHtml(user.name)}</strong>! Stai visualizzando i registri didattici Antolin della famiglia.
+          </div>
+          <span class="num-chip num-chip--ok">${allQuestionLogs.length} risposte registrate</span>
+        </div>
+
+        <h4 style="color:var(--gold);margin-bottom:8px;">📝 Ultime Risposte dei Bambini (Chi ha risposto cosa, Giuste ✅ vs Sbagliate ❌)</h4>
+        <div style="overflow-x:auto;margin-bottom:18px;background:rgba(15,23,42,0.75);border-radius:12px;border:1px solid rgba(255,255,255,0.12);">
+          <table style="width:100%;border-collapse:collapse;font-size:0.86rem;text-align:left;">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(255,183,3,0.3);color:var(--gold);">
+                <th style="padding:8px;">Lettore / Lingua</th>
+                <th style="padding:8px;">Pagina</th>
+                <th style="padding:8px;">Domanda</th>
+                <th style="padding:8px;">Risposta Data</th>
+              </tr>
+            </thead>
+            <tbody>${recentRowsHtml}</tbody>
+          </table>
+        </div>
+
+        <h4 style="color:var(--gold);margin-bottom:8px;">🔧 Diagnostica per Papino: "Domande da Raffinare" (Tasso di Errore)</h4>
+        <div style="overflow-x:auto;background:rgba(15,23,42,0.75);border-radius:12px;border:1px solid rgba(255,255,255,0.12);">
+          <table style="width:100%;border-collapse:collapse;font-size:0.85rem;text-align:left;">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(255,183,3,0.3);color:var(--gold);">
+                <th style="padding:8px;">ID Domanda</th>
+                <th style="padding:8px;">Testo Domanda</th>
+                <th style="padding:8px;">Errori / Tentativi</th>
+                <th style="padding:8px;">Risposte Sbagliate Cliccate</th>
+              </tr>
+            </thead>
+            <tbody>${refineRowsHtml}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function buildKidsWatercolorLeafHtml(kb, pageObj, pageIdx, side = 'left') {
+      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+      const isFr = (lang === 'fr');
+      const isDe = (lang === 'de');
+      const levelKey = (kidsBookMode === 'ale') ? 'ale' : 'seby';
+      const levelData = pageObj.levels?.[levelKey]?.[lang] || pageObj.levels?.[levelKey]?.it || pageObj.levels?.seby?.it;
+      const bubbleData = pageObj.speech_bubble?.[lang] || pageObj.speech_bubble?.it;
+      const pageTitle = pageObj.title?.[lang] || pageObj.title?.it || `Pagina ${pageObj.page}`;
+      const patchPos = pageObj.patch_pos || (side === 'left' ? 'bottom' : 'top');
+
+      const tokensHtml = (levelData?.tokens || []).map(tok => {
+        const posMeta = getPosMeta(tok.pos, lang);
+        const hasGloss = Boolean(tok.gloss);
+        const genderLabel = tok.g === 'm'
+          ? (isDe ? ' • mask.' : (isFr ? ' • masc.' : ' • masch. 🔵'))
+          : (tok.g === 'f' ? (isDe ? ' • fem.' : (isFr ? ' • fém.' : ' • femm. 🌸')) : '');
+        const glossHtml = hasGloss ? `
+          <span class="kw-gloss-popover">
+            <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong>
+            ${posMeta.label ? `<span style="opacity:0.85;">(${posMeta.icon} ${posMeta.label}${genderLabel})</span>` : ''}<br>
+            🔄 <em>${escapeHtml(tok.gloss.tr)}</em><br>
+            💡 ${escapeHtml(tok.gloss.def)}
+          </span>
+        ` : (posMeta.label ? `
+          <span class="kw-gloss-popover">
+            <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong> (${posMeta.icon} ${posMeta.label}${genderLabel})<br>
+            🔊 ${isDe ? 'Klicke, um das Wort zu hören' : (isFr ? 'Clique pour écouter le mot' : 'Clicca per ascoltare la parola')}
+          </span>
+        ` : '');
+
+        const innerWordHtml = formatWordWithGenderEnding(tok.w, tok.pos, tok.g);
+
+        return `<span class="kw-token ${hasGloss ? 'kw-has-gloss' : ''}" data-pos="${tok.pos}" data-gender="${tok.g || ''}" data-start="${tok.s}" data-end="${tok.e}" onclick="event.stopPropagation(); playSingleWordAudio('${tok.audio_mp3}', '${tok.audio_ogg}', this)"><span class="kw-pos-icon">${posMeta.icon}</span><span>${innerWordHtml}</span>${glossHtml}</span>`;
+      }).join(' ');
+
+      const questions = pageObj.questions?.[lang] || pageObj.questions?.it || [];
+      const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pageObj.page, questions);
+
+      const listenLabel = isDe
+        ? '🔊 Vorlesen (Aoede)'
+        : (isFr ? '🔊 Écouter (Aoede)' : '🔊 Ascolta Frase');
+      const quizLabel = isDe
+        ? '❓ Quiz'
+        : '❓ Quiz Antolin';
+
+      const navBtnHtml = side === 'left'
+        ? `<button type="button" class="kids-pill-control" onclick="turnPage(-1)" ${pageIdx === 0 ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}>
+             ${isDe ? '‹ Zurück' : (isFr ? '‹ Préc.' : '‹ Indietro')}
+           </button>`
+        : `<button type="button" class="kids-pill-control active" onclick="turnPage(1)" ${pageIdx >= kb.total_pages - 1 ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}>
+             ${isDe ? 'Weiter ›' : (isFr ? 'Suiv. ›' : 'Avanti ›')}
+           </button>`;
+
+      const textZoneHtml = `
+        <div class="kids-white-patch-text-zone">
+          <div class="kids-leaf-header-row">
+            <span>🎨 ${escapeHtml(pageTitle)}</span>
+            <span style="opacity:0.75;">Pag. ${pageObj.page}/${kb.total_pages}</span>
+          </div>
+          <div class="kids-sentence-box ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}">
+            ${tokensHtml}
+          </div>
+          <div class="kids-didactic-bar">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+              <button type="button" class="kids-action-btn listen-verify"
+                onclick="playKidsPageSentenceKaraoke('${levelData.audio_mp3}', '${levelData.audio_ogg}', ${pageObj.page}, 0.96)">
+                ${listenLabel}
+              </button>
+              <button type="button" class="kids-action-btn antolin-quiz-btn"
+                onclick="openKidsPageQuizModal(${pageIdx})">
+                ${quizLabel}
+                <span class="num-chip ${prog.correct === prog.total && prog.total > 0 ? 'num-chip--ok' : 'num-chip--paper'}">
+                  ⭐ ${prog.correct}/${prog.total}
+                </span>
+              </button>
+            </div>
+            ${navBtnHtml}
+          </div>
+        </div>
+      `;
+
+      const artZoneHtml = `
+        <div class="kids-leaf-art-zone" style="${patchPos === 'top' ? 'align-items:flex-end;' : 'align-items:flex-start;'}">
+          ${bubbleData?.text ? `
+            <div class="kids-comic-bubble" onclick="playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')" title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
+              <span class="kids-comic-speaker">💬 ${escapeHtml(pageObj.speech_bubble.speaker || '')} 🔊</span>
+              <span>«${escapeHtml(bubbleData.text)}»</span>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      return `
+        <div class="kids-watercolor-leaf patch-${patchPos} ${kidsGrammarEnabled ? 'grammar-on' : ''}"
+          data-page="${pageObj.page}"
+          style="background-image: url('${pageObj.image}?v=${APP_VERSION}');">
+          ${patchPos === 'top' ? `${textZoneHtml}${artZoneHtml}` : `${artZoneHtml}${textZoneHtml}`}
+        </div>
+      `;
+    }
+
     async function renderActiveBook(turnDirection = null) {
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
 
       updateTopVoteBadge();
+      renderKidsLaunchBar(story);
+
+      const bookEl = document.getElementById('openBookSpread');
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
+      if (kidsBookMode && kb && Array.isArray(kb.pages) && kb.pages.length > 0) {
+        const narratorBar = document.getElementById('narratorBar');
+        const narratorAudio = document.getElementById('narratorAudio');
+        if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
+        if (narratorBar) narratorBar.hidden = true;
+
+        // Snap to even index (0, 2, 4, ..., 14) so Left Page = odd page (1,3,5...) and Right Page = even page (2,4,6...) like a real open notebook!
+        let rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, kb.pages.length - 1));
+        const leftIdx = rawIdx - (rawIdx % 2);
+        const rightIdx = Math.min(leftIdx + 1, kb.pages.length - 1);
+        kidsPageIndexBySlug[story.slug] = leftIdx;
+
+        bookEl.classList.add('kids-notebook-spread');
+        bookEl.classList.toggle('is-fullscreen', Boolean(kidsFullscreenEnabled));
+        bookEl.classList.remove('focus-left', 'focus-right', 'turning-next', 'turning-prev');
+
+        const leafEl = document.getElementById('pageTurnLeaf');
+        if (leafEl) {
+          leafEl.style.animation = 'none';
+          void leafEl.offsetWidth;
+          leafEl.style.animation = '';
+        }
+        if (turnDirection === 'next') {
+          void bookEl.offsetWidth;
+          bookEl.classList.add('turning-next');
+        } else if (turnDirection === 'prev') {
+          void bookEl.offsetWidth;
+          bookEl.classList.add('turning-prev');
+        }
+
+        const leftEl = document.getElementById('bookPageLeft');
+        const rightEl = document.getElementById('bookPageRight');
+
+        leftEl.className = 'book-page book-page-left is-primary-page';
+        leftEl.onclick = null;
+        leftEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[leftIdx], leftIdx, 'left');
+
+        rightEl.className = 'book-page book-page-right is-primary-page';
+        rightEl.onclick = null;
+        rightEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[rightIdx], rightIdx, 'right');
+        return;
+      }
+
+      if (bookEl) {
+        bookEl.classList.remove('kids-notebook-spread', 'is-fullscreen');
+      }
+
       const kData = await ensureKaraokeLoaded(story, currentLang);
 
       // Update topbar narrated audio player for current story & language
@@ -4712,6 +6075,24 @@
     function turnPage(delta) {
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio) kidsAudio.pause();
+
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
+      if (kidsBookMode && kb && Array.isArray(kb.pages)) {
+        const cur = kidsPageIndexBySlug[story.slug] || 0;
+        const step = delta > 0 ? 2 : -2;
+        const next = cur + step;
+        if (next >= 0 && next < kb.pages.length) {
+          const dir = delta > 0 ? 'next' : 'prev';
+          playPageFlipRustle(dir);
+          kidsPageIndexBySlug[story.slug] = next;
+          syncStateToUrl();
+          renderActiveBook(dir);
+        }
+        return;
+      }
+
       const slides = getSlidesForStory(story);
       const cur = pageIndexBySlug[story.slug] || 0;
       const next = cur + delta;
@@ -4729,6 +6110,21 @@
     function goToPage(index) {
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio) kidsAudio.pause();
+
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
+      if (kidsBookMode && kb && Array.isArray(kb.pages)) {
+        const cur = kidsPageIndexBySlug[story.slug] || 0;
+        if (index === cur) return;
+        const dir = index > cur ? 'next' : 'prev';
+        playPageFlipRustle(dir);
+        kidsPageIndexBySlug[story.slug] = index;
+        syncStateToUrl();
+        renderActiveBook(dir);
+        return;
+      }
+
       const cur = pageIndexBySlug[story.slug] || 0;
       if (index === cur) return;
       if (browserTtsActive) stopBrowserKaraokeSpeech();
@@ -4739,6 +6135,11 @@
       syncStateToUrl();
       renderActiveBook(dir);
     }
+
+    // Re-render role-aware buttons whenever PuffinLogin user changes
+    window.addEventListener('puffin-auth-change', () => {
+      renderAll();
+    });
 
     /* =========================================================================
        MOBILE TOUCH SWIPE LEFT / RIGHT TO TURN PAGES
