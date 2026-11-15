@@ -228,6 +228,30 @@ def main() -> int:
                 if len(qs) != 3:
                     errors.append(f"[KidsBook p.{pno} {klang}] expected 3 Antolin questions, got {len(qs)}")
 
+    # 4. Validate JavaScript syntax in index.html, netflix.html, ring.html, and kids_books_catalog.js via `node --check`
+    import re
+    import tempfile
+    for html_name in ("index.html", "netflix.html", "ring.html"):
+        hp = ROOT / html_name
+        if not hp.exists():
+            continue
+        html_src = hp.read_text(encoding="utf-8")
+        scripts = re.findall(r"<script(?![^>]*src=)[^>]*>(.*?)</script>", html_src, re.S)
+        for s_idx, script_body in enumerate(scripts):
+            with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as tf:
+                tf.write(script_body)
+                tmp_js = Path(tf.name)
+            chk = subprocess.run(["node", "--check", str(tmp_js)], capture_output=True, text=True)
+            tmp_js.unlink(missing_ok=True)
+            if chk.returncode != 0:
+                errors.append(f"[{html_name} inline script #{s_idx}] JS SyntaxError:\n{chk.stderr.strip()}")
+
+    cat_js = ROOT / "kids_books_catalog.js"
+    if cat_js.exists():
+        chk = subprocess.run(["node", "--check", str(cat_js)], capture_output=True, text=True)
+        if chk.returncode != 0:
+            errors.append(f"[kids_books_catalog.js] JS SyntaxError:\n{chk.stderr.strip()}")
+
     print("-" * 110)
     if errors:
         print(f"\n❌ TEST SUITE FAILED with {len(errors)} error(s):", file=sys.stderr)
