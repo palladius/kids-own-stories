@@ -2914,8 +2914,33 @@
     }
 
     .kw-has-gloss {
-      text-decoration: underline dotted rgba(217, 119, 6, 0.75);
-      text-underline-offset: 4px;
+      text-decoration: none;
+      border-bottom: 2.5px solid rgba(250, 204, 21, 0.8) !important;
+      background: linear-gradient(180deg, transparent 70%, rgba(254, 240, 138, 0.45) 70%);
+      padding-bottom: 1px;
+    }
+
+    .kw-has-gloss::after {
+      content: '💡';
+      font-size: 0.56em;
+      vertical-align: super;
+      margin-left: 2px;
+      opacity: 0.45;
+      display: inline-block;
+      line-height: 1;
+      transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
+    }
+
+    .kw-has-gloss:hover {
+      background: rgba(254, 240, 138, 0.95) !important;
+      border-bottom-color: #eab308 !important;
+      box-shadow: 0 2px 8px rgba(250, 204, 21, 0.4);
+    }
+
+    .kw-has-gloss:hover::after {
+      opacity: 1;
+      transform: translateY(-2px) scale(1.35);
+      filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.95));
     }
 
     .kw-gloss-popover {
@@ -5488,7 +5513,7 @@
             <span>🎨 ${escapeHtml(pageTitle)}</span>
             <span style="opacity:0.75;">Pag. ${pageObj.page}/${kb.total_pages}</span>
           </div>
-          <div class="kids-sentence-box ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}">
+          <div class="kids-sentence-box ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}" lang="${lang}" spellcheck="false" autocorrect="off" translate="no">
             ${tokensHtml}
           </div>
           <div class="kids-didactic-bar">
