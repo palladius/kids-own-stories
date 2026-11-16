@@ -9644,7 +9644,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "springen",
                   "clean": "springen",
-                  "pos": "noun",
+                  "pos": "verb",
                   "s": 1.917,
                   "e": 2.652,
                   "audio_mp3": "assets/words_audio/de/springen.mp3",
@@ -10706,7 +10706,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Springen",
                   "clean": "springen",
-                  "pos": "noun",
+                  "pos": "verb",
                   "s": 15.357,
                   "e": 16.156,
                   "audio_mp3": "assets/words_audio/de/springen.mp3",

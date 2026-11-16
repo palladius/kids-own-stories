@@ -2,6 +2,15 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.2] - 2026-11-16
+
+### Changed & Fixed
+- 📖✨ **Impaginazione Minimalista da Vero Libro Illustrato ([`index.html`](index.html))**:
+  - **Bottoni Magici nel Mini-Footer Esterno (`.kids-notebook-floating-bar`)**: spostati tutti i bottoni interattivi (`🔊 S.1 / P.1` Aoede, `❓ P.1 ⭐0/3` Quiz Antolin, selettori `🧒 Seby` / `👦 Ale`, lingue `🇮🇹/🇫🇷/🇩🇪`, `🌈 Grammatica`, `🔠 ABC`, `⛶`, `✕ Esci`) fuori dal libro in un mini-footer minimalista sotto il quaderno aperto, lasciando le pagine interne 100% pulite e prive di sovrapposizioni.
+  - **Numeri di Pagina in Nero agli Angoli Inferiori Esterni (`.kids-book-page-num`)**: numero di pagina in nero (`#0f172a`) in basso a sinistra sulla pagina sinistra (`is-left-num`) e in basso a destra sulla pagina destra (`is-right-num`).
+  - **Frecce Visuali a Metà Bordo Laterale SX/DX (`.kids-edge-nav-arrow`)**: frecce di navigazione `‹` / `›` posizionate a metà altezza (`top: 50%`) sui bordi esterni sinistro e destro del libro.
+  - **Drag-and-Drop 3D + Sfruscio di Voltare Pagina (`initBookSwipeGesture` + `playPageFlipRustle`)**: trascinando il dito su mobile o il mouse sulla pagina, il foglio 3D (`#pageTurnLeaf`) si incurva in tempo reale seguendo il gesto e rilascia l'effetto sonoro realistico dello sfruscio della carta.
+
 ## [0.13.1] - 2026-11-16
 
 ### Fixed & Changed

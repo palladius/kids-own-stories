@@ -275,7 +275,7 @@ DE_NOUNS = {
     "gipfel", "berggipfel", "aussichtspunkt", "panorama", "täler", "stille", "bogen", "holzbogen", "pfeile", "zielscheibe", "esel",
     "schnauze", "trikot", "italien-trikot", "nummer", "park", "kletterpark", "naturpark", "olivenhain", "arbatax", "olivenbäumen", "blumenwiesen", "ohren", "granit", "granitfelsen",
     "taucherbrille", "taucherbrillen", "schnorchel", "fische", "kieselstein", "ägypten", "korallenriff",
-    "versprechen", "sonnenuntergang", "herzen", "traum", "luft", "rucksack", "rucksäcken", "steinpfad", "pfaden", "schulter", "kreis", "mitte", "zehn", "hotels", "reise", "moment", "sonne", "tieren", "tiere", "grund", "küste", "kalkstein", "jahrtausende", "nähe", "wasser", "tag", "morgen", "springen", "umarmung", "wiedersehen"
+    "versprechen", "sonnenuntergang", "herzen", "traum", "luft", "rucksack", "rucksäcken", "steinpfad", "pfaden", "schulter", "kreis", "mitte", "zehn", "hotels", "reise", "moment", "sonne", "tieren", "tiere", "grund", "küste", "kalkstein", "jahrtausende", "nähe", "wasser", "tag", "morgen", "umarmung", "wiedersehen"
 }
 DE_VERBS = {
     "landet", "kommen", "kommt", "steigen", "steigt", "riecht", "duftet", "umarmt", "umarmen",
