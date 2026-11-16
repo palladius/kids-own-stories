@@ -5131,13 +5131,19 @@
             const lvlData = pObj.levels?.[levelKey]?.[lang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {};
             const qs = pObj.questions?.[lang] || pObj.questions?.it || [];
             const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pObj.page, qs);
-            const listenLbl = isDe ? `🔊 S.${pObj.page}` : `🔊 P.${pObj.page}`;
-            const listenTitle = isDe ? `Seite ${pObj.page} vorlesen (Aoede)` : (isFr ? `Écouter page ${pObj.page} (Aoede)` : `Ascolta Pagina ${pObj.page} (Aoede)`);
+            const isPlayingThisPage = (activeKidsPlayingPage === pObj.page && !document.getElementById('kidsStaticAudio')?.paused);
+            const listenLbl = isPlayingThisPage
+              ? (isDe ? `⏸️ S.${pObj.page}` : `⏸️ P.${pObj.page}`)
+              : (isDe ? `🔊 S.${pObj.page}` : `🔊 P.${pObj.page}`);
+            const listenTitle = isDe
+              ? `Seite ${pObj.page} vorlesen / Pause (Leertaste)`
+              : (isFr ? `Écouter / Pause page ${pObj.page} (Espace)` : `Ascolta / Pausa Pagina ${pObj.page} (Barra Spazio)`);
             const quizLbl = `❓ P.${pObj.page} ⭐${prog.correct}/${prog.total}`;
             return `
               <div class="kids-mini-footer-group">
-                <button type="button" class="kids-pill-control listen-pill"
-                  onclick="playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page}, 0.96)"
+                <button type="button" class="kids-pill-control listen-pill ${isPlayingThisPage ? 'active' : ''}"
+                  data-listen-page="${pObj.page}"
+                  onclick="playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page})"
                   title="${listenTitle}">
                   ${listenLbl}
                 </button>
@@ -5353,11 +5359,34 @@
     });
 
     let kidsSentenceKaraokeRaf = null;
+    let activeKidsPlayingPage = null;
+
+    function getKidsAudioPlaybackRate(isSingleWord = false) {
+      if (currentLang === 'fr') return isSingleWord ? 0.88 : 0.90;
+      if (currentLang === 'de') return isSingleWord ? 0.90 : 0.92;
+      return isSingleWord ? 0.92 : 0.95;
+    }
+
+    function updateKidsListenButtonsState() {
+      const audio = document.getElementById('kidsStaticAudio');
+      const isPlaying = Boolean(audio && !audio.paused && !audio.ended && activeKidsPlayingPage);
+      const isDe = (currentLang === 'de');
+      document.querySelectorAll('.listen-pill[data-listen-page]').forEach(btn => {
+        const pNum = parseInt(btn.getAttribute('data-listen-page'), 10);
+        const activeHere = isPlaying && pNum === activeKidsPlayingPage;
+        btn.classList.toggle('active', activeHere);
+        btn.textContent = activeHere
+          ? (isDe ? `⏸️ S.${pNum}` : `⏸️ P.${pNum}`)
+          : (isDe ? `🔊 S.${pNum}` : `🔊 P.${pNum}`);
+      });
+    }
 
     function playSingleWordAudio(mp3Url, oggUrl, tokenEl) {
       const audio = document.getElementById('kidsStaticAudio');
       if (!audio) return;
       if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+      activeKidsPlayingPage = null;
+      updateKidsListenButtonsState();
       document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
       if (tokenEl) {
         tokenEl.classList.add('active');
@@ -5368,15 +5397,21 @@
         }
       }
 
+      const rate = getKidsAudioPlaybackRate(true);
       audio.pause();
       audio.src = `${mp3Url}?v=${APP_VERSION}`;
-      audio.playbackRate = 0.95;
+      audio.preservesPitch = true;
+      audio.defaultPlaybackRate = rate;
+      audio.playbackRate = rate;
       audio.onended = () => {
         document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
       };
       audio.play().catch(() => {
         if (oggUrl) {
           audio.src = `${oggUrl}?v=${APP_VERSION}`;
+          audio.preservesPitch = true;
+          audio.defaultPlaybackRate = rate;
+          audio.playbackRate = rate;
           audio.play().catch(() => {});
         }
       });
@@ -5386,25 +5421,73 @@
       const audio = document.getElementById('kidsStaticAudio');
       if (!audio || !mp3Url) return;
       if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+      activeKidsPlayingPage = null;
+      updateKidsListenButtonsState();
+
+      const targetSrc = `${mp3Url}?v=${APP_VERSION}`;
+      if (audio.getAttribute('data-bubble-src') === targetSrc && !audio.ended && audio.currentTime > 0) {
+        if (!audio.paused) {
+          audio.pause();
+          return;
+        } else {
+          audio.play().catch(() => {});
+          return;
+        }
+      }
+
+      const rate = getKidsAudioPlaybackRate(false);
       audio.pause();
-      audio.src = `${mp3Url}?v=${APP_VERSION}`;
-      audio.playbackRate = 1.0;
+      audio.setAttribute('data-bubble-src', targetSrc);
+      audio.removeAttribute('data-page-src');
+      audio.src = targetSrc;
+      audio.preservesPitch = true;
+      audio.defaultPlaybackRate = rate;
+      audio.playbackRate = rate;
       audio.play().catch(() => {
         if (oggUrl) {
           audio.src = `${oggUrl}?v=${APP_VERSION}`;
+          audio.preservesPitch = true;
+          audio.defaultPlaybackRate = rate;
+          audio.playbackRate = rate;
           audio.play().catch(() => {});
         }
       });
     }
 
-    function playKidsPageSentenceKaraoke(mp3Url, oggUrl, pageNum, rate = 0.95) {
+    function playKidsPageSentenceKaraoke(mp3Url, oggUrl, pageNum, explicitRate = null) {
       const audio = document.getElementById('kidsStaticAudio');
       if (!audio || !mp3Url) return;
-      if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
 
+      const targetSrc = `${mp3Url}?v=${APP_VERSION}`;
+      const rate = explicitRate || getKidsAudioPlaybackRate(false);
+
+      // Toggle Pause / Resume if clicking the same page's Listen button!
+      if (activeKidsPlayingPage === pageNum && audio.getAttribute('data-page-src') === targetSrc && !audio.ended && audio.currentTime > 0) {
+        if (!audio.paused) {
+          audio.pause();
+          if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+          updateKidsListenButtonsState();
+          return;
+        } else {
+          audio.preservesPitch = true;
+          audio.defaultPlaybackRate = rate;
+          audio.playbackRate = rate;
+          audio.play().catch(() => {});
+          updateKidsListenButtonsState();
+          return;
+        }
+      }
+
+      if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
+      document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
+
+      activeKidsPlayingPage = pageNum;
       audio.pause();
-      audio.src = `${mp3Url}?v=${APP_VERSION}`;
+      audio.setAttribute('data-page-src', targetSrc);
+      audio.removeAttribute('data-bubble-src');
+      audio.src = targetSrc;
       audio.preservesPitch = true;
+      audio.defaultPlaybackRate = rate;
       audio.playbackRate = rate;
 
       const scopeSelector = pageNum
@@ -5424,20 +5507,29 @@
         });
         if (!audio.paused && !audio.ended) {
           kidsSentenceKaraokeRaf = requestAnimationFrame(tick);
-        } else {
+        } else if (audio.ended) {
           tokens.forEach(sp => sp.classList.remove('active'));
         }
       };
 
       audio.onplay = () => {
+        updateKidsListenButtonsState();
         kidsSentenceKaraokeRaf = requestAnimationFrame(tick);
+      };
+      audio.onpause = () => {
+        updateKidsListenButtonsState();
       };
       audio.onended = () => {
         tokens.forEach(sp => sp.classList.remove('active'));
+        activeKidsPlayingPage = null;
+        updateKidsListenButtonsState();
       };
       audio.play().catch(() => {
         if (oggUrl) {
           audio.src = `${oggUrl}?v=${APP_VERSION}`;
+          audio.preservesPitch = true;
+          audio.defaultPlaybackRate = rate;
+          audio.playbackRate = rate;
           audio.play().catch(() => {});
         }
       });
@@ -6698,7 +6790,40 @@
       if (isTyping) return;
       const regenDialog = document.getElementById('regenerateDialog');
       const newStoryDialog = document.getElementById('newStoryDialog');
-      if (behindDialog.open || cinemaDialog?.open || regenDialog?.open || newStoryDialog?.open || activeTab === 'indice') return;
+      const quizDialog = document.getElementById('antolinQuizDialog');
+      const dashDialog = document.getElementById('antolinDashDialog');
+      if (behindDialog.open || cinemaDialog?.open || regenDialog?.open || newStoryDialog?.open || quizDialog?.open || dashDialog?.open || activeTab === 'indice' || activeTab === 'netflix') return;
+
+      // Spacebar toggles Play / Pause on the active Kids Book audio (or Adult Narrator audio)
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        if (kidsBookMode) {
+          const kidsAudio = document.getElementById('kidsStaticAudio');
+          if (kidsAudio && kidsAudio.src && !kidsAudio.ended && kidsAudio.currentTime > 0) {
+            if (!kidsAudio.paused) {
+              kidsAudio.pause();
+            } else {
+              kidsAudio.play().catch(() => {});
+            }
+            updateKidsListenButtonsState();
+          } else {
+            // Start reading the left page of the open spread if nothing is playing yet
+            const firstListenBtn = document.querySelector('.listen-pill[data-listen-page]');
+            if (firstListenBtn) firstListenBtn.click();
+          }
+          return;
+        }
+        const narratorAudio = document.getElementById('narratorAudio');
+        if (narratorAudio && !narratorAudio.hidden && narratorAudio.src) {
+          if (!narratorAudio.paused) {
+            narratorAudio.pause();
+          } else {
+            narratorAudio.play().catch(() => {});
+          }
+        }
+        return;
+      }
+
       if (e.key === 'ArrowRight') turnPage(1);
       if (e.key === 'ArrowLeft') turnPage(-1);
     });

@@ -1196,10 +1196,11 @@ async def synth_sentence(sem: asyncio.Semaphore, text: str, lang: str, voice: st
         tmp_edge = mp3_path.with_suffix(".edge.mp3")
         timings = []
         edge_ok = False
+        edge_rate = "-22%" if lang == "fr" else ("-10%" if lang == "de" else "-5%")
         if not mp3_path.exists() or mp3_path.stat().st_size < 1000:
             for attempt in range(3):
                 try:
-                    communicate = edge_tts.Communicate(text, voice, boundary="WordBoundary")
+                    communicate = edge_tts.Communicate(text, voice, rate=edge_rate, boundary="WordBoundary")
                     timings = []
                     with open(tmp_edge, "wb") as f:
                         async for chunk in communicate.stream():
@@ -1260,10 +1261,11 @@ async def synth_sentence(sem: asyncio.Semaphore, text: str, lang: str, voice: st
 async def synth_single_word(sem: asyncio.Semaphore, word_clean: str, voice: str, mp3_path: Path, ogg_path: Path):
     if mp3_path.exists() and ogg_path.exists() and mp3_path.stat().st_size > 200:
         return
+    word_rate = "-18%" if "fr-" in voice else ("-10%" if "de-" in voice else "-5%")
     async with sem:
         for attempt in range(3):
             try:
-                communicate = edge_tts.Communicate(word_clean, voice)
+                communicate = edge_tts.Communicate(word_clean, voice, rate=word_rate)
                 with open(mp3_path, "wb") as f:
                     async for chunk in communicate.stream():
                         if chunk["type"] == "audio":
