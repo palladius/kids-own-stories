@@ -492,8 +492,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.354,
                   "e": 1.086,
                   "audio_mp3": "assets/words_audio/de/flugzeug.mp3",
-                  "audio_ogg": "assets/words_audio/de/flugzeug.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/flugzeug.ogg"
                 },
                 {
                   "w": "landet",
@@ -521,7 +520,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 2.641,
                   "audio_mp3": "assets/words_audio/de/flughafen.mp3",
                   "audio_ogg": "assets/words_audio/de/flughafen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'aeroporto",
                     "def": "Der Ort, an dem die Flugzeuge landen und starten."
@@ -544,7 +542,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 3.372,
                   "audio_mp3": "assets/words_audio/de/olbia.mp3",
                   "audio_ogg": "assets/words_audio/de/olbia.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "Olbia",
                     "def": "Die Stadt im Norden Sardiniens, wo der Flughafen liegt."
@@ -562,7 +559,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Norden",
                   "clean": "norden",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 3.555,
                   "e": 4.104,
                   "audio_mp3": "assets/words_audio/de/norden.mp3",
@@ -585,7 +582,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 5.293,
                   "audio_mp3": "assets/words_audio/de/sardinien.mp3",
                   "audio_ogg": "assets/words_audio/de/sardinien.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "la Sardegna",
                     "def": "Eine wunderschöne große Insel im Mittelmeer."
@@ -603,7 +599,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "ganze",
                   "clean": "ganze",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 5.567,
                   "e": 6.024,
                   "audio_mp3": "assets/words_audio/de/ganze.mp3",
@@ -616,8 +612,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.024,
                   "e": 6.665,
                   "audio_mp3": "assets/words_audio/de/familie.mp3",
-                  "audio_ogg": "assets/words_audio/de/familie.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/familie.ogg"
                 },
                 {
                   "w": "steigt",
@@ -626,7 +621,17 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.665,
                   "e": 7.213,
                   "audio_mp3": "assets/words_audio/de/steigt.mp3",
-                  "audio_ogg": "assets/words_audio/de/steigt.ogg"
+                  "audio_ogg": "assets/words_audio/de/steigt.ogg",
+                  "sep_group": "sep_14_16",
+                  "sep_role": "stem",
+                  "sep_inf": "aus·steigen",
+                  "sep_pair": "steigt … aus",
+                  "gloss": {
+                    "tr": "scendere (dall'aereo / da un mezzo)",
+                    "def": "Verbo separabile (trennbares Verb): «aus·steigen» (steigt … aus) significa scendere dall'aereo, mentre «steigen» da solo vuol dire salire!",
+                    "sep_inf": "aus·steigen",
+                    "sep_pair": "steigt … aus"
+                  }
                 },
                 {
                   "w": "glücklich",
@@ -635,17 +640,26 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.213,
                   "e": 8.036,
                   "audio_mp3": "assets/words_audio/de/glücklich.mp3",
-                  "audio_ogg": "assets/words_audio/de/glücklich.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/glücklich.ogg"
                 },
                 {
                   "w": "aus.",
                   "clean": "aus",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 8.036,
                   "e": 8.402,
                   "audio_mp3": "assets/words_audio/de/aus.mp3",
-                  "audio_ogg": "assets/words_audio/de/aus.ogg"
+                  "audio_ogg": "assets/words_audio/de/aus.ogg",
+                  "sep_group": "sep_14_16",
+                  "sep_role": "prefix",
+                  "sep_inf": "aus·steigen",
+                  "sep_pair": "steigt … aus",
+                  "gloss": {
+                    "tr": "scendere (dall'aereo / da un mezzo)",
+                    "def": "Verbo separabile (trennbares Verb): «aus·steigen» (steigt … aus) significa scendere dall'aereo, mentre «steigen» da solo vuol dire salire!",
+                    "sep_inf": "aus·steigen",
+                    "sep_pair": "steigt … aus"
+                  }
                 }
               ]
             }
@@ -1287,8 +1301,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.391,
                   "e": 1.221,
                   "audio_mp3": "assets/words_audio/de/flugzeug.mp3",
-                  "audio_ogg": "assets/words_audio/de/flugzeug.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/flugzeug.ogg"
                 },
                 {
                   "w": "landet",
@@ -1311,7 +1324,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "sonnigen",
                   "clean": "sonnigen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 2.05,
                   "e": 2.88,
                   "audio_mp3": "assets/words_audio/de/sonnigen.mp3",
@@ -1325,7 +1338,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 3.813,
                   "audio_mp3": "assets/words_audio/de/flughafen.mp3",
                   "audio_ogg": "assets/words_audio/de/flughafen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'aeroporto",
                     "def": "Der Ort, an dem die Flugzeuge landen und starten."
@@ -1348,7 +1360,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 4.643,
                   "audio_mp3": "assets/words_audio/de/olbia.mp3",
                   "audio_ogg": "assets/words_audio/de/olbia.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "Olbia",
                     "def": "Die Stadt im Norden Sardiniens, wo der Flughafen liegt."
@@ -1366,7 +1377,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Norden",
                   "clean": "norden",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 4.85,
                   "e": 5.473,
                   "audio_mp3": "assets/words_audio/de/norden.mp3",
@@ -1375,7 +1386,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Sardiniens.",
                   "clean": "sardiniens",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 5.473,
                   "e": 6.613,
                   "audio_mp3": "assets/words_audio/de/sardiniens.mp3",
@@ -1388,8 +1399,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.613,
                   "e": 7.339,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "Mama",
@@ -1398,8 +1408,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.339,
                   "e": 7.754,
                   "audio_mp3": "assets/words_audio/de/mama.mp3",
-                  "audio_ogg": "assets/words_audio/de/mama.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/mama.ogg"
                 },
                 {
                   "w": "Kate,",
@@ -1408,8 +1417,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.754,
                   "e": 8.272,
                   "audio_mp3": "assets/words_audio/de/kate.mp3",
-                  "audio_ogg": "assets/words_audio/de/kate.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kate.ogg"
                 },
                 {
                   "w": "Oma",
@@ -1418,8 +1426,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.272,
                   "e": 8.584,
                   "audio_mp3": "assets/words_audio/de/oma.mp3",
-                  "audio_ogg": "assets/words_audio/de/oma.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/oma.ogg"
                 },
                 {
                   "w": "Lucilla,",
@@ -1428,8 +1435,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.584,
                   "e": 9.413,
                   "audio_mp3": "assets/words_audio/de/lucilla.mp3",
-                  "audio_ogg": "assets/words_audio/de/lucilla.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/lucilla.ogg"
                 },
                 {
                   "w": "Ale",
@@ -1438,8 +1444,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.413,
                   "e": 9.724,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -1457,26 +1462,45 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.035,
                   "e": 10.45,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "treten",
                   "clean": "treten",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 10.45,
                   "e": 11.072,
                   "audio_mp3": "assets/words_audio/de/treten.mp3",
-                  "audio_ogg": "assets/words_audio/de/treten.ogg"
+                  "audio_ogg": "assets/words_audio/de/treten.ogg",
+                  "sep_group": "sep_19_20",
+                  "sep_role": "stem",
+                  "sep_inf": "hinaus·treten",
+                  "sep_pair": "treten … hinaus",
+                  "gloss": {
+                    "tr": "uscire fuori (all'aperto)",
+                    "def": "Verbo separabile (trennbares Verb): «hinaus·treten» (treten … hinaus) significa fare un passo fuori all'aria aperta.",
+                    "sep_inf": "hinaus·treten",
+                    "sep_pair": "treten … hinaus"
+                  }
                 },
                 {
                   "w": "hinaus,",
                   "clean": "hinaus",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 11.072,
                   "e": 11.798,
                   "audio_mp3": "assets/words_audio/de/hinaus.mp3",
-                  "audio_ogg": "assets/words_audio/de/hinaus.ogg"
+                  "audio_ogg": "assets/words_audio/de/hinaus.ogg",
+                  "sep_group": "sep_19_20",
+                  "sep_role": "prefix",
+                  "sep_inf": "hinaus·treten",
+                  "sep_pair": "treten … hinaus",
+                  "gloss": {
+                    "tr": "uscire fuori (all'aperto)",
+                    "def": "Verbo separabile (trennbares Verb): «hinaus·treten» (treten … hinaus) significa fare un passo fuori all'aria aperta.",
+                    "sep_inf": "hinaus·treten",
+                    "sep_pair": "treten … hinaus"
+                  }
                 },
                 {
                   "w": "wo",
@@ -1503,13 +1527,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.317,
                   "e": 12.835,
                   "audio_mp3": "assets/words_audio/de/warme.mp3",
-                  "audio_ogg": "assets/words_audio/de/warme.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/warme.ogg"
                 },
                 {
                   "w": "Luft",
                   "clean": "luft",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 12.835,
                   "e": 13.25,
                   "audio_mp3": "assets/words_audio/de/luft.mp3",
@@ -1527,7 +1550,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "wilder",
                   "clean": "wilder",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 13.665,
                   "e": 14.287,
                   "audio_mp3": "assets/words_audio/de/wilder.mp3",
@@ -1541,7 +1564,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 14.806,
                   "audio_mp3": "assets/words_audio/de/myrte.mp3",
                   "audio_ogg": "assets/words_audio/de/myrte.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "il mirto",
                     "def": "Eine typisch sardische, herrlich duftende Pflanze."
@@ -2188,8 +2210,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.117,
                   "e": 2.797,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "glücklich",
@@ -2198,8 +2219,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.797,
                   "e": 3.815,
                   "audio_mp3": "assets/words_audio/de/glücklich.mp3",
-                  "audio_ogg": "assets/words_audio/de/glücklich.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/glücklich.ogg"
                 },
                 {
                   "w": "seinen",
@@ -2218,7 +2238,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 5.174,
                   "audio_mp3": "assets/words_audio/de/cousin.mp3",
                   "audio_ogg": "assets/words_audio/de/cousin.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "il cugino",
                     "def": "Cousin Massimo ist einer der wenigen verbleibenden Carlessos!"
@@ -2232,7 +2251,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 6.079,
                   "audio_mp3": "assets/words_audio/de/massimo.mp3",
                   "audio_ogg": "assets/words_audio/de/massimo.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "Cugino Massimo Carlesso",
                     "def": "Papinos lieber Cousin Massimo in Sardinien!"
@@ -2259,7 +2277,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "wenigen",
                   "clean": "wenigen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 6.985,
                   "e": 7.777,
                   "audio_mp3": "assets/words_audio/de/wenigen.mp3",
@@ -2268,7 +2286,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Carlessos!",
                   "clean": "carlessos",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 7.777,
                   "e": 8.909,
                   "audio_mp3": "assets/words_audio/de/carlessos.mp3",
@@ -2281,8 +2299,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.909,
                   "e": 9.248,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -2300,8 +2317,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.588,
                   "e": 10.041,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "laufen",
@@ -2328,8 +2344,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.059,
                   "e": 12.531,
                   "audio_mp3": "assets/words_audio/de/türkisfarbene.mp3",
-                  "audio_ogg": "assets/words_audio/de/türkisfarbene.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/türkisfarbene.ogg"
                 },
                 {
                   "w": "Meer.",
@@ -2338,8 +2353,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.531,
                   "e": 13.097,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 }
               ]
             }
@@ -3048,8 +3062,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.268,
                   "e": 1.02,
                   "audio_mp3": "assets/words_audio/de/goldenen.mp3",
-                  "audio_ogg": "assets/words_audio/de/goldenen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/goldenen.ogg"
                 },
                 {
                   "w": "Strand",
@@ -3058,8 +3071,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.02,
                   "e": 1.584,
                   "audio_mp3": "assets/words_audio/de/strand.mp3",
-                  "audio_ogg": "assets/words_audio/de/strand.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/strand.ogg"
                 },
                 {
                   "w": "von",
@@ -3118,7 +3130,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "lieben",
                   "clean": "lieben",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 4.499,
                   "e": 5.064,
                   "audio_mp3": "assets/words_audio/de/lieben.mp3",
@@ -3132,7 +3144,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 5.628,
                   "audio_mp3": "assets/words_audio/de/cousin.mp3",
                   "audio_ogg": "assets/words_audio/de/cousin.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "il cugino",
                     "def": "Cousin Massimo ist einer der wenigen verbleibenden Carlessos!"
@@ -3146,7 +3157,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 6.38,
                   "audio_mp3": "assets/words_audio/de/massimo.mp3",
                   "audio_ogg": "assets/words_audio/de/massimo.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "Cugino Massimo Carlesso",
                     "def": "Papinos lieber Cousin Massimo in Sardinien!"
@@ -3173,7 +3183,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "wenigen",
                   "clean": "wenigen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 7.132,
                   "e": 7.79,
                   "audio_mp3": "assets/words_audio/de/wenigen.mp3",
@@ -3182,7 +3192,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Carlessos!",
                   "clean": "carlessos",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 7.79,
                   "e": 8.731,
                   "audio_mp3": "assets/words_audio/de/carlessos.mp3",
@@ -3209,7 +3219,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "herzlichen",
                   "clean": "herzlichen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 9.577,
                   "e": 10.517,
                   "audio_mp3": "assets/words_audio/de/herzlichen.mp3",
@@ -3218,7 +3228,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Umarmung",
                   "clean": "umarmung",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 10.517,
                   "e": 11.27,
                   "audio_mp3": "assets/words_audio/de/umarmung.mp3",
@@ -3227,7 +3237,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "stürmen",
                   "clean": "stürmen",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 11.27,
                   "e": 11.928,
                   "audio_mp3": "assets/words_audio/de/stürmen.mp3",
@@ -3240,8 +3250,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.928,
                   "e": 12.21,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -3259,8 +3268,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.492,
                   "e": 12.868,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "ins",
@@ -3278,8 +3286,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 13.15,
                   "e": 14.373,
                   "audio_mp3": "assets/words_audio/de/türkisfarbene.mp3",
-                  "audio_ogg": "assets/words_audio/de/türkisfarbene.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/türkisfarbene.ogg"
                 },
                 {
                   "w": "Wasser.",
@@ -3288,8 +3295,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 14.373,
                   "e": 15.031,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 }
               ]
             }
@@ -3755,7 +3761,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "beiden",
                   "clean": "beiden",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 0.311,
                   "e": 0.774,
                   "audio_mp3": "assets/words_audio/de/beiden.mp3",
@@ -3768,8 +3774,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.774,
                   "e": 1.237,
                   "audio_mp3": "assets/words_audio/de/brüder.mp3",
-                  "audio_ogg": "assets/words_audio/de/brüder.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/brüder.ogg"
                 },
                 {
                   "w": "spielen",
@@ -3801,7 +3806,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "flachen",
                   "clean": "flachen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 2.547,
                   "e": 3.087,
                   "audio_mp3": "assets/words_audio/de/flachen.mp3",
@@ -3814,8 +3819,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.087,
                   "e": 3.627,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 },
                 {
                   "w": "Die",
@@ -3833,8 +3837,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.858,
                   "e": 4.398,
                   "audio_mp3": "assets/words_audio/de/kleinen.mp3",
-                  "audio_ogg": "assets/words_audio/de/kleinen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/kleinen.ogg"
                 },
                 {
                   "w": "Wellen",
@@ -3843,8 +3846,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.398,
                   "e": 4.86,
                   "audio_mp3": "assets/words_audio/de/wellen.mp3",
-                  "audio_ogg": "assets/words_audio/de/wellen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wellen.ogg"
                 },
                 {
                   "w": "glitzern",
@@ -3880,8 +3882,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.094,
                   "e": 6.557,
                   "audio_mp3": "assets/words_audio/de/warmen.mp3",
-                  "audio_ogg": "assets/words_audio/de/warmen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/warmen.ogg"
                 },
                 {
                   "w": "Sonne.",
@@ -3890,8 +3891,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.557,
                   "e": 7.019,
                   "audio_mp3": "assets/words_audio/de/sonne.mp3",
-                  "audio_ogg": "assets/words_audio/de/sonne.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/sonne.ogg"
                 }
               ]
             }
@@ -4472,8 +4472,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.792,
                   "e": 1.403,
                   "audio_mp3": "assets/words_audio/de/hellen.mp3",
-                  "audio_ogg": "assets/words_audio/de/hellen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/hellen.ogg"
                 },
                 {
                   "w": "Felsen",
@@ -4483,7 +4482,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 2.013,
                   "audio_mp3": "assets/words_audio/de/felsen.mp3",
                   "audio_ogg": "assets/words_audio/de/felsen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "gli scogli",
                     "def": "Große Steine und Klippen am Meer."
@@ -4550,8 +4548,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.167,
                   "e": 5.473,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -4569,8 +4566,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.778,
                   "e": 6.185,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "im",
@@ -4588,8 +4584,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.388,
                   "e": 6.999,
                   "audio_mp3": "assets/words_audio/de/klaren.mp3",
-                  "audio_ogg": "assets/words_audio/de/klaren.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/klaren.ogg"
                 },
                 {
                   "w": "Wasser.",
@@ -4598,8 +4593,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.999,
                   "e": 7.711,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 },
                 {
                   "w": "Die",
@@ -4617,8 +4611,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.016,
                   "e": 8.525,
                   "audio_mp3": "assets/words_audio/de/warme.mp3",
-                  "audio_ogg": "assets/words_audio/de/warme.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/warme.ogg"
                 },
                 {
                   "w": "Sonne",
@@ -4627,13 +4620,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.525,
                   "e": 9.034,
                   "audio_mp3": "assets/words_audio/de/sonne.mp3",
-                  "audio_ogg": "assets/words_audio/de/sonne.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/sonne.ogg"
                 },
                 {
                   "w": "lässt",
                   "clean": "lässt",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 9.034,
                   "e": 9.542,
                   "audio_mp3": "assets/words_audio/de/lässt.mp3",
@@ -4673,8 +4665,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.763,
                   "e": 11.374,
                   "audio_mp3": "assets/words_audio/de/kleine.mp3",
-                  "audio_ogg": "assets/words_audio/de/kleine.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kleine.ogg"
                 },
                 {
                   "w": "Diamanten",
@@ -4683,13 +4674,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.374,
                   "e": 12.289,
                   "audio_mp3": "assets/words_audio/de/diamanten.mp3",
-                  "audio_ogg": "assets/words_audio/de/diamanten.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/diamanten.ogg"
                 },
                 {
                   "w": "funkeln.",
                   "clean": "funkeln",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 12.289,
                   "e": 13.103,
                   "audio_mp3": "assets/words_audio/de/funkeln.mp3",
@@ -5207,7 +5197,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 1.094,
                   "audio_mp3": "assets/words_audio/de/helm.mp3",
                   "audio_ogg": "assets/words_audio/de/helm.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il casco",
                     "def": "Schützt den Kopf beim Klettern im Abenteuerpark."
@@ -5238,8 +5227,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.602,
                   "e": 1.94,
                   "audio_mp3": "assets/words_audio/de/kopf.mp3",
-                  "audio_ogg": "assets/words_audio/de/kopf.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/kopf.ogg"
                 },
                 {
                   "w": "laufen",
@@ -5257,8 +5245,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.447,
                   "e": 2.701,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -5276,8 +5263,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.954,
                   "e": 3.292,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "über",
@@ -5305,7 +5291,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 4.898,
                   "audio_mp3": "assets/words_audio/de/hängebrücken.mp3",
                   "audio_ogg": "assets/words_audio/de/hängebrücken.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "i ponti sospesi",
                     "def": "Brücken aus Seilen hoch oben zwischen den Bäumen."
@@ -5336,8 +5321,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.828,
                   "e": 6.42,
                   "audio_mp3": "assets/words_audio/de/bäumen.mp3",
-                  "audio_ogg": "assets/words_audio/de/bäumen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/bäumen.ogg"
                 }
               ]
             }
@@ -5963,7 +5947,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Kletterpark",
                   "clean": "kletterpark",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.263,
                   "e": 1.268,
                   "audio_mp3": "assets/words_audio/de/kletterpark.mp3",
@@ -5985,8 +5969,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.816,
                   "e": 2.09,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -6004,8 +5987,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.364,
                   "e": 2.73,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "ihren",
@@ -6019,7 +6001,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Sicherheitshelm",
                   "clean": "sicherheitshelm",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 3.186,
                   "e": 4.557,
                   "audio_mp3": "assets/words_audio/de/sicherheitshelm.mp3",
@@ -6050,8 +6032,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.745,
                   "e": 6.201,
                   "audio_mp3": "assets/words_audio/de/mutig.mp3",
-                  "audio_ogg": "assets/words_audio/de/mutig.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/mutig.ogg"
                 },
                 {
                   "w": "die",
@@ -6065,7 +6046,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "schwankenden",
                   "clean": "schwankenden",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 6.475,
                   "e": 7.572,
                   "audio_mp3": "assets/words_audio/de/schwankenden.mp3",
@@ -6079,7 +6060,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.668,
                   "audio_mp3": "assets/words_audio/de/hängebrücken.mp3",
                   "audio_ogg": "assets/words_audio/de/hängebrücken.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "i ponti sospesi",
                     "def": "Brücken aus Seilen hoch oben zwischen den Bäumen."
@@ -6097,7 +6077,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Holz",
                   "clean": "holz",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 8.942,
                   "e": 9.308,
                   "audio_mp3": "assets/words_audio/de/holz.mp3",
@@ -6119,8 +6099,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.582,
                   "e": 10.13,
                   "audio_mp3": "assets/words_audio/de/seilen.mp3",
-                  "audio_ogg": "assets/words_audio/de/seilen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seilen.ogg"
                 },
                 {
                   "w": "hoch",
@@ -6152,7 +6131,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "blauen",
                   "clean": "blauen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 11.135,
                   "e": 11.683,
                   "audio_mp3": "assets/words_audio/de/blauen.mp3",
@@ -6165,8 +6144,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.683,
                   "e": 12.14,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 }
               ]
             }
@@ -6685,8 +6663,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.284,
                   "e": 0.795,
                   "audio_mp3": "assets/words_audio/de/abend.mp3",
-                  "audio_ogg": "assets/words_audio/de/abend.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/abend.ogg"
                 },
                 {
                   "w": "scheint",
@@ -6714,7 +6691,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 2.634,
                   "audio_mp3": "assets/words_audio/de/vollmond.mp3",
                   "audio_ogg": "assets/words_audio/de/vollmond.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "la luna piena",
                     "def": "Der runde, hell leuchtende Mond am Nachthimmel."
@@ -6745,8 +6721,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.349,
                   "e": 3.86,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 },
                 {
                   "w": "Oma",
@@ -6755,8 +6730,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.86,
                   "e": 4.166,
                   "audio_mp3": "assets/words_audio/de/oma.mp3",
-                  "audio_ogg": "assets/words_audio/de/oma.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/oma.ogg"
                 },
                 {
                   "w": "Lucilla",
@@ -6765,8 +6739,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.166,
                   "e": 4.881,
                   "audio_mp3": "assets/words_audio/de/lucilla.mp3",
-                  "audio_ogg": "assets/words_audio/de/lucilla.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/lucilla.ogg"
                 },
                 {
                   "w": "lächelt",
@@ -6793,8 +6766,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.801,
                   "e": 6.311,
                   "audio_mp3": "assets/words_audio/de/tisch.mp3",
-                  "audio_ogg": "assets/words_audio/de/tisch.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/tisch.ogg"
                 },
                 {
                   "w": "mit",
@@ -6812,8 +6784,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.618,
                   "e": 6.924,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -6831,8 +6802,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.231,
                   "e": 7.741,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 }
               ]
             }
@@ -7465,7 +7435,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "warm",
                   "clean": "warm",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 0.66,
                   "e": 1.046,
                   "audio_mp3": "assets/words_audio/de/warm.mp3",
@@ -7474,7 +7444,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "beleuchteten",
                   "clean": "beleuchteten",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 1.046,
                   "e": 2.206,
                   "audio_mp3": "assets/words_audio/de/beleuchteten.mp3",
@@ -7487,8 +7457,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.206,
                   "e": 2.979,
                   "audio_mp3": "assets/words_audio/de/terrasse.mp3",
-                  "audio_ogg": "assets/words_audio/de/terrasse.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/terrasse.ogg"
                 },
                 {
                   "w": "hört",
@@ -7497,7 +7466,17 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.979,
                   "e": 3.366,
                   "audio_mp3": "assets/words_audio/de/hört.mp3",
-                  "audio_ogg": "assets/words_audio/de/hört.ogg"
+                  "audio_ogg": "assets/words_audio/de/hört.ogg",
+                  "sep_group": "sep_5_15",
+                  "sep_role": "stem",
+                  "sep_inf": "zu·hören",
+                  "sep_pair": "hört … zu",
+                  "gloss": {
+                    "tr": "ascoltare con attenzione",
+                    "def": "Verbo separabile (trennbares Verb): «zu·hören» (hört … zu) significa ascoltare con attenzione, non solo «hören» (sentire).",
+                    "sep_inf": "zu·hören",
+                    "sep_pair": "hört … zu"
+                  }
                 },
                 {
                   "w": "Oma",
@@ -7506,8 +7485,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.366,
                   "e": 3.656,
                   "audio_mp3": "assets/words_audio/de/oma.mp3",
-                  "audio_ogg": "assets/words_audio/de/oma.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/oma.ogg"
                 },
                 {
                   "w": "Lucilla",
@@ -7516,8 +7494,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.656,
                   "e": 4.332,
                   "audio_mp3": "assets/words_audio/de/lucilla.mp3",
-                  "audio_ogg": "assets/words_audio/de/lucilla.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/lucilla.ogg"
                 },
                 {
                   "w": "glücklich",
@@ -7526,8 +7503,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.332,
                   "e": 5.202,
                   "audio_mp3": "assets/words_audio/de/glücklich.mp3",
-                  "audio_ogg": "assets/words_audio/de/glücklich.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/glücklich.ogg"
                 },
                 {
                   "w": "den",
@@ -7545,8 +7521,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.492,
                   "e": 6.555,
                   "audio_mp3": "assets/words_audio/de/geschichten.mp3",
-                  "audio_ogg": "assets/words_audio/de/geschichten.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/geschichten.ogg"
                 },
                 {
                   "w": "von",
@@ -7564,8 +7539,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.845,
                   "e": 7.135,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -7583,17 +7557,26 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.425,
                   "e": 7.811,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "zu.",
                   "clean": "zu",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 7.811,
                   "e": 8.101,
                   "audio_mp3": "assets/words_audio/de/zu.mp3",
-                  "audio_ogg": "assets/words_audio/de/zu.ogg"
+                  "audio_ogg": "assets/words_audio/de/zu.ogg",
+                  "sep_group": "sep_5_15",
+                  "sep_role": "prefix",
+                  "sep_inf": "zu·hören",
+                  "sep_pair": "hört … zu",
+                  "gloss": {
+                    "tr": "ascoltare con attenzione",
+                    "def": "Verbo separabile (trennbares Verb): «zu·hören» (hört … zu) significa ascoltare con attenzione, non solo «hören» (sentire).",
+                    "sep_inf": "zu·hören",
+                    "sep_pair": "hört … zu"
+                  }
                 },
                 {
                   "w": "Am",
@@ -7607,7 +7590,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Nachthimmel",
                   "clean": "nachthimmel",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 8.294,
                   "e": 9.357,
                   "audio_mp3": "assets/words_audio/de/nachthimmel.mp3",
@@ -7638,8 +7621,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.42,
                   "e": 11.0,
                   "audio_mp3": "assets/words_audio/de/großer.mp3",
-                  "audio_ogg": "assets/words_audio/de/großer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/großer.ogg"
                 },
                 {
                   "w": "Vollmond,",
@@ -7649,7 +7631,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 11.87,
                   "audio_mp3": "assets/words_audio/de/vollmond.mp3",
                   "audio_ogg": "assets/words_audio/de/vollmond.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "la luna piena",
                     "def": "Der runde, hell leuchtende Mond am Nachthimmel."
@@ -7689,8 +7670,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.74,
                   "e": 13.126,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 },
                 {
                   "w": "spiegelt.",
@@ -8198,7 +8178,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "nächsten",
                   "clean": "nächsten",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 0.259,
                   "e": 0.976,
                   "audio_mp3": "assets/words_audio/de/nächsten.mp3",
@@ -8207,7 +8187,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Tag",
                   "clean": "tag",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.976,
                   "e": 1.245,
                   "audio_mp3": "assets/words_audio/de/tag.mp3",
@@ -8266,7 +8246,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 4.649,
                   "audio_mp3": "assets/words_audio/de/schlauchboot.mp3",
                   "audio_ogg": "assets/words_audio/de/schlauchboot.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il gommone",
                     "def": "Ein schnelles Boot mit Luftkammern für Ausflüge auf dem Meer."
@@ -8315,8 +8294,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.352,
                   "e": 6.8,
                   "audio_mp3": "assets/words_audio/de/hohen.mp3",
-                  "audio_ogg": "assets/words_audio/de/hohen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/hohen.ogg"
                 },
                 {
                   "w": "weißen",
@@ -8325,8 +8303,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.8,
                   "e": 7.337,
                   "audio_mp3": "assets/words_audio/de/weißen.mp3",
-                  "audio_ogg": "assets/words_audio/de/weißen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/weißen.ogg"
                 },
                 {
                   "w": "Klippen.",
@@ -8336,7 +8313,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.054,
                   "audio_mp3": "assets/words_audio/de/klippen.mp3",
                   "audio_ogg": "assets/words_audio/de/klippen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "le falesie",
                     "def": "Hohe weiße Felswände direkt über dem blauen Meer."
@@ -8943,7 +8919,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "nächsten",
                   "clean": "nächsten",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 0.257,
                   "e": 0.967,
                   "audio_mp3": "assets/words_audio/de/nächsten.mp3",
@@ -8952,7 +8928,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Morgen",
                   "clean": "morgen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.967,
                   "e": 1.499,
                   "audio_mp3": "assets/words_audio/de/morgen.mp3",
@@ -8974,8 +8950,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.12,
                   "e": 2.653,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "das",
@@ -8994,7 +8969,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 3.983,
                   "audio_mp3": "assets/words_audio/de/schlauchboot.mp3",
                   "audio_ogg": "assets/words_audio/de/schlauchboot.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il gommone",
                     "def": "Ein schnelles Boot mit Luftkammern für Ausflüge auf dem Meer."
@@ -9021,7 +8995,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "herrlichen",
                   "clean": "herrlichen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 4.693,
                   "e": 5.58,
                   "audio_mp3": "assets/words_audio/de/herrlichen.mp3",
@@ -9034,8 +9008,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.58,
                   "e": 5.935,
                   "audio_mp3": "assets/words_audio/de/golf.mp3",
-                  "audio_ogg": "assets/words_audio/de/golf.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/golf.ogg"
                 },
                 {
                   "w": "von",
@@ -9053,8 +9026,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.201,
                   "e": 6.822,
                   "audio_mp3": "assets/words_audio/de/orosei.mp3",
-                  "audio_ogg": "assets/words_audio/de/orosei.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/orosei.ogg"
                 },
                 {
                   "w": "Ale",
@@ -9063,8 +9035,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.822,
                   "e": 7.088,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -9082,8 +9053,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.355,
                   "e": 7.709,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "tragen",
@@ -9097,7 +9067,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "orangefarbene",
                   "clean": "orangefarbene",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 8.242,
                   "e": 9.395,
                   "audio_mp3": "assets/words_audio/de/orangefarbene.mp3",
@@ -9111,7 +9081,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 10.548,
                   "audio_mp3": "assets/words_audio/de/schwimmwesten.mp3",
                   "audio_ogg": "assets/words_audio/de/schwimmwesten.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "i salvagenti",
                     "def": "Orangefarbene Westen, mit denen man sicher im Wasser schwimmt."
@@ -9129,7 +9098,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "bestaunen",
                   "clean": "bestaunen",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 10.815,
                   "e": 11.613,
                   "audio_mp3": "assets/words_audio/de/bestaunen.mp3",
@@ -9151,8 +9120,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.879,
                   "e": 12.323,
                   "audio_mp3": "assets/words_audio/de/hohen.mp3",
-                  "audio_ogg": "assets/words_audio/de/hohen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/hohen.ogg"
                 },
                 {
                   "w": "weißen",
@@ -9161,13 +9129,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.323,
                   "e": 12.855,
                   "audio_mp3": "assets/words_audio/de/weißen.mp3",
-                  "audio_ogg": "assets/words_audio/de/weißen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/weißen.ogg"
                 },
                 {
                   "w": "Felsklippen.",
                   "clean": "felsklippen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 12.855,
                   "e": 13.92,
                   "audio_mp3": "assets/words_audio/de/felsklippen.mp3",
@@ -9663,8 +9630,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.631,
                   "e": 1.09,
                   "audio_mp3": "assets/words_audio/de/hohen.mp3",
-                  "audio_ogg": "assets/words_audio/de/hohen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/hohen.ogg"
                 },
                 {
                   "w": "Felsnadel",
@@ -9673,13 +9639,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.09,
                   "e": 1.917,
                   "audio_mp3": "assets/words_audio/de/felsnadel.mp3",
-                  "audio_ogg": "assets/words_audio/de/felsnadel.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/felsnadel.ogg"
                 },
                 {
                   "w": "springen",
                   "clean": "springen",
-                  "pos": "verb",
+                  "pos": "noun",
                   "s": 1.917,
                   "e": 2.652,
                   "audio_mp3": "assets/words_audio/de/springen.mp3",
@@ -9692,8 +9657,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.652,
                   "e": 2.927,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -9711,8 +9675,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.203,
                   "e": 3.57,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "vom",
@@ -9731,7 +9694,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 4.948,
                   "audio_mp3": "assets/words_audio/de/schlauchboot.mp3",
                   "audio_ogg": "assets/words_audio/de/schlauchboot.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il gommone",
                     "def": "Ein schnelles Boot mit Luftkammern für Ausflüge auf dem Meer."
@@ -9753,8 +9715,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.223,
                   "e": 6.417,
                   "audio_mp3": "assets/words_audio/de/türkisfarbene.mp3",
-                  "audio_ogg": "assets/words_audio/de/türkisfarbene.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/türkisfarbene.ogg"
                 },
                 {
                   "w": "Wasser.",
@@ -9763,8 +9724,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.417,
                   "e": 7.06,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 }
               ]
             }
@@ -10460,17 +10420,26 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.679,
                   "e": 1.578,
                   "audio_mp3": "assets/words_audio/de/goloritzè.mp3",
-                  "audio_ogg": "assets/words_audio/de/goloritzè.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/goloritzè.ogg"
                 },
                 {
                   "w": "ragt",
                   "clean": "ragt",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 1.578,
                   "e": 1.977,
                   "audio_mp3": "assets/words_audio/de/ragt.mp3",
-                  "audio_ogg": "assets/words_audio/de/ragt.ogg"
+                  "audio_ogg": "assets/words_audio/de/ragt.ogg",
+                  "sep_group": "sep_3_10",
+                  "sep_role": "stem",
+                  "sep_inf": "empor·ragen",
+                  "sep_pair": "ragt … empor",
+                  "gloss": {
+                    "tr": "svettare / innalzarsi verso l'alto",
+                    "def": "Verbo separabile (trennbares Verb): «empor·ragen» (ragt … empor) significa svettare altissimo verso il cielo.",
+                    "sep_inf": "empor·ragen",
+                    "sep_pair": "ragt … empor"
+                  }
                 },
                 {
                   "w": "eine",
@@ -10488,8 +10457,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.377,
                   "e": 2.776,
                   "audio_mp3": "assets/words_audio/de/hohe.mp3",
-                  "audio_ogg": "assets/words_audio/de/hohe.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/hohe.ogg"
                 },
                 {
                   "w": "Felsnadel",
@@ -10498,8 +10466,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.776,
                   "e": 3.675,
                   "audio_mp3": "assets/words_audio/de/felsnadel.mp3",
-                  "audio_ogg": "assets/words_audio/de/felsnadel.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/felsnadel.ogg"
                 },
                 {
                   "w": "über",
@@ -10522,7 +10489,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Felsbogen",
                   "clean": "felsbogen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 4.374,
                   "e": 5.272,
                   "audio_mp3": "assets/words_audio/de/felsbogen.mp3",
@@ -10531,11 +10498,21 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "empor.",
                   "clean": "empor",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 5.272,
                   "e": 5.871,
                   "audio_mp3": "assets/words_audio/de/empor.mp3",
-                  "audio_ogg": "assets/words_audio/de/empor.ogg"
+                  "audio_ogg": "assets/words_audio/de/empor.ogg",
+                  "sep_group": "sep_3_10",
+                  "sep_role": "prefix",
+                  "sep_inf": "empor·ragen",
+                  "sep_pair": "ragt … empor",
+                  "gloss": {
+                    "tr": "svettare / innalzarsi verso l'alto",
+                    "def": "Verbo separabile (trennbares Verb): «empor·ragen» (ragt … empor) significa svettare altissimo verso il cielo.",
+                    "sep_inf": "empor·ragen",
+                    "sep_pair": "ragt … empor"
+                  }
                 },
                 {
                   "w": "Das",
@@ -10553,8 +10530,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.171,
                   "e": 6.77,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 },
                 {
                   "w": "ist",
@@ -10577,7 +10553,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "glasklar,",
                   "clean": "glasklar",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 7.269,
                   "e": 8.168,
                   "audio_mp3": "assets/words_audio/de/glasklar.mp3",
@@ -10604,7 +10580,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Boot",
                   "clean": "boot",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 8.867,
                   "e": 9.266,
                   "audio_mp3": "assets/words_audio/de/boot.mp3",
@@ -10631,7 +10607,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Grund",
                   "clean": "grund",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.965,
                   "e": 10.464,
                   "audio_mp3": "assets/words_audio/de/grund.mp3",
@@ -10649,7 +10625,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "schweben",
                   "clean": "schweben",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 10.664,
                   "e": 11.463,
                   "audio_mp3": "assets/words_audio/de/schweben.mp3",
@@ -10680,8 +10656,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.961,
                   "e": 13.26,
                   "audio_mp3": "assets/words_audio/de/oma.mp3",
-                  "audio_ogg": "assets/words_audio/de/oma.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/oma.ogg"
                 },
                 {
                   "w": "Lucilla",
@@ -10690,8 +10665,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 13.26,
                   "e": 13.959,
                   "audio_mp3": "assets/words_audio/de/lucilla.mp3",
-                  "audio_ogg": "assets/words_audio/de/lucilla.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/lucilla.ogg"
                 },
                 {
                   "w": "Ale",
@@ -10700,8 +10674,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 13.959,
                   "e": 14.259,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -10719,8 +10692,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 14.558,
                   "e": 14.958,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "beim",
@@ -10734,7 +10706,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Springen",
                   "clean": "springen",
-                  "pos": "verb",
+                  "pos": "noun",
                   "s": 15.357,
                   "e": 16.156,
                   "audio_mp3": "assets/words_audio/de/springen.mp3",
@@ -10743,7 +10715,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "zusieht!",
                   "clean": "zusieht",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 16.156,
                   "e": 16.955,
                   "audio_mp3": "assets/words_audio/de/zusieht.mp3",
@@ -11243,7 +11215,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Boot",
                   "clean": "boot",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.383,
                   "e": 0.787,
                   "audio_mp3": "assets/words_audio/de/boot.mp3",
@@ -11256,7 +11228,17 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.787,
                   "e": 1.292,
                   "audio_mp3": "assets/words_audio/de/fährt.mp3",
-                  "audio_ogg": "assets/words_audio/de/fährt.ogg"
+                  "audio_ogg": "assets/words_audio/de/fährt.ogg",
+                  "sep_group": "sep_2_7",
+                  "sep_role": "stem",
+                  "sep_inf": "vorbei·fahren",
+                  "sep_pair": "fährt … vorbei",
+                  "gloss": {
+                    "tr": "passare davanti (in barca o auto)",
+                    "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei) significa passare accanto navigando o guidando.",
+                    "sep_inf": "vorbei·fahren",
+                    "sep_pair": "fährt … vorbei"
+                  }
                 },
                 {
                   "w": "an",
@@ -11283,8 +11265,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.798,
                   "e": 2.404,
                   "audio_mp3": "assets/words_audio/de/großen.mp3",
-                  "audio_ogg": "assets/words_audio/de/großen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/großen.ogg"
                 },
                 {
                   "w": "Meeresgrotten",
@@ -11294,7 +11275,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 3.717,
                   "audio_mp3": "assets/words_audio/de/meeresgrotten.mp3",
                   "audio_ogg": "assets/words_audio/de/meeresgrotten.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "le grotte marine",
                     "def": "Geheimnisvolle Höhlen, die das Meer in den Fels gegraben hat."
@@ -11303,11 +11283,21 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "vorbei.",
                   "clean": "vorbei",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 3.717,
                   "e": 4.425,
                   "audio_mp3": "assets/words_audio/de/vorbei.mp3",
-                  "audio_ogg": "assets/words_audio/de/vorbei.ogg"
+                  "audio_ogg": "assets/words_audio/de/vorbei.ogg",
+                  "sep_group": "sep_2_7",
+                  "sep_role": "prefix",
+                  "sep_inf": "vorbei·fahren",
+                  "sep_pair": "fährt … vorbei",
+                  "gloss": {
+                    "tr": "passare davanti (in barca o auto)",
+                    "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei) significa passare accanto navigando o guidando.",
+                    "sep_inf": "vorbei·fahren",
+                    "sep_pair": "fährt … vorbei"
+                  }
                 },
                 {
                   "w": "Alle",
@@ -11321,7 +11311,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "zeigen",
                   "clean": "zeigen",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 4.829,
                   "e": 5.435,
                   "audio_mp3": "assets/words_audio/de/zeigen.mp3",
@@ -11357,7 +11347,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Felsbögen.",
                   "clean": "felsbögen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 6.85,
                   "e": 7.86,
                   "audio_mp3": "assets/words_audio/de/felsbögen.mp3",
@@ -11954,13 +11944,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.96,
                   "e": 1.487,
                   "audio_mp3": "assets/words_audio/de/wilden.mp3",
-                  "audio_ogg": "assets/words_audio/de/wilden.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wilden.ogg"
                 },
                 {
                   "w": "Küste",
                   "clean": "küste",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 1.487,
                   "e": 1.927,
                   "audio_mp3": "assets/words_audio/de/küste.mp3",
@@ -11969,7 +11958,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "bewundert",
                   "clean": "bewundert",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 1.927,
                   "e": 2.719,
                   "audio_mp3": "assets/words_audio/de/bewundert.mp3",
@@ -11991,8 +11980,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.982,
                   "e": 3.598,
                   "audio_mp3": "assets/words_audio/de/familie.mp3",
-                  "audio_ogg": "assets/words_audio/de/familie.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/familie.ogg"
                 },
                 {
                   "w": "aus",
@@ -12006,7 +11994,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "nächster",
                   "clean": "nächster",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 3.862,
                   "e": 4.566,
                   "audio_mp3": "assets/words_audio/de/nächster.mp3",
@@ -12015,7 +12003,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Nähe",
                   "clean": "nähe",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 4.566,
                   "e": 4.917,
                   "audio_mp3": "assets/words_audio/de/nähe.mp3",
@@ -12033,7 +12021,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "riesigen",
                   "clean": "riesigen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 5.181,
                   "e": 5.885,
                   "audio_mp3": "assets/words_audio/de/riesigen.mp3",
@@ -12047,7 +12035,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 7.028,
                   "audio_mp3": "assets/words_audio/de/meeresgrotten.mp3",
                   "audio_ogg": "assets/words_audio/de/meeresgrotten.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "le grotte marine",
                     "def": "Geheimnisvolle Höhlen, die das Meer in den Fels gegraben hat."
@@ -12065,7 +12052,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Steinbögen,",
                   "clean": "steinbögen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 7.292,
                   "e": 8.26,
                   "audio_mp3": "assets/words_audio/de/steinbögen.mp3",
@@ -12096,8 +12083,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.787,
                   "e": 9.315,
                   "audio_mp3": "assets/words_audio/de/wellen.mp3",
-                  "audio_ogg": "assets/words_audio/de/wellen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wellen.ogg"
                 },
                 {
                   "w": "über",
@@ -12111,7 +12097,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Jahrtausende",
                   "clean": "jahrtausende",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.667,
                   "e": 10.722,
                   "audio_mp3": "assets/words_audio/de/jahrtausende.mp3",
@@ -12142,13 +12128,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.162,
                   "e": 11.69,
                   "audio_mp3": "assets/words_audio/de/weißen.mp3",
-                  "audio_ogg": "assets/words_audio/de/weißen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/weißen.ogg"
                 },
                 {
                   "w": "Kalkstein",
                   "clean": "kalkstein",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 11.69,
                   "e": 12.481,
                   "audio_mp3": "assets/words_audio/de/kalkstein.mp3",
@@ -12157,7 +12142,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "gegraben",
                   "clean": "gegraben",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 12.481,
                   "e": 13.185,
                   "audio_mp3": "assets/words_audio/de/gegraben.mp3",
@@ -12166,7 +12151,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "haben.",
                   "clean": "haben",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 13.185,
                   "e": 13.713,
                   "audio_mp3": "assets/words_audio/de/haben.mp3",
@@ -12694,8 +12679,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.08,
                   "e": 0.368,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -12713,8 +12697,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.657,
                   "e": 1.042,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "wandern",
@@ -12773,7 +12756,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Pfaden",
                   "clean": "pfaden",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 3.253,
                   "e": 3.83,
                   "audio_mp3": "assets/words_audio/de/pfaden.mp3",
@@ -12795,8 +12778,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.119,
                   "e": 5.081,
                   "audio_mp3": "assets/words_audio/de/supramonte.mp3",
-                  "audio_ogg": "assets/words_audio/de/supramonte.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/supramonte.ogg"
                 },
                 {
                   "w": "zwischen",
@@ -12814,8 +12796,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.85,
                   "e": 6.427,
                   "audio_mp3": "assets/words_audio/de/weißen.mp3",
-                  "audio_ogg": "assets/words_audio/de/weißen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/weißen.ogg"
                 },
                 {
                   "w": "Felsen",
@@ -12825,7 +12806,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 7.004,
                   "audio_mp3": "assets/words_audio/de/felsen.mp3",
                   "audio_ogg": "assets/words_audio/de/felsen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "gli scogli",
                     "def": "Große Steine und Klippen am Meer."
@@ -12848,7 +12828,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.254,
                   "audio_mp3": "assets/words_audio/de/wacholder.mp3",
                   "audio_ogg": "assets/words_audio/de/wacholder.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il ginepro",
                     "def": "Duftender Baum in den Bergen des Supramonte."
@@ -13548,8 +13527,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.693,
                   "e": 1.043,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 },
                 {
                   "w": "wandern",
@@ -13572,7 +13550,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "beiden",
                   "clean": "beiden",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 1.919,
                   "e": 2.444,
                   "audio_mp3": "assets/words_audio/de/beiden.mp3",
@@ -13585,8 +13563,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.444,
                   "e": 2.969,
                   "audio_mp3": "assets/words_audio/de/brüder.mp3",
-                  "audio_ogg": "assets/words_audio/de/brüder.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/brüder.ogg"
                 },
                 {
                   "w": "mit",
@@ -13609,7 +13586,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Rucksäcken",
                   "clean": "rucksäcken",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 3.67,
                   "e": 4.545,
                   "audio_mp3": "assets/words_audio/de/rucksäcken.mp3",
@@ -13640,13 +13617,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.983,
                   "e": 5.509,
                   "audio_mp3": "assets/words_audio/de/wilden.mp3",
-                  "audio_ogg": "assets/words_audio/de/wilden.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wilden.ogg"
                 },
                 {
                   "w": "Berge",
                   "clean": "berge",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 5.509,
                   "e": 5.946,
                   "audio_mp3": "assets/words_audio/de/berge.mp3",
@@ -13668,8 +13644,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.209,
                   "e": 7.172,
                   "audio_mp3": "assets/words_audio/de/supramonte.mp3",
-                  "audio_ogg": "assets/words_audio/de/supramonte.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/supramonte.ogg"
                 },
                 {
                   "w": "Ale",
@@ -13678,13 +13653,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.172,
                   "e": 7.435,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "hält",
                   "clean": "hält",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 7.435,
                   "e": 7.785,
                   "audio_mp3": "assets/words_audio/de/hält.mp3",
@@ -13697,8 +13671,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.785,
                   "e": 8.135,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "an",
@@ -13752,13 +13725,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.449,
                   "e": 9.974,
                   "audio_mp3": "assets/words_audio/de/weißen.mp3",
-                  "audio_ogg": "assets/words_audio/de/weißen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/weißen.ogg"
                 },
                 {
                   "w": "Steinpfad,",
                   "clean": "steinpfad",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.974,
                   "e": 10.85,
                   "audio_mp3": "assets/words_audio/de/steinpfad.mp3",
@@ -13790,7 +13762,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 12.251,
                   "audio_mp3": "assets/words_audio/de/wacholder.mp3",
                   "audio_ogg": "assets/words_audio/de/wacholder.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il ginepro",
                     "def": "Duftender Baum in den Bergen des Supramonte."
@@ -13812,8 +13783,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.513,
                   "e": 13.126,
                   "audio_mp3": "assets/words_audio/de/thymian.mp3",
-                  "audio_ogg": "assets/words_audio/de/thymian.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/thymian.ogg"
                 },
                 {
                   "w": "duftet.",
@@ -14325,7 +14295,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Berggipfel",
                   "clean": "berggipfel",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.377,
                   "e": 1.365,
                   "audio_mp3": "assets/words_audio/de/berggipfel.mp3",
@@ -14361,7 +14331,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "beiden",
                   "clean": "beiden",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 2.651,
                   "e": 3.244,
                   "audio_mp3": "assets/words_audio/de/beiden.mp3",
@@ -14374,8 +14344,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.244,
                   "e": 3.837,
                   "audio_mp3": "assets/words_audio/de/brüder.mp3",
-                  "audio_ogg": "assets/words_audio/de/brüder.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/brüder.ogg"
                 },
                 {
                   "w": "auf",
@@ -14402,8 +14371,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.43,
                   "e": 5.024,
                   "audio_mp3": "assets/words_audio/de/grünen.mp3",
-                  "audio_ogg": "assets/words_audio/de/grünen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/grünen.ogg"
                 },
                 {
                   "w": "Täler",
@@ -14412,8 +14380,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.024,
                   "e": 5.518,
                   "audio_mp3": "assets/words_audio/de/täler.mp3",
-                  "audio_ogg": "assets/words_audio/de/täler.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/täler.ogg"
                 },
                 {
                   "w": "und",
@@ -14436,7 +14403,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "ferne",
                   "clean": "ferne",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 6.111,
                   "e": 6.606,
                   "audio_mp3": "assets/words_audio/de/ferne.mp3",
@@ -14449,8 +14416,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.606,
                   "e": 7.1,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 }
               ]
             }
@@ -15101,7 +15067,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "felsigen",
                   "clean": "felsigen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 0.631,
                   "e": 1.365,
                   "audio_mp3": "assets/words_audio/de/felsigen.mp3",
@@ -15110,7 +15076,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Aussichtspunkt",
                   "clean": "aussichtspunkt",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 1.365,
                   "e": 2.65,
                   "audio_mp3": "assets/words_audio/de/aussichtspunkt.mp3",
@@ -15132,17 +15098,26 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.925,
                   "e": 3.843,
                   "audio_mp3": "assets/words_audio/de/supramonte.mp3",
-                  "audio_ogg": "assets/words_audio/de/supramonte.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/supramonte.ogg"
                 },
                 {
                   "w": "stellen",
                   "clean": "stellen",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 3.843,
                   "e": 4.486,
                   "audio_mp3": "assets/words_audio/de/stellen.mp3",
-                  "audio_ogg": "assets/words_audio/de/stellen.ogg"
+                  "audio_ogg": "assets/words_audio/de/stellen.ogg",
+                  "sep_group": "sep_6_15",
+                  "sep_role": "stem",
+                  "sep_inf": "ab·stellen",
+                  "sep_pair": "stellen … ab",
+                  "gloss": {
+                    "tr": "posare / appoggiare giù",
+                    "def": "Verbo separabile (trennbares Verb): «ab·stellen» (stellen … ab) significa posare a terra lo zaino.",
+                    "sep_inf": "ab·stellen",
+                    "sep_pair": "stellen … ab"
+                  }
                 },
                 {
                   "w": "Ale",
@@ -15151,8 +15126,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.486,
                   "e": 4.761,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -15170,8 +15144,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.037,
                   "e": 5.404,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "ihren",
@@ -15185,7 +15158,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "blauen",
                   "clean": "blauen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 5.863,
                   "e": 6.413,
                   "audio_mp3": "assets/words_audio/de/blauen.mp3",
@@ -15207,13 +15180,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.689,
                   "e": 7.239,
                   "audio_mp3": "assets/words_audio/de/grünen.mp3",
-                  "audio_ogg": "assets/words_audio/de/grünen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/grünen.ogg"
                 },
                 {
                   "w": "Rucksack",
                   "clean": "rucksack",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 7.239,
                   "e": 7.974,
                   "audio_mp3": "assets/words_audio/de/rucksack.mp3",
@@ -15222,11 +15194,21 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "ab",
                   "clean": "ab",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 7.974,
                   "e": 8.157,
                   "audio_mp3": "assets/words_audio/de/ab.mp3",
-                  "audio_ogg": "assets/words_audio/de/ab.ogg"
+                  "audio_ogg": "assets/words_audio/de/ab.ogg",
+                  "sep_group": "sep_6_15",
+                  "sep_role": "prefix",
+                  "sep_inf": "ab·stellen",
+                  "sep_pair": "stellen … ab",
+                  "gloss": {
+                    "tr": "posare / appoggiare giù",
+                    "def": "Verbo separabile (trennbares Verb): «ab·stellen» (stellen … ab) significa posare a terra lo zaino.",
+                    "sep_inf": "ab·stellen",
+                    "sep_pair": "stellen … ab"
+                  }
                 },
                 {
                   "w": "und",
@@ -15240,7 +15222,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "blicken",
                   "clean": "blicken",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 8.433,
                   "e": 9.075,
                   "audio_mp3": "assets/words_audio/de/blicken.mp3",
@@ -15249,7 +15231,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Schulter",
                   "clean": "schulter",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.075,
                   "e": 9.81,
                   "audio_mp3": "assets/words_audio/de/schulter.mp3",
@@ -15267,7 +15249,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Schulter",
                   "clean": "schulter",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.993,
                   "e": 10.727,
                   "audio_mp3": "assets/words_audio/de/schulter.mp3",
@@ -15294,7 +15276,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "weiten",
                   "clean": "weiten",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 11.37,
                   "e": 11.921,
                   "audio_mp3": "assets/words_audio/de/weiten.mp3",
@@ -15307,8 +15289,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.921,
                   "e": 12.471,
                   "audio_mp3": "assets/words_audio/de/grünen.mp3",
-                  "audio_ogg": "assets/words_audio/de/grünen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/grünen.ogg"
                 },
                 {
                   "w": "Täler",
@@ -15317,8 +15298,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.471,
                   "e": 12.93,
                   "audio_mp3": "assets/words_audio/de/täler.mp3",
-                  "audio_ogg": "assets/words_audio/de/täler.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/täler.ogg"
                 },
                 {
                   "w": "bis",
@@ -15345,8 +15325,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 13.481,
                   "e": 13.94,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 }
               ]
             }
@@ -15917,8 +15896,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.277,
                   "e": 0.965,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "trifft",
@@ -15936,8 +15914,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.555,
                   "e": 1.948,
                   "audio_mp3": "assets/words_audio/de/mama.mp3",
-                  "audio_ogg": "assets/words_audio/de/mama.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/mama.ogg"
                 },
                 {
                   "w": "Kate",
@@ -15946,8 +15923,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.948,
                   "e": 2.341,
                   "audio_mp3": "assets/words_audio/de/kate.mp3",
-                  "audio_ogg": "assets/words_audio/de/kate.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kate.ogg"
                 },
                 {
                   "w": "mit",
@@ -15975,7 +15951,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 3.423,
                   "audio_mp3": "assets/words_audio/de/bogen.mp3",
                   "audio_ogg": "assets/words_audio/de/bogen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'arco",
                     "def": "Sportgerät zum Pfeilschießen auf die Zielscheibe."
@@ -16006,8 +15981,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.603,
                   "e": 4.996,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "im",
@@ -16025,8 +15999,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.192,
                   "e": 5.782,
                   "audio_mp3": "assets/words_audio/de/trikot.mp3",
-                  "audio_ogg": "assets/words_audio/de/trikot.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/trikot.ogg"
                 },
                 {
                   "w": "Nummer",
@@ -16035,13 +16008,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.782,
                   "e": 6.372,
                   "audio_mp3": "assets/words_audio/de/nummer.mp3",
-                  "audio_ogg": "assets/words_audio/de/nummer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/nummer.ogg"
                 },
                 {
                   "w": "zehn",
                   "clean": "zehn",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 6.372,
                   "e": 6.765,
                   "audio_mp3": "assets/words_audio/de/zehn.mp3",
@@ -16072,8 +16044,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.24,
                   "e": 8.928,
                   "audio_mp3": "assets/words_audio/de/kleinen.mp3",
-                  "audio_ogg": "assets/words_audio/de/kleinen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/kleinen.ogg"
                 },
                 {
                   "w": "Esel.",
@@ -16083,7 +16054,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 9.42,
                   "audio_mp3": "assets/words_audio/de/esel.mp3",
                   "audio_ogg": "assets/words_audio/de/esel.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'asinello",
                     "def": "Ein sanftes sardisches Tier mit langen, weichen Ohren."
@@ -16885,13 +16855,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.261,
                   "e": 0.896,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "spannt",
                   "clean": "spannt",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 0.896,
                   "e": 1.44,
                   "audio_mp3": "assets/words_audio/de/spannt.mp3",
@@ -16904,8 +16873,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.44,
                   "e": 1.803,
                   "audio_mp3": "assets/words_audio/de/mama.mp3",
-                  "audio_ogg": "assets/words_audio/de/mama.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/mama.ogg"
                 },
                 {
                   "w": "Kate",
@@ -16914,8 +16882,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.803,
                   "e": 2.165,
                   "audio_mp3": "assets/words_audio/de/kate.mp3",
-                  "audio_ogg": "assets/words_audio/de/kate.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kate.ogg"
                 },
                 {
                   "w": "ihren",
@@ -16929,7 +16896,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Holzbogen",
                   "clean": "holzbogen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 2.619,
                   "e": 3.435,
                   "audio_mp3": "assets/words_audio/de/holzbogen.mp3",
@@ -16956,7 +16923,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "genau",
                   "clean": "genau",
-                  "pos": "other",
+                  "pos": "adv",
                   "s": 4.251,
                   "e": 4.704,
                   "audio_mp3": "assets/words_audio/de/genau.mp3",
@@ -16974,7 +16941,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "gelbe",
                   "clean": "gelbe",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 4.976,
                   "e": 5.43,
                   "audio_mp3": "assets/words_audio/de/gelbe.mp3",
@@ -16983,7 +16950,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Zehn",
                   "clean": "zehn",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 5.43,
                   "e": 5.792,
                   "audio_mp3": "assets/words_audio/de/zehn.mp3",
@@ -17010,7 +16977,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Mitte",
                   "clean": "mitte",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 6.246,
                   "e": 6.699,
                   "audio_mp3": "assets/words_audio/de/mitte.mp3",
@@ -17033,7 +17000,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.059,
                   "audio_mp3": "assets/words_audio/de/zielscheibe.mp3",
                   "audio_ogg": "assets/words_audio/de/zielscheibe.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "il bersaglio",
                     "def": "Der bunte Kreis, den Mama Kate genau in der Mitte trifft."
@@ -17042,7 +17008,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Daneben",
                   "clean": "daneben",
-                  "pos": "other",
+                  "pos": "adv",
                   "s": 8.059,
                   "e": 8.694,
                   "audio_mp3": "assets/words_audio/de/daneben.mp3",
@@ -17051,7 +17017,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "kniet",
                   "clean": "kniet",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 8.694,
                   "e": 9.147,
                   "audio_mp3": "assets/words_audio/de/kniet.mp3",
@@ -17064,8 +17030,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.147,
                   "e": 9.51,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "im",
@@ -17079,7 +17044,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "blauen",
                   "clean": "blauen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 9.691,
                   "e": 10.235,
                   "audio_mp3": "assets/words_audio/de/blauen.mp3",
@@ -17088,7 +17053,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Italien-Trikot",
                   "clean": "italien_trikot",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 10.235,
                   "e": 11.504,
                   "audio_mp3": "assets/words_audio/de/italien_trikot.mp3",
@@ -17119,8 +17084,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.048,
                   "e": 12.592,
                   "audio_mp3": "assets/words_audio/de/nummer.mp3",
-                  "audio_ogg": "assets/words_audio/de/nummer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/nummer.ogg"
                 },
                 {
                   "w": "10",
@@ -17161,7 +17125,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "sardischen",
                   "clean": "sardischen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 14.406,
                   "e": 15.313,
                   "audio_mp3": "assets/words_audio/de/sardischen.mp3",
@@ -17175,7 +17139,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 15.766,
                   "audio_mp3": "assets/words_audio/de/esel.mp3",
                   "audio_ogg": "assets/words_audio/de/esel.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'asinello",
                     "def": "Ein sanftes sardisches Tier mit langen, weichen Ohren."
@@ -17706,7 +17669,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Olivenhain",
                   "clean": "olivenhain",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.287,
                   "e": 1.32,
                   "audio_mp3": "assets/words_audio/de/olivenhain.mp3",
@@ -17728,13 +17691,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.631,
                   "e": 2.354,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "streicheln",
                   "clean": "streicheln",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 2.354,
                   "e": 3.388,
                   "audio_mp3": "assets/words_audio/de/streicheln.mp3",
@@ -17747,8 +17709,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.388,
                   "e": 3.698,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -17766,8 +17727,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.008,
                   "e": 4.422,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "zwei",
@@ -17786,7 +17746,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 5.352,
                   "audio_mp3": "assets/words_audio/de/esel.mp3",
                   "audio_ogg": "assets/words_audio/de/esel.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'asinello",
                     "def": "Ein sanftes sardisches Tier mit langen, weichen Ohren."
@@ -17808,8 +17767,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.076,
                   "e": 6.489,
                   "audio_mp3": "assets/words_audio/de/mama.mp3",
-                  "audio_ogg": "assets/words_audio/de/mama.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/mama.ogg"
                 },
                 {
                   "w": "Kate",
@@ -17818,8 +17776,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.489,
                   "e": 6.903,
                   "audio_mp3": "assets/words_audio/de/kate.mp3",
-                  "audio_ogg": "assets/words_audio/de/kate.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kate.ogg"
                 },
                 {
                   "w": "mit",
@@ -17847,7 +17804,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.246,
                   "audio_mp3": "assets/words_audio/de/bogen.mp3",
                   "audio_ogg": "assets/words_audio/de/bogen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'arco",
                     "def": "Sportgerät zum Pfeilschießen auf die Zielscheibe."
@@ -18504,13 +18460,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.283,
                   "e": 0.893,
                   "audio_mp3": "assets/words_audio/de/großen.mp3",
-                  "audio_ogg": "assets/words_audio/de/großen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/großen.ogg"
                 },
                 {
                   "w": "Naturpark",
                   "clean": "naturpark",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.893,
                   "e": 1.807,
                   "audio_mp3": "assets/words_audio/de/naturpark.mp3",
@@ -18528,7 +18483,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Hotels",
                   "clean": "hotels",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 2.112,
                   "e": 2.722,
                   "audio_mp3": "assets/words_audio/de/hotels.mp3",
@@ -18550,8 +18505,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.027,
                   "e": 3.738,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "laufen",
@@ -18560,7 +18514,17 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.738,
                   "e": 4.348,
                   "audio_mp3": "assets/words_audio/de/laufen.mp3",
-                  "audio_ogg": "assets/words_audio/de/laufen.ogg"
+                  "audio_ogg": "assets/words_audio/de/laufen.ogg",
+                  "sep_group": "sep_7_16",
+                  "sep_role": "stem",
+                  "sep_inf": "umher·laufen",
+                  "sep_pair": "laufen … umher",
+                  "gloss": {
+                    "tr": "camminare / gironzolare liberamente",
+                    "def": "Verbo separabile (trennbares Verb): «umher·laufen» (laufen … umher) significa camminare qua e là in libertà.",
+                    "sep_inf": "umher·laufen",
+                    "sep_pair": "laufen … umher"
+                  }
                 },
                 {
                   "w": "die",
@@ -18574,7 +18538,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Tiere",
                   "clean": "tiere",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 4.652,
                   "e": 5.16,
                   "audio_mp3": "assets/words_audio/de/tiere.mp3",
@@ -18583,7 +18547,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "frei",
                   "clean": "frei",
-                  "pos": "other",
+                  "pos": "adv",
                   "s": 5.16,
                   "e": 5.567,
                   "audio_mp3": "assets/words_audio/de/frei.mp3",
@@ -18601,7 +18565,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Blumenwiesen",
                   "clean": "blumenwiesen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 6.38,
                   "e": 7.599,
                   "audio_mp3": "assets/words_audio/de/blumenwiesen.mp3",
@@ -18619,7 +18583,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "alten",
                   "clean": "alten",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 7.904,
                   "e": 8.412,
                   "audio_mp3": "assets/words_audio/de/alten.mp3",
@@ -18632,17 +18596,26 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.412,
                   "e": 9.631,
                   "audio_mp3": "assets/words_audio/de/olivenbäumen.mp3",
-                  "audio_ogg": "assets/words_audio/de/olivenbäumen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/olivenbäumen.ogg"
                 },
                 {
                   "w": "umher.",
                   "clean": "umher",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 9.631,
                   "e": 10.241,
                   "audio_mp3": "assets/words_audio/de/umher.mp3",
-                  "audio_ogg": "assets/words_audio/de/umher.ogg"
+                  "audio_ogg": "assets/words_audio/de/umher.ogg",
+                  "sep_group": "sep_7_16",
+                  "sep_role": "prefix",
+                  "sep_inf": "umher·laufen",
+                  "sep_pair": "laufen … umher",
+                  "gloss": {
+                    "tr": "camminare / gironzolare liberamente",
+                    "def": "Verbo separabile (trennbares Verb): «umher·laufen» (laufen … umher) significa camminare qua e là in libertà.",
+                    "sep_inf": "umher·laufen",
+                    "sep_pair": "laufen … umher"
+                  }
                 },
                 {
                   "w": "Ale",
@@ -18651,8 +18624,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.241,
                   "e": 10.546,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -18670,13 +18642,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.85,
                   "e": 11.257,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "streicheln",
                   "clean": "streicheln",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 11.257,
                   "e": 12.273,
                   "audio_mp3": "assets/words_audio/de/streicheln.mp3",
@@ -18703,7 +18674,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "langohrige",
                   "clean": "langohrige",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 13.594,
                   "e": 14.61,
                   "audio_mp3": "assets/words_audio/de/langohrige.mp3",
@@ -18717,7 +18688,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 15.118,
                   "audio_mp3": "assets/words_audio/de/esel.mp3",
                   "audio_ogg": "assets/words_audio/de/esel.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'asinello",
                     "def": "Ein sanftes sardisches Tier mit langen, weichen Ohren."
@@ -19299,13 +19269,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.672,
                   "e": 1.066,
                   "audio_mp3": "assets/words_audio/de/rosa.mp3",
-                  "audio_ogg": "assets/words_audio/de/rosa.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/rosa.ogg"
                 },
                 {
                   "w": "Granitfelsen",
                   "clean": "granitfelsen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 1.066,
                   "e": 2.249,
                   "audio_mp3": "assets/words_audio/de/granitfelsen.mp3",
@@ -19327,13 +19296,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.545,
                   "e": 3.235,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "hilft",
                   "clean": "hilft",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 3.235,
                   "e": 3.728,
                   "audio_mp3": "assets/words_audio/de/hilft.mp3",
@@ -19346,8 +19314,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.728,
                   "e": 4.32,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "Ale",
@@ -19356,8 +19323,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.32,
                   "e": 4.616,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -19375,8 +19341,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.912,
                   "e": 5.306,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "mit",
@@ -19395,7 +19360,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 6.884,
                   "audio_mp3": "assets/words_audio/de/taucherbrille.mp3",
                   "audio_ogg": "assets/words_audio/de/taucherbrille.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "la maschera",
                     "def": "Brille, mit der man unter Wasser die Fische klar sieht."
@@ -19418,7 +19382,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.264,
                   "audio_mp3": "assets/words_audio/de/schnorchel.mp3",
                   "audio_ogg": "assets/words_audio/de/schnorchel.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il boccaglio",
                     "def": "Rohr zum Atmen, während man mit dem Kopf unter Wasser schwimmt."
@@ -20098,7 +20061,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "allerschönste",
                   "clean": "allerschönste",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 0.361,
                   "e": 1.577,
                   "audio_mp3": "assets/words_audio/de/allerschönste.mp3",
@@ -20107,7 +20070,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Moment",
                   "clean": "moment",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 1.577,
                   "e": 2.138,
                   "audio_mp3": "assets/words_audio/de/moment.mp3",
@@ -20125,7 +20088,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Reise",
                   "clean": "reise",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 2.419,
                   "e": 2.887,
                   "audio_mp3": "assets/words_audio/de/reise.mp3",
@@ -20134,7 +20097,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "beginnt",
                   "clean": "beginnt",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 2.887,
                   "e": 3.542,
                   "audio_mp3": "assets/words_audio/de/beginnt.mp3",
@@ -20165,13 +20128,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.01,
                   "e": 4.758,
                   "audio_mp3": "assets/words_audio/de/geheimen.mp3",
-                  "audio_ogg": "assets/words_audio/de/geheimen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/geheimen.ogg"
                 },
                 {
                   "w": "Buchten",
                   "clean": "buchten",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 4.758,
                   "e": 5.413,
                   "audio_mp3": "assets/words_audio/de/buchten.mp3",
@@ -20189,7 +20151,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "tollen",
                   "clean": "tollen",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 5.694,
                   "e": 6.255,
                   "audio_mp3": "assets/words_audio/de/tollen.mp3",
@@ -20198,7 +20160,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Hotels",
                   "clean": "hotels",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 6.255,
                   "e": 6.817,
                   "audio_mp3": "assets/words_audio/de/hotels.mp3",
@@ -20220,8 +20182,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.097,
                   "e": 7.846,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "Auf",
@@ -20248,8 +20209,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.407,
                   "e": 8.969,
                   "audio_mp3": "assets/words_audio/de/warmen.mp3",
-                  "audio_ogg": "assets/words_audio/de/warmen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/warmen.ogg"
                 },
                 {
                   "w": "rosa",
@@ -20258,13 +20218,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.969,
                   "e": 9.343,
                   "audio_mp3": "assets/words_audio/de/rosa.mp3",
-                  "audio_ogg": "assets/words_audio/de/rosa.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/rosa.ogg"
                 },
                 {
                   "w": "Granitfelsen",
                   "clean": "granitfelsen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.343,
                   "e": 10.466,
                   "audio_mp3": "assets/words_audio/de/granitfelsen.mp3",
@@ -20277,7 +20236,17 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.466,
                   "e": 11.027,
                   "audio_mp3": "assets/words_audio/de/setzen.mp3",
-                  "audio_ogg": "assets/words_audio/de/setzen.ogg"
+                  "audio_ogg": "assets/words_audio/de/setzen.ogg",
+                  "sep_group": "sep_20_29",
+                  "sep_role": "stem",
+                  "sep_inf": "auf·setzen",
+                  "sep_pair": "setzen … auf",
+                  "gloss": {
+                    "tr": "indossare / mettersi (maschera o cappello)",
+                    "def": "Verbo separabile (trennbares Verb): «auf·setzen» (setzen … auf) significa indossare sul viso o sulla testa.",
+                    "sep_inf": "auf·setzen",
+                    "sep_pair": "setzen … auf"
+                  }
                 },
                 {
                   "w": "Papino,",
@@ -20286,8 +20255,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.027,
                   "e": 11.682,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "Ale",
@@ -20296,8 +20264,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.682,
                   "e": 11.963,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -20315,8 +20282,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.243,
                   "e": 12.618,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "ihre",
@@ -20330,7 +20296,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Taucherbrillen",
                   "clean": "taucherbrillen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 12.992,
                   "e": 14.302,
                   "audio_mp3": "assets/words_audio/de/taucherbrillen.mp3",
@@ -20353,7 +20319,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 15.518,
                   "audio_mp3": "assets/words_audio/de/schnorchel.mp3",
                   "audio_ogg": "assets/words_audio/de/schnorchel.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "il boccaglio",
                     "def": "Rohr zum Atmen, während man mit dem Kopf unter Wasser schwimmt."
@@ -20362,11 +20327,21 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "auf.",
                   "clean": "auf",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 15.518,
                   "e": 15.892,
                   "audio_mp3": "assets/words_audio/de/auf.mp3",
-                  "audio_ogg": "assets/words_audio/de/auf.ogg"
+                  "audio_ogg": "assets/words_audio/de/auf.ogg",
+                  "sep_group": "sep_20_29",
+                  "sep_role": "prefix",
+                  "sep_inf": "auf·setzen",
+                  "sep_pair": "setzen … auf",
+                  "gloss": {
+                    "tr": "indossare / mettersi (maschera o cappello)",
+                    "def": "Verbo separabile (trennbares Verb): «auf·setzen» (setzen … auf) significa indossare sul viso o sulla testa.",
+                    "sep_inf": "auf·setzen",
+                    "sep_pair": "setzen … auf"
+                  }
                 }
               ]
             }
@@ -20934,7 +20909,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Buchten",
                   "clean": "buchten",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 0.608,
                   "e": 1.348,
                   "audio_mp3": "assets/words_audio/de/buchten.mp3",
@@ -20956,8 +20931,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.665,
                   "e": 2.405,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "ist",
@@ -20984,13 +20958,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.039,
                   "e": 3.673,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 },
                 {
                   "w": "kristallklar.",
                   "clean": "kristallklar",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 3.673,
                   "e": 5.047,
                   "audio_mp3": "assets/words_audio/de/kristallklar.mp3",
@@ -21003,8 +20976,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.047,
                   "e": 5.787,
                   "audio_mp3": "assets/words_audio/de/tausend.mp3",
-                  "audio_ogg": "assets/words_audio/de/tausend.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/tausend.ogg"
                 },
                 {
                   "w": "kleine",
@@ -21013,8 +20985,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.787,
                   "e": 6.421,
                   "audio_mp3": "assets/words_audio/de/kleine.mp3",
-                  "audio_ogg": "assets/words_audio/de/kleine.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kleine.ogg"
                 },
                 {
                   "w": "silberne",
@@ -21023,8 +20994,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.421,
                   "e": 7.267,
                   "audio_mp3": "assets/words_audio/de/silberne.mp3",
-                  "audio_ogg": "assets/words_audio/de/silberne.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/silberne.ogg"
                 },
                 {
                   "w": "Fische",
@@ -21034,7 +21004,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 7.901,
                   "audio_mp3": "assets/words_audio/de/fische.mp3",
                   "audio_ogg": "assets/words_audio/de/fische.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "i pesciolini",
                     "def": "Tausend kleine silberne Fische in den Buchten von Arbatax."
@@ -21061,7 +21030,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Kreis",
                   "clean": "kreis",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 9.064,
                   "e": 9.592,
                   "audio_mp3": "assets/words_audio/de/kreis.mp3",
@@ -21083,8 +21052,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.803,
                   "e": 10.12,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -21102,8 +21070,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.438,
                   "e": 10.966,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 }
               ]
             }
@@ -21830,7 +21797,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Buchten",
                   "clean": "buchten",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 1.398,
                   "e": 2.057,
                   "audio_mp3": "assets/words_audio/de/buchten.mp3",
@@ -21848,7 +21815,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Hotels",
                   "clean": "hotels",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 2.339,
                   "e": 2.904,
                   "audio_mp3": "assets/words_audio/de/hotels.mp3",
@@ -21870,8 +21837,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.186,
                   "e": 3.845,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "ins",
@@ -21889,8 +21855,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.128,
                   "e": 4.693,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 },
                 {
                   "w": "gehen,",
@@ -21926,8 +21891,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.822,
                   "e": 6.199,
                   "audio_mp3": "assets/words_audio/de/meer.mp3",
-                  "audio_ogg": "assets/words_audio/de/meer.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/meer.ogg"
                 },
                 {
                   "w": "so",
@@ -21941,7 +21905,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "kristallklar,",
                   "clean": "kristallklar",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 6.387,
                   "e": 7.611,
                   "audio_mp3": "assets/words_audio/de/kristallklar.mp3",
@@ -21981,8 +21945,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.741,
                   "e": 9.776,
                   "audio_mp3": "assets/words_audio/de/kieselstein.mp3",
-                  "audio_ogg": "assets/words_audio/de/kieselstein.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kieselstein.ogg"
                 },
                 {
                   "w": "sieht.",
@@ -22000,8 +21963,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.341,
                   "e": 11.0,
                   "audio_mp3": "assets/words_audio/de/tausend.mp3",
-                  "audio_ogg": "assets/words_audio/de/tausend.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/tausend.ogg"
                 },
                 {
                   "w": "kleine",
@@ -22010,8 +21972,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.0,
                   "e": 11.565,
                   "audio_mp3": "assets/words_audio/de/kleine.mp3",
-                  "audio_ogg": "assets/words_audio/de/kleine.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kleine.ogg"
                 },
                 {
                   "w": "silberne",
@@ -22020,8 +21981,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.565,
                   "e": 12.318,
                   "audio_mp3": "assets/words_audio/de/silberne.mp3",
-                  "audio_ogg": "assets/words_audio/de/silberne.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/silberne.ogg"
                 },
                 {
                   "w": "und",
@@ -22035,7 +21995,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "goldene",
                   "clean": "goldene",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 12.6,
                   "e": 13.259,
                   "audio_mp3": "assets/words_audio/de/goldene.mp3",
@@ -22049,7 +22009,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 13.824,
                   "audio_mp3": "assets/words_audio/de/fische.mp3",
                   "audio_ogg": "assets/words_audio/de/fische.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "i pesciolini",
                     "def": "Tausend kleine silberne Fische in den Buchten von Arbatax."
@@ -22058,7 +22017,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "kreisen",
                   "clean": "kreisen",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 13.824,
                   "e": 14.483,
                   "audio_mp3": "assets/words_audio/de/kreisen.mp3",
@@ -22067,7 +22026,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "neugierig",
                   "clean": "neugierig",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 14.483,
                   "e": 15.33,
                   "audio_mp3": "assets/words_audio/de/neugierig.mp3",
@@ -22089,8 +22048,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 15.518,
                   "e": 15.801,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -22108,8 +22066,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 16.083,
                   "e": 16.554,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 }
               ]
             }
@@ -22738,8 +22695,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.08,
                   "e": 0.595,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "umarmt",
@@ -22757,8 +22713,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.11,
                   "e": 1.367,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -22776,8 +22731,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.625,
                   "e": 1.968,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "im",
@@ -22795,8 +22749,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.14,
                   "e": 2.655,
                   "audio_mp3": "assets/words_audio/de/wasser.mp3",
-                  "audio_ogg": "assets/words_audio/de/wasser.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/wasser.ogg"
                 },
                 {
                   "w": "und",
@@ -22837,11 +22790,21 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "nehme",
                   "clean": "nehme",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 4.886,
                   "e": 5.315,
                   "audio_mp3": "assets/words_audio/de/nehme.mp3",
-                  "audio_ogg": "assets/words_audio/de/nehme.ogg"
+                  "audio_ogg": "assets/words_audio/de/nehme.ogg",
+                  "sep_group": "sep_11_14",
+                  "sep_role": "stem",
+                  "sep_inf": "mit·nehmen",
+                  "sep_pair": "nehme … mit",
+                  "gloss": {
+                    "tr": "portare con sé",
+                    "def": "Verbo separabile (trennbares Verb): «mit·nehmen» (nehme … mit) significa portare qualcuno con sé in viaggio.",
+                    "sep_inf": "mit·nehmen",
+                    "sep_pair": "nehme … mit"
+                  }
                 },
                 {
                   "w": "ich",
@@ -22864,11 +22827,21 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "mit",
                   "clean": "mit",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 5.916,
                   "e": 6.173,
                   "audio_mp3": "assets/words_audio/de/mit.mp3",
-                  "audio_ogg": "assets/words_audio/de/mit.ogg"
+                  "audio_ogg": "assets/words_audio/de/mit.ogg",
+                  "sep_group": "sep_11_14",
+                  "sep_role": "prefix",
+                  "sep_inf": "mit·nehmen",
+                  "sep_pair": "nehme … mit",
+                  "gloss": {
+                    "tr": "portare con sé",
+                    "def": "Verbo separabile (trennbares Verb): «mit·nehmen» (nehme … mit) significa portare qualcuno con sé in viaggio.",
+                    "sep_inf": "mit·nehmen",
+                    "sep_pair": "nehme … mit"
+                  }
                 },
                 {
                   "w": "nach",
@@ -22887,7 +22860,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 7.117,
                   "audio_mp3": "assets/words_audio/de/ägypten.mp3",
                   "audio_ogg": "assets/words_audio/de/ägypten.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'Egitto",
                     "def": "Das Land am Roten Meer mit dem großen Korallenriff."
@@ -22910,7 +22882,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.576,
                   "audio_mp3": "assets/words_audio/de/korallenriff.mp3",
                   "audio_ogg": "assets/words_audio/de/korallenriff.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "la barriera corallina",
                     "def": "Ein bunter Unterwassergarten voller Korallen und Fische."
@@ -23783,8 +23754,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.32,
                   "e": 0.801,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "sieht,",
@@ -23807,7 +23777,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "sicher",
                   "clean": "sicher",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 1.522,
                   "e": 2.002,
                   "audio_mp3": "assets/words_audio/de/sicher.mp3",
@@ -23820,8 +23790,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.002,
                   "e": 2.242,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -23839,8 +23808,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.483,
                   "e": 2.803,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "in",
@@ -23858,13 +23826,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.963,
                   "e": 3.524,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "schnorcheln,",
                   "clean": "schnorcheln",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 3.524,
                   "e": 4.485,
                   "audio_mp3": "assets/words_audio/de/schnorcheln.mp3",
@@ -23904,8 +23871,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 5.366,
                   "e": 5.846,
                   "audio_mp3": "assets/words_audio/de/stolz.mp3",
-                  "audio_ogg": "assets/words_audio/de/stolz.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/stolz.ogg"
                 },
                 {
                   "w": "«Ihr",
@@ -23937,7 +23903,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "geschickt,",
                   "clean": "geschickt",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 6.647,
                   "e": 7.448,
                   "audio_mp3": "assets/words_audio/de/geschickt.mp3",
@@ -23959,8 +23925,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.768,
                   "e": 8.249,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "euch",
@@ -24015,7 +23980,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 10.491,
                   "audio_mp3": "assets/words_audio/de/ägypten.mp3",
                   "audio_ogg": "assets/words_audio/de/ägypten.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'Egitto",
                     "def": "Das Land am Roten Meer mit dem großen Korallenriff."
@@ -24042,7 +24006,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "echten",
                   "clean": "echten",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 11.052,
                   "e": 11.532,
                   "audio_mp3": "assets/words_audio/de/echten.mp3",
@@ -24056,7 +24020,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 12.493,
                   "audio_mp3": "assets/words_audio/de/korallenriff.mp3",
                   "audio_ogg": "assets/words_audio/de/korallenriff.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "la barriera corallina",
                     "def": "Ein bunter Unterwassergarten voller Korallen und Fische."
@@ -24065,7 +24028,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "mitnimmt!»",
                   "clean": "mitnimmt",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 12.493,
                   "e": 13.294,
                   "audio_mp3": "assets/words_audio/de/mitnimmt.mp3",
@@ -24591,8 +24554,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 0.333,
                   "e": 1.598,
                   "audio_mp3": "assets/words_audio/de/sonnenuntergang.mp3",
-                  "audio_ogg": "assets/words_audio/de/sonnenuntergang.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/sonnenuntergang.ogg"
                 },
                 {
                   "w": "umarmt",
@@ -24624,7 +24586,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "ganze",
                   "clean": "ganze",
-                  "pos": "other",
+                  "pos": "adj",
                   "s": 2.695,
                   "e": 3.116,
                   "audio_mp3": "assets/words_audio/de/ganze.mp3",
@@ -24637,8 +24599,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.116,
                   "e": 3.707,
                   "audio_mp3": "assets/words_audio/de/familie.mp3",
-                  "audio_ogg": "assets/words_audio/de/familie.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/familie.ogg"
                 },
                 {
                   "w": "glücklich",
@@ -24647,8 +24608,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 3.707,
                   "e": 4.466,
                   "audio_mp3": "assets/words_audio/de/glücklich.mp3",
-                  "audio_ogg": "assets/words_audio/de/glücklich.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/glücklich.ogg"
                 },
                 {
                   "w": "auf",
@@ -24675,8 +24635,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.972,
                   "e": 5.309,
                   "audio_mp3": "assets/words_audio/de/rosa.mp3",
-                  "audio_ogg": "assets/words_audio/de/rosa.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/rosa.ogg"
                 },
                 {
                   "w": "Felsen",
@@ -24686,7 +24645,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 5.815,
                   "audio_mp3": "assets/words_audio/de/felsen.mp3",
                   "audio_ogg": "assets/words_audio/de/felsen.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "gli scogli",
                     "def": "Große Steine und Klippen am Meer."
@@ -24708,8 +24666,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 6.068,
                   "e": 6.743,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "Auf",
@@ -24723,7 +24680,7 @@ window.KIDS_BOOKS_CATALOG = {
                 {
                   "w": "Wiedersehen,",
                   "clean": "wiedersehen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 6.996,
                   "e": 8.008,
                   "audio_mp3": "assets/words_audio/de/wiedersehen.mp3",
@@ -24737,7 +24694,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 8.851,
                   "audio_mp3": "assets/words_audio/de/sardinien.mp3",
                   "audio_ogg": "assets/words_audio/de/sardinien.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "la Sardegna",
                     "def": "Eine wunderschöne große Insel im Mittelmeer."
@@ -25553,8 +25509,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 1.114,
                   "e": 1.63,
                   "audio_mp3": "assets/words_audio/de/sonne.mp3",
-                  "audio_ogg": "assets/words_audio/de/sonne.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/sonne.ogg"
                 },
                 {
                   "w": "hinter",
@@ -25581,13 +25536,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 2.561,
                   "e": 2.974,
                   "audio_mp3": "assets/words_audio/de/rosa.mp3",
-                  "audio_ogg": "assets/words_audio/de/rosa.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/rosa.ogg"
                 },
                 {
                   "w": "Granitfelsen",
                   "clean": "granitfelsen",
-                  "pos": "other",
+                  "pos": "noun",
                   "s": 2.974,
                   "e": 4.215,
                   "audio_mp3": "assets/words_audio/de/granitfelsen.mp3",
@@ -25609,13 +25563,12 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 4.525,
                   "e": 5.248,
                   "audio_mp3": "assets/words_audio/de/arbatax.mp3",
-                  "audio_ogg": "assets/words_audio/de/arbatax.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/arbatax.ogg"
                 },
                 {
                   "w": "versinkt,",
                   "clean": "versinkt",
-                  "pos": "other",
+                  "pos": "verb",
                   "s": 5.248,
                   "e": 6.179,
                   "audio_mp3": "assets/words_audio/de/versinkt.mp3",
@@ -25646,8 +25599,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 7.316,
                   "e": 8.039,
                   "audio_mp3": "assets/words_audio/de/papino.mp3",
-                  "audio_ogg": "assets/words_audio/de/papino.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/papino.ogg"
                 },
                 {
                   "w": "Mama",
@@ -25656,8 +25608,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.039,
                   "e": 8.453,
                   "audio_mp3": "assets/words_audio/de/mama.mp3",
-                  "audio_ogg": "assets/words_audio/de/mama.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/mama.ogg"
                 },
                 {
                   "w": "Kate,",
@@ -25666,8 +25617,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.453,
                   "e": 8.969,
                   "audio_mp3": "assets/words_audio/de/kate.mp3",
-                  "audio_ogg": "assets/words_audio/de/kate.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/kate.ogg"
                 },
                 {
                   "w": "Oma",
@@ -25676,8 +25626,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 8.969,
                   "e": 9.28,
                   "audio_mp3": "assets/words_audio/de/oma.mp3",
-                  "audio_ogg": "assets/words_audio/de/oma.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/oma.ogg"
                 },
                 {
                   "w": "Lucilla,",
@@ -25686,8 +25635,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 9.28,
                   "e": 10.106,
                   "audio_mp3": "assets/words_audio/de/lucilla.mp3",
-                  "audio_ogg": "assets/words_audio/de/lucilla.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/lucilla.ogg"
                 },
                 {
                   "w": "Ale",
@@ -25696,8 +25644,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.106,
                   "e": 10.417,
                   "audio_mp3": "assets/words_audio/de/ale.mp3",
-                  "audio_ogg": "assets/words_audio/de/ale.ogg",
-                  "g": "f"
+                  "audio_ogg": "assets/words_audio/de/ale.ogg"
                 },
                 {
                   "w": "und",
@@ -25715,8 +25662,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 10.727,
                   "e": 11.14,
                   "audio_mp3": "assets/words_audio/de/seby.mp3",
-                  "audio_ogg": "assets/words_audio/de/seby.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/seby.ogg"
                 },
                 {
                   "w": "glücklich.",
@@ -25725,8 +25671,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 11.14,
                   "e": 12.174,
                   "audio_mp3": "assets/words_audio/de/glücklich.mp3",
-                  "audio_ogg": "assets/words_audio/de/glücklich.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/glücklich.ogg"
                 },
                 {
                   "w": "Im",
@@ -25744,8 +25689,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 12.381,
                   "e": 13.001,
                   "audio_mp3": "assets/words_audio/de/herzen.mp3",
-                  "audio_ogg": "assets/words_audio/de/herzen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/herzen.ogg"
                 },
                 {
                   "w": "tragen",
@@ -25773,7 +25717,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 14.551,
                   "audio_mp3": "assets/words_audio/de/cousin.mp3",
                   "audio_ogg": "assets/words_audio/de/cousin.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "il cugino",
                     "def": "Cousin Massimo ist einer der wenigen verbleibenden Carlessos!"
@@ -25787,7 +25730,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 15.378,
                   "audio_mp3": "assets/words_audio/de/massimo.mp3",
                   "audio_ogg": "assets/words_audio/de/massimo.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "Cugino Massimo Carlesso",
                     "def": "Papinos lieber Cousin Massimo in Sardinien!"
@@ -25809,8 +25751,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 15.688,
                   "e": 16.619,
                   "audio_mp3": "assets/words_audio/de/silbernen.mp3",
-                  "audio_ogg": "assets/words_audio/de/silbernen.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/silbernen.ogg"
                 },
                 {
                   "w": "Fische",
@@ -25820,7 +25761,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 17.239,
                   "audio_mp3": "assets/words_audio/de/fische.mp3",
                   "audio_ogg": "assets/words_audio/de/fische.ogg",
-                  "g": "f",
                   "gloss": {
                     "tr": "i pesciolini",
                     "def": "Tausend kleine silberne Fische in den Buchten von Arbatax."
@@ -25851,8 +25791,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "s": 17.859,
                   "e": 18.376,
                   "audio_mp3": "assets/words_audio/de/traum.mp3",
-                  "audio_ogg": "assets/words_audio/de/traum.ogg",
-                  "g": "m"
+                  "audio_ogg": "assets/words_audio/de/traum.ogg"
                 },
                 {
                   "w": "von",
@@ -25871,7 +25810,6 @@ window.KIDS_BOOKS_CATALOG = {
                   "e": 19.513,
                   "audio_mp3": "assets/words_audio/de/ägypten.mp3",
                   "audio_ogg": "assets/words_audio/de/ägypten.ogg",
-                  "g": "m",
                   "gloss": {
                     "tr": "l'Egitto",
                     "def": "Das Land am Roten Meer mit dem großen Korallenriff."

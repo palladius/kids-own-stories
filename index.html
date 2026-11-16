@@ -2736,15 +2736,46 @@
     }
 
     .kids-sentence-box {
+      position: relative;
       font-family: 'Nunito', sans-serif;
       font-size: clamp(1.02rem, 1.32vw, 1.28rem);
       font-weight: 800;
-      line-height: 1.55;
+      line-height: 1.62;
       color: #0f172a;
       background: transparent;
       border: none;
-      padding: 2px 2px;
+      padding: 2px 2px 10px;
       box-shadow: none;
+    }
+
+    .kids-sep-verb-arcs {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 18;
+      display: none;
+    }
+
+    .grammar-on .kids-sep-verb-arcs {
+      display: block;
+    }
+
+    .sep-verb-arc-group .sep-verb-arc-line {
+      transition: stroke-width 0.15s ease, stroke 0.15s ease, filter 0.15s ease;
+    }
+
+    .sep-verb-arc-group.active-arc .sep-verb-arc-line {
+      stroke: #7f1d1d;
+      stroke-width: 3.1;
+      filter: drop-shadow(0 2px 5px rgba(153, 27, 27, 0.55));
+    }
+
+    .sep-verb-arc-group.active-arc .sep-verb-arc-dot {
+      fill: #7f1d1d;
+      r: 4px;
     }
 
     .kids-sentence-box.uppercase-mode {
@@ -2881,6 +2912,31 @@
       background: rgba(239, 68, 68, 0.08);
     }
 
+    /* Separable Verbs in German (Trennbare Verben, e.g. steigt … aus -> aus·steigen):
+       Both halves colored in a deeper crimson/bordeaux red (#991b1b), both underlined as brothers,
+       and joined by the curved dashed cordicella! */
+    .grammar-on .kw-token.kw-sep-verb {
+      color: #991b1b !important;
+      font-weight: 900;
+      background: rgba(153, 27, 27, 0.13);
+      border-bottom: 2.5px dashed #991b1b !important;
+      box-shadow: 0 1px 4px rgba(153, 27, 27, 0.14);
+    }
+
+    .grammar-on .kw-token.kw-sep-verb > span:nth-child(2) {
+      text-decoration: underline solid #991b1b 2px;
+      text-underline-offset: 2px;
+    }
+
+    .kw-token.kw-sep-verb.sep-brother-hover,
+    .grammar-on .kw-token.kw-sep-verb:hover {
+      background: rgba(254, 202, 202, 0.95) !important;
+      color: #7f1d1d !important;
+      border-bottom: 2.5px solid #7f1d1d !important;
+      box-shadow: 0 3px 10px rgba(153, 27, 27, 0.35);
+      transform: translateY(-1px);
+    }
+
     .grammar-on .kw-token[data-pos="adv"] {
       color: #7e22ce;
       border-bottom-color: #a855f7;
@@ -2950,7 +3006,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: max-content;
-      max-width: 260px;
+      max-width: 268px;
       background: #0f172a;
       color: #f8fafc;
       border: 1.5px solid #ffb703;
@@ -2967,6 +3023,18 @@
       pointer-events: none;
       white-space: normal;
       text-align: left;
+    }
+
+    .kw-gloss-popover.align-right {
+      left: auto;
+      right: -4px;
+      transform: none;
+    }
+
+    .kw-gloss-popover.align-left {
+      left: -4px;
+      right: auto;
+      transform: none;
     }
 
     .kw-token:hover .kw-gloss-popover {
@@ -3344,7 +3412,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.0';
+    const APP_VERSION = '0.13.1';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -5024,8 +5092,8 @@
       return { icon: '', label: '' };
     }
 
-    function formatWordWithGenderEnding(rawWord, pos, gender) {
-      if ((pos !== 'noun' && pos !== 'adj') || !gender) {
+    function formatWordWithGenderEnding(rawWord, pos, gender, lang = currentLang) {
+      if (lang === 'de' || (pos !== 'noun' && pos !== 'adj') || !gender) {
         return escapeHtml(rawWord);
       }
       // Match leading punctuation/prefix, letters, and trailing punctuation
@@ -5039,6 +5107,114 @@
       return `${escapeHtml(pre)}<span class="kw-stem">${escapeHtml(stem)}</span><span class="${endCls}">${escapeHtml(ending)}</span>${escapeHtml(post)}`;
     }
 
+    function highlightSepVerbBrothers(tokenEl, active) {
+      if (!tokenEl) return;
+      const box = tokenEl.closest('.kids-sentence-box');
+      if (box && active) {
+        const pop = tokenEl.querySelector('.kw-gloss-popover');
+        if (pop) {
+          const boxRect = box.getBoundingClientRect();
+          const tokRect = tokenEl.getBoundingClientRect();
+          const relCenter = (tokRect.left - boxRect.left) + tokRect.width * 0.5;
+          pop.classList.remove('align-left', 'align-right');
+          if (relCenter > boxRect.width * 0.65) {
+            pop.classList.add('align-right');
+          } else if (relCenter < boxRect.width * 0.30) {
+            pop.classList.add('align-left');
+          }
+        }
+      }
+      const sepGroup = tokenEl.getAttribute('data-sep-group');
+      if (!sepGroup || !box) return;
+      box.querySelectorAll(`.kw-token[data-sep-group="${sepGroup}"]`).forEach(el => {
+        el.classList.toggle('sep-brother-hover', Boolean(active));
+      });
+      box.querySelectorAll(`.sep-verb-arc-group[data-sep-group="${sepGroup}"]`).forEach(g => {
+        g.classList.toggle('active-arc', Boolean(active));
+      });
+    }
+
+    function drawKidsSeparableVerbArcs() {
+      document.querySelectorAll('.kids-sentence-box').forEach(box => {
+        const svg = box.querySelector('.kids-sep-verb-arcs');
+        if (!svg) return;
+        svg.innerHTML = '';
+        const boxRect = box.getBoundingClientRect();
+        if (boxRect.width === 0) return;
+
+        const allTokens = Array.from(box.querySelectorAll('.kw-token'));
+        const groups = {};
+        allTokens.forEach(el => {
+          const gid = el.getAttribute('data-sep-group');
+          if (gid) {
+            if (!groups[gid]) groups[gid] = [];
+            groups[gid].push(el);
+          }
+        });
+
+        let svgContent = '';
+        Object.entries(groups).forEach(([gid, els]) => {
+          if (els.length < 2) return;
+          const stemEl = els.find(e => e.getAttribute('data-sep-role') === 'stem') || els[0];
+          const prefixEl = els.find(e => e.getAttribute('data-sep-role') === 'prefix') || els[1];
+          const r1 = stemEl.getBoundingClientRect();
+          const r2 = prefixEl.getBoundingClientRect();
+          if (r1.width === 0 || r2.width === 0) return;
+
+          const x1 = (r1.left - boxRect.left) + r1.width * 0.5;
+          const y1Bottom = (r1.bottom - boxRect.top) + 1;
+          const x2 = (r2.left - boxRect.left) + r2.width * 0.5;
+          const y2Bottom = (r2.bottom - boxRect.top) + 1;
+          const y2Top = (r2.top - boxRect.top) - 1;
+          const sameRow = Math.abs(r2.top - r1.top) < 14;
+
+          let sx = x1;
+          let sy = y1Bottom;
+          let ex = x2;
+          let ey = y2Bottom;
+          let d = '';
+
+          if (sameRow) {
+            const span = Math.abs(ex - sx);
+            const dip = Math.min(15, Math.max(9, span * 0.11));
+            const yCtrl = Math.max(sy, ey) + dip;
+            d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${(sx + (ex - sx) * 0.25).toFixed(1)} ${yCtrl.toFixed(1)}, ${(sx + (ex - sx) * 0.75).toFixed(1)} ${yCtrl.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+          } else {
+            const hasTokenToRightOnPrefixRow = allTokens.some(tok => {
+              if (tok === prefixEl || tok === stemEl) return false;
+              const tr = tok.getBoundingClientRect();
+              return Math.abs(tr.top - r2.top) < 14 && tr.left > r2.right + 4;
+            });
+
+            if (!hasTokenToRightOnPrefixRow && sx > (r2.right - boxRect.left) + 12) {
+              // Empty space on prefix's row below stem -> draw a rounded bottom-to-bottom cordicella arc!
+              ey = y2Bottom;
+              const yDip = ey + 10;
+              d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${sx.toFixed(1)} ${(ey + 5).toFixed(1)}, ${(ex + (sx - ex) * 0.36).toFixed(1)} ${yDip.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+            } else {
+              // Route smoothly through the inter-line whitespace channel
+              ey = y2Top;
+              const yMid = (sy + ey) * 0.5;
+              d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${sx.toFixed(1)} ${(yMid + 4).toFixed(1)}, ${ex.toFixed(1)} ${(yMid - 4).toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+            }
+          }
+
+          svgContent += `
+            <g class="sep-verb-arc-group" data-sep-group="${gid}">
+              <path d="${d}" stroke="rgba(253, 250, 242, 0.88)" stroke-width="4.6" stroke-linecap="round" fill="none"/>
+              <path class="sep-verb-arc-line" d="${d}" stroke="#991b1b" stroke-width="2.3" stroke-dasharray="5 3.5" stroke-linecap="round" fill="none"/>
+              <circle class="sep-verb-arc-dot" cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="3" fill="#991b1b"/>
+              <circle class="sep-verb-arc-dot" cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="3" fill="#991b1b"/>
+            </g>
+          `;
+        });
+        svg.innerHTML = svgContent;
+      });
+    }
+    window.addEventListener('resize', () => {
+      if (kidsBookMode) requestAnimationFrame(drawKidsSeparableVerbArcs);
+    });
+
     let kidsSentenceKaraokeRaf = null;
 
     function playSingleWordAudio(mp3Url, oggUrl, tokenEl) {
@@ -5046,13 +5222,20 @@
       if (!audio) return;
       if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
       document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
-      if (tokenEl) tokenEl.classList.add('active');
+      if (tokenEl) {
+        tokenEl.classList.add('active');
+        const sepGroup = tokenEl.getAttribute('data-sep-group');
+        if (sepGroup) {
+          const box = tokenEl.closest('.kids-sentence-box');
+          box?.querySelectorAll(`.kw-token[data-sep-group="${sepGroup}"]`).forEach(el => el.classList.add('active'));
+        }
+      }
 
       audio.pause();
       audio.src = `${mp3Url}?v=${APP_VERSION}`;
       audio.playbackRate = 0.95;
       audio.onended = () => {
-        if (tokenEl) tokenEl.classList.remove('active');
+        document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
       };
       audio.play().catch(() => {
         if (oggUrl) {
@@ -5466,27 +5649,51 @@
 
       const tokensHtml = (levelData?.tokens || []).map(tok => {
         const posMeta = getPosMeta(tok.pos, lang);
-        const hasGloss = Boolean(tok.gloss);
-        const genderLabel = tok.g === 'm'
-          ? (isDe ? ' • mask.' : (isFr ? ' • masc.' : ' • masch. 🔵'))
-          : (tok.g === 'f' ? (isDe ? ' • fem.' : (isFr ? ' • fém.' : ' • femm. 🌸')) : '');
-        const glossHtml = hasGloss ? `
-          <span class="kw-gloss-popover">
-            <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong>
-            ${posMeta.label ? `<span style="opacity:0.85;">(${posMeta.icon} ${posMeta.label}${genderLabel})</span>` : ''}<br>
-            🔄 <em>${escapeHtml(tok.gloss.tr)}</em><br>
-            💡 ${escapeHtml(tok.gloss.def)}
-          </span>
-        ` : (posMeta.label ? `
-          <span class="kw-gloss-popover">
-            <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong> (${posMeta.icon} ${posMeta.label}${genderLabel})<br>
-            🔊 ${isDe ? 'Klicke, um das Wort zu hören' : (isFr ? 'Clique pour écouter le mot' : 'Clicca per ascoltare la parola')}
-          </span>
-        ` : '');
+        const isSepVerb = Boolean(tok.sep_group);
+        const hasGloss = Boolean(tok.gloss && !isSepVerb);
+        const genderLabel = (!isDe && tok.g === 'm')
+          ? (isFr ? ' • masc.' : ' • masch. 🔵')
+          : ((!isDe && tok.g === 'f') ? (isFr ? ' • fém.' : ' • femm. 🌸') : '');
 
-        const innerWordHtml = formatWordWithGenderEnding(tok.w, tok.pos, tok.g);
+        let glossHtml = '';
+        if (isSepVerb && tok.gloss) {
+          glossHtml = `
+            <span class="kw-gloss-popover">
+              <strong style="color:#fde047;">${escapeHtml(tok.sep_pair || tok.w)}</strong>
+              <span style="opacity:0.95;">(🏃🔗 Trennbares Verb: <strong style="color:#fca5a5;text-decoration:underline;">${escapeHtml(tok.sep_inf || tok.gloss.sep_inf || '')}</strong>)</span><br>
+              🔄 <em>${escapeHtml(tok.gloss.tr)}</em><br>
+              💡 ${escapeHtml(tok.gloss.def)}<br>
+              <span style="opacity:0.8;font-size:0.72rem;">🔊 ${isDe ? 'Klicke, um das Wort zu hören' : 'Clicca per ascoltare'}</span>
+            </span>
+          `;
+        } else if (hasGloss) {
+          glossHtml = `
+            <span class="kw-gloss-popover">
+              <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong>
+              ${posMeta.label ? `<span style="opacity:0.85;">(${posMeta.icon} ${posMeta.label}${genderLabel})</span>` : ''}<br>
+              🔄 <em>${escapeHtml(tok.gloss.tr)}</em><br>
+              💡 ${escapeHtml(tok.gloss.def)}
+            </span>
+          `;
+        } else if (posMeta.label) {
+          glossHtml = `
+            <span class="kw-gloss-popover">
+              <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong> (${posMeta.icon} ${posMeta.label}${genderLabel})<br>
+              🔊 ${isDe ? 'Klicke, um das Wort zu hören' : (isFr ? 'Clique pour écouter le mot' : 'Clicca per ascoltare la parola')}
+            </span>
+          `;
+        }
 
-        return `<span class="kw-token ${hasGloss ? 'kw-has-gloss' : ''}" data-pos="${tok.pos}" data-gender="${tok.g || ''}" data-start="${tok.s}" data-end="${tok.e}" onclick="event.stopPropagation(); playSingleWordAudio('${tok.audio_mp3}', '${tok.audio_ogg}', this)"><span class="kw-pos-icon">${posMeta.icon}</span><span>${innerWordHtml}</span>${glossHtml}</span>`;
+        const innerWordHtml = formatWordWithGenderEnding(tok.w, tok.pos, tok.g, lang);
+        const iconDisplay = isSepVerb
+          ? (tok.sep_role === 'prefix' ? '🔗' : '🏃🔗')
+          : posMeta.icon;
+        const sepClasses = isSepVerb ? `kw-sep-verb kw-sep-${tok.sep_role || 'part'}` : '';
+        const sepAttrs = isSepVerb
+          ? `data-sep-group="${escapeHtml(tok.sep_group)}" data-sep-role="${escapeHtml(tok.sep_role || '')}" data-sep-inf="${escapeHtml(tok.sep_inf || '')}"`
+          : '';
+
+        return `<span class="kw-token ${hasGloss ? 'kw-has-gloss' : ''} ${sepClasses}" data-pos="${tok.pos}" data-gender="${isDe ? '' : (tok.g || '')}" ${sepAttrs} data-start="${tok.s}" data-end="${tok.e}" onmouseenter="highlightSepVerbBrothers(this, true)" onmouseleave="highlightSepVerbBrothers(this, false)" onclick="event.stopPropagation(); playSingleWordAudio('${tok.audio_mp3}', '${tok.audio_ogg}', this)"><span class="kw-pos-icon">${iconDisplay}</span><span>${innerWordHtml}</span>${glossHtml}</span>`;
       }).join(' ');
 
       const questions = pageObj.questions?.[lang] || pageObj.questions?.it || [];
@@ -5514,6 +5721,7 @@
             <span style="opacity:0.75;">Pag. ${pageObj.page}/${kb.total_pages}</span>
           </div>
           <div class="kids-sentence-box ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}" lang="${lang}" spellcheck="false" autocorrect="off" translate="no">
+            <svg class="kids-sep-verb-arcs" aria-hidden="true"></svg>
             ${tokensHtml}
           </div>
           <div class="kids-didactic-bar">
@@ -5604,6 +5812,8 @@
         rightEl.className = 'book-page book-page-right is-primary-page';
         rightEl.onclick = null;
         rightEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[rightIdx], rightIdx, 'right');
+
+        requestAnimationFrame(drawKidsSeparableVerbArcs);
         return;
       }
 

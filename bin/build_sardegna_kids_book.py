@@ -267,36 +267,87 @@ FR_ADVS = {
 
 DE_NOUNS = {
     "papino", "mama", "kate", "oma", "lucilla", "ale", "seby", "flugzeug", "flughafen", "olbia",
-    "sardinien", "familie", "insel", "myrte", "meer", "strand", "cousin", "massimo", "carlesso",
-    "wasser", "wellen", "sonne", "felsen", "bucht", "brüder", "diamanten", "bäumen", "helm",
-    "kopf", "seilen", "terrasse", "abend", "vollmond", "himmel", "geschichten", "tisch",
-    "schlauchboot", "golf", "orosei", "klippen", "felsnadel", "goloritzè", "schwimmwesten",
-    "meeresgrotten", "wind", "haaren", "bergen", "supramonte", "wacholder", "thymian",
-    "gipfel", "panorama", "täler", "stille", "bogen", "pfeile", "zielscheibe", "esel",
-    "schnauze", "trikot", "nummer", "park", "arbatax", "olivenbäumen", "ohren", "granit",
-    "taucherbrille", "schnorchel", "fische", "kieselstein", "ägypten", "korallenriff",
-    "versprechen", "sonnenuntergang", "herzen", "traum"
+    "sardinien", "sardiniens", "norden", "familie", "insel", "myrte", "meer", "strand", "cousin", "massimo", "carlesso", "carlessos",
+    "wasser", "wellen", "sonne", "felsen", "bucht", "buchten", "brüder", "diamanten", "bäumen", "helm", "sicherheitshelm",
+    "kopf", "seilen", "holz", "terrasse", "abend", "vollmond", "himmel", "nachthimmel", "geschichten", "tisch",
+    "schlauchboot", "boot", "golf", "orosei", "klippen", "felsklippen", "felsnadel", "felsbogen", "felsbögen", "steinbögen", "goloritzè", "schwimmwesten",
+    "meeresgrotten", "wind", "haaren", "bergen", "berge", "supramonte", "wacholder", "thymian",
+    "gipfel", "berggipfel", "aussichtspunkt", "panorama", "täler", "stille", "bogen", "holzbogen", "pfeile", "zielscheibe", "esel",
+    "schnauze", "trikot", "italien-trikot", "nummer", "park", "kletterpark", "naturpark", "olivenhain", "arbatax", "olivenbäumen", "blumenwiesen", "ohren", "granit", "granitfelsen",
+    "taucherbrille", "taucherbrillen", "schnorchel", "fische", "kieselstein", "ägypten", "korallenriff",
+    "versprechen", "sonnenuntergang", "herzen", "traum", "luft", "rucksack", "rucksäcken", "steinpfad", "pfaden", "schulter", "kreis", "mitte", "zehn", "hotels", "reise", "moment", "sonne", "tieren", "tiere", "grund", "küste", "kalkstein", "jahrtausende", "nähe", "wasser", "tag", "morgen", "springen", "umarmung", "wiedersehen"
 }
 DE_VERBS = {
     "landet", "kommen", "kommt", "steigen", "steigt", "riecht", "duftet", "umarmt", "umarmen",
     "begrüßen", "besuchen", "ist", "sind", "laufen", "läuft", "spielen", "spielt", "schwimmen",
-    "schwimmt", "lachen", "lacht", "glitzern", "glitzert", "tragen", "trägt", "klettern",
+    "schwimmt", "lachen", "lacht", "glitzern", "glitzert", "funkeln", "lässt", "tragen", "trägt", "klettern",
     "überqueren", "essen", "leuchtet", "scheint", "lächelt", "hört", "spiegelt", "fährt",
-    "fahren", "steuert", "bewundern", "springen", "fliegen", "schauen", "wandern", "gehen",
-    "stehen", "weht", "schießt", "trifft", "streichelt", "klatschen", "setzen", "sehen",
-    "sieht", "sagt", "ruft", "verspricht", "träumen"
+    "fahren", "steuert", "bewundern", "bewundert", "bestaunen", "springen", "fliegen", "schauen", "blicken", "wandern", "gehen",
+    "stehen", "weht", "schießt", "spannt", "trifft", "kniet", "streichelt", "streicheln", "klatschen", "setzen", "sehen",
+    "sieht", "sagt", "ruft", "verspricht", "träumen", "treten", "stürmen", "ragt", "schweben", "zusieht",
+    "zeigen", "gegraben", "haben", "hält", "stellen", "hilft", "beginnt", "kreisen", "nehme", "mitnimmt", "schnorcheln", "versinkt"
 }
 DE_ADJS = {
     "große", "großen", "großer", "kleine", "kleinen", "kleiner", "weiße", "weißen", "helle",
     "hellen", "glücklich", "glücklichen", "schöne", "schönen", "türkis", "türkisfarbene",
-    "warmen", "warme", "goldenen", "klare", "klaren", "mutig", "mutigen", "hohen", "hohe",
-    "schnellen", "schnelle", "orangefarbenen", "wilden", "wilde", "stille", "stillen",
-    "grünen", "grüne", "weiche", "weichen", "langen", "lange", "rosa", "geheimen",
-    "kristallklare", "kristallklaren", "silberne", "silbernen", "tausend", "stolz", "echtes", "bunte"
+    "warmen", "warme", "warm", "sonnigen", "goldenen", "goldene", "klare", "klaren", "glasklar", "flachen", "mutig", "mutigen", "hohen", "hohe",
+    "schnellen", "schnelle", "orangefarbenen", "orangefarbene", "wilden", "wilde", "wilder", "stille", "stillen",
+    "grünen", "grüne", "grünen", "weiche", "weichen", "langen", "lange", "langohrige", "rosa", "geheimen",
+    "kristallklare", "kristallklaren", "kristallklar", "silberne", "silbernen", "tausend", "stolz", "echtes", "echten", "bunte",
+    "ganze", "wenigen", "lieben", "herzlichen", "beiden", "schwankenden", "beleuchteten", "nächsten", "herrlichen",
+    "riesigen", "nächster", "steinigen", "felsigen", "blauen", "weiten", "ferne", "gelbe", "sardischen", "alten", "allerschönste", "tollen", "neugierig", "sicher", "geschickt"
 }
 DE_ADVS = {
     "zusammen", "gemeinsam", "sofort", "oben", "abends", "morgens", "dort", "hier", "unter",
-    "sehr", "bald", "wieder", "schon", "direkt", "mitten"
+    "sehr", "bald", "wieder", "schon", "direkt", "mitten", "frei", "genau", "daneben"
+}
+
+DE_SEPARABLE_VERBS = {
+    ("steigt", "aus"): {
+        "infinitive": "aus·steigen",
+        "tr": "scendere (dall'aereo / da un mezzo)",
+        "def": "Verbo separabile (trennbares Verb): «aus·steigen» (steigt … aus) significa scendere dall'aereo, mentre «steigen» da solo vuol dire salire!"
+    },
+    ("treten", "hinaus"): {
+        "infinitive": "hinaus·treten",
+        "tr": "uscire fuori (all'aperto)",
+        "def": "Verbo separabile (trennbares Verb): «hinaus·treten» (treten … hinaus) significa fare un passo fuori all'aria aperta."
+    },
+    ("hört", "zu"): {
+        "infinitive": "zu·hören",
+        "tr": "ascoltare con attenzione",
+        "def": "Verbo separabile (trennbares Verb): «zu·hören» (hört … zu) significa ascoltare con attenzione, non solo «hören» (sentire)."
+    },
+    ("ragt", "empor"): {
+        "infinitive": "empor·ragen",
+        "tr": "svettare / innalzarsi verso l'alto",
+        "def": "Verbo separabile (trennbares Verb): «empor·ragen» (ragt … empor) significa svettare altissimo verso il cielo."
+    },
+    ("fährt", "vorbei"): {
+        "infinitive": "vorbei·fahren",
+        "tr": "passare davanti (in barca o auto)",
+        "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei) significa passare accanto navigando o guidando."
+    },
+    ("stellen", "ab"): {
+        "infinitive": "ab·stellen",
+        "tr": "posare / appoggiare giù",
+        "def": "Verbo separabile (trennbares Verb): «ab·stellen» (stellen … ab) significa posare a terra lo zaino."
+    },
+    ("laufen", "umher"): {
+        "infinitive": "umher·laufen",
+        "tr": "camminare / gironzolare liberamente",
+        "def": "Verbo separabile (trennbares Verb): «umher·laufen» (laufen … umher) significa camminare qua e là in libertà."
+    },
+    ("setzen", "auf"): {
+        "infinitive": "auf·setzen",
+        "tr": "indossare / mettersi (maschera o cappello)",
+        "def": "Verbo separabile (trennbares Verb): «auf·setzen» (setzen … auf) significa indossare sul viso o sulla testa."
+    },
+    ("nehme", "mit"): {
+        "infinitive": "mit·nehmen",
+        "tr": "portare con sé",
+        "def": "Verbo separabile (trennbares Verb): «mit·nehmen» (nehme … mit) significa portare qualcuno con sé in viaggio."
+    },
 }
 
 
@@ -346,7 +397,9 @@ def classify_word(word_raw: str, lang: str):
         elif clean in DE_ADVS:
             pos = "adv"
 
-    # Gender ending detection for nouns & adjectives (blue masculine vs pink feminine desinenza)
+    # Gender ending detection for nouns & adjectives (blue masculine vs pink feminine desinenza).
+    # Only applicable to Italian and French! In German (das Flugzeug, der Flughafen, glücklich),
+    # final letters (-g, -n, -h) are NOT masculine/feminine gender endings.
     gender = None
     if pos in ("noun", "adj") and len(clean) >= 3:
         if lang == "it":
@@ -360,11 +413,6 @@ def classify_word(word_raw: str, lang: str):
                 gender = "f"
         elif lang == "fr":
             if clean.endswith(("e", "es", "ion", "ions", "té")):
-                gender = "f"
-            else:
-                gender = "m"
-        elif lang == "de":
-            if clean.endswith(("e", "in", "ung", "heit", "keit")):
                 gender = "f"
             else:
                 gender = "m"
@@ -1252,6 +1300,41 @@ def align_tokens_with_timings(sentence: str, timings: list, lang: str):
         if gloss:
             token_entry["gloss"] = gloss
         tokens_out.append(token_entry)
+
+    if lang == "de":
+        for i, tok_i in enumerate(tokens_out):
+            if tok_i.get("sep_group"):
+                continue
+            for j in range(i + 1, len(tokens_out)):
+                tok_j = tokens_out[j]
+                pair_key = (tok_i["clean"], tok_j["clean"])
+                if pair_key in DE_SEPARABLE_VERBS and not tok_j.get("sep_group"):
+                    sep_info = DE_SEPARABLE_VERBS[pair_key]
+                    group_id = f"sep_{i}_{j}"
+                    pair_display = f"{tok_i['clean']} … {tok_j['clean']}"
+                    gloss_obj = {
+                        "tr": sep_info["tr"],
+                        "def": sep_info["def"],
+                        "sep_inf": sep_info["infinitive"],
+                        "sep_pair": pair_display,
+                    }
+                    tok_i["pos"] = "verb"
+                    tok_i["sep_group"] = group_id
+                    tok_i["sep_role"] = "stem"
+                    tok_i["sep_inf"] = sep_info["infinitive"]
+                    tok_i["sep_pair"] = pair_display
+                    tok_i["gloss"] = gloss_obj
+
+                    tok_j["pos"] = "verb"
+                    tok_j["sep_group"] = group_id
+                    tok_j["sep_role"] = "prefix"
+                    tok_j["sep_inf"] = sep_info["infinitive"]
+                    tok_j["sep_pair"] = pair_display
+                    tok_j["gloss"] = gloss_obj
+                    break
+                if tok_j["w"].endswith((".", "!", "?")):
+                    break
+
     return tokens_out
 
 

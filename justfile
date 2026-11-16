@@ -4,7 +4,7 @@ default: test
 
 # Run deterministic completeness & asset verification on all stories in stories.yaml
 test:
-    python3 bin/test_stories.py
+    uv run --with pyyaml --with pillow python3 bin/test_stories.py
 
 # Alias for test
 check: test

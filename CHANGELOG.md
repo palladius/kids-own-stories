@@ -2,6 +2,15 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.1] - 2026-11-16
+
+### Fixed & Changed
+- 🇩🇪🌸 **Rimozione Desinenze Maschile/Femminile in Tedesco (`Flugzeug`, `Flughafen`, `glücklich`, ecc.) ([`index.html`](index.html), [`bin/build_sardegna_kids_book.py`](bin/build_sardegna_kids_book.py))**:
+  - Disattivata la colorazione blu/rosa dell'ultima lettera per i sostantivi e aggettivi in lingua tedesca (`lang === 'de'`), dove le lettere finali (`-g` in *das Flugzeug*, `-n` in *Flughafen* / *Sardinien*, `-h` in *glücklich*) non sono desinenze di genere maschile/femminile.
+- 🔗🏃 **Verbi Separabili Tedeschi (*Trennbare Verben*, es. `steigt … aus` → `aus·steigen`) con Cordicella Tratteggiata & Stile Fratelli ([`index.html`](index.html), [`bin/build_sardegna_kids_book.py`](bin/build_sardegna_kids_book.py), [`kids_books_catalog.js`](kids_books_catalog.js))**:
+  - Entrambi gli elementi dei verbi separabili tedeschi (`steigt … aus`, `treten … hinaus`, `hört … zu`, `ragt … empor`, `fährt … vorbei`, `stellen … ab`, `laufen … umher`, `setzen … auf`, `nehme … mit`) sono ora evidenziati come **fratelli** in **rosso bordeaux scuro (`#991b1b`)**, entrambi sottolineati, e collegati visivamente da una **cordicella curva tratteggiata SVG (`<svg class="kids-sep-verb-arcs">`)** con nodini alle estremità.
+  - Passando col mouse su `steigt` o su `aus`, entrambi i token e la cordicella si illuminano insieme e il fumetto didattico spiega il verbo separabile completo (**`aus·steigen`** = *scendere dall'aereo*, distinto da *steigen* = *salire*), con allineamento intelligente ai bordi pagina per evitare qualsiasi clipping.
+
 ## [0.11.1] - 2026-11-14
 
 ### Changed
