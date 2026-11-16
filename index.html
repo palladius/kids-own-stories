@@ -3521,7 +3521,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.2';
+    const APP_VERSION = '0.13.3';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -5326,22 +5326,13 @@
             const yCtrl = Math.max(sy, ey) + dip;
             d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${(sx + (ex - sx) * 0.25).toFixed(1)} ${yCtrl.toFixed(1)}, ${(sx + (ex - sx) * 0.75).toFixed(1)} ${yCtrl.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
           } else {
-            const hasTokenToRightOnPrefixRow = allTokens.some(tok => {
-              if (tok === prefixEl || tok === stemEl) return false;
-              const tr = tok.getBoundingClientRect();
-              return Math.abs(tr.top - r2.top) < 14 && tr.left > r2.right + 4;
-            });
-
-            if (!hasTokenToRightOnPrefixRow && sx > (r2.right - boxRect.left) + 12) {
-              // Empty space on prefix's row below stem -> draw a rounded bottom-to-bottom cordicella arc!
-              ey = y2Bottom;
-              const yDip = ey + 10;
-              d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${sx.toFixed(1)} ${(ey + 5).toFixed(1)}, ${(ex + (sx - ex) * 0.36).toFixed(1)} ${yDip.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+            ey = y2Bottom;
+            const pLeftGap = (r2.left - boxRect.left) - 4;
+            const pRightGap = (r2.right - boxRect.left) + 4;
+            if (sx <= ex) {
+              d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${pLeftGap.toFixed(1)} ${(sy + 8).toFixed(1)}, ${pLeftGap.toFixed(1)} ${(ey + 11).toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
             } else {
-              // Route smoothly through the inter-line whitespace channel
-              ey = y2Top;
-              const yMid = (sy + ey) * 0.5;
-              d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${sx.toFixed(1)} ${(yMid + 4).toFixed(1)}, ${ex.toFixed(1)} ${(yMid - 4).toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+              d = `M ${sx.toFixed(1)} ${sy.toFixed(1)} C ${pRightGap.toFixed(1)} ${(sy + 8).toFixed(1)}, ${pRightGap.toFixed(1)} ${(ey + 11).toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`;
             }
           }
 

@@ -11235,7 +11235,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "sep_pair": "fährt … vorbei",
                   "gloss": {
                     "tr": "passare davanti (in barca o auto)",
-                    "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei) significa passare accanto navigando o guidando.",
+                    "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei = passa davanti). Nota: «an» qui è la preposizione («an den Meeresgrotten» = davanti alle grotte), mentre il prefisso del verbo in fondo alla frase è «vorbei»!",
                     "sep_inf": "vorbei·fahren",
                     "sep_pair": "fährt … vorbei"
                   }
@@ -11294,7 +11294,7 @@ window.KIDS_BOOKS_CATALOG = {
                   "sep_pair": "fährt … vorbei",
                   "gloss": {
                     "tr": "passare davanti (in barca o auto)",
-                    "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei) significa passare accanto navigando o guidando.",
+                    "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei = passa davanti). Nota: «an» qui è la preposizione («an den Meeresgrotten» = davanti alle grotte), mentre il prefisso del verbo in fondo alla frase è «vorbei»!",
                     "sep_inf": "vorbei·fahren",
                     "sep_pair": "fährt … vorbei"
                   }

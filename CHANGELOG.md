@@ -2,6 +2,13 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.3] - 2026-11-16
+
+### Fixed
+- 🔗🇩🇪 **Fix Cordicella Multi-Riga su Pagina 8 (`fährt … vorbei` → `vorbei·fahren`) ([`index.html`](index.html), [`bin/build_sardegna_kids_book.py`](bin/build_sardegna_kids_book.py))**:
+  - Corretto il calcolo geometrico in `drawKidsSeparableVerbArcs()` quando i due pezzi di un verbo separabile vanno a capo su righe diverse (es. `Das Boot fährt an den großen / Meeresgrotten vorbei.` a Pag. 8): entrambi i pallini-nodo della cordicella si ancorano sempre al **bordo inferiore tratteggiato** dei due fratelli (`y1Bottom` → `y2Bottom`) passando nello spazio vuoto laterale senza mai finire sotto la preposizione `an` della riga superiore.
+  - Chiarito nel fumetto didattico di `fährt … vorbei` che il verbo separabile è **`vorbei·fahren`** (*passare davanti*), mentre `an` regge il dativo `an den großen Meeresgrotten`.
+
 ## [0.13.2] - 2026-11-16
 
 ### Changed & Fixed

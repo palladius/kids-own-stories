@@ -326,7 +326,7 @@ DE_SEPARABLE_VERBS = {
     ("fährt", "vorbei"): {
         "infinitive": "vorbei·fahren",
         "tr": "passare davanti (in barca o auto)",
-        "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei) significa passare accanto navigando o guidando."
+        "def": "Verbo separabile (trennbares Verb): «vorbei·fahren» (fährt … vorbei = passa davanti). Nota: «an» qui è la preposizione («an den Meeresgrotten» = davanti alle grotte), mentre il prefisso del verbo in fondo alla frase è «vorbei»!"
     },
     ("stellen", "ab"): {
         "infinitive": "ab·stellen",
