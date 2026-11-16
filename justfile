@@ -12,3 +12,8 @@ check: test
 # Start local HTTP server with HTTP 206 Partial Content (Range requests) on port 8088
 serve port="8088":
     python3 bin/serve_local.py {{port}}
+
+# Run tests and push to origin/main
+autopush: test
+    git push origin main
+
