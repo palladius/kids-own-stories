@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script src="./src/puffin-login.js"></script>
-  <script src="./kids_books_catalog.js?v=0.12.1"></script>
+  <script src="./kids_books_catalog.js?v=0.13.4"></script>
   <style>
     @media (prefers-reduced-motion: no-preference) {
       @view-transition {
@@ -3353,7 +3353,7 @@
   <footer class="carlessian-footer">
     <div class="footer-left">
       <strong>Kids' Own Stories</strong>
-      <a href="CHANGELOG.md" data-version="0.11.1" target="_blank" rel="noopener">v0.11.1</a>
+      <a href="CHANGELOG.md" id="footerVersionLink" data-version="0.13.4" target="_blank" rel="noopener">v0.13.4</a>
       <span class="env-badge" data-env="development" id="footerEnvBadge">ENV: development</span>
     </div>
     <div class="footer-center" id="footerStoryActions">
@@ -3521,7 +3521,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.3';
+    const APP_VERSION = '0.13.4';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -3590,7 +3590,12 @@
         searchEl.value = searchQuery;
       }
 
-      // Update Carlessian Footer ENV & Add-a-Bug Permalink
+      // Update Carlessian Footer Version, ENV & Add-a-Bug Permalink
+      const verLink = document.getElementById('footerVersionLink') || document.querySelector('footer [data-version]');
+      if (verLink) {
+        verLink.setAttribute('data-version', APP_VERSION);
+        verLink.textContent = `v${APP_VERSION}`;
+      }
       const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
       const envName = isLocal ? 'development' : 'gh-pages';
       const envBadge = document.getElementById('footerEnvBadge');
@@ -3742,6 +3747,10 @@
         activeTab = 'indice';
       } else if (tabCandidate === 'netflix' || tabCandidate === 'storieflix' || tabCandidate === 'cinema') {
         activeTab = 'netflix';
+      } else if (tabCandidate === 'studio' || tabCandidate === 'quaderno') {
+        activeTab = 'storia-sardegna-cala-gonone-arbatax-famiglia';
+        if (!kidsBookMode) kidsBookMode = (activeKidFilter === 'alessandro') ? 'ale' : 'seby';
+        kidsFullscreenEnabled = true;
       } else if (stories.some(s => s.slug === tabCandidate || s.id === tabCandidate)) {
         const matched = stories.find(s => s.slug === tabCandidate || s.id === tabCandidate);
         activeTab = matched.slug;
@@ -3749,6 +3758,10 @@
         activeTab = stories[0].slug;
       } else {
         activeTab = 'indice';
+      }
+
+      if (kidsBookMode && !(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab])) {
+        activeTab = Object.keys(window.KIDS_BOOKS_CATALOG || {})[0] || 'storia-sardegna-cala-gonone-arbatax-famiglia';
       }
 
       if (pageCandidate && activeTab !== 'indice' && activeTab !== 'netflix') {
@@ -4363,9 +4376,9 @@
     }
 
     function openStudioVersionTab() {
-      const targetSlug = (activeTab !== 'indice' && activeTab !== 'netflix')
-        ? activeTab
-        : 'storia-sardegna-cala-gonone-arbatax-famiglia';
+      const hasCurrentKb = Boolean(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab]);
+      const defaultKbSlug = Object.keys(window.KIDS_BOOKS_CATALOG || {})[0] || 'storia-sardegna-cala-gonone-arbatax-famiglia';
+      const targetSlug = hasCurrentKb ? activeTab : defaultKbSlug;
       const mode = (activeKidFilter === 'alessandro') ? 'ale' : (kidsBookMode || 'seby');
       launchKidsBook(targetSlug, mode);
     }

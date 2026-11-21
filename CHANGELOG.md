@@ -2,6 +2,13 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.4] - 2026-11-21
+
+### Fixed
+- 🎨📖 **Fix Apertura `🎨 Studio Version (Quaderno Bambini)` da Qualsiasi Tab & Versione Footer su GitHub Pages ([`index.html`](index.html))**:
+  - Corretto `openStudioVersionTab()`: quando l'utente apriva il sito (che partiva di default sulla Storia #1 `storia-dello-zaino-del-drago-e-dei-puffins`) e cliccava sul tab in alto **`🎨 Studio Version (Quaderno Bambini)`**, la funzione restava su `activeTab` invece di passare a `storia-sardegna-cala-gonone-arbatax-famiglia` (perché controllava solo `activeTab !== 'indice' && activeTab !== 'netflix'` anziché verificare `window.KIDS_BOOKS_CATALOG[activeTab]`). Ora verifica sempre `Boolean(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab])` e apre immediatamente il quaderno acquerello 16 pagine della Sardegna!
+  - Allineata dinamicamente la versione nel footer (`#footerVersionLink` → `v0.13.4`, prima rimasta hardcoded a `v0.11.1` nell'HTML) e il cache-buster di `kids_books_catalog.js?v=0.13.4`.
+
 ## [0.13.3] - 2026-11-16
 
 ### Fixed
