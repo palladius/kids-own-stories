@@ -2,6 +2,12 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.5] - 2026-11-21
+
+### Changed
+- 🔊✨ **Icone Audio 2x & Rimozione Etichette ridondanti `P.X / S.X` nel Mini-Footer ([`index.html`](index.html))**:
+  - Rimosso il testo ridondante `S.12` / `P.12` dai bottoni Audio (`🔊` / `⏸️`) e Quiz (`❓ ⭐0/3`) nel mini-footer del quaderno bambini (poiché i numeri di pagina sono già stampati in nero agli angoli inferiori sopra ciascun gruppo) e raddoppiata la dimensione dell'icona audio (`font-size: 1.48rem`).
+
 ## [0.13.4] - 2026-11-21
 
 ### Fixed

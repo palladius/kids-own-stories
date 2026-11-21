@@ -2952,6 +2952,9 @@
       background: #ecfdf5;
       color: #065f46;
       border-color: rgba(16, 185, 129, 0.55);
+      font-size: 1.48rem;
+      line-height: 1;
+      padding: 2px 10px;
     }
 
     .kids-pill-control.listen-pill:hover {
@@ -3521,7 +3524,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.4';
+    const APP_VERSION = '0.13.5';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -5145,13 +5148,11 @@
             const qs = pObj.questions?.[lang] || pObj.questions?.it || [];
             const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pObj.page, qs);
             const isPlayingThisPage = (activeKidsPlayingPage === pObj.page && !document.getElementById('kidsStaticAudio')?.paused);
-            const listenLbl = isPlayingThisPage
-              ? (isDe ? `⏸️ S.${pObj.page}` : `⏸️ P.${pObj.page}`)
-              : (isDe ? `🔊 S.${pObj.page}` : `🔊 P.${pObj.page}`);
+            const listenLbl = isPlayingThisPage ? '⏸️' : '🔊';
             const listenTitle = isDe
               ? `Seite ${pObj.page} vorlesen / Pause (Leertaste)`
               : (isFr ? `Écouter / Pause page ${pObj.page} (Espace)` : `Ascolta / Pausa Pagina ${pObj.page} (Barra Spazio)`);
-            const quizLbl = `❓ P.${pObj.page} ⭐${prog.correct}/${prog.total}`;
+            const quizLbl = `❓ ⭐${prog.correct}/${prog.total}`;
             return `
               <div class="kids-mini-footer-group">
                 <button type="button" class="kids-pill-control listen-pill ${isPlayingThisPage ? 'active' : ''}"
@@ -5383,14 +5384,11 @@
     function updateKidsListenButtonsState() {
       const audio = document.getElementById('kidsStaticAudio');
       const isPlaying = Boolean(audio && !audio.paused && !audio.ended && activeKidsPlayingPage);
-      const isDe = (currentLang === 'de');
       document.querySelectorAll('.listen-pill[data-listen-page]').forEach(btn => {
         const pNum = parseInt(btn.getAttribute('data-listen-page'), 10);
         const activeHere = isPlaying && pNum === activeKidsPlayingPage;
         btn.classList.toggle('active', activeHere);
-        btn.textContent = activeHere
-          ? (isDe ? `⏸️ S.${pNum}` : `⏸️ P.${pNum}`)
-          : (isDe ? `🔊 S.${pNum}` : `🔊 P.${pNum}`);
+        btn.textContent = activeHere ? '⏸️' : '🔊';
       });
     }
 
