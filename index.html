@@ -9,7 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script src="./src/puffin-login.js"></script>
-  <script src="./kids_books_catalog.js?v=0.13.4"></script>
+  <script src="./stories_catalog.js?v=0.13.6"></script>
+  <script src="./kids_books_catalog.js?v=0.13.6"></script>
   <style>
     @media (prefers-reduced-motion: no-preference) {
       @view-transition {
@@ -2578,30 +2579,74 @@
       display: none !important;
     }
 
+    body.kids-fullscreen-book .book-viewport,
+    .book-viewport.kids-has-bg {
+      position: relative;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      padding: 8px 12px 6px !important;
+      gap: 6px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background-color: #140d08 !important;
+      background-image:
+        radial-gradient(ellipse at center, rgba(18, 12, 7, 0.10) 0%, rgba(12, 8, 4, 0.52) 100%),
+        url('assets/backgrounds/kids_book_bg_landscape.jpg') !important;
+      background-size: cover !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+    }
+
     body.kids-fullscreen-book .book-viewport {
       height: 100vh !important;
       max-height: 100vh !important;
-      padding: 6px 10px 6px !important;
-      gap: 6px !important;
-      background: radial-gradient(circle at center, #2b1d12 0%, #120c07 100%) !important;
     }
 
     body.kids-fullscreen-book .open-book,
     .open-book.kids-notebook-spread {
+      display: grid !important;
+      container-type: size;
       grid-template-columns: 1fr 1fr !important;
-      max-width: min(1680px, 98.5vw) !important;
-      height: 100% !important;
+      aspect-ratio: 1792 / 1200 !important;
+      width: min(98vw, calc((100vh - 54px) * 1792 / 1200)) !important;
+      height: min(calc(100vh - 54px), calc(98vw * 1200 / 1792)) !important;
+      max-width: 98vw !important;
+      max-height: calc(100vh - 54px) !important;
+      flex: 0 0 auto !important;
+      margin: auto !important;
       border-radius: 22px !important;
       background: #fdfaf2 !important;
       border: 5px solid #78350f !important;
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.75),
+        0 26px 68px rgba(0, 0, 0, 0.82),
+        0 0 38px rgba(245, 158, 11, 0.22),
         inset 0 0 0 2px #d97706 !important;
       position: relative;
     }
 
     .open-book.kids-notebook-spread:not(.is-fullscreen) {
-      height: calc(100vh - var(--header-h) - var(--footer-h) - 96px) !important;
+      width: min(98vw, calc((100vh - var(--header-h) - var(--footer-h) - 72px) * 1792 / 1200)) !important;
+      height: min(calc(100vh - var(--header-h) - var(--footer-h) - 72px), calc(98vw * 1200 / 1792)) !important;
+      max-height: calc(100vh - var(--header-h) - var(--footer-h) - 72px) !important;
+    }
+
+    /* Portrait / Tall Viewport: switch to vertical 9:16 NeverEnding Grimoire + Fireplace background! */
+    @media (max-aspect-ratio: 11/10) {
+      body.kids-fullscreen-book .book-viewport,
+      .book-viewport.kids-has-bg {
+        background-image:
+          linear-gradient(180deg, rgba(12, 8, 4, 0.04) 0%, rgba(12, 8, 4, 0.18) 55%, rgba(12, 8, 4, 0.55) 100%),
+          url('assets/backgrounds/kids_book_bg_portrait.jpg') !important;
+        background-position: center 92% !important;
+      }
+
+      body.kids-fullscreen-book .open-book,
+      .open-book.kids-notebook-spread {
+        margin-top: auto !important;
+        margin-bottom: 4px !important;
+      }
     }
 
     /* Realistic Notebook Center Crease / Brossura that dips down at top & bottom */
@@ -2674,20 +2719,20 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 14px 44px 28px;
+      padding: 2.2% 6.8% 2.6%;
       overflow: hidden;
       user-select: none;
     }
 
     /* Alternate Layout:
-       - patch-bottom: Watercolor illustration in top 2/3, white patch + story text in bottom 1/3
-       - patch-top: White patch + story text in top 1/3, watercolor illustration in bottom 2/3 */
+       - patch-bottom: Watercolor illustration in top ~72%, yellowish sand patch + story text in bottom ~27%
+       - patch-top: Yellowish sand patch + story text in top ~25%, watercolor illustration in bottom ~74% */
     .kids-watercolor-leaf.patch-bottom {
-      justify-content: flex-end;
+      justify-content: space-between;
     }
 
     .kids-watercolor-leaf.patch-top {
-      justify-content: flex-start;
+      justify-content: space-between;
     }
 
     /* Classic Book Page Numbers: Black, at Bottom-Left (left page) & Bottom-Right (right page) */
@@ -2772,9 +2817,10 @@
       flex: 1 1 auto;
       min-height: 0;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      padding: 8px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 4px 2px 2px;
       pointer-events: none;
     }
 
@@ -2782,49 +2828,87 @@
       pointer-events: auto;
     }
 
-    /* Minimalist White Watercolor Patch Overlay where text sits naturally like a printed book */
-    .kids-white-patch-text-zone {
+    /* Monochrome Bold & Large Figure Caption ("Didascalia della figura: senza colori, in grassetto sotto e grande") */
+    .kids-figure-caption {
       position: relative;
-      z-index: 12;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(253, 250, 242, 0.95) 0%,
-        rgba(253, 250, 242, 0.89) 76%,
-        rgba(253, 250, 242, 0.72) 100%
-      );
-      backdrop-filter: blur(2px);
-      border-radius: 20px;
-      padding: 8px 14px;
-      box-shadow: 0 3px 16px rgba(253, 250, 242, 0.8);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      border: 1px solid rgba(217, 119, 6, 0.14);
+      z-index: 16;
+      margin-top: auto;
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: clamp(0.76rem, 1.20cqw, 1.16rem);
+      font-weight: 900;
+      line-height: 1.22;
+      color: #0f172a;
+      text-align: center;
+      background: transparent;
+      border: none;
+      padding: 2px 10px;
+      box-shadow: none;
+      text-shadow:
+        0 1px 0 rgba(253, 250, 242, 0.98),
+        0 -1px 0 rgba(253, 250, 242, 0.98),
+        1px 0 0 rgba(253, 250, 242, 0.98),
+        -1px 0 0 rgba(253, 250, 242, 0.98),
+        0 2px 8px rgba(253, 250, 242, 0.96),
+        0 0 14px rgba(253, 250, 242, 0.92);
+      max-width: 94%;
+      letter-spacing: 0.01em;
+      pointer-events: none;
     }
 
-    .kids-leaf-header-row {
+    /* Story Words Printed Directly on the Book's Yellowish Sand Patch (NO rounded card, NO title above text!) */
+    .kids-white-patch-text-zone {
+      position: relative;
+      z-index: 20;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 2px 4px;
       display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 6px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.78rem;
-      color: #78350f;
-      font-weight: 700;
-      opacity: 0.9;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .kids-watercolor-leaf.patch-bottom .kids-white-patch-text-zone {
+      flex: 0 0 26.8%;
+      height: 26.8%;
+    }
+
+    .kids-watercolor-leaf.patch-top .kids-white-patch-text-zone {
+      flex: 0 0 24.6%;
+      height: 24.6%;
     }
 
     .kids-sentence-box {
       position: relative;
       font-family: 'Nunito', sans-serif;
-      font-size: clamp(1.02rem, 1.32vw, 1.28rem);
+      font-size: clamp(0.78rem, 1.24cqw, 1.20rem);
       font-weight: 800;
-      line-height: 1.62;
+      line-height: 1.54;
       color: #0f172a;
       background: transparent;
       border: none;
-      padding: 2px 2px 8px;
+      padding: 2px 2px 4px;
       box-shadow: none;
+      text-shadow:
+        0 1px 0 rgba(253, 250, 242, 0.95),
+        0 0 10px rgba(253, 250, 242, 0.85);
+    }
+
+    .kids-sentence-box.level-seby {
+      font-size: clamp(0.72rem, 1.42cqw, 1.34rem);
+      line-height: 1.60;
+    }
+
+    .kids-sentence-box.level-ale {
+      font-size: clamp(0.62rem, 1.18cqw, 1.14rem);
+      line-height: 1.48;
+    }
+
+    .kids-sentence-box.level-ale.uppercase-mode {
+      font-size: clamp(0.58rem, 1.06cqw, 1.02rem);
+      line-height: 1.42;
     }
 
     .kids-sep-verb-arcs {
@@ -2859,42 +2943,62 @@
 
     .kids-sentence-box.uppercase-mode {
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.025em;
     }
 
-    /* Comic Speech Bubble Over Watercolor Art */
+    /* Monochrome Comic Speech Bubble Coming From the Speaker's Mouth */
     .kids-comic-bubble {
-      max-width: min(460px, 88%);
-      background: rgba(255, 255, 255, 0.95);
+      position: absolute;
+      background: rgba(255, 255, 255, 0.96);
       color: #0f172a;
-      border: 2px solid #1e293b;
-      border-radius: 18px 18px 18px 4px;
-      padding: 6px 12px;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+      border: 2px solid #0f172a;
+      border-radius: 18px;
+      padding: 5px 11px;
+      box-shadow: 0 5px 14px rgba(15, 23, 42, 0.18);
       font-family: 'Fredoka', sans-serif;
-      font-size: clamp(0.78rem, 0.98vw, 0.92rem);
-      line-height: 1.25;
+      font-size: clamp(0.68rem, 0.90cqw, 0.86rem);
+      line-height: 1.22;
       cursor: pointer;
-      z-index: 15;
-      transition: transform 0.15s ease, background 0.15s ease;
+      z-index: 22;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      pointer-events: auto;
     }
 
     .kids-comic-bubble:hover {
-      transform: scale(1.02);
-      background: #fef9c3;
+      transform: translateY(-2px) scale(1.02);
+      background: #fffef5;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.26);
     }
 
     .kids-comic-speaker {
       display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
+      font-size: 0.66em;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: #fff;
-      background: #ea580c;
-      padding: 1px 7px;
-      border-radius: 999px;
+      color: #0f172a;
+      background: transparent;
+      border-bottom: 1.5px solid #0f172a;
+      padding: 0 2px;
       margin-right: 5px;
+    }
+
+    .kids-comic-tail {
+      position: absolute;
+      width: 22px;
+      height: 16px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .kids-comic-tail.tail-bottom {
+      bottom: -15px;
+      transform: translateX(-50%);
+    }
+
+    .kids-comic-tail.tail-top {
+      top: -15px;
+      transform: translateX(-50%) scaleY(-1);
     }
 
     /* Minimalist External Mini-Footer below the Open Notebook (All magic buttons outside the book!) */
@@ -2983,13 +3087,14 @@
       margin: 0 1px;
       border-radius: 6px;
       cursor: pointer;
-      transition: transform 0.12s ease, background 0.12s ease;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background 0.14s ease, box-shadow 0.14s ease, text-shadow 0.14s ease;
       border-bottom: 2px solid transparent;
     }
 
     .kw-token:hover {
-      transform: translateY(-1px);
-      background: rgba(254, 240, 138, 0.85);
+      transform: translateY(-2.5px) scale(1.045);
+      background: rgba(254, 240, 138, 0.88);
+      box-shadow: 0 4px 10px rgba(120, 53, 15, 0.16);
       z-index: 25;
     }
 
@@ -3150,6 +3255,12 @@
 
     .kw-token:hover .kw-gloss-popover {
       display: block;
+    }
+
+    /* On even pages (patch-top), open glossary popover downward so it never clips at the top of the book */
+    .kids-watercolor-leaf.patch-top .kw-gloss-popover {
+      bottom: auto;
+      top: calc(100% + 6px);
     }
 
     .kids-didactic-bar {
@@ -3524,7 +3635,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.5';
+    const APP_VERSION = '0.13.6';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -3740,7 +3851,14 @@
           }
         }
       } catch (err) {
-        console.error('Could not fetch stories.yaml:', err);
+        if (window.KOS_CATALOG && Array.isArray(window.KOS_CATALOG.stories)) {
+          catalog = window.KOS_CATALOG;
+        } else {
+          console.error('Could not fetch stories.yaml:', err);
+        }
+      }
+      if ((!catalog.stories || !catalog.stories.length) && window.KOS_CATALOG && Array.isArray(window.KOS_CATALOG.stories)) {
+        catalog = window.KOS_CATALOG;
       }
 
       const stories = catalog.stories || [];
@@ -5954,26 +6072,55 @@
 
       const cornerPageNumHtml = `<span class="kids-book-page-num ${side === 'left' ? 'is-left-num' : 'is-right-num'}">${pageObj.page}</span>`;
 
+      // Per-page speech bubble mouth-anchor coordinates (top%, left%, maxWidth%, tailDir, tailLeft%)
+      const BUBBLE_ANCHORS = {
+        1:  { top: '4.8%',  left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '42%' },
+        2:  { top: '33.2%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '49%' },
+        3:  { top: '4.5%',  left: '33%',  maxW: '60%', tail: 'bottom', tailLeft: '20%' },
+        4:  { top: '28.5%', left: '30%',  maxW: '63%', tail: 'bottom', tailLeft: '30%' },
+        5:  { top: '4.8%',  left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '52%' },
+        6:  { top: '28.5%', left: '5%',   maxW: '58%', tail: 'bottom', tailLeft: '54%' },
+        7:  { top: '4.8%',  left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '72%' },
+        8:  { top: '28.5%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '52%' },
+        9:  { top: '4.8%',  left: '8%',   maxW: '58%', tail: 'bottom', tailLeft: '54%' },
+        10: { top: '28.5%', left: '8%',   maxW: '62%', tail: 'bottom', tailLeft: '48%' },
+        11: { top: '4.5%',  left: '34%',  maxW: '60%', tail: 'bottom', tailLeft: '18%' },
+        12: { top: '28.5%', left: '28%',  maxW: '65%', tail: 'bottom', tailLeft: '28%' },
+        13: { top: '4.8%',  left: '16%',  maxW: '62%', tail: 'bottom', tailLeft: '66%' },
+        14: { top: '28.5%', left: '6%',   maxW: '58%', tail: 'bottom', tailLeft: '64%' },
+        15: { top: '48.5%', left: '8.2%', maxW: '55%', tail: 'top',    tailLeft: '68%' },
+        16: { top: '28.5%', left: '6%',   maxW: '62%', tail: 'bottom', tailLeft: '58%' }
+      };
+      const bAnchor = BUBBLE_ANCHORS[pageObj.page] || (patchPos === 'top'
+        ? { top: '28.5%', left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' }
+        : { top: '4.8%',  left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' });
+
       const textZoneHtml = `
         <div class="kids-white-patch-text-zone">
-          <div class="kids-leaf-header-row">
-            <span>${escapeHtml(pageTitle)}</span>
-          </div>
-          <div class="kids-sentence-box ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}" lang="${lang}" spellcheck="false" autocorrect="off" translate="no">
+          <div class="kids-sentence-box level-${levelKey} ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}" lang="${lang}" spellcheck="false" autocorrect="off" translate="no">
             <svg class="kids-sep-verb-arcs" aria-hidden="true"></svg>
             ${tokensHtml}
           </div>
         </div>
       `;
 
+      const comicBubbleHtml = bubbleData?.text ? `
+        <div class="kids-comic-bubble"
+          style="top:${bAnchor.top};left:${bAnchor.left};max-width:${bAnchor.maxW};"
+          onclick="event.stopPropagation(); playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')"
+          title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
+          <span class="kids-comic-speaker">💬 ${escapeHtml(pageObj.speech_bubble.speaker || '')} 🔊</span>
+          <span>«${escapeHtml(bubbleData.text)}»</span>
+          <svg class="kids-comic-tail tail-${bAnchor.tail}" style="left:${bAnchor.tailLeft};" viewBox="0 0 22 16" aria-hidden="true">
+            <path d="M2,0 L20,0 L11,14 Z" fill="rgba(255,255,255,0.96)"/>
+            <path d="M2,0 L11,14 L20,0" fill="none" stroke="#0f172a" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      ` : '';
+
       const artZoneHtml = `
-        <div class="kids-leaf-art-zone" style="${patchPos === 'top' ? 'align-items:flex-end;' : 'align-items:flex-start;'}">
-          ${bubbleData?.text ? `
-            <div class="kids-comic-bubble" onclick="playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')" title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
-              <span class="kids-comic-speaker">💬 ${escapeHtml(pageObj.speech_bubble.speaker || '')} 🔊</span>
-              <span>«${escapeHtml(bubbleData.text)}»</span>
-            </div>
-          ` : ''}
+        <div class="kids-leaf-art-zone">
+          <div class="kids-figure-caption">${escapeHtml(pageTitle)}</div>
         </div>
       `;
 
@@ -5982,6 +6129,7 @@
           data-page="${pageObj.page}"
           style="background-image: url('${pageObj.image}?v=${APP_VERSION}');">
           ${edgeArrowHtml}
+          ${comicBubbleHtml}
           ${patchPos === 'top' ? `${textZoneHtml}${artZoneHtml}` : `${artZoneHtml}${textZoneHtml}`}
           ${cornerPageNumHtml}
         </div>
@@ -5995,12 +6143,14 @@
       updateTopVoteBadge();
 
       const bookEl = document.getElementById('openBookSpread');
+      const viewportEl = document.getElementById('bookViewport');
       const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
       if (kidsBookMode && kb && Array.isArray(kb.pages) && kb.pages.length > 0) {
         const narratorBar = document.getElementById('narratorBar');
         const narratorAudio = document.getElementById('narratorAudio');
         if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
         if (narratorBar) narratorBar.hidden = true;
+        if (viewportEl) viewportEl.classList.add('kids-has-bg');
 
         // Snap to even index (0, 2, 4, ..., 14) so Left Page = odd page (1,3,5...) and Right Page = even page (2,4,6...) like a real open notebook!
         let rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, kb.pages.length - 1));
@@ -6046,6 +6196,9 @@
 
       if (bookEl) {
         bookEl.classList.remove('kids-notebook-spread', 'is-fullscreen');
+      }
+      if (viewportEl) {
+        viewportEl.classList.remove('kids-has-bg');
       }
 
       const kData = await ensureKaraokeLoaded(story, currentLang);

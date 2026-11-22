@@ -2,6 +2,19 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.6] - 2026-11-22
+
+### Added & Changed
+- 🖼️🔥 **Proporzione Nativa `1792:1200` Senza Stretch & Sfondo ULTRA WOW Landscape/Portrait del Grimorio Infinito ([`index.html`](index.html), `assets/backgrounds/kids_book_bg_{landscape,portrait}.jpg`, Issue `#4`)**:
+  - **Zero Stretch del Libro Aperto**: vincolato `.open-book.kids-notebook-spread` a `aspect-ratio: 1792 / 1200` (pari esattamente a due pagine `896×1200` affiancate) e `display: grid !important; container-type: size;`, massimizzando dinamicamente larghezza e altezza nella viewport disponibile (`min(98vw, calc((100vh - 54px) * 1792 / 1200))`) senza mai deformare le illustrazioni acquerello.
+  - **Doppio Sfondo ULTRA WOW (Landscape `16:9` + Portrait `9:16`, stile `tubature`)**: dietro al libro aperto compaiono Ale (in pigiamino blu a stelline con i suoi grandi occhioni verdi) e Seby (in pigiamino verde menta con i suoi grandi occhioni azzurri) sdraiati a pancia in giù sul letto davanti al caminetto acceso mentre leggono insieme un antico tomo luminoso a metà tra un Grimorio e *La Storia Infinita*. Sulle finestre verticali (`@media (max-aspect-ratio: 11/10)`) il libro si adagia in basso e Ale e Seby spuntano sopra il libro guardando dritti dentro le pagine aperte!
+- 🏖️✨ **Parole Stampate Direttamente sulla Sabbia Giallognola della Pagina (Addio Card Arrotondata e Titolo Sopra il Testo!) ([`index.html`](index.html))**:
+  - Rimossa la card bianca arrotondata e rimosso il titolo sopra il testo da `.kids-white-patch-text-zone`: le parole della storia (`Seby` e `Ale`) fluttuano ora direttamente sulla sabbia/pergamena giallognola dipinta ad acquerello con effetto hover planante (`translateY(-2.5px) scale(1.045)`).
+  - Verificate con subagent critic tutte le **288 combinazioni** (`16 pagine × 3 lingue [IT/FR/DE] × normale/ABC × 3 viewport`): `0/288` overflow, inclusa la frase più lunga di Ale a Pag. 15 (310 caratteri).
+- 💬🖤 **Didascalia della Figura in Grassetto Sotto & Fumetto Monocromatico dalla Bocca di Papino ([`index.html`](index.html))**:
+  - Spostato il titolo della scena **sotto la figura** come vera didascalia da libro illustrato (`.kids-figure-caption`: in grassetto `font-weight: 900`, grande, `100%` monocromatico `#0f172a` senza riquadri o colori).
+  - Trasformata la battuta parlata (`.kids-comic-bubble`) in un vero **fumetto monocromatico (`#0f172a` su bianco, senza pill arancione)** posizionato vicino alla testa di chi parla con codina triangolare SVG (`<svg class="kids-comic-tail">`) che punta dritta alla bocca di Papino (es. Pag. 2 col Cugino Massimo, Pag. 6 sul gommone, Pag. 13 sugli scogli rosa, Pag. 15 in acqua) e degli altri personaggi.
+
 ## [0.13.5] - 2026-11-21
 
 ### Changed
