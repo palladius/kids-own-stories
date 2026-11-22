@@ -2,6 +2,14 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.9] - 2026-11-22
+
+### Added & Changed
+- 📐✨ **Auto-Fit Dinamico dei Caratteri sul Rettangolo Sabbia (`fitKidsTextToPatch`) ([`index.html`](index.html))**:
+  - Eliminati gli spazi vuoti su **Seby, Ale ed Emma** con ricerca binaria dinamica sul `font-size` dentro il rettangolo virtuale `.kids-white-patch-text-zone` (`27.6%` bottom / `25.6%` top, padding foglio ridotto a `1.6% 5.0% 1.8%`), garantendo il **massimo font leggibile** senza mai debordare né tagliare i tooltip del glossario (`overflow: visible`), con ricalcolo automatico su cambio pagina/livello/lingua/maiuscolo, `resize` e `document.fonts.ready`.
+- 🧪🤖 **Unit Test Playwright di Bounding-Box Fitting ([`bin/test_kids_text_fit.py`](bin/test_kids_text_fit.py), [`justfile`](justfile))**:
+  - Aggiunto `just test-fit` che renderizza tutte le **144 combinazioni** (`16 pagine × 3 livelli Seby/Ale/Emma × 3 lingue IT/FR/DE`) in Chromium headless leggendo `window.__kidsTextFitMetrics()`, verificando `0 overflow` e copertura verticale adeguata (`fillRatio >= 42%`).
+
 ## [0.13.8] - 2026-11-22
 
 ### Added & Changed

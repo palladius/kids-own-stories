@@ -2719,7 +2719,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 2.2% 6.8% 2.6%;
+      padding: 1.6% 5.0% 1.8%;
       overflow: hidden;
       user-select: none;
     }
@@ -2855,7 +2855,7 @@
       pointer-events: none;
     }
 
-    /* Story Words Printed Directly on the Book's Yellowish Sand Patch (NO rounded card, NO title above text!) */
+    /* Story Words Printed Directly on the Book's Yellowish Sand Patch (Virtual Bounding Box for Dynamic Auto-Fit!) */
     .kids-white-patch-text-zone {
       position: relative;
       z-index: 20;
@@ -2868,58 +2868,62 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      overflow: visible;
+      box-sizing: border-box;
     }
 
     .kids-watercolor-leaf.patch-bottom .kids-white-patch-text-zone {
-      flex: 0 0 26.8%;
-      height: 26.8%;
+      flex: 0 0 27.6%;
+      height: 27.6%;
     }
 
     .kids-watercolor-leaf.patch-top .kids-white-patch-text-zone {
-      flex: 0 0 24.6%;
-      height: 24.6%;
+      flex: 0 0 25.6%;
+      height: 25.6%;
     }
 
     .kids-sentence-box {
       position: relative;
       font-family: 'Nunito', sans-serif;
-      font-size: clamp(0.78rem, 1.24cqw, 1.20rem);
+      font-size: clamp(0.95rem, 1.75cqw, 1.75rem);
       font-weight: 800;
-      line-height: 1.54;
+      line-height: 1.38;
       color: #0f172a;
       background: transparent;
       border: none;
-      padding: 2px 2px 4px;
+      padding: 2px 2px 2px;
       box-shadow: none;
       text-shadow:
         0 1px 0 rgba(253, 250, 242, 0.95),
         0 0 10px rgba(253, 250, 242, 0.85);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .kids-sentence-box.level-seby {
-      font-size: clamp(0.72rem, 1.42cqw, 1.34rem);
-      line-height: 1.60;
-    }
-
-    .kids-sentence-box.level-ale {
-      font-size: clamp(0.62rem, 1.18cqw, 1.14rem);
-      line-height: 1.48;
-    }
-
-    .kids-sentence-box.level-ale.uppercase-mode {
-      font-size: clamp(0.58rem, 1.06cqw, 1.02rem);
+      font-size: clamp(1.05rem, 2.20cqw, 2.25rem);
       line-height: 1.42;
     }
 
+    .kids-sentence-box.level-ale {
+      font-size: clamp(0.92rem, 1.72cqw, 1.78rem);
+      line-height: 1.36;
+    }
+
+    .kids-sentence-box.level-ale.uppercase-mode {
+      font-size: clamp(0.84rem, 1.54cqw, 1.58rem);
+      line-height: 1.32;
+    }
+
     .kids-sentence-box.level-emma {
-      font-size: clamp(0.56rem, 1.00cqw, 0.96rem);
-      line-height: 1.38;
+      font-size: clamp(0.82rem, 1.48cqw, 1.48rem);
+      line-height: 1.30;
       font-weight: 700;
     }
 
     .kids-sentence-box.level-emma.uppercase-mode {
-      font-size: clamp(0.52rem, 0.90cqw, 0.88rem);
-      line-height: 1.34;
+      font-size: clamp(0.74rem, 1.32cqw, 1.34rem);
+      line-height: 1.26;
     }
 
     .kids-sep-verb-arcs {
@@ -3888,7 +3892,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.8';
+    const APP_VERSION = '0.13.9';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -6770,6 +6774,92 @@
       `;
     }
 
+    function fitKidsTextToPatch() {
+      const zones = document.querySelectorAll('#openBookSpread .kids-white-patch-text-zone');
+      zones.forEach((zone) => {
+        const box = zone.querySelector('.kids-sentence-box');
+        if (!box) return;
+        const maxH = zone.clientHeight - 4;
+        const maxW = zone.clientWidth - 2;
+        if (maxH < 24 || maxW < 80) return;
+
+        const isSeby = box.classList.contains('level-seby');
+        const isAle = box.classList.contains('level-ale');
+        let lo = 10.5;
+        let hi = isSeby
+          ? Math.min(40, Math.max(24, maxW * 0.072))
+          : (isAle
+            ? Math.min(32, Math.max(20, maxW * 0.056))
+            : Math.min(26, Math.max(17, maxW * 0.046)));
+
+        let best = lo;
+        for (let iter = 0; iter < 12; iter++) {
+          const mid = (lo + hi) * 0.5;
+          box.style.fontSize = `${mid.toFixed(2)}px`;
+          const fits = (box.scrollHeight <= maxH) && (box.scrollWidth <= maxW + 2);
+          if (fits) {
+            best = mid;
+            lo = mid;
+          } else {
+            hi = mid;
+          }
+        }
+        box.style.fontSize = `${best.toFixed(2)}px`;
+        box.dataset.fittedFontPx = best.toFixed(2);
+        box.dataset.fillRatio = (box.scrollHeight / Math.max(1, zone.clientHeight)).toFixed(3);
+      });
+    }
+
+    window.__kidsTextFitMetrics = function() {
+      const results = [];
+      document.querySelectorAll('#openBookSpread .kids-watercolor-leaf').forEach((leaf) => {
+        const zone = leaf.querySelector('.kids-white-patch-text-zone');
+        const box = leaf.querySelector('.kids-sentence-box');
+        if (!zone || !box) return;
+        const fontSizePx = parseFloat(getComputedStyle(box).fontSize) || 0;
+        const clientH = zone.clientHeight;
+        const scrollH = box.scrollHeight;
+        const clientW = zone.clientWidth;
+        const scrollW = box.scrollWidth;
+        const level = box.classList.contains('level-emma')
+          ? 'emma'
+          : (box.classList.contains('level-ale') ? 'ale' : 'seby');
+        results.push({
+          page: Number(leaf.dataset.page || 0),
+          level,
+          lang: box.getAttribute('lang') || currentLang,
+          uppercase: box.classList.contains('uppercase-mode'),
+          fontSizePx: Number(fontSizePx.toFixed(2)),
+          scrollHeight: scrollH,
+          clientHeight: clientH,
+          overflowY: scrollH - clientH,
+          overflowX: scrollW - clientW,
+          fillRatio: Number((scrollH / Math.max(1, clientH)).toFixed(3)),
+          fits: (scrollH <= clientH + 2) && (scrollW <= clientW + 2)
+        });
+      });
+      return results;
+    };
+
+    let _kidsFitResizeRaf = null;
+    window.addEventListener('resize', () => {
+      if (!kidsBookMode) return;
+      if (_kidsFitResizeRaf) cancelAnimationFrame(_kidsFitResizeRaf);
+      _kidsFitResizeRaf = requestAnimationFrame(() => {
+        fitKidsTextToPatch();
+        drawKidsSeparableVerbArcs();
+      });
+    });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        if (kidsBookMode) {
+          fitKidsTextToPatch();
+          drawKidsSeparableVerbArcs();
+        }
+      });
+    }
+
     async function renderActiveBook(turnDirection = null) {
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
@@ -6822,7 +6912,10 @@
         rightEl.onclick = null;
         rightEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[rightIdx], rightIdx, 'right');
 
-        requestAnimationFrame(drawKidsSeparableVerbArcs);
+        requestAnimationFrame(() => {
+          fitKidsTextToPatch();
+          drawKidsSeparableVerbArcs();
+        });
         return;
       }
 
