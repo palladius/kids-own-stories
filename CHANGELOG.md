@@ -2,6 +2,15 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.7] - 2026-11-22
+
+### Added & Changed
+- 💬✨ **Fumetti Organici da Vero Libro Illustrato & Supporto `🔠 ABC` Maiuscolo ([`index.html`](index.html))**:
+  - Rimossi i nomi (`NONNA LUCILLA`, `PAPINO`, ecc.) dall'interno dei fumetti lasciando solo il dialogo parlato con font più grande, nuvoletta avorio `#fffdf7`, codina curva più lunga e vicina alla bocca di chi parla (es. Nonna Lucilla a Pag. 5, Papino a Pag. 2/6/13/15), e pieno supporto alla modalità `🔠 ABC` maiuscolo su fumetti e didascalie.
+- 🟢🟡🔴 **Barra Minimalista `webapp-that-riccardo-likes` con 3 Avatar Pixar Semaforo & Pop-up `⚙️` Opzioni ([`index.html`](index.html), `assets/avatars/{seby_tier.jpg,ale_tier.jpg,emma.png}`)**:
+  - Sostituiti i rettangolini testuali dei bambini con i **3 avatar circolari Pixar 3D** con bordo semaforo a difficoltà crescente (🟢 **Seby · 6a · Facile A2**, 🟡 **Ale · 8a · Medio B1**, 🔴 **Emma · 11a · Esperto B2/C1**) e tooltip L2 al passaggio del mouse.
+  - Aggiunto il pop-up compatto **`⚙️` Opzioni** con **📖 Lingua del Libro** in grande (`IT` / `FR` / `DE`) e **🌍 Lingua di Traduzione / Spiegazioni** in piccolo (default **`🇬🇧 English`**), più icone SVG monocromatiche `currentColor` nel mini-footer.
+
 ## [0.13.6] - 2026-11-22
 
 ### Added & Changed

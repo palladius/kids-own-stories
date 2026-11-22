@@ -2946,59 +2946,301 @@
       letter-spacing: 0.025em;
     }
 
-    /* Monochrome Comic Speech Bubble Coming From the Speaker's Mouth */
+    /* Organic Storybook Comic Speech Bubble Coming Directly From the Speaker's Mouth */
     .kids-comic-bubble {
       position: absolute;
-      background: rgba(255, 255, 255, 0.96);
+      background: #fffdf7;
       color: #0f172a;
-      border: 2px solid #0f172a;
-      border-radius: 18px;
-      padding: 5px 11px;
-      box-shadow: 0 5px 14px rgba(15, 23, 42, 0.18);
-      font-family: 'Fredoka', sans-serif;
-      font-size: clamp(0.68rem, 0.90cqw, 0.86rem);
-      line-height: 1.22;
+      border: 2.2px solid #1e293b;
+      border-radius: 28px 32px 28px 26px / 22px 26px 24px 26px;
+      padding: 8px 16px;
+      box-shadow:
+        3px 4px 0 rgba(15, 23, 42, 0.14),
+        0 8px 20px rgba(15, 23, 42, 0.16);
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: clamp(0.80rem, 1.12cqw, 1.06rem);
+      font-weight: 600;
+      line-height: 1.28;
       cursor: pointer;
       z-index: 22;
-      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background 0.15s ease, box-shadow 0.15s ease;
       pointer-events: auto;
+      text-align: center;
+    }
+
+    .kids-comic-bubble.uppercase-mode,
+    .kids-figure-caption.uppercase-mode {
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .kids-comic-bubble:hover {
-      transform: translateY(-2px) scale(1.02);
-      background: #fffef5;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.26);
+      transform: translateY(-2px) scale(1.03);
+      background: #fefce8;
+      box-shadow:
+        4px 6px 0 rgba(15, 23, 42, 0.18),
+        0 10px 24px rgba(15, 23, 42, 0.22);
     }
 
-    .kids-comic-speaker {
+    .kids-comic-audio-dot {
       display: inline-block;
-      font-size: 0.66em;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #0f172a;
-      background: transparent;
-      border-bottom: 1.5px solid #0f172a;
-      padding: 0 2px;
-      margin-right: 5px;
+      margin-left: 5px;
+      font-size: 0.82em;
+      opacity: 0.42;
+      vertical-align: middle;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .kids-comic-bubble:hover .kids-comic-audio-dot {
+      opacity: 1;
+      transform: scale(1.18);
     }
 
     .kids-comic-tail {
       position: absolute;
-      width: 22px;
-      height: 16px;
+      width: 28px;
+      height: 26px;
       pointer-events: none;
       overflow: visible;
     }
 
     .kids-comic-tail.tail-bottom {
-      bottom: -15px;
+      bottom: -24px;
       transform: translateX(-50%);
     }
 
     .kids-comic-tail.tail-top {
-      top: -15px;
+      top: -24px;
       transform: translateX(-50%) scaleY(-1);
+    }
+
+    /* Compact Settings Pop-up above the Mini-Footer (Book Language BIG + Translation Language SMALL) */
+    .kids-settings-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .kids-settings-popover {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(360px, 90vw);
+      background: #fffdf7;
+      color: #0f172a;
+      border: 2px solid #78350f;
+      border-radius: 20px;
+      padding: 14px 16px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+      z-index: 120;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .kids-settings-popover[hidden] {
+      display: none !important;
+    }
+
+    .kids-settings-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #78350f;
+      margin-bottom: 5px;
+    }
+
+    .kids-settings-lang-big-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .kids-settings-lang-big-btn {
+      padding: 9px 6px;
+      border-radius: 12px;
+      border: 2px solid rgba(120, 53, 15, 0.25);
+      background: #fffbeb;
+      color: #1e293b;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .kids-settings-lang-big-btn:hover {
+      border-color: #d97706;
+      background: #fef3c7;
+    }
+
+    .kids-settings-lang-big-btn.active {
+      background: #f59e0b;
+      color: #0b0f19;
+      border-color: #78350f;
+      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
+    }
+
+    .kids-settings-row-small {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    /* Minimalist Circular NanoBanana Kid Avatar Tier Buttons (webapp-that-riccardo-likes: L1 icon + traffic-light ring, L2 hover name) */
+    .kids-avatar-tier-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 4px;
+    }
+
+    .kids-avatar-tier-btn {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 999px;
+      background: #fffdf7;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s ease, opacity 0.16s ease;
+      opacity: 0.72;
+    }
+
+    .kids-avatar-tier-btn img {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .kids-avatar-tier-btn.tier-easy {
+      border: 3px solid #16a34a;
+      box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.25);
+    }
+
+    .kids-avatar-tier-btn.tier-medium {
+      border: 3px solid #eab308;
+      box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.25);
+    }
+
+    .kids-avatar-tier-btn.tier-hard {
+      border: 3px solid #dc2626;
+      box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.25);
+    }
+
+    .kids-avatar-tier-btn:hover {
+      opacity: 1;
+      transform: translateY(-2px) scale(1.1);
+      z-index: 30;
+    }
+
+    .kids-avatar-tier-btn.active {
+      opacity: 1;
+      transform: scale(1.12);
+    }
+
+    .kids-avatar-tier-btn.tier-easy.active {
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.32), 0 4px 12px rgba(22, 163, 74, 0.4);
+    }
+
+    .kids-avatar-tier-btn.tier-medium.active {
+      box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.38), 0 4px 12px rgba(234, 179, 8, 0.42);
+    }
+
+    .kids-avatar-tier-btn.tier-hard.active {
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.32), 0 4px 12px rgba(220, 38, 38, 0.4);
+    }
+
+    .kids-avatar-tier-dot {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      border: 1.5px solid #fffdf7;
+      pointer-events: none;
+    }
+
+    .tier-easy .kids-avatar-tier-dot { background: #16a34a; }
+    .tier-medium .kids-avatar-tier-dot { background: #eab308; }
+    .tier-hard .kids-avatar-tier-dot { background: #dc2626; }
+
+    .kids-avatar-hover-tip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 9px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      z-index: 130;
+    }
+
+    .kids-avatar-tier-btn:hover .kids-avatar-hover-tip {
+      display: block;
+    }
+
+    .kids-min-icon-btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1.5px solid rgba(15, 23, 42, 0.16);
+      background: #fffdf7;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.14s ease;
+    }
+
+    .kids-min-icon-btn:hover {
+      border-color: #0f172a;
+      color: #0f172a;
+      background: #fef3c7;
+      transform: translateY(-1px);
+    }
+
+    .kids-min-icon-btn.active {
+      background: #0f172a;
+      color: #fffdf7;
+      border-color: #0f172a;
+    }
+
+    .kids-min-icon-btn.exit-btn:hover {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #ef4444;
+    }
+
+    .kids-min-icon-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* Minimalist External Mini-Footer below the Open Notebook (All magic buttons outside the book!) */
@@ -3635,7 +3877,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.6';
+    const APP_VERSION = '0.13.7';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -3652,7 +3894,145 @@
     let kidsGrammarEnabled = false; // Disabled by default per Riccardo!
     let kidsUppercaseEnabled = false;
     let kidsFullscreenEnabled = true; // Fullscreen notebook by default when opening Kids Book!
+    let kidsTranslationLang = localStorage.getItem('kos_kids_tr_lang') || 'en'; // 'en' (default) | 'it' | 'fr' | 'de'
+    let kidsSettingsOpen = false;
     const kidsQuizAnswers = {}; // key: `${storySlug}_${mode}_${lang}_p${pageNum}_${qId}` -> { chosenIdx, isCorrect, qText, chosenText, correctText, difficulty, pageNum, timestamp }
+
+    const KIDS_EN_GLOSS = {
+      // German -> English
+      flughafen: { tr: 'airport', def: 'The place where airplanes land and take off.' },
+      olbia: { tr: 'Olbia', def: 'The city in northern Sardinia where the family lands.' },
+      sardinien: { tr: 'Sardinia', def: 'A big, sunny island in the Mediterranean Sea.' },
+      myrte: { tr: 'myrtle', def: 'A fragrant Sardinian bush with dark berries and white flowers.' },
+      cousin: { tr: 'cousin', def: 'Cousin Massimo is Papino\'s beloved cousin, one of the few remaining Carlessos!' },
+      massimo: { tr: 'Cousin Massimo Carlesso', def: 'Papino\'s cousin whom the family visits at the beach in Cala Gonone.' },
+      türkis: { tr: 'turquoise', def: 'A bright blue-green sea color like a gemstone.' },
+      türkisfarbene: { tr: 'turquoise', def: 'Bright blue-green like a tropical gemstone.' },
+      sand: { tr: 'sand', def: 'Soft golden grains along the beach.' },
+      felsen: { tr: 'rocks / cliffs', def: 'Big coastal rocks washed by the waves.' },
+      hängebrücken: { tr: 'suspension bridges', def: 'Rope and wood bridges hanging high up between the trees.' },
+      helm: { tr: 'helmet', def: 'A hard hat that protects your head while climbing.' },
+      vollmond: { tr: 'full moon', def: 'The bright round moon shining over the sea at night.' },
+      schlauchboot: { tr: 'inflatable dinghy / boat', def: 'A fast boat with inflatable sides for exploring secret coves.' },
+      klippen: { tr: 'cliffs', def: 'Tall white rock walls rising straight out of the blue sea.' },
+      schwimmwesten: { tr: 'life jackets', def: 'Bright orange vests that keep you safely afloat in the water.' },
+      meeresgrotten: { tr: 'sea caves', def: 'Big natural caverns carved into the cliffs by the ocean waves.' },
+      wacholder: { tr: 'juniper', def: 'A fragrant Sardinian mountain tree with twisted wood.' },
+      bogen: { tr: 'bow', def: 'An archery bow used to shoot arrows at the target.' },
+      zielscheibe: { tr: 'target', def: 'The colorful bullseye circle Mama Kate hits right in the center.' },
+      esel: { tr: 'donkey', def: 'A gentle, soft Sardinian donkey with long ears.' },
+      taucherbrille: { tr: 'diving mask', def: 'Goggles that let you see clearly underwater.' },
+      schnorchel: { tr: 'snorkel', def: 'A breathing tube for watching fish while swimming face-down.' },
+      fische: { tr: 'little fish', def: 'Thousands of tiny silver fish swimming around Ale and Seby.' },
+      ägypten: { tr: 'Egypt', def: 'The land of the pyramids and the Red Sea coral reef.' },
+      korallenriff: { tr: 'coral reef', def: 'A colorful underwater garden full of corals and tropical fish.' },
+      // French -> English
+      aéroport: { tr: 'airport', def: 'The place where airplanes land and take off.' },
+      sardaigne: { tr: 'Sardinia', def: 'A big, sunny island in the Mediterranean Sea.' },
+      myrte: { tr: 'myrtle', def: 'A sweet-smelling Sardinian plant.' },
+      crique: { tr: 'cove / bay', def: 'A small hidden bay nestled between rocks.' },
+      turquoise: { tr: 'turquoise', def: 'A bright blue-green sea color.' },
+      transparente: { tr: 'crystal clear', def: 'So clear you can see straight down to the seabed.' },
+      sable: { tr: 'sand', def: 'Soft golden grains on the beach.' },
+      rochers: { tr: 'rocks', def: 'Big coastal rocks by the sea.' },
+      ponts: { tr: 'bridges', def: 'Walkways hanging high between the pine trees.' },
+      suspendus: { tr: 'hanging / suspended', def: 'Hanging up in the air between branches.' },
+      cordes: { tr: 'ropes', def: 'Strong braided ropes to hold onto for balance.' },
+      casque: { tr: 'helmet', def: 'A hard hat that protects your head on adventures.' },
+      terrasse: { tr: 'terrace', def: 'An open-air balcony overlooking the sea.' },
+      lune: { tr: 'moon', def: 'It shines in the night sky and reflects silver on the sea.' },
+      bateau: { tr: 'boat / dinghy', def: 'The orange inflatable boat speeding over the waves.' },
+      golfe: { tr: 'gulf', def: 'A wide bay embraced by mountains and cliffs.' },
+      falaises: { tr: 'cliffs', def: 'Very tall white rock walls above the sea.' },
+      gilets: { tr: 'life jackets', def: 'Orange vests that keep you safely floating.' },
+      plongent: { tr: 'they dive', def: 'They jump into the turquoise water with a big splash!' },
+      grottes: { tr: 'caves', def: 'Caverns carved into the cliffs by the sea.' },
+      sentier: { tr: 'trail / path', def: 'A rocky mountain footpath through nature.' },
+      genévrier: { tr: 'juniper', def: 'A fragrant Mediterranean mountain tree.' },
+      arc: { tr: 'bow', def: 'A wooden archery bow for shooting arrows.' },
+      flèches: { tr: 'arrows', def: 'Feathered shafts that fly straight to the target.' },
+      cible: { tr: 'target', def: 'The colorful bullseye circle to aim for.' },
+      âne: { tr: 'donkey', def: 'A gentle little Sardinian donkey with long soft ears.' },
+      caresse: { tr: 'pets / strokes', def: 'Gently touches with a hand to cuddle.' },
+      museau: { tr: 'muzzle / nose', def: 'The soft tip of the little donkey\'s nose.' },
+      granit: { tr: 'granite', def: 'A sparkling hard rock that is pink in Arbatax!' },
+      masque: { tr: 'diving mask', def: 'Wide goggles to see fish underwater.' },
+      tuba: { tr: 'snorkel', def: 'A tube to breathe while looking underwater.' },
+      poissons: { tr: 'fish', def: 'Tiny silver fish swimming in a circle.' },
+      argentés: { tr: 'silvery', def: 'Shining like silver in the sunlight.' },
+      cristalline: { tr: 'crystal clear', def: 'Pure and clear just like crystal.' },
+      égypte: { tr: 'Egypt', def: 'The country of pyramids and the Red Sea.' },
+      corail: { tr: 'coral', def: 'A colorful underwater reef where tropical fish live.' },
+      promesse: { tr: 'promise', def: 'A special word of honor you always keep!' },
+      // Italian -> English
+      aeroporto: { tr: 'airport', def: 'The place where airplanes land and take off.' },
+      sardegna: { tr: 'Sardinia', def: 'A big, beautiful island in the Mediterranean Sea.' },
+      mirto: { tr: 'myrtle', def: 'A fragrant Sardinian plant with dark berries.' },
+      cugino: { tr: 'cousin', def: 'Cousin Massimo is one of the few remaining Carlessos!' },
+      turchese: { tr: 'turquoise', def: 'A bright blue-green sea color.' },
+      trasparente: { tr: 'transparent / clear', def: 'So clear you can see the seabed like glass.' },
+      sabbia: { tr: 'sand', def: 'Soft golden grains along the beach.' },
+      scogli: { tr: 'rocks', def: 'Big coastal rocks washed by the waves.' },
+      ponti: { tr: 'bridges', def: 'Suspended walkways high up between the trees.' },
+      sospesi: { tr: 'suspended', def: 'Hanging in the air between branches.' },
+      corde: { tr: 'ropes', def: 'Strong braided ropes to hold onto.' },
+      casco: { tr: 'helmet', def: 'A hard hat protecting your head.' },
+      terrazza: { tr: 'terrace', def: 'A big open balcony overlooking the sea.' },
+      tramonto: { tr: 'sunset', def: 'When the evening sun dips into the sea turning the sky gold.' },
+      luna: { tr: 'moon', def: 'Shines in the night sky and lights up the sea.' },
+      gommone: { tr: 'inflatable dinghy', def: 'A fast boat with inflatable sides.' },
+      golfo: { tr: 'gulf', def: 'A large sea bay embraced by mountains.' },
+      falesie: { tr: 'cliffs', def: 'Very tall white rock walls above the blue sea.' },
+      guglia: { tr: 'rock spire / pinnacle', def: 'A towering rock peak at Cala Goloritzè.' },
+      salvagenti: { tr: 'life jackets', def: 'Orange vests that keep you safely afloat.' },
+      tuffano: { tr: 'they dive', def: 'They jump eagerly into the water with a big splash!' },
+      grotte: { tr: 'caves', def: 'Natural caverns carved by the sea.' },
+      sentieri: { tr: 'trails', def: 'Rocky mountain paths through nature.' },
+      sentiero: { tr: 'trail', def: 'A small footpath through rocks and trees.' },
+      supramonte: { tr: 'Supramonte', def: 'The wild white limestone mountains of Sardinia.' },
+      ginepro: { tr: 'juniper', def: 'A fragrant Sardinian tree with twisted wood.' },
+      ginepri: { tr: 'juniper trees', def: 'Fragrant trees growing among Sardinian rocks.' },
+      panorama: { tr: 'panorama / view', def: 'The sweeping view from a mountain summit.' },
+      valli: { tr: 'valleys', def: 'Green valleys stretching between the mountains.' },
+      arco: { tr: 'bow', def: 'An archery bow used to shoot arrows.' },
+      frecce: { tr: 'arrows', def: 'Feathered shafts flying toward the target.' },
+      bersaglio: { tr: 'target', def: 'The colorful bullseye circle to hit in the center.' },
+      asinello: { tr: 'little donkey', def: 'A sweet, soft little donkey with long ears.' },
+      accarezza: { tr: 'pets / strokes', def: 'Touches gently with a hand to cuddle.' },
+      muso: { tr: 'muzzle / nose', def: 'The soft tip of the donkey\'s nose.' },
+      granito: { tr: 'granite', def: 'A sparkling hard rock that is pink in Arbatax!' },
+      maschera: { tr: 'diving mask', def: 'Wide goggles to see clearly underwater.' },
+      boccaglio: { tr: 'snorkel', def: 'The tube for breathing while looking underwater.' },
+      pesciolini: { tr: 'little fish', def: 'Curious little fish swimming in schools.' },
+      argentati: { tr: 'silvery', def: 'Shining like silver under the sun.' },
+      cristallina: { tr: 'crystal clear', def: 'Pure and transparent just like crystal.' },
+      egitto: { tr: 'Egypt', def: 'The land of the Red Sea and pyramids!' },
+      barriera: { tr: 'reef', def: 'An underwater reef full of colorful corals.' },
+      corallina: { tr: 'coral', def: 'Made of colorful corals in warm tropical waters.' },
+      promessa: { tr: 'promise', def: 'A special word of honor you always keep!' }
+    };
+
+    function setKidsTranslationLang(trLang) {
+      kidsTranslationLang = ['en', 'it', 'fr', 'de'].includes(trLang) ? trLang : 'en';
+      try { localStorage.setItem('kos_kids_tr_lang', kidsTranslationLang); } catch (_) {}
+      renderActiveBook();
+    }
+
+    function toggleKidsSettingsPopover(ev) {
+      if (ev) ev.stopPropagation();
+      kidsSettingsOpen = !kidsSettingsOpen;
+      const pop = document.getElementById('kidsSettingsPopover');
+      if (pop) pop.hidden = !kidsSettingsOpen;
+    }
+
+    document.addEventListener('click', (ev) => {
+      if (!kidsSettingsOpen) return;
+      if (!ev.target.closest('.kids-settings-wrap')) {
+        kidsSettingsOpen = false;
+        const pop = document.getElementById('kidsSettingsPopover');
+        if (pop) pop.hidden = true;
+      }
+    });
 
     function storyMatchesKidFilter(story, filterVal) {
       if (!filterVal || filterVal === 'all') return true;
@@ -5288,41 +5668,87 @@
             `;
           };
 
+          const bookLangBadge = lang === 'de' ? 'DE' : (lang === 'fr' ? 'FR' : 'IT');
+          const trLangBadge = kidsTranslationLang.toUpperCase();
+          const hasEmmaLevel = Boolean(kb.pages?.[0]?.levels?.emma);
+
+          const gearSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
+          const fullSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
+          const closeSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
           floatBar.innerHTML = `
             ${buildPageMagicGroupHtml(leftPage, leftIdx)}
             <div class="kids-mini-footer-group">
-              <button type="button" class="kids-pill-control ${kidsBookMode === 'seby' ? 'active' : ''}"
-                onclick="launchKidsBook('${story.slug}', 'seby')" title="Versione Seby (6-7 anni)">
-                🧒 Seby
-              </button>
-              <button type="button" class="kids-pill-control ${kidsBookMode === 'ale' ? 'active' : ''}"
-                onclick="launchKidsBook('${story.slug}', 'ale')" title="Versione Ale (8-9 anni)">
-                👦 Ale
-              </button>
-              <span style="opacity:0.35;">·</span>
-              <button type="button" class="kids-pill-control ${lang === 'it' ? 'active' : ''}" onclick="setLanguage('it')">🇮🇹 IT</button>
-              <button type="button" class="kids-pill-control ${lang === 'fr' ? 'active' : ''}" onclick="setLanguage('fr')">🇫🇷 FR</button>
-              <button type="button" class="kids-pill-control ${lang === 'de' ? 'active' : ''}" onclick="setLanguage('de')" title="Deutsch per Papino e i bimbi!">🇩🇪 DE</button>
-              <span style="opacity:0.35;">·</span>
-              <button type="button" class="kids-pill-control ${kidsGrammarEnabled ? 'active' : ''}"
-                onclick="toggleKidsGrammar()"
-                title="Attiva/Disattiva Grammatica: Nomi NERI, Aggettivi VERDI, Verbi ROSSI e Verbi Separabili con cordicella!">
-                🌈 ${isDe ? 'Grammatik' : (isFr ? 'Grammaire' : 'Grammatica')}
-              </button>
-              <button type="button" class="kids-pill-control ${kidsUppercaseEnabled ? 'active' : ''}"
+              <div class="kids-avatar-tier-group" role="radiogroup" aria-label="Livello di lettura">
+                <button type="button" class="kids-avatar-tier-btn tier-easy ${kidsBookMode === 'seby' ? 'active' : ''}"
+                  onclick="launchKidsBook('${story.slug}', 'seby')" aria-label="Seby — 6 anni — Facile (A2)">
+                  <img src="assets/avatars/seby_tier.jpg" alt="Seby" onerror="this.src='assets/avatars/seby.png'">
+                  <span class="kids-avatar-tier-dot"></span>
+                  <span class="kids-avatar-hover-tip">Seby · 6a · Facile (A2)</span>
+                </button>
+                <button type="button" class="kids-avatar-tier-btn tier-medium ${kidsBookMode === 'ale' ? 'active' : ''}"
+                  onclick="launchKidsBook('${story.slug}', 'ale')" aria-label="Ale — 8 anni — Medio (B1)">
+                  <img src="assets/avatars/ale_tier.jpg" alt="Ale" onerror="this.src='assets/avatars/ale.png'">
+                  <span class="kids-avatar-tier-dot"></span>
+                  <span class="kids-avatar-hover-tip">Ale · 8a · Medio (B1)</span>
+                </button>
+                <button type="button" class="kids-avatar-tier-btn tier-hard ${kidsBookMode === 'emma' ? 'active' : ''}"
+                  onclick="${hasEmmaLevel ? `launchKidsBook('${story.slug}', 'emma')` : `launchKidsBook('${story.slug}', 'ale')`}"
+                  aria-label="Emma — 11 anni — Difficile (B2/C1)">
+                  <img src="assets/avatars/emma.png" alt="Emma" onerror="this.src='assets/avatars/kate.png'">
+                  <span class="kids-avatar-tier-dot"></span>
+                  <span class="kids-avatar-hover-tip">Emma · 11a · ${hasEmmaLevel ? 'Esperto (B2/C1)' : 'In arrivo (Issue #5)'}</span>
+                </button>
+              </div>
+              <span style="opacity:0.25;">|</span>
+              <div class="kids-settings-wrap">
+                <button type="button" class="kids-min-icon-btn ${kidsSettingsOpen ? 'active' : ''}"
+                  onclick="toggleKidsSettingsPopover(event)"
+                  title="Opzioni (${bookLangBadge} → ${trLangBadge})">
+                  ${gearSvg}
+                </button>
+                <div id="kidsSettingsPopover" class="kids-settings-popover" ${kidsSettingsOpen ? '' : 'hidden'} onclick="event.stopPropagation()">
+                  <div>
+                    <div class="kids-settings-section-title">📖 Lingua del Libro</div>
+                    <div class="kids-settings-lang-big-grid">
+                      <button type="button" class="kids-settings-lang-big-btn ${lang === 'it' ? 'active' : ''}" onclick="setLanguage('it')">🇮🇹 Italiano</button>
+                      <button type="button" class="kids-settings-lang-big-btn ${lang === 'fr' ? 'active' : ''}" onclick="setLanguage('fr')">🇫🇷 Français</button>
+                      <button type="button" class="kids-settings-lang-big-btn ${lang === 'de' ? 'active' : ''}" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="kids-settings-section-title">🌍 Lingua di Traduzione / Spiegazioni</div>
+                    <div class="kids-settings-row-small">
+                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'en' ? 'active' : ''}" onclick="setKidsTranslationLang('en')">🇬🇧 English</button>
+                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'it' ? 'active' : ''}" onclick="setKidsTranslationLang('it')">🇮🇹 Italiano</button>
+                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'fr' ? 'active' : ''}" onclick="setKidsTranslationLang('fr')">🇫🇷 Français</button>
+                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'de' ? 'active' : ''}" onclick="setKidsTranslationLang('de')">🇩🇪 Deutsch</button>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="kids-settings-section-title">✨ Aiuti Lettura</div>
+                    <div class="kids-settings-row-small">
+                      <button type="button" class="kids-pill-control ${kidsGrammarEnabled ? 'active' : ''}" onclick="toggleKidsGrammar()">🌈 ${isDe ? 'Grammatik' : (isFr ? 'Grammaire' : 'Grammatica')}</button>
+                      <button type="button" class="kids-pill-control ${kidsUppercaseEnabled ? 'active' : ''}" onclick="toggleKidsUppercase()">ABC Maiuscolo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="kids-min-icon-btn ${kidsUppercaseEnabled ? 'active' : ''}"
+                style="width:auto;padding:0 9px;font-family:'Fredoka',sans-serif;font-size:0.72rem;font-weight:800;letter-spacing:0.04em;"
                 onclick="toggleKidsUppercase()"
-                title="STAMPATO MAIUSCOLO">
-                🔠 ABC
+                title="STAMPATO MAIUSCOLO (Testo, Fumetti e Didascalie)">
+                ABC
               </button>
-              <button type="button" class="kids-pill-control ${kidsFullscreenEnabled ? 'active' : ''}"
+              <button type="button" class="kids-min-icon-btn ${kidsFullscreenEnabled ? 'active' : ''}"
                 onclick="toggleKidsFullscreen()"
-                title="Tutta Pagina (Immersivo senza barre)">
-                ⛶
+                title="Tutta Pagina">
+                ${fullSvg}
               </button>
-              <button type="button" class="kids-pill-control" style="background:#fee2e2;color:#991b1b;border-color:#f87171;"
+              <button type="button" class="kids-min-icon-btn exit-btn"
                 onclick="exitKidsBookToAdult()"
-                title="Chiudi il quaderno bambini e torna alla vista normale">
-                ✕ Esci
+                title="Esci dal quaderno">
+                ${closeSvg}
               </button>
             </div>
             ${buildPageMagicGroupHtml(rightPage, rightIdx)}
@@ -6013,15 +6439,23 @@
           ? (isFr ? ' • masc.' : ' • masch. 🔵')
           : ((!isDe && tok.g === 'f') ? (isFr ? ' • fém.' : ' • femm. 🌸') : '');
 
+        const cleanWordKey = String(tok.w || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
+        const enFallback = (kidsTranslationLang === 'en') ? KIDS_EN_GLOSS[cleanWordKey] : null;
+        const glossTr = enFallback ? enFallback.tr : (tok.gloss?.tr || '');
+        const glossDef = enFallback ? enFallback.def : (tok.gloss?.def || '');
+        const clickToListenHint = kidsTranslationLang === 'en'
+          ? 'Click to hear the word'
+          : (kidsTranslationLang === 'de' ? 'Klicke, um das Wort zu hören' : (kidsTranslationLang === 'fr' ? 'Clique pour écouter le mot' : 'Clicca per ascoltare la parola'));
+
         let glossHtml = '';
         if (isSepVerb && tok.gloss) {
           glossHtml = `
             <span class="kw-gloss-popover">
               <strong style="color:#fde047;">${escapeHtml(tok.sep_pair || tok.w)}</strong>
-              <span style="opacity:0.95;">(🏃🔗 Trennbares Verb: <strong style="color:#fca5a5;text-decoration:underline;">${escapeHtml(tok.sep_inf || tok.gloss.sep_inf || '')}</strong>)</span><br>
-              🔄 <em>${escapeHtml(tok.gloss.tr)}</em><br>
-              💡 ${escapeHtml(tok.gloss.def)}<br>
-              <span style="opacity:0.8;font-size:0.72rem;">🔊 ${isDe ? 'Klicke, um das Wort zu hören' : 'Clicca per ascoltare'}</span>
+              <span style="opacity:0.95;">(🏃🔗 Separable verb: <strong style="color:#fca5a5;text-decoration:underline;">${escapeHtml(tok.sep_inf || tok.gloss.sep_inf || '')}</strong>)</span><br>
+              🔄 <em>${escapeHtml(glossTr)}</em><br>
+              💡 ${escapeHtml(glossDef)}<br>
+              <span style="opacity:0.8;font-size:0.72rem;">🔊 ${clickToListenHint}</span>
             </span>
           `;
         } else if (hasGloss) {
@@ -6029,15 +6463,15 @@
             <span class="kw-gloss-popover">
               <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong>
               ${posMeta.label ? `<span style="opacity:0.85;">(${posMeta.icon} ${posMeta.label}${genderLabel})</span>` : ''}<br>
-              🔄 <em>${escapeHtml(tok.gloss.tr)}</em><br>
-              💡 ${escapeHtml(tok.gloss.def)}
+              🔄 <em>${escapeHtml(glossTr)}</em><br>
+              💡 ${escapeHtml(glossDef)}
             </span>
           `;
         } else if (posMeta.label) {
           glossHtml = `
             <span class="kw-gloss-popover">
               <strong style="color:#fde047;">${escapeHtml(tok.w)}</strong> (${posMeta.icon} ${posMeta.label}${genderLabel})<br>
-              🔊 ${isDe ? 'Klicke, um das Wort zu hören' : (isFr ? 'Clique pour écouter le mot' : 'Clicca per ascoltare la parola')}
+              🔊 ${clickToListenHint}
             </span>
           `;
         }
@@ -6072,28 +6506,28 @@
 
       const cornerPageNumHtml = `<span class="kids-book-page-num ${side === 'left' ? 'is-left-num' : 'is-right-num'}">${pageObj.page}</span>`;
 
-      // Per-page speech bubble mouth-anchor coordinates (top%, left%, maxWidth%, tailDir, tailLeft%)
+      // Per-page speech bubble mouth-anchor coordinates (closer to each speaker's mouth!)
       const BUBBLE_ANCHORS = {
-        1:  { top: '4.8%',  left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '42%' },
-        2:  { top: '33.2%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '49%' },
-        3:  { top: '4.5%',  left: '33%',  maxW: '60%', tail: 'bottom', tailLeft: '20%' },
-        4:  { top: '28.5%', left: '30%',  maxW: '63%', tail: 'bottom', tailLeft: '30%' },
-        5:  { top: '4.8%',  left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '52%' },
-        6:  { top: '28.5%', left: '5%',   maxW: '58%', tail: 'bottom', tailLeft: '54%' },
-        7:  { top: '4.8%',  left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '72%' },
-        8:  { top: '28.5%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '52%' },
-        9:  { top: '4.8%',  left: '8%',   maxW: '58%', tail: 'bottom', tailLeft: '54%' },
-        10: { top: '28.5%', left: '8%',   maxW: '62%', tail: 'bottom', tailLeft: '48%' },
-        11: { top: '4.5%',  left: '34%',  maxW: '60%', tail: 'bottom', tailLeft: '18%' },
-        12: { top: '28.5%', left: '28%',  maxW: '65%', tail: 'bottom', tailLeft: '28%' },
-        13: { top: '4.8%',  left: '16%',  maxW: '62%', tail: 'bottom', tailLeft: '66%' },
-        14: { top: '28.5%', left: '6%',   maxW: '58%', tail: 'bottom', tailLeft: '64%' },
+        1:  { top: '12.5%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '42%' },
+        2:  { top: '33.8%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '49%' },
+        3:  { top: '5.5%',  left: '32%',  maxW: '61%', tail: 'bottom', tailLeft: '20%' },
+        4:  { top: '34.5%', left: '30%',  maxW: '63%', tail: 'bottom', tailLeft: '30%' },
+        5:  { top: '11.5%', left: '5%',   maxW: '52%', tail: 'bottom', tailLeft: '54%' },
+        6:  { top: '38.5%', left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '54%' },
+        7:  { top: '10.5%', left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '72%' },
+        8:  { top: '42.0%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '52%' },
+        9:  { top: '14.5%', left: '8%',   maxW: '58%', tail: 'bottom', tailLeft: '54%' },
+        10: { top: '41.0%', left: '8%',   maxW: '60%', tail: 'bottom', tailLeft: '48%' },
+        11: { top: '5.0%',  left: '34%',  maxW: '60%', tail: 'bottom', tailLeft: '18%' },
+        12: { top: '35.5%', left: '28%',  maxW: '64%', tail: 'bottom', tailLeft: '28%' },
+        13: { top: '10.0%', left: '16%',  maxW: '60%', tail: 'bottom', tailLeft: '66%' },
+        14: { top: '42.5%', left: '6%',   maxW: '58%', tail: 'bottom', tailLeft: '64%' },
         15: { top: '48.5%', left: '8.2%', maxW: '55%', tail: 'top',    tailLeft: '68%' },
-        16: { top: '28.5%', left: '6%',   maxW: '62%', tail: 'bottom', tailLeft: '58%' }
+        16: { top: '36.5%', left: '6%',   maxW: '60%', tail: 'bottom', tailLeft: '58%' }
       };
       const bAnchor = BUBBLE_ANCHORS[pageObj.page] || (patchPos === 'top'
-        ? { top: '28.5%', left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' }
-        : { top: '4.8%',  left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' });
+        ? { top: '35%', left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' }
+        : { top: '10%', left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' });
 
       const textZoneHtml = `
         <div class="kids-white-patch-text-zone">
@@ -6105,22 +6539,21 @@
       `;
 
       const comicBubbleHtml = bubbleData?.text ? `
-        <div class="kids-comic-bubble"
+        <div class="kids-comic-bubble ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}"
           style="top:${bAnchor.top};left:${bAnchor.left};max-width:${bAnchor.maxW};"
           onclick="event.stopPropagation(); playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')"
           title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
-          <span class="kids-comic-speaker">💬 ${escapeHtml(pageObj.speech_bubble.speaker || '')} 🔊</span>
-          <span>«${escapeHtml(bubbleData.text)}»</span>
-          <svg class="kids-comic-tail tail-${bAnchor.tail}" style="left:${bAnchor.tailLeft};" viewBox="0 0 22 16" aria-hidden="true">
-            <path d="M2,0 L20,0 L11,14 Z" fill="rgba(255,255,255,0.96)"/>
-            <path d="M2,0 L11,14 L20,0" fill="none" stroke="#0f172a" stroke-width="2" stroke-linejoin="round"/>
+          <span>${escapeHtml(bubbleData.text)}</span><span class="kids-comic-audio-dot" aria-hidden="true">🔊</span>
+          <svg class="kids-comic-tail tail-${bAnchor.tail}" style="left:${bAnchor.tailLeft};" viewBox="0 0 28 26" aria-hidden="true">
+            <path d="M5,0 Q9,13 18,24 Q14,11 23,0 Z" fill="#fffdf7"/>
+            <path d="M5,0 Q9,13 18,24 Q14,11 23,0" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       ` : '';
 
       const artZoneHtml = `
         <div class="kids-leaf-art-zone">
-          <div class="kids-figure-caption">${escapeHtml(pageTitle)}</div>
+          <div class="kids-figure-caption ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}">${escapeHtml(pageTitle)}</div>
         </div>
       `;
 
