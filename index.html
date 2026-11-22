@@ -2911,6 +2911,17 @@
       line-height: 1.42;
     }
 
+    .kids-sentence-box.level-emma {
+      font-size: clamp(0.56rem, 1.00cqw, 0.96rem);
+      line-height: 1.38;
+      font-weight: 700;
+    }
+
+    .kids-sentence-box.level-emma.uppercase-mode {
+      font-size: clamp(0.52rem, 0.90cqw, 0.88rem);
+      line-height: 1.34;
+    }
+
     .kids-sep-verb-arcs {
       position: absolute;
       inset: 0;
@@ -3204,9 +3215,9 @@
       height: 32px;
       padding: 0;
       border-radius: 999px;
-      border: 1.5px solid rgba(15, 23, 42, 0.16);
-      background: #fffdf7;
-      color: #334155;
+      border: 1.5px solid rgba(254, 243, 199, 0.28);
+      background: rgba(255, 251, 235, 0.12);
+      color: #fef3c7;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -3215,22 +3226,22 @@
     }
 
     .kids-min-icon-btn:hover {
-      border-color: #0f172a;
-      color: #0f172a;
+      border-color: #fbbf24;
+      color: #0b0f19;
       background: #fef3c7;
       transform: translateY(-1px);
     }
 
     .kids-min-icon-btn.active {
-      background: #0f172a;
-      color: #fffdf7;
-      border-color: #0f172a;
+      background: #f59e0b;
+      color: #0b0f19;
+      border-color: #fde68a;
     }
 
     .kids-min-icon-btn.exit-btn:hover {
-      background: #fee2e2;
-      color: #991b1b;
-      border-color: #ef4444;
+      background: #dc2626;
+      color: #fff;
+      border-color: #f87171;
     }
 
     .kids-min-icon-btn svg {
@@ -3243,7 +3254,7 @@
       stroke-linejoin: round;
     }
 
-    /* Minimalist External Mini-Footer below the Open Notebook (All magic buttons outside the book!) */
+    /* Minimalist External Mini-Footer below the Open Notebook (Dark Table Brown — distinct from the cream pages!) */
     .kids-notebook-floating-bar {
       width: min(1680px, 98.5vw);
       flex-shrink: 0;
@@ -3253,11 +3264,11 @@
       justify-content: space-between;
       gap: 8px;
       flex-wrap: wrap;
-      background: rgba(253, 250, 242, 0.95);
-      border: 1.5px solid rgba(217, 119, 6, 0.55);
+      background: linear-gradient(180deg, rgba(52, 31, 18, 0.96) 0%, rgba(30, 18, 10, 0.98) 100%);
+      border: 1.5px solid rgba(217, 119, 6, 0.45);
       border-radius: 999px;
       padding: 4px 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(254, 243, 199, 0.12);
     }
 
     .kids-mini-footer-group {
@@ -3877,7 +3888,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.7';
+    const APP_VERSION = '0.13.8';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -3896,6 +3907,14 @@
     let kidsFullscreenEnabled = true; // Fullscreen notebook by default when opening Kids Book!
     let kidsTranslationLang = localStorage.getItem('kos_kids_tr_lang') || 'en'; // 'en' (default) | 'it' | 'fr' | 'de'
     let kidsSettingsOpen = false;
+    const KIDS_SPEED_STEPS = [
+      { mult: 0.76, label: 'Molto lento (--)', short: '0.75×' },
+      { mult: 0.88, label: 'Lento (-)', short: '0.88×' },
+      { mult: 1.00, label: 'Normale', short: '1.0×' },
+      { mult: 1.15, label: 'Veloce (+)', short: '1.15×' },
+      { mult: 1.30, label: 'Molto veloce (++)', short: '1.3×' }
+    ];
+    let kidsSpeedStep = Math.max(0, Math.min(4, parseInt(localStorage.getItem('kos_kids_speed_step') ?? '2', 10) || 2));
     const kidsQuizAnswers = {}; // key: `${storySlug}_${mode}_${lang}_p${pageNum}_${qId}` -> { chosenIdx, isCorrect, qText, chosenText, correctText, difficulty, pageNum, timestamp }
 
     const KIDS_EN_GLOSS = {
@@ -4009,8 +4028,158 @@
       egitto: { tr: 'Egypt', def: 'The land of the Red Sea and pyramids!' },
       barriera: { tr: 'reef', def: 'An underwater reef full of colorful corals.' },
       corallina: { tr: 'coral', def: 'Made of colorful corals in warm tropical waters.' },
-      promessa: { tr: 'promise', def: 'A special word of honor you always keep!' }
+      promessa: { tr: 'promise', def: 'A special word of honor you always keep!' },
+      // Emma B2/C1 Glossary (IT / FR / DE -> English)
+      inebriati: { tr: 'enchanted / intoxicated', def: 'Overwhelmed with delight by a rich fragrance.' },
+      levigati: { tr: 'smoothed / polished', def: 'Worn smooth over time by sea waves and wind.' },
+      moschettoni: { tr: 'carabiners', def: 'Metal safety clips used in climbing and rope parks.' },
+      imbragatura: { tr: 'climbing harness', def: 'Safety straps worn around the waist and legs for climbing.' },
+      strapiombo: { tr: 'sheer drop / overhang', def: 'A steep cliff dropping straight down into the sea.' },
+      erosione: { tr: 'erosion', def: 'The slow wearing away of rock by waves and wind over millennia.' },
+      scoccando: { tr: 'releasing / shooting', def: 'Letting an arrow fly from a drawn bow.' },
+      incastonate: { tr: 'nestled / set like jewels', def: 'Framed naturally like precious stones between rocks.' },
+      enivrés: { tr: 'enchanted / intoxicated', def: 'Captivated by a rich wild fragrance.' },
+      retrouvailles: { tr: 'reunion', def: 'A joyful meeting after time apart (always plural in French!).' },
+      mousquetons: { tr: 'carabiners', def: 'Metal safety clips used in climbing.' },
+      baudriers: { tr: 'climbing harnesses', def: 'Safety harnesses for treetop rope bridges.' },
+      sillage: { tr: 'wake / shimmering trail', def: 'A bright path of light left across the water.' },
+      vertigineuses: { tr: 'dizzying / towering', def: 'So tall they make you feel dizzy looking up.' },
+      ressac: { tr: 'surf / backwash', def: 'Waves surging back and forth against coastal cliffs.' },
+      enchâssées: { tr: 'nestled / set', def: 'Framed like gems inside pink granite rock.' },
+      ciselées: { tr: 'sculpted / chiseled', def: 'Carefully carved into rock over thousands of years.' },
+      schwindelfrei: { tr: 'fearless of heights', def: 'Having a steady head when high up above the ground.' },
+      dämmerung: { tr: 'twilight / dusk', def: 'The soft magical light as evening falls.' },
+      schroff: { tr: 'sheer / rugged', def: 'Steep, jagged, and dramatic rock cliffs.' },
+      zerklüfteten: { tr: 'craggy / jagged', def: 'A wild coastline deeply carved by cliffs and coves.' },
+      knorrigen: { tr: 'gnarled', def: 'Twisted, ancient tree trunks shaped by the wind.' },
+      treffsicherheit: { tr: 'accuracy / sharp aim', def: 'The skill of hitting the bullseye cleanly.' },
+      zutraulichen: { tr: 'trusting / friendly', def: 'A gentle animal that happily comes close to people.' }
     };
+
+    const KIDS_EMMA_TEXTS_V2 = {
+      1: {
+        it: "Non appena l'aereo tocca la pista di Olbia, nel nord della Sardegna, un'ondata d'aria tiepida avvolge la famiglia. Papino, Mamma Kate, Nonna Lucilla, Ale e Seby escono con le valigie, inebriati dal profumo intenso e resinoso del mirto selvatico.",
+        fr: "Dès que l'avion se pose sur la piste ensoleillée d'Olbia, au nord de la Sardaigne, une brise tiède accueille la famille. Papino, Maman Kate, Mamie Lucilla, Ale et Seby sortent avec leurs bagages, enivrés par les senteurs sauvages et boisées du myrte.",
+        de: "Kaum setzt das Flugzeug auf der sonnenverwöhnten Landebahn von Olbia auf, empfängt eine milde Brise die ganze Familie. Mit ihren Koffern treten Papino, Mama Kate, Oma Lucilla, Ale und Seby ins Freie, wo sie sofort der würzige Duft wilder Myrte umgibt."
+      },
+      2: {
+        it: "Sulla riva dorata di Cala Gonone li attende un incontro prezioso: il cugino Massimo, uno dei pochi rimasti a portare il raro cognome Carlesso! Dopo un abbraccio commosso tra i due cugini, Ale e Seby si tuffano spensierati nella baia turchese.",
+        fr: "Sur le rivage doré de Cala Gonone les attendent de précieuses retrouvailles : le cousin Massimo, l'un des rares héritiers du nom Carlesso ! Après une étreinte chaleureuse, Ale et Seby s'élancent joyeusement dans les reflets turquoise de la crique.",
+        de: "Am goldgelben Strand von Cala Gonone erwartet sie ein besonderes Wiedersehen: Cousin Massimo, einer der wenigen Verwandten mit dem seltenen Namen Carlesso! Nach einer innigen Umarmung stürzen sich Ale und Seby ausgelassen ins türkisfarbene Wasser."
+      },
+      3: {
+        it: "Lungo gli scogli levigati di Cala Gonone, i due fratelli sguazzano nell'acqua cristallina sfidandosi a colpi di spruzzi. Il sole allo zenit accende la superficie increspata del mare, trasformando ogni piccola onda in una cascata di scintille diamantine.",
+        fr: "Le long des rochers polis de Cala Gonone, les deux frères s'amusent à coups d'éclaboussures dans l'eau limpide. Le soleil au zénith illumine la surface frémissante de la mer, métamorphosant chaque vaguelette en une pluie d'étincelles de diamant.",
+        de: "Entlang der glattgeschliffenen Felsen von Cala Gonone planschen die beiden Brüder übermütig im glasklaren Flachwasser. Die hoch stehende Sonne lässt die gekräuselte Meeresoberfläche aufleuchten und verwandelt jede Welle in tausend funkelnde Diamanten."
+      },
+      4: {
+        it: "Ben assicurati con imbragatura, moschettoni e caschetto, Ale e Seby affrontano con sangue freddo i ponti tibetani sospesi tra i pini marittimi. Da quella passerella oscillante, lo sguardo spazia sulla costa smeraldina e sulle vele lontane.",
+        fr: "Solidement équipés de baudriers, de mousquetons et d'un casque, Ale et Seby franchissent avec sang-froid les ponts de singe suspendus entre les pins maritimes. Depuis ce belvédère mouvant, leur regard embrasse tout le littoral azuré parsemé de voiliers.",
+        de: "Sicher mit Klettergurt, Karabinern und Helm ausgerüstet, wagen sich Ale und Seby schwindelfrei über die schwankenden Hängebrücken zwischen den hohen Pinienkronen. Von dieser luftigen Höhe aus reicht ihr Blick weit über die azurblaue Küste."
+      },
+      5: {
+        it: "Al calar della sera, sulla terrazza rischiarata dalla luce ambrata della lampada, Nonna Lucilla ascolta incantata i racconti entusiasti dei suoi nipotini. Nel cielo vellutato, una maestosa luna piena si rispecchia d'argento sul mare quieto.",
+        fr: "Au crépuscule, sur la terrasse baignée par la lueur ambrée de la lampe, Mamie Lucilla savoure avec tendresse les récits enthousiastes de ses petits-enfants. Dans le ciel nocturne, une pleine lune majestueuse déroule son sillage d'argent sur les flots apaisés.",
+        de: "Bei Einbruch der Dämmerung lauscht Oma Lucilla auf der warm beleuchteten Terrasse voller Rührung den lebendigen Geschichten ihrer Enkel. Hoch am nachtblauen Himmel zieht ein majestätischer Vollmond seine silberne Spur über das ruhige Meer."
+      },
+      6: {
+        it: "All'alba del giorno seguente, Papino afferra il timone del gommone e punta la prua verso le acque incontaminate del Golfo di Orosei. Protetti dai salvagenti arancioni, Ale e Seby osservano rapiti le vertiginose falesie calcaree a strapiombo nel blu.",
+        fr: "Dès le lendemain matin, Papino prend la barre du bateau pneumatique et met le cap sur les eaux préservées du Golfe d'Orosei. Équipés de leurs gilets de sauvetage orange, Ale et Seby contemplent, fascinés, les vertigineuses falaises calcaires plongeant dans le bleu.",
+        de: "Am darauffolgenden Morgen übernimmt Papino das Steuer des wendigen Schlauchboots und nimmt Kurs auf die unberührten Buchten im Golf von Orosei. In ihren orangefarbenen Schwimmwesten bestaunen Ale und Seby die schroff aufragenden weißen Kalksteinklippen."
+      },
+      7: {
+        it: "Nella celebre baia di Cala Goloritzè, un'ardita guglia di calcare svetta accanto a un arco naturale scolpito dal tempo. La trasparenza dell'acqua è così irreale da far sembrare lo scafo sospeso nel vuoto, mentre Nonna Lucilla applaude i tuffi di Ale e Seby.",
+        fr: "Dans la célèbre crique de Cala Goloritzè, une aiguille calcaire vertigineuse surplombe une arche naturelle façonnée par les siècles. La limpidité de l'eau est si saisissante que la coque paraît léviter au-dessus du fond, sous le regard amusé de Mamie Lucilla.",
+        de: "In der berühmten Bucht von Cala Goloritzè ragt eine kühne Felsnadel neben einem von der Natur geformten Steinbogen empor. Das Wasser ist so unwirklich klar, dass das Boot über seinem eigenen Schatten zu schweben scheint, während Oma Lucilla zusieht."
+      },
+      8: {
+        it: "Costeggiando il litorale selvaggio, il gommone scivola silenzioso davanti a monumentali grotte marine e volte di pietra. Quelle cavità misteriose, modellate nei millenni dall'erosione incessante delle onde, lasciano l'intera famiglia senza fiato.",
+        fr: "En longeant cette côte indomptée, l'embarcation glisse doucement devant de monumentales grottes marines et des voûtes rocheuses. Ces cavités mystérieuses, patiemment ciselées au fil des millénaires par le ressac, plongent la famille dans un profond émerveillement.",
+        de: "Entlang der zerklüfteten Küste gleitet das Boot behutsam an gewaltigen Meeresgrotten und natürlichen Felsbögen vorbei. Diese geheimnisvollen Höhlen, die das unermüdliche Spiel der Wellen über Jahrtausende in den Kalkstein gegraben hat, versetzen alle ins Staunen."
+      },
+      9: {
+        it: "Lasciata alle spalle la costa per un giorno, i due fratelli s'inoltrano zaino in spalla nell'entroterra aspro del Supramonte. Tenendosi saldamente per mano, risalgono un sentiero pietroso tra ginepri secolari contorti dal maestrale e cespugli di timo.",
+        fr: "Délaissant un instant le rivage, les deux frères s'enfoncent, sac au dos, dans l'arrière-pays escarpé du Supramonte. Main dans la main, ils gravissent un sentier caillouteux bordé de genévriers centenaires tordus par le vent et de touffes de thym parfumé.",
+        de: "Fernab der Küste brechen die beiden Brüder mit ihren Wanderrucksäcken ins raue Bergland des Supramonte auf. Hand in Hand erklimmen sie einen steinigen Gebirgspfad, gesäumt von knorrigen, vom Wind geformten Wacholderbäumen und wildem Thymian."
+      },
+      10: {
+        it: "Conquistata la vetta rocciosa del belvedere, Ale e Seby depongono gli zaini per godersi un silenzio carico di meraviglia. Fianco a fianco, abbracciano con lo sguardo un panorama sconfinato di gole verdi e creste bianche fino all'orizzonte marino.",
+        fr: "Une fois parvenus au sommet du belvédère rocheux, Ale et Seby posent leurs sacs pour savourer un silence empreint de sérénité. Épaule contre épaule, ils admirent un panorama grandiose de vallées verdoyantes qui dévalent jusqu'à la Méditerranée.",
+        de: "Oben am felsigen Aussichtspunkt des Supramonte stellen Ale und Seby ihre Rucksäcke ab und genießen die erhabene Stille. Schulter an Schulter schweift ihr Blick über tief eingeschnittene grüne Täler bis hinaus zum fernen Horizont des Meeres."
+      },
+      11: {
+        it: "Giunti nella penisola di Arbatax, Mamma Kate rivela un'incredibile maestria nel tiro con l'arco, scoccando una freccia infallibile nel cuore giallo del bersaglio! A pochi passi, Seby, fiero nella sua maglia azzurra numero dieci, conquista un mansueto asinello sardo.",
+        fr: "Arrivés sur la presqu'île d'Arbatax, Maman Kate fait preuve d'une adresse remarquable au tir à l'arc en plantant sa flèche en plein cœur de la cible ! Non loin de là, Seby, vêtu de son maillot bleu d'Italie numéro dix, apprivoise doucement un tendre ânon sarde.",
+        de: "Auf der Halbinsel von Arbatax stellt Mama Kate ihre beeindruckende Treffsicherheit unter Beweis: Mit ruhiger Hand spannt sie den Bogen und trifft punktgenau die goldene Zehn! Daneben streichelt Seby stolz im blauen Italien-Trikot Nr. 10 einen zutraulichen Esel."
+      },
+      12: {
+        it: "Nel rigoglioso parco naturalistico che circonda l'albergo di Arbatax, la fauna vaga indisturbata all'ombra di ulivi nodosi e prati fioriti. Sotto lo sguardo complice di Mamma Kate, Ale e Seby stringono amicizia con due asinelli dalle lunghe orecchie vellutate.",
+        fr: "Dans le vaste parc naturel qui entoure l'hôtel d'Arbatax, les animaux déambulent en toute liberté à l'ombre d'oliviers millénaires et de prairies fleuries. Sous le regard attendri de Maman Kate, Ale et Seby couvrent d'affection deux petits ânes aux oreilles soyeuses.",
+        de: "In dem weitläufigen Naturpark rund um das Hotel von Arbatax streifen die Tiere völlig ungestört zwischen blühenden Wiesen und uralten Olivenbäumen umher. Während Mama Kate lächelnd zusieht, schließen Ale und Seby innige Freundschaft mit zwei langohrigen Eseln."
+      },
+      13: {
+        it: "Il culmine dell'intera spedizione li attende nelle calette riparate di Arbatax, incastonate tra scogli scolpiti nel raro granito rosa. Prima dell'immersione, Papino sistema con cura maschera e boccaglio ad Ale e Seby, pronti a svelare i segreti del fondale.",
+        fr: "Le point d'orgue de leur périple les attend dans les criques abritées d'Arbatax, enchâssées dans un spectaculaire granit rose. Avant de plonger, Papino ajuste soigneusement le masque et le tuba d'Ale et Seby, impatients d'explorer cet aquarium à ciel ouvert.",
+        de: "Der unvergessliche Höhepunkt ihrer Reise erwartet sie in den versteckten Buchten von Arbatax, eingebettet zwischen warm schimmernden rosa Granitfelsen. Sorgfältig hilft Papino den beiden Jungs beim Aufsetzen von Taucherbrille und Schnorchel."
+      },
+      14: {
+        it: "Appena immergono il viso nelle acque immacolate delle baie di Arbatax, un universo incantato prende vita: ogni ciottolo del fondale è nitido come dietro un cristallo, mentre un banco scintillante di mille pesciolini argentati danza in cerchio attorno a loro.",
+        fr: "À peine plongent-ils le visage dans les eaux immaculées d'Arbatax qu'un monde féerique s'éveille sous leurs yeux : chaque galet du fond se dessine avec une netteté prodigieuse, tandis qu'un banc étincelant de mille petits poissons argentés tourbillonne autour d'eux.",
+        de: "Kaum tauchen sie in den Buchten von Arbatax unter die Wasseroberfläche, eröffnet sich eine magische Welt: Jeder Kieselstein am Grund ist gestochen scharf zu erkennen, während ein glitzernder Schwarm aus tausend silbernen Fischen sie neugierig umkreist."
+      },
+      15: {
+        it: "Colpito dalla disinvoltura con cui Ale e Seby nuotano tra i pesciolini di Arbatax, Papino li stringe a sé colmo d'orgoglio e fa una promessa solenne: «Siete stati così abili che la prossima avventura ci porterà in Egitto, su una vera barriera corallina!»",
+        fr: "Épaté par l'aisance avec laquelle Ale et Seby nagent parmi les poissons d'Arbatax, Papino les serre fièrement contre lui et scelle une promesse : « Vous êtes si doués que notre prochain voyage nous mènera en Égypte explorer une vraie barrière de corail ! »",
+        de: "Beeindruckt davon, wie sicher Ale und Seby durch das klare Wasser von Arbatax schnorcheln, schließt Papino sie voller Stolz in die Arme und verspricht: «Ihr seid so geschickt, dass ich euch nächstes Mal nach Ägypten an ein echtes Korallenriff mitnehme!»"
+      },
+      16: {
+        it: "Mentre il tramonto incendia d'oro gli scogli di granito rosa di Arbatax, Papino, Mamma Kate, Nonna Lucilla, Ale e Seby si stringono in un abbraccio pieno di gioia. Nei loro cuori custodiscono il cugino Massimo, i pesciolini d'argento e il sogno dell'Egitto.",
+        fr: "Tandis que le soleil couchant embrase d'or le granit rose d'Arbatax, Papino, Maman Kate, Mamie Lucilla, Ale et Seby s'enlacent avec émotion. Ils emportent dans leur cœur le cousin Massimo, les mille poissons argentés et la promesse lumineuse de l'Égypte à venir.",
+        de: "Während die Abendsonne die rosa Granitfelsen von Arbatax in warmes Gold taucht, umarmen sich Papino, Mama Kate, Oma Lucilla, Ale und Seby voller Dankbarkeit. In ihren Herzen tragen sie Cousin Massimo, die silbernen Fische und die Vorfreude auf Ägypten."
+      }
+    };
+
+    function buildEmmaLevelData(pageNum, lang) {
+      const text = KIDS_EMMA_TEXTS_V2[pageNum]?.[lang] || KIDS_EMMA_TEXTS_V2[pageNum]?.it || '';
+      const words = text.split(/\s+/).filter(Boolean);
+      const tokens = words.map((w, idx) => {
+        const clean = w.toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
+        const enG = KIDS_EN_GLOSS[clean] || null;
+        return {
+          w,
+          pos: 'other',
+          g: '',
+          s: idx * 0.35,
+          e: (idx + 1) * 0.35,
+          gloss: enG ? { tr: enG.tr, def: enG.def } : null,
+          audio_mp3: '',
+          audio_ogg: ''
+        };
+      });
+      return { text, tokens, audio_mp3: '', audio_ogg: '', is_browser_tts: true };
+    }
+
+    function setKidsSpeedStep(step) {
+      kidsSpeedStep = Math.max(0, Math.min(4, parseInt(step, 10) || 2));
+      try { localStorage.setItem('kos_kids_speed_step', String(kidsSpeedStep)); } catch (_) {}
+      const audio = document.getElementById('kidsStaticAudio');
+      if (audio && !audio.paused) {
+        const rate = getKidsAudioPlaybackRate(false);
+        audio.defaultPlaybackRate = rate;
+        audio.playbackRate = rate;
+      }
+      renderActiveBook();
+    }
+
+    function speakKidsTextFallback(text, lang) {
+      if (!('speechSynthesis' in window) || !text) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang === 'de' ? 'de-DE' : (lang === 'fr' ? 'fr-FR' : 'it-IT');
+      const mult = KIDS_SPEED_STEPS[kidsSpeedStep]?.mult || 1.0;
+      u.rate = Math.max(0.55, Math.min(1.6, (lang === 'fr' ? 0.90 : 0.95) * mult));
+      window.speechSynthesis.speak(u);
+    }
 
     function setKidsTranslationLang(trLang) {
       kidsTranslationLang = ['en', 'it', 'fr', 'de'].includes(trLang) ? trLang : 'en';
@@ -4171,7 +4340,7 @@
       }
 
       const modeParam = urlParams.get('mode') || (urlParams.has('tab') ? '' : (saved.mode || ''));
-      if (modeParam === 'seby' || modeParam === 'ale') {
+      if (modeParam === 'seby' || modeParam === 'ale' || modeParam === 'emma') {
         kidsBookMode = modeParam;
       } else {
         kidsBookMode = null;
@@ -5633,7 +5802,7 @@
           floatBar.hidden = false;
           const isDe = (lang === 'de');
           const isFr = (lang === 'fr');
-          const levelKey = (kidsBookMode === 'ale') ? 'ale' : 'seby';
+          const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
           const rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, (kb.pages?.length || 1) - 1));
           const leftIdx = rawIdx - (rawIdx % 2);
           const rightIdx = Math.min(leftIdx + 1, (kb.pages?.length || 1) - 1);
@@ -5642,7 +5811,9 @@
 
           const buildPageMagicGroupHtml = (pObj, pIdx) => {
             if (!pObj) return '';
-            const lvlData = pObj.levels?.[levelKey]?.[lang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {};
+            const lvlData = (levelKey === 'emma')
+              ? (pObj.levels?.emma?.[lang] || buildEmmaLevelData(pObj.page, lang))
+              : (pObj.levels?.[levelKey]?.[lang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {});
             const qs = pObj.questions?.[lang] || pObj.questions?.it || [];
             const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pObj.page, qs);
             const isPlayingThisPage = (activeKidsPlayingPage === pObj.page && !document.getElementById('kidsStaticAudio')?.paused);
@@ -5651,11 +5822,14 @@
               ? `Seite ${pObj.page} vorlesen / Pause (Leertaste)`
               : (isFr ? `Écouter / Pause page ${pObj.page} (Espace)` : `Ascolta / Pausa Pagina ${pObj.page} (Barra Spazio)`);
             const quizLbl = `❓ ⭐${prog.correct}/${prog.total}`;
+            const listenAction = lvlData.audio_mp3
+              ? `playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page})`
+              : `speakKidsTextFallback(KIDS_EMMA_TEXTS_V2[${pObj.page}]?.['${lang}'] || '', '${lang}')`;
             return `
               <div class="kids-mini-footer-group">
                 <button type="button" class="kids-pill-control listen-pill ${isPlayingThisPage ? 'active' : ''}"
                   data-listen-page="${pObj.page}"
-                  onclick="playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page})"
+                  onclick="${listenAction}"
                   title="${listenTitle}">
                   ${listenLbl}
                 </button>
@@ -5670,11 +5844,24 @@
 
           const bookLangBadge = lang === 'de' ? 'DE' : (lang === 'fr' ? 'FR' : 'IT');
           const trLangBadge = kidsTranslationLang.toUpperCase();
-          const hasEmmaLevel = Boolean(kb.pages?.[0]?.levels?.emma);
+          const hasEmmaLevel = true;
 
           const gearSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
+          const grammarSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7,14 12,5 17,14"/><circle cx="18.5" cy="7.5" r="2.2"/><path d="M4,18.5 Q12,22 20,18.5" stroke-dasharray="2.5 2"/></svg>`;
           const fullSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
           const closeSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+          const grammarLabel = isDe ? 'Grammatik' : (isFr ? 'Grammaire' : 'Grammatica');
+          const speedBarsHtml = KIDS_SPEED_STEPS.map((st, idx) => {
+            const barH = 8 + idx * 4;
+            const isSel = idx === kidsSpeedStep;
+            return `
+              <button type="button" onclick="setKidsSpeedStep(${idx})" title="${st.label} (${st.short})"
+                style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:38px;padding:4px 2px;border-radius:10px;border:1.5px solid ${isSel ? '#78350f' : 'rgba(120,53,15,0.2)'};background:${isSel ? '#f59e0b' : '#fffbeb'};color:${isSel ? '#0b0f19' : '#451a03'};cursor:pointer;transition:all 0.14s ease;">
+                <span style="display:block;width:10px;height:${barH}px;border-radius:3px;background:${isSel ? '#0b0f19' : '#b45309'};opacity:${isSel ? '1' : '0.65'};"></span>
+                <span style="font-size:0.62rem;font-weight:800;line-height:1;">${st.short}</span>
+              </button>
+            `;
+          }).join('');
 
           floatBar.innerHTML = `
             ${buildPageMagicGroupHtml(leftPage, leftIdx)}
@@ -5693,18 +5880,18 @@
                   <span class="kids-avatar-hover-tip">Ale · 8a · Medio (B1)</span>
                 </button>
                 <button type="button" class="kids-avatar-tier-btn tier-hard ${kidsBookMode === 'emma' ? 'active' : ''}"
-                  onclick="${hasEmmaLevel ? `launchKidsBook('${story.slug}', 'emma')` : `launchKidsBook('${story.slug}', 'ale')`}"
-                  aria-label="Emma — 11 anni — Difficile (B2/C1)">
+                  onclick="launchKidsBook('${story.slug}', 'emma')"
+                  aria-label="Emma — 11 anni — Esperto (B2/C1)">
                   <img src="assets/avatars/emma.png" alt="Emma" onerror="this.src='assets/avatars/kate.png'">
                   <span class="kids-avatar-tier-dot"></span>
-                  <span class="kids-avatar-hover-tip">Emma · 11a · ${hasEmmaLevel ? 'Esperto (B2/C1)' : 'In arrivo (Issue #5)'}</span>
+                  <span class="kids-avatar-hover-tip">Emma · 11a · Esperto (B2/C1)</span>
                 </button>
               </div>
-              <span style="opacity:0.25;">|</span>
+              <span style="opacity:0.28;color:#fef3c7;">|</span>
               <div class="kids-settings-wrap">
                 <button type="button" class="kids-min-icon-btn ${kidsSettingsOpen ? 'active' : ''}"
                   onclick="toggleKidsSettingsPopover(event)"
-                  title="Opzioni (${bookLangBadge} → ${trLangBadge})">
+                  title="Opzioni (${bookLangBadge} → ${trLangBadge} · ${KIDS_SPEED_STEPS[kidsSpeedStep]?.short || '1.0×'})">
                   ${gearSvg}
                 </button>
                 <div id="kidsSettingsPopover" class="kids-settings-popover" ${kidsSettingsOpen ? '' : 'hidden'} onclick="event.stopPropagation()">
@@ -5726,19 +5913,23 @@
                     </div>
                   </div>
                   <div>
-                    <div class="kids-settings-section-title">✨ Aiuti Lettura</div>
-                    <div class="kids-settings-row-small">
-                      <button type="button" class="kids-pill-control ${kidsGrammarEnabled ? 'active' : ''}" onclick="toggleKidsGrammar()">🌈 ${isDe ? 'Grammatik' : (isFr ? 'Grammaire' : 'Grammatica')}</button>
-                      <button type="button" class="kids-pill-control ${kidsUppercaseEnabled ? 'active' : ''}" onclick="toggleKidsUppercase()">ABC Maiuscolo</button>
+                    <div class="kids-settings-section-title">🎚️ Velocità di Lettura (${KIDS_SPEED_STEPS[kidsSpeedStep]?.label || 'Normale'})</div>
+                    <div style="display:flex;gap:5px;align-items:flex-end;">
+                      ${speedBarsHtml}
                     </div>
                   </div>
                 </div>
               </div>
+              <button type="button" class="kids-min-icon-btn ${kidsGrammarEnabled ? 'active' : ''}"
+                onclick="toggleKidsGrammar()"
+                title="${grammarLabel} (Nomi, Aggettivi, Verbi & Verbi Separabili)">
+                ${grammarSvg}
+              </button>
               <button type="button" class="kids-min-icon-btn ${kidsUppercaseEnabled ? 'active' : ''}"
-                style="width:auto;padding:0 9px;font-family:'Fredoka',sans-serif;font-size:0.72rem;font-weight:800;letter-spacing:0.04em;"
+                style="width:auto;padding:0 9px;font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.01em;"
                 onclick="toggleKidsUppercase()"
-                title="STAMPATO MAIUSCOLO (Testo, Fumetti e Didascalie)">
-                ABC
+                title="Maiuscolo / Minuscolo (a/A)">
+                a/A
               </button>
               <button type="button" class="kids-min-icon-btn ${kidsFullscreenEnabled ? 'active' : ''}"
                 onclick="toggleKidsFullscreen()"
@@ -5920,9 +6111,11 @@
     let activeKidsPlayingPage = null;
 
     function getKidsAudioPlaybackRate(isSingleWord = false) {
-      if (currentLang === 'fr') return isSingleWord ? 0.88 : 0.90;
-      if (currentLang === 'de') return isSingleWord ? 0.90 : 0.92;
-      return isSingleWord ? 0.92 : 0.95;
+      const mult = KIDS_SPEED_STEPS[kidsSpeedStep]?.mult || 1.0;
+      const base = currentLang === 'fr'
+        ? (isSingleWord ? 0.88 : 0.90)
+        : (currentLang === 'de' ? (isSingleWord ? 0.90 : 0.92) : (isSingleWord ? 0.92 : 0.95));
+      return Math.max(0.55, Math.min(1.6, +(base * mult).toFixed(2)));
     }
 
     function updateKidsListenButtonsState() {
@@ -5953,6 +6146,12 @@
       }
 
       const rate = getKidsAudioPlaybackRate(true);
+      if (!mp3Url) {
+        const wTxt = tokenEl?.querySelector('span:nth-child(2)')?.textContent || tokenEl?.textContent || '';
+        speakKidsTextFallback(wTxt.trim(), currentLang);
+        setTimeout(() => document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active')), 800);
+        return;
+      }
       audio.pause();
       audio.src = `${mp3Url}?v=${APP_VERSION}`;
       audio.preservesPitch = true;
@@ -6425,8 +6624,10 @@
       const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
       const isFr = (lang === 'fr');
       const isDe = (lang === 'de');
-      const levelKey = (kidsBookMode === 'ale') ? 'ale' : 'seby';
-      const levelData = pageObj.levels?.[levelKey]?.[lang] || pageObj.levels?.[levelKey]?.it || pageObj.levels?.seby?.it;
+      const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
+      const levelData = (levelKey === 'emma')
+        ? (pageObj.levels?.emma?.[lang] || buildEmmaLevelData(pageObj.page, lang))
+        : (pageObj.levels?.[levelKey]?.[lang] || pageObj.levels?.[levelKey]?.it || pageObj.levels?.seby?.it);
       const bubbleData = pageObj.speech_bubble?.[lang] || pageObj.speech_bubble?.it;
       const pageTitle = pageObj.title?.[lang] || pageObj.title?.it || `Pagina ${pageObj.page}`;
       const patchPos = pageObj.patch_pos || (side === 'left' ? 'bottom' : 'top');

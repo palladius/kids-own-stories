@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.8] - 2026-11-22
+
+### Added & Changed
+- 👧🔴 **3° Livello di Lettura Avanzato: «Emma • 11 anni · Esperto (B2/C1)» ([`index.html`](index.html), Issue `#5`)**:
+  - Integrati tutti i **48 testi letterari B2/C1 approvati dal Critic (`16 pagine × IT/FR/DE`)** con font calibrato `.level-emma` (`clamp(0.56rem, 1.00cqw, 0.96rem)`), **21 nuove parole chiave B2/C1** nel glossario tradotto di default in inglese, supporto permalink `?mode=emma`, e pronuncia audio live sia per l'intera pagina che al click sulla singola parola.
+- 🪵🎚️ **Barra Inferiore Marrone Scuro Tavolo, Controllo Velocità a 5 Tacchette, Icona Grammatica & Toggle `a/A` ([`index.html`](index.html))**:
+  - Cambiato lo sfondo della barra inferiore (`.kids-notebook-floating-bar`) in **marrone legno scuro da tavolo** per staccarla nettamente dalle pagine crema del quaderno.
+  - Aggiunte nel pop-up **`⚙️` Opzioni** le **5 barrette di velocità di lettura** (`0.75×`, `0.88×`, `1.0×` default, `1.15×`, `1.3×`) collegate sia all'audio studio sia alla sintesi vocale live.
+  - Aggiunta l'**icona dedicata alla Grammatica Montessori** (triangolo + cerchio + arco sintattico tratteggiato SVG monocromatico `currentColor` con hover `Grammatica`) e sostituito `ABC` con il toggle tipografico **`a/A`**.
+
 ## [0.13.7] - 2026-11-22
 
 ### Added & Changed
