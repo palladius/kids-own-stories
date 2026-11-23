@@ -2,6 +2,16 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.12] - 2026-11-23
+
+### Added & Fixed
+- 🇬🇧📖 **Testi Completi in Inglese (`EN`, 16 pagine × Seby/Ale/Emma + Fumetti + TTS) & Fix Traduzione Pari Pari ([`index.html`](index.html))**:
+  - Aggiunto `KIDS_EN_BOOK_PAGES` completo su tutte le 16 pagine, così in **Traduzione Pari Pari** la Pagina DX rispetta **sempre** la *Lingua di Traduzione* scelta — incluso **`English`** (`SX IT ↔ DX EN`, `SX DE ↔ DX EN`, `SX FR ↔ DX EN`) — con sintesi vocale `en-US`.
+- ✨📖 **Icona Rapida Cheating Mode in Stile `webapp-that-riccardo-likes` sulla Barra Inferiore ([`index.html`](index.html))**:
+  - Aggiunta l'icona SVG monocromatica `currentColor` a due pagine affiancate con freccia `↔` direttamente nella barra marrone accanto a `⚙️` per attivare/disattivare la Traduzione Pari Pari in 1 click.
+- 🧪🤖 **Unit Test Playwright per Tutte le Coppie Pari Pari ([`bin/test_kids_text_fit.py`](bin/test_kids_text_fit.py))**:
+  - Verificate automaticamente in `just test-fit` le 6 coppie `it→en`, `fr→en`, `de→en`, `de→it`, `fr→it`, `it→fr` (stesso numero pagina, lingue SX/DX esatte, badge `1 · XX` e zero overflow).
+
 ## [0.13.11] - 2026-11-23
 
 ### Added

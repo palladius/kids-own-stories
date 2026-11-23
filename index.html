@@ -3914,7 +3914,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.11';
+    const APP_VERSION = '0.13.12';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -4435,17 +4435,150 @@
       if (!('speechSynthesis' in window) || !text) return;
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = lang === 'de' ? 'de-DE' : (lang === 'fr' ? 'fr-FR' : 'it-IT');
+      u.lang = lang === 'en' ? 'en-US' : (lang === 'de' ? 'de-DE' : (lang === 'fr' ? 'fr-FR' : 'it-IT'));
       const mult = KIDS_SPEED_STEPS[kidsSpeedStep]?.mult || 1.0;
       u.rate = Math.max(0.55, Math.min(1.6, (lang === 'fr' ? 0.90 : 0.95) * mult));
       window.speechSynthesis.speak(u);
     }
 
+    const KIDS_EN_BOOK_PAGES = {
+      1: {
+        title: '1. Landing at Olbia Airport!',
+        bubble: 'Hooray! The plane has landed in Olbia! Can you smell the sweet scent of myrtle?',
+        seby: 'The plane lands at Olbia airport in northern Sardinia. The whole family steps out happily among the myrtle flowers.',
+        ale: 'The plane touches down at sunny Olbia airport in northern Sardinia. Papino, Mamma Kate, Nonna Lucilla, Ale and Seby walk out with their suitcases, breathing in the warm scent of wild myrtle.',
+        emma: 'As soon as the plane touches down on Olbia\'s sunlit runway in northern Sardinia, a warm Mediterranean breeze greets the family. Papino, Mamma Kate, Nonna Lucilla, Ale and Seby step outside with their suitcases, enchanted by the rich, resinous fragrance of wild myrtle.'
+      },
+      2: {
+        title: '2. In Cala Gonone with Cousin Massimo Carlesso!',
+        bubble: 'Hello Cousin Massimo! How wonderful to hug one of the few remaining Carlessos right by the sea in Cala Gonone!',
+        seby: 'In Cala Gonone, Papino happily hugs his cousin Massimo, one of the few Carlessos! Ale and Seby run into the turquoise sea.',
+        ale: 'On the golden beach of Cala Gonone, Papino shares a joyful hug with his cousin Massimo, one of the few remaining Carlessos. Ale and Seby cheer and race straight toward the sparkling turquoise sea.',
+        emma: 'On the sun-drenched shore of Cala Gonone, Papino embraces his cousin Massimo—one of the very few Carlessos left in the world—in a heartwarming reunion. Bursting with excitement, Ale and Seby sprint across the warm sand toward the luminous turquoise water.'
+      },
+      3: {
+        title: '3. Splashing Among the Bright Rocks!',
+        bubble: 'Come on Seby! The water near these bright rocks sparkles like a thousand diamonds!',
+        seby: 'The two brothers splash and laugh in the shallow water. The little waves sparkle under the warm sun.',
+        ale: 'Near the bright rocks of Cala Gonone, Ale and Seby swim and laugh in the crystal-clear water. The warm sunshine makes every gentle wave glitter like tiny diamonds.',
+        emma: 'Beside the sun-bleached coastal rocks of Cala Gonone, Ale and Seby splash joyfully through the crystal-clear shallows. Under the golden Mediterranean sun, every ripple shimmers like a shower of tiny diamonds.'
+      },
+      4: {
+        title: '4. The Suspension Bridges Between the Pine Trees!',
+        bubble: 'Look down, Ale! We\'re walking across rope bridges between the pine trees with a view of the sea!',
+        seby: 'Wearing their helmets, Ale and Seby walk across the rope bridges high between the trees.',
+        ale: 'At the adventure park, Ale and Seby wear their safety helmets and bravely cross the swaying wooden rope bridges high above the blue sea.',
+        emma: 'Securely clipped in with harnesses, carabiners and helmets, Ale and Seby calmly tackle the swaying Tibetan rope bridges suspended between the maritime pines. From that lofty walkway, their gaze sweeps across the emerald coastline and distant sailboats.'
+      },
+      5: {
+        title: '5. Evening Stories Under the Full Moon!',
+        bubble: 'Tell me everything, my darlings! Look how the full moon shines on the sea!',
+        seby: 'In the evening on the terrace, Nonna Lucilla listens to the boys\' stories. A bright full moon shines over the sea.',
+        ale: 'As evening falls on the warm terrace, Nonna Lucilla smiles and listens to Ale and Seby\'s excited stories. High in the night sky, a big full moon paints a silver path across the calm sea.',
+        emma: 'At twilight, on the terrace bathed in the amber glow of the lamp, Nonna Lucilla listens spellbound to her grandsons\' enthusiastic tales. In the velvety night sky, a majestic full moon casts its shimmering silver reflection across the quiet sea.'
+      },
+      6: {
+        title: '6. Off by Boat into the Gulf of Orosei!',
+        bubble: 'All aboard, crew! Today we explore the secret coves of the Gulf of Orosei!',
+        seby: 'In the morning, Papino steers the boat across the blue sea. Ale and Seby wear orange life jackets and look at the white cliffs.',
+        ale: 'Early the next morning, Papino takes the wheel of the inflatable boat and heads into the Gulf of Orosei. Wearing bright orange life jackets, Ale and Seby gaze up in wonder at the towering white cliffs.',
+        emma: 'At dawn the following morning, Papino grips the helm of the inflatable dinghy and points the bow toward the unspoiled waters of the Gulf of Orosei. Protected by their orange life jackets, Ale and Seby marvel at the dizzying limestone cliffs plunging sheer into the blue.'
+      },
+      7: {
+        title: '7. The Natural Arch & Spire of Cala Goloritzè!',
+        bubble: 'Look! Our boat looks like it\'s flying in the air because the water is so clear!',
+        seby: 'At Cala Goloritzè there is a tall pointed rock and a stone arch. The water is so clear that the boat seems to float in mid-air!',
+        ale: 'In the famous bay of Cala Goloritzè, a tall limestone spire rises beside a natural stone arch. The water is so clear that the boat looks suspended in the air, while Nonna Lucilla cheers the boys\' dives.',
+        emma: 'In the renowned cove of Cala Goloritzè, a daring limestone spire towers beside a natural arch sculpted by the centuries. The water\'s transparency is so unreal that the hull appears to hover in mid-air, as Nonna Lucilla applauds Ale and Seby\'s dives.'
+      },
+      8: {
+        title: '8. Gliding Past the Secret Sea Caves!',
+        bubble: 'Whoa! Look at those giant caves carved by the waves!',
+        seby: 'The boat glides slowly past huge sea caves. Everyone looks in surprise at the magical arches in the rock.',
+        ale: 'Cruising along the wild coast, the boat glides quietly past giant sea caves and stone vaults. Carved over thousands of years by the waves, those mysterious caverns leave the whole family amazed.',
+        emma: 'Skirting the untamed coastline, the dinghy glides silently past monumental sea caves and natural stone vaults. Those mysterious caverns, patiently sculpted over millennia by the relentless erosion of the waves, leave the entire family breathless.'
+      },
+      9: {
+        title: '9. Hiking Hand in Hand in the Supramonte!',
+        bubble: 'Come on Seby, hold my hand! We\'re almost at the top of the mountain!',
+        seby: 'With their backpacks on, Ale and Seby walk hand in hand along a rocky mountain trail among fragrant juniper trees.',
+        ale: 'Leaving the beach for a day, the two brothers put on their backpacks and hike into the wild Supramonte mountains. Holding hands tightly, they climb a stony path lined with twisted juniper trees and wild thyme.',
+        emma: 'Leaving the coast behind for a day, the two brothers venture with backpacks into the rugged hinterland of the Supramonte. Holding hands firmly, they ascend a stony trail woven between centuries-old junipers twisted by the mistral wind and tufts of fragrant thyme.'
+      },
+      10: {
+        title: '10. The Grand Panorama from the Summit!',
+        bubble: 'Look how far we can see, Seby! Green valleys all the way to the sea!',
+        seby: 'At the top of the rocky viewpoint, Ale and Seby put down their backpacks. Together they admire the green valleys all the way to the sea.',
+        ale: 'Once they reach the rocky summit, Ale and Seby set down their backpacks to enjoy the peaceful silence. Side by side, they gaze out over deep green valleys and white ridges stretching to the blue horizon.',
+        emma: 'Having conquered the rocky summit of the lookout, Ale and Seby set down their backpacks to savor a silence brimming with wonder. Side by side, they take in a boundless panorama of verdant gorges and pale limestone crests rolling all the way to the marine horizon.'
+      },
+      11: {
+        title: '11. Mamma Kate\'s Bullseye & Seby\'s Little Donkey!',
+        bubble: 'Bullseye!! Right in the yellow ten! Well done, Mamma Kate!',
+        seby: 'In Arbatax, Mamma Kate shoots an arrow right into the middle of the target! Nearby, Seby in his blue jersey pets a sweet little donkey.',
+        ale: 'On the peninsula of Arbatax, Mamma Kate shows amazing skill with the bow and hits the golden center of the target! A few steps away, Seby proudly wearing his blue Italy jersey number ten befriends a gentle Sardinian donkey.',
+        emma: 'Arriving on the peninsula of Arbatax, Mamma Kate reveals remarkable mastery at archery, loosing an unerring arrow straight into the golden heart of the target! A few paces away, Seby—proud in his blue number-ten jersey—wins over a gentle Sardinian little donkey.'
+      },
+      12: {
+        title: '12. New Friends Under the Ancient Olive Trees!',
+        bubble: 'How soft their long ears are! They love our cuddles!',
+        seby: 'In the sunny park of Arbatax, animals roam freely among the olive trees. Ale and Seby make friends with two soft-eared donkeys.',
+        ale: 'In the lush nature park around the Arbatax hotel, animals wander peacefully beneath ancient olive trees and flowering meadows. While Mamma Kate smiles nearby, Ale and Seby cuddle two friendly long-eared donkeys.',
+        emma: 'In the lush nature park surrounding the hotel in Arbatax, wildlife roams undisturbed in the shade of gnarled olive trees and blossoming meadows. Under Mamma Kate\'s fond gaze, Ale and Seby strike up a warm friendship with two donkeys with long, velvety ears.'
+      },
+      13: {
+        title: '13. Masks & Snorkels Among the Pink Granite Rocks!',
+        bubble: 'Ready to dive in? Let\'s adjust your masks and snorkels well!',
+        seby: 'In the sheltered coves of Arbatax, the rocks are made of pink granite. Papino helps Ale and Seby put on their masks and snorkels.',
+        ale: 'The best adventure awaits in the hidden coves of Arbatax, framed by glowing pink granite rocks. Before diving in, Papino carefully adjusts Ale and Seby\'s diving masks and snorkels so they can explore underwater.',
+        emma: 'The highlight of the entire expedition awaits them in the sheltered coves of Arbatax, nestled like jewels among rocks sculpted in rare pink granite. Before diving in, Papino carefully adjusts Ale and Seby\'s masks and snorkels, eager to unveil the secrets of the seabed.'
+      },
+      14: {
+        title: '14. A Thousand Silver Little Fish Underwater!',
+        bubble: 'Look! Thousands of tiny silver fish are dancing right around us!',
+        seby: 'Under the crystal-clear water of Arbatax, every pebble shines brightly. A sparkling school of tiny silver fish swims in a circle around Ale and Seby.',
+        ale: 'As soon as they dip their faces into the crystal-clear bays of Arbatax, a magical world comes alive: every pebble on the seabed is razor-sharp, while a glittering school of a thousand silver fish dances around them.',
+        emma: 'The moment they dip their faces into the immaculate waters of Arbatax\'s bays, an enchanted universe springs to life: every pebble on the seabed is as crisp as through crystal, while a shimmering school of a thousand silver little fish dances in circles around them.'
+      },
+      15: {
+        title: '15. Papino\'s Great Promise: Egypt!',
+        bubble: 'You are so good that next time Papino will take you to Egypt to see even brighter fish and a real coral reef!',
+        seby: 'Seeing how bravely Ale and Seby swim among the little fish, Papino hugs them proudly and promises: "Next time we\'ll go to Egypt to see a real coral reef!"',
+        ale: 'Watching Ale and Seby swim so confidently with mask and snorkel among the little fish of Arbatax, Papino hugs them with pride: "You\'re so skilled that next time I\'ll take you to Egypt to explore a real coral reef!"',
+        emma: 'Impressed by the effortless ease with which Ale and Seby swim among the little fish of Arbatax, Papino pulls them close, brimming with pride, and makes a solemn promise: "You\'ve been so skillful that our next adventure will take us to Egypt, to a real coral reef!"'
+      },
+      16: {
+        title: '16. Golden Sunset in Arbatax: Thank You, Sardinia!',
+        bubble: 'Thank you, Sardinia! From Olbia to Cousin Massimo, from Nonna Lucilla to the thousand little fish of Arbatax: what an unforgettable holiday!',
+        seby: 'As the sun sets behind the pink granite rocks of Arbatax, the whole family shares a big happy hug, dreaming of Egypt.',
+        ale: 'While the golden sun sets behind the pink granite rocks of Arbatax, Papino, Mamma Kate, Nonna Lucilla, Ale and Seby hug each other happily, carrying Cousin Massimo, the silver fish and the dream of Egypt in their hearts.',
+        emma: 'As the sunset sets the pink granite rocks of Arbatax ablaze with gold, Papino, Mamma Kate, Nonna Lucilla, Ale and Seby gather in a joyful embrace. In their hearts they treasure Cousin Massimo, the silver little fish, and the luminous dream of Egypt.'
+      }
+    };
+
+    function buildEnglishLevelData(pageNum, levelKey) {
+      const p = KIDS_EN_BOOK_PAGES[pageNum] || KIDS_EN_BOOK_PAGES[1];
+      const text = p[levelKey] || p.ale || p.seby || '';
+      const words = text.split(/\s+/).filter(Boolean);
+      const tokens = words.map((w, idx) => ({
+        w,
+        pos: 'other',
+        g: '',
+        n: '',
+        s: idx * 0.35,
+        e: (idx + 1) * 0.35,
+        gloss: null,
+        audio_mp3: '',
+        audio_ogg: ''
+      }));
+      return { text, tokens, audio_mp3: '', audio_ogg: '', is_browser_tts: true };
+    }
+
     function getKidsParallelRightLang(bookLang) {
-      if (['it', 'fr', 'de'].includes(kidsTranslationLang) && kidsTranslationLang !== bookLang) {
+      if (['en', 'it', 'fr', 'de'].includes(kidsTranslationLang) && kidsTranslationLang !== bookLang) {
         return kidsTranslationLang;
       }
-      return bookLang !== 'it' ? 'it' : 'fr';
+      return bookLang !== 'en' ? 'en' : 'it';
     }
 
     function toggleKidsParallelMode() {
@@ -6140,22 +6273,28 @@
 
           const buildPageMagicGroupHtml = (pObj, pIdx, includeQuiz = false, overrideLang = null) => {
             if (!pObj) return '';
-            const effLang = ['it', 'fr', 'de'].includes(overrideLang || lang) ? (overrideLang || lang) : 'it';
-            const lvlData = (levelKey === 'emma')
-              ? (pObj.levels?.emma?.[effLang] || buildEmmaLevelData(pObj.page, effLang))
-              : (pObj.levels?.[levelKey]?.[effLang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {});
+            const effLang = ['en', 'it', 'fr', 'de'].includes(overrideLang || lang) ? (overrideLang || lang) : 'it';
+            const lvlData = (effLang === 'en')
+              ? buildEnglishLevelData(pObj.page, levelKey)
+              : ((levelKey === 'emma')
+                ? (pObj.levels?.emma?.[effLang] || buildEmmaLevelData(pObj.page, effLang))
+                : (pObj.levels?.[levelKey]?.[effLang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {}));
             const qs = pObj.questions?.[lang] || pObj.questions?.it || [];
             const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pObj.page, qs);
             const isPlayingThisPage = (activeKidsPlayingPage === pObj.page && !document.getElementById('kidsStaticAudio')?.paused);
             const listenLbl = isPlayingThisPage ? KIDS_PAUSE_SVG : KIDS_SPEAKER_SVG;
             const langTag = effLang.toUpperCase();
-            const listenTitle = effLang === 'de'
-              ? `Seite ${pObj.page} (${langTag}) vorlesen / Pause`
-              : (effLang === 'fr' ? `Écouter / Pause page ${pObj.page} (${langTag})` : `Ascolta / Pausa Pagina ${pObj.page} (${langTag})`);
+            const listenTitle = effLang === 'en'
+              ? `Listen / Pause Page ${pObj.page} (EN)`
+              : (effLang === 'de'
+                ? `Seite ${pObj.page} (${langTag}) vorlesen / Pause`
+                : (effLang === 'fr' ? `Écouter / Pause page ${pObj.page} (${langTag})` : `Ascolta / Pausa Pagina ${pObj.page} (${langTag})`));
             const quizLbl = `❓ ⭐${prog.correct}/${prog.total}`;
             const listenAction = lvlData.audio_mp3
               ? `playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page})`
-              : `speakKidsTextFallback(KIDS_EMMA_TEXTS_V2[${pObj.page}]?.['${effLang}'] || '', '${effLang}')`;
+              : (effLang === 'en'
+                ? `speakKidsTextFallback(KIDS_EN_BOOK_PAGES[${pObj.page}]?.['${levelKey}'] || '', 'en')`
+                : `speakKidsTextFallback(KIDS_EMMA_TEXTS_V2[${pObj.page}]?.['${effLang}'] || '', '${effLang}')`);
             const quizHtml = includeQuiz ? `
                 <button type="button" class="kids-pill-control quiz-pill"
                   onclick="openKidsPageQuizModal(${pIdx})"
@@ -6189,6 +6328,7 @@
           const hasEmmaLevel = true;
 
           const gearSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
+          const parallelSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="8" height="16" rx="1.6"/><rect x="13.5" y="4" width="8" height="16" rx="1.6"/><path d="M5.5 9.5h2M5.5 13h2M16.5 9.5h2M16.5 13h2"/><path d="M9.5 16.5h5M13 15l1.5 1.5L13 18M11 15l-1.5 1.5L11 18"/></svg>`;
           const grammarSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7,14 12,5 17,14"/><circle cx="18.5" cy="7.5" r="2.2"/><path d="M4,18.5 Q12,22 20,18.5" stroke-dasharray="2.5 2"/></svg>`;
           const fullSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
           const closeSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
@@ -6272,6 +6412,12 @@
                     </div>
                   </div>
                 </div>
+                <button type="button" class="kids-min-icon-btn ${kidsParallelMode ? 'active' : ''}"
+                  onclick="toggleKidsParallelMode()"
+                  aria-label="Traduzione Pari Pari (Cheating Mode)"
+                  title="Traduzione Pari Pari — Cheating Mode (SX ${bookLangBadge} ↔ DX ${parallelRightBadge})">
+                  ${parallelSvg}
+                </button>
                 <button type="button" class="kids-min-icon-btn ${kidsGrammarEnabled ? 'active' : ''}"
                   onclick="toggleKidsGrammar()"
                   title="${grammarLabel} (Nomi, Aggettivi, Verbi & Verbi Separabili)">
@@ -6974,15 +7120,22 @@
     }
 
     function buildKidsWatercolorLeafHtml(kb, pageObj, pageIdx, side = 'left', overrideLang = null) {
-      const lang = ['it', 'fr', 'de'].includes(overrideLang || currentLang) ? (overrideLang || currentLang) : 'it';
+      const lang = ['en', 'it', 'fr', 'de'].includes(overrideLang || currentLang) ? (overrideLang || currentLang) : 'it';
       const isFr = (lang === 'fr');
       const isDe = (lang === 'de');
+      const isEn = (lang === 'en');
       const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
-      const levelData = (levelKey === 'emma')
-        ? (pageObj.levels?.emma?.[lang] || buildEmmaLevelData(pageObj.page, lang))
-        : (pageObj.levels?.[levelKey]?.[lang] || pageObj.levels?.[levelKey]?.it || pageObj.levels?.seby?.it);
-      const bubbleData = pageObj.speech_bubble?.[lang] || pageObj.speech_bubble?.it;
-      const pageTitle = pageObj.title?.[lang] || pageObj.title?.it || `Pagina ${pageObj.page}`;
+      const levelData = isEn
+        ? buildEnglishLevelData(pageObj.page, levelKey)
+        : ((levelKey === 'emma')
+          ? (pageObj.levels?.emma?.[lang] || buildEmmaLevelData(pageObj.page, lang))
+          : (pageObj.levels?.[levelKey]?.[lang] || pageObj.levels?.[levelKey]?.it || pageObj.levels?.seby?.it));
+      const bubbleData = isEn
+        ? { text: KIDS_EN_BOOK_PAGES[pageObj.page]?.bubble || '', audio_mp3: '', audio_ogg: '' }
+        : (pageObj.speech_bubble?.[lang] || pageObj.speech_bubble?.it);
+      const pageTitle = isEn
+        ? (KIDS_EN_BOOK_PAGES[pageObj.page]?.title || `Page ${pageObj.page}`)
+        : (pageObj.title?.[lang] || pageObj.title?.it || `Pagina ${pageObj.page}`);
       const patchPos = pageObj.patch_pos || (side === 'left' ? 'bottom' : 'top');
 
       const tokensHtml = (levelData?.tokens || []).map(tok => {

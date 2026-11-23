@@ -130,11 +130,54 @@ def main() -> int:
                             )
                         )
 
+            # Parallel Translation ("Cheating Mode") unit tests:
+            # Verify Left Page == Book Language and Right Page == Translation Language (including EN!)
+            parallel_pairs = [
+                ("it", "en"),
+                ("fr", "en"),
+                ("de", "en"),
+                ("de", "it"),
+                ("fr", "it"),
+                ("it", "fr"),
+            ]
+            parallel_checked = 0
+            for book_lang, tr_lang in parallel_pairs:
+                url = f"{base_url}?story=sardegna&mode=emma&lang={book_lang}&parallel=1"
+                page.goto(url, wait_until="networkidle")
+                page.wait_for_selector(".kids-sentence-box", timeout=10000)
+                page.evaluate("(tr) => { if (typeof setKidsTranslationLang === 'function') setKidsTranslationLang(tr); }", tr_lang)
+                page.wait_for_timeout(80)
+                page.evaluate("() => { if (typeof fitKidsTextToPatch === 'function') fitKidsTextToPatch(); }")
+                metrics = page.evaluate("() => window.__kidsTextFitMetrics ? window.__kidsTextFitMetrics() : []")
+                badges = page.evaluate(
+                    "() => Array.from(document.querySelectorAll('#openBookSpread .kids-book-page-num')).map(el => el.textContent.trim())"
+                )
+                parallel_checked += 1
+                if len(metrics) != 2:
+                    failures.append(f"PARALLEL [{book_lang}->{tr_lang}]: expected 2 facing pages, got {len(metrics)}")
+                    continue
+                left_m, right_m = metrics[0], metrics[1]
+                if left_m["page"] != right_m["page"]:
+                    failures.append(f"PARALLEL [{book_lang}->{tr_lang}]: page mismatch SX={left_m['page']} vs DX={right_m['page']}")
+                if left_m["lang"] != book_lang:
+                    failures.append(f"PARALLEL [{book_lang}->{tr_lang}]: SX lang={left_m['lang']} != expected {book_lang}")
+                if right_m["lang"] != tr_lang:
+                    failures.append(f"PARALLEL [{book_lang}->{tr_lang}]: DX lang={right_m['lang']} != expected {tr_lang}")
+                expected_badges = [f"1 · {book_lang.upper()}", f"1 · {tr_lang.upper()}"]
+                if badges != expected_badges:
+                    failures.append(f"PARALLEL [{book_lang}->{tr_lang}]: badges={badges} != expected {expected_badges}")
+                for side_lbl, m in (("SX", left_m), ("DX", right_m)):
+                    if not m["fits"] or m["overflowY"] > MAX_OVERFLOW_PX or m["overflowX"] > MAX_OVERFLOW_PX:
+                        failures.append(
+                            f"PARALLEL OVERFLOW [{book_lang}->{tr_lang}] {side_lbl}: "
+                            f"scrollH={m['scrollHeight']} > clientH={m['clientHeight']}"
+                        )
+
             browser.close()
     finally:
         httpd.shutdown()
 
-    print("\n📐 Kids' Own Stories — Bounding-Box Text Auto-Fit Report (1440×900)")
+    print("\n📐 Kids' Own Stories — Bounding-Box Text Auto-Fit & Parallel Translation Report (1440×900)")
     print("-" * 78)
     print(f"{'Level':<7} {'Lang':<5} {'Pages':<6} {'Font min/avg (px)':<20} {'Fill min/avg':<18} {'Overflows':<9}")
     print("-" * 78)
