@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" translate="no" class="notranslate">
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kids' Own Stories — Il Libro delle Storie di Ale &amp; Seby</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7245,7 +7246,8 @@
       `;
 
       const comicBubbleHtml = bubbleData?.text ? `
-        <div class="kids-comic-bubble ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}"
+        <div class="kids-comic-bubble notranslate ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}"
+          lang="${lang}" translate="no"
           style="top:${bAnchor.top};left:${bAnchor.left};max-width:${bAnchor.maxW};"
           onclick="event.stopPropagation(); playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')"
           title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
@@ -7259,12 +7261,13 @@
 
       const artZoneHtml = `
         <div class="kids-leaf-art-zone">
-          <div class="kids-figure-caption ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}">${escapeHtml(pageTitle)}</div>
+          <div class="kids-figure-caption notranslate ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}" lang="${lang}" translate="no">${escapeHtml(pageTitle)}</div>
         </div>
       `;
 
       return `
-        <div class="kids-watercolor-leaf patch-${patchPos} ${kidsGrammarEnabled ? 'grammar-on' : ''}"
+        <div class="kids-watercolor-leaf notranslate patch-${patchPos} ${kidsGrammarEnabled ? 'grammar-on' : ''}"
+          lang="${lang}" translate="no"
           data-page="${pageObj.page}"
           style="background-image: url('${pageObj.image}?v=${APP_VERSION}');">
           ${edgeArrowHtml}
