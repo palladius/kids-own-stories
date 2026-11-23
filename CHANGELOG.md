@@ -2,6 +2,17 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.13] - 2026-11-23
+
+### Added & Fixed
+- 📱📖 **Layout Responsivo Verticale: Modalità Monopagina e Scroll per Smartphone ([Issue #8](https://github.com/palladius/kids-own-stories/issues/8), [`index.html`](index.html))**:
+  - **Modalità Monopagina su Mobile (`orientation: portrait` o schermi `< 768px`)**: abbandonata la visualizzazione a due pagine affiancate sugli smartphone verticali, mostrando **1 sola pagina per volta** (`.open-book.kids-notebook-spread.kids-single-page-mode`) con proporzioni `896 / 1200` e senza piega centrale.
+  - **Layout a pagina intera e barra compatta**: massimizzato lo spazio per illustrazione, fumetto e testo della singola pagina attiva; barra inferiore audio/avatar mantenuta su una singola riga compatta (`97vw`).
+  - **Scroll verticale abilitato (`overflow-y: auto`)**: area testo e pagina scorrevoli verticalmente su schermi piccoli senza rompere header o barra inferiore.
+  - **Navigazione sfogliamento monopagina**: frecce laterali `<` e `>` e swipe avanzano di **singola pagina** (`p.1 → p.2 → p.3 … → p.16`) con badge `N/16 · LANG`, tornado automaticamente alla vista a libro aperto (2 pagine affiancate) su desktop/tablet landscape.
+- 🧪🤖 **Unit Test Playwright Mobile Portrait (`390×844`) ([`bin/test_kids_text_fit.py`](bin/test_kids_text_fit.py))**:
+  - Aggiunto test automatico Playwright su viewport smartphone verticale (`390×844`) su tutte le 16 pagine × 3 livelli (`seby`, `ale`, `emma`) che verifica `kids-single-page-mode`, 1 sola pagina visibile, avanzamento monopagina `1→2→…→16` e zero overflow.
+
 ## [0.13.12] - 2026-11-23
 
 ### Added & Fixed

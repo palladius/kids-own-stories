@@ -49,10 +49,14 @@ def start_static_server(root: Path) -> tuple[socketserver.TCPServer, int]:
 
 
 def main() -> int:
+    if len(os.environ.get("TMPDIR", "")) > 40 and os.path.isdir("/tmp"):
+        os.environ["TMPDIR"] = "/tmp"
+
     httpd, port = start_static_server(REPO_ROOT)
     base_url = f"http://127.0.0.1:{port}/index.html"
     failures: list[str] = []
     summary_rows: list[tuple[str, str, int, float, float, float, float, int]] = []
+    mobile_pages_checked = 0
 
     try:
         with sync_playwright() as p:
@@ -173,11 +177,45 @@ def main() -> int:
                             f"scrollH={m['scrollHeight']} > clientH={m['clientHeight']}"
                         )
 
+            # Mobile Portrait (390×844) Single-Page Mode unit tests (GitHub Issue #8):
+            mobile_ctx = browser.new_context(viewport={"width": 390, "height": 844})
+            mpage = mobile_ctx.new_page()
+            for level in LEVELS:
+                url = f"{base_url}?story=sardegna&mode={level}&lang=it"
+                mpage.goto(url, wait_until="networkidle")
+                mpage.wait_for_selector(".kids-sentence-box", timeout=10000)
+                mpage.evaluate("() => document.fonts ? document.fonts.ready : Promise.resolve()")
+
+                is_single = mpage.evaluate(
+                    "() => document.getElementById('openBookSpread')?.classList.contains('kids-single-page-mode') === true"
+                )
+                if not is_single:
+                    failures.append(f"MOBILE [{level}]: expected #openBookSpread.kids-single-page-mode on 390x844 viewport")
+
+                for page_idx in range(16):
+                    if page_idx > 0:
+                        mpage.evaluate("() => turnPage(1)")
+                    mpage.wait_for_timeout(60)
+                    mpage.evaluate("() => { if (typeof fitKidsTextToPatch === 'function') fitKidsTextToPatch(); }")
+                    m_metrics = mpage.evaluate("() => window.__kidsTextFitMetrics ? window.__kidsTextFitMetrics() : []")
+                    mobile_pages_checked += 1
+                    if len(m_metrics) != 1:
+                        failures.append(f"MOBILE [{level}] P{page_idx + 1:02d}: expected 1 single page leaf, got {len(m_metrics)}")
+                        continue
+                    mm = m_metrics[0]
+                    if mm["page"] != page_idx + 1:
+                        failures.append(f"MOBILE [{level}]: turnPage(1) expected page {page_idx + 1}, got {mm['page']}")
+                    if mm["overflowX"] > MAX_OVERFLOW_PX:
+                        failures.append(
+                            f"MOBILE HORIZONTAL OVERFLOW [{level}] P{mm['page']:02d}: overflowX={mm['overflowX']}px"
+                        )
+            mobile_ctx.close()
+
             browser.close()
     finally:
         httpd.shutdown()
 
-    print("\n📐 Kids' Own Stories — Bounding-Box Text Auto-Fit & Parallel Translation Report (1440×900)")
+    print("\n📐 Kids' Own Stories — Bounding-Box Text Auto-Fit & Mobile Single-Page Report")
     print("-" * 78)
     print(f"{'Level':<7} {'Lang':<5} {'Pages':<6} {'Font min/avg (px)':<20} {'Fill min/avg':<18} {'Overflows':<9}")
     print("-" * 78)
@@ -194,7 +232,9 @@ def main() -> int:
             print(f"  ... and {len(failures) - 25} more")
         return 1
 
-    print(f"\n✅ ALL {sum(r[2] for r in summary_rows)} page renderings passed with 0 overflows and fill >= {MIN_FILL_RATIO:.0%}!")
+    print(
+        f"\n✅ ALL {sum(r[2] for r in summary_rows)} desktop page renderings + {mobile_pages_checked} mobile portrait single-page renderings passed with 0 overflows!"
+    )
     return 0
 
 
