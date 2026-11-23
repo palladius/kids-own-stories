@@ -180,3 +180,12 @@ Prima di ogni commit (o quando l'utente chiede una verifica di integrità), eseg
 - **Audiolibri Studio + Karaoke Whisper**: `narrated_{it,en}.mp3` (`bin/generate_story_audiobooks.py`) e `karaoke_{it,en}.json` (`bin/build_karaoke_timings.py`)
 - **Film 40s (`4 × 10s`)**: `video_*.mp4` (`>= 35s`, `bin/generate_40s_story_videos.py`)
 - **Illustrazioni 16:9 Orizzontali** (`width > height`) e testo in **5 lingue** (`it`, `en`, `fr`, `de`, `pt`).
+- **Auto-Fit & Traduzione Pari Pari (`just test-fit`)**: verifica Playwright su tutte le 144 combinazioni (`16 pagine × Seby/Ale/Emma × IT/FR/DE`) + le 6 coppie bilingui (`it→en`, `fr→en`, `de→en`, `de→it`, `fr→it`, `it→fr`).
+
+---
+
+## 🚀 Autonomia Operativa (Test, Commit & Push Diretti)
+
+- **App NON di produzione (progetto familiare/creativo)**: Riccardo si fida pienamente dell'agente. È **assolutamente safe** eseguire direttamente `cd`, `just test`, `just test-fit`, `git add`, `git commit` e `git push origin main` senza chiedere a Riccardo di copiare e incollare comandi nel terminale.
+- **Unica porta locale standard**: usare `just serve` sulla porta **`8088`** ed evitare di lasciare istanze duplicate (es. `8091`) accese in parallelo.
+- **Regola di sicurezza Git**: resta sempre vietato `git reset --hard`.

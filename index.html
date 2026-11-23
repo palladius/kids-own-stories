@@ -4435,7 +4435,7 @@
       if (!('speechSynthesis' in window) || !text) return;
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = lang === 'en' ? 'en-US' : (lang === 'de' ? 'de-DE' : (lang === 'fr' ? 'fr-FR' : 'it-IT'));
+      u.lang = lang === 'en' ? 'en-GB' : (lang === 'de' ? 'de-DE' : (lang === 'fr' ? 'fr-FR' : 'it-IT'));
       const mult = KIDS_SPEED_STEPS[kidsSpeedStep]?.mult || 1.0;
       u.rate = Math.max(0.55, Math.min(1.6, (lang === 'fr' ? 0.90 : 0.95) * mult));
       window.speechSynthesis.speak(u);
