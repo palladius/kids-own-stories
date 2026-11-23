@@ -2,11 +2,31 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.11] - 2026-11-23
+
+### Added
+- 📖↔️📖 **Traduzione Pari Pari — «Cheating Mode» nel pop-up `⚙️` Opzioni ([`index.html`](index.html))**:
+  - Aggiunto il toggle **`Traduzione Pari Pari (Cheating Mode)`** direttamente sotto *Lingua di Traduzione / Spiegazioni* (con `translate="no"` sul pop-up e supporto permalink `?parallel=1`).
+  - Quando attivo, il libro affianca **la stessa identica pagina** in due lingue: **Pagina SX nella Lingua del Libro** (es. `5 · DE`) e **Pagina DX nella Lingua Base** (es. `5 · IT`), con sfoglio pagina-per-pagina (`1→2→3…`), audio separato SX/DX, fumetti bilingui, grammatica e auto-fit dei caratteri su entrambe le pagine.
+- 🐧👤 **PuffinLogin Auto-Mapping Profili Famiglia ([`index.html`](index.html))**:
+  - Collegato `puffin-auth-change` e l'apertura del quaderno ai profili PuffinLogin: **Alessandro → `Ale`**, **Sebastian → `Seby`**, **Riccardo → `Emma` + lingua base `Italiano`**, **Kate → `Emma` + lingua base `English`**, con badge profilo visibile nel pop-up `⚙️` Opzioni.
+
+## [0.13.10] - 2026-11-22
+
+### Fixed & Changed
+- 📱✨ **Fix Definitivo iPad Safari (`100dvh` + `safe-area-inset-bottom`, zero sovrapposizione barra marrone) ([`index.html`](index.html))**:
+  - Sostituito `100vh` con `100dvh` + `env(safe-area-inset-bottom)` e riservati `84px` netti per la barra inferiore (`.kids-notebook-floating-bar` in `flex-wrap: nowrap`), così su **iPad Safari** la barra marrone resta sempre sotto al libro e non copre mai l'ultima riga di testo.
+- 🪵🎨 **Barra Minimalista più Ariosa, Avatar più Grandi (`44px` / `48px` su iPad) & 1 Quiz Ogni 2 Pagine ([`index.html`](index.html))**:
+  - Rimosso il separatore verticale `|` al centro, aumentato il respiro tra i 3 avatar e le icone di controllo, ingranditi i 3 avatar Pixar (`44px` desktop, `48px` su touch/iPad) e ridotto il quiz Antolin a **1 quiz per doppia pagina** (sul lato destro della barra) invece di uno a pagina.
+
 ## [0.13.9] - 2026-11-22
 
 ### Added & Changed
 - 📐✨ **Auto-Fit Dinamico dei Caratteri sul Rettangolo Sabbia (`fitKidsTextToPatch`) ([`index.html`](index.html))**:
-  - Eliminati gli spazi vuoti su **Seby, Ale ed Emma** con ricerca binaria dinamica sul `font-size` dentro il rettangolo virtuale `.kids-white-patch-text-zone` (`27.6%` bottom / `25.6%` top, padding foglio ridotto a `1.6% 5.0% 1.8%`), garantendo il **massimo font leggibile** senza mai debordare né tagliare i tooltip del glossario (`overflow: visible`), con ricalcolo automatico su cambio pagina/livello/lingua/maiuscolo, `resize` e `document.fonts.ready`.
+  - Eliminati gli spazi vuoti su **Seby, Ale ed Emma** con ricerca binaria dinamica sul `font-size` dentro il rettangolo virtuale `.kids-white-patch-text-zone` (`27.6%` bottom con `14px` di margine netto sopra il numero di pagina `15`, `25.6%` top, padding foglio ridotto a `1.6% 5.0% 1.8%`), garantendo il **massimo font leggibile** senza mai debordare né tagliare i tooltip del glossario (`overflow: visible`), con ricalcolo automatico su cambio pagina/livello/lingua/maiuscolo, `resize` e `document.fonts.ready`.
+- 🔤🔵🌸 **Grammatica Montessori Completa su Emma & Badge Genere/Numero (`m.s. 🔵👤`, `m.p. 🔵👥`, `f.s. 🌸👤`, `f.p. 🌸👥`) ([`index.html`](index.html))**:
+  - Attivata la grammatica Montessori completa anche sul livello **Emma B2/C1** in IT/FR/DE (nomi, aggettivi, verbi, avverbi, verbi separabili tedeschi e riuso dell'audio parola singola di Seby/Ale).
+  - Aggiornati i tooltip di nomi e aggettivi su tutti i livelli per mostrare **genere + numero** con icone intuitive (`m.s. 🔵👤`, `m.p. 🔵👥`, `f.s. 🌸👤`, `f.p. 🌸👥` e `Sg. 👤` / `Pl. 👥` in tedesco).
 - 🧪🤖 **Unit Test Playwright di Bounding-Box Fitting ([`bin/test_kids_text_fit.py`](bin/test_kids_text_fit.py), [`justfile`](justfile))**:
   - Aggiunto `just test-fit` che renderizza tutte le **144 combinazioni** (`16 pagine × 3 livelli Seby/Ale/Emma × 3 lingue IT/FR/DE`) in Chromium headless leggendo `window.__kidsTextFitMetrics()`, verificando `0 overflow` e copertura verticale adeguata (`fillRatio >= 42%`).
 

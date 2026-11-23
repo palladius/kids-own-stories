@@ -2601,7 +2601,10 @@
 
     body.kids-fullscreen-book .book-viewport {
       height: 100vh !important;
+      height: 100dvh !important;
       max-height: 100vh !important;
+      max-height: 100dvh !important;
+      padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
     }
 
     body.kids-fullscreen-book .open-book,
@@ -2610,11 +2613,15 @@
       container-type: size;
       grid-template-columns: 1fr 1fr !important;
       aspect-ratio: 1792 / 1200 !important;
-      width: min(98vw, calc((100vh - 54px) * 1792 / 1200)) !important;
-      height: min(calc(100vh - 54px), calc(98vw * 1200 / 1792)) !important;
+      width: min(98vw, calc((100vh - 84px) * 1792 / 1200)) !important;
+      width: min(98vw, calc((100dvh - 84px - env(safe-area-inset-bottom, 0px)) * 1792 / 1200)) !important;
+      height: min(calc(100vh - 84px), calc(98vw * 1200 / 1792)) !important;
+      height: min(calc(100dvh - 84px - env(safe-area-inset-bottom, 0px)), calc(98vw * 1200 / 1792)) !important;
       max-width: 98vw !important;
-      max-height: calc(100vh - 54px) !important;
-      flex: 0 0 auto !important;
+      max-height: calc(100vh - 84px) !important;
+      max-height: calc(100dvh - 84px - env(safe-area-inset-bottom, 0px)) !important;
+      flex: 0 1 auto !important;
+      min-height: 0 !important;
       margin: auto !important;
       border-radius: 22px !important;
       background: #fdfaf2 !important;
@@ -2627,9 +2634,9 @@
     }
 
     .open-book.kids-notebook-spread:not(.is-fullscreen) {
-      width: min(98vw, calc((100vh - var(--header-h) - var(--footer-h) - 72px) * 1792 / 1200)) !important;
-      height: min(calc(100vh - var(--header-h) - var(--footer-h) - 72px), calc(98vw * 1200 / 1792)) !important;
-      max-height: calc(100vh - var(--header-h) - var(--footer-h) - 72px) !important;
+      width: min(98vw, calc((100dvh - var(--header-h) - var(--footer-h) - 86px) * 1792 / 1200)) !important;
+      height: min(calc(100dvh - var(--header-h) - var(--footer-h) - 86px), calc(98vw * 1200 / 1792)) !important;
+      max-height: calc(100dvh - var(--header-h) - var(--footer-h) - 86px) !important;
     }
 
     /* Portrait / Tall Viewport: switch to vertical 9:16 NeverEnding Grimoire + Fireplace background! */
@@ -2875,6 +2882,7 @@
     .kids-watercolor-leaf.patch-bottom .kids-white-patch-text-zone {
       flex: 0 0 27.6%;
       height: 27.6%;
+      padding-bottom: 14px;
     }
 
     .kids-watercolor-leaf.patch-top .kids-white-patch-text-zone {
@@ -3110,14 +3118,14 @@
     .kids-avatar-tier-group {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 10px;
       padding: 0 4px;
     }
 
     .kids-avatar-tier-btn {
       position: relative;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       padding: 0;
       border-radius: 999px;
       background: #fffdf7;
@@ -3126,7 +3134,14 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s ease, opacity 0.16s ease;
-      opacity: 0.72;
+      opacity: 0.78;
+    }
+
+    @media (pointer: coarse) {
+      .kids-avatar-tier-btn {
+        width: 48px;
+        height: 48px;
+      }
     }
 
     .kids-avatar-tier-btn img {
@@ -3260,26 +3275,37 @@
 
     /* Minimalist External Mini-Footer below the Open Notebook (Dark Table Brown — distinct from the cream pages!) */
     .kids-notebook-floating-bar {
-      width: min(1680px, 98.5vw);
+      width: min(1680px, 98vw);
       flex-shrink: 0;
       z-index: 90;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 12px;
+      flex-wrap: nowrap;
+      margin-top: 2px;
       background: linear-gradient(180deg, rgba(52, 31, 18, 0.96) 0%, rgba(30, 18, 10, 0.98) 100%);
-      border: 1.5px solid rgba(217, 119, 6, 0.45);
+      border: 1.5px solid rgba(217, 119, 6, 0.42);
       border-radius: 999px;
-      padding: 4px 12px;
+      padding: 5px 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(254, 243, 199, 0.12);
     }
 
     .kids-mini-footer-group {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      flex-wrap: wrap;
+      gap: 9px;
+      flex-wrap: nowrap;
+    }
+
+    .kids-mini-footer-center {
+      gap: 16px;
+    }
+
+    .kids-mini-footer-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .kids-pill-control {
@@ -3309,18 +3335,14 @@
       border-color: #78350f;
     }
 
-    .kids-pill-control.listen-pill {
-      background: #ecfdf5;
-      color: #065f46;
-      border-color: rgba(16, 185, 129, 0.55);
-      font-size: 1.48rem;
-      line-height: 1;
-      padding: 2px 10px;
+    .kids-min-icon-btn.listen-pill {
+      width: 38px;
+      height: 38px;
     }
 
-    .kids-pill-control.listen-pill:hover {
-      background: #d1fae5;
-      border-color: #059669;
+    .kids-min-icon-btn.listen-pill svg {
+      width: 19px;
+      height: 19px;
     }
 
     .kids-pill-control.quiz-pill {
@@ -3892,7 +3914,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.9';
+    const APP_VERSION = '0.13.11';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -3910,6 +3932,7 @@
     let kidsUppercaseEnabled = false;
     let kidsFullscreenEnabled = true; // Fullscreen notebook by default when opening Kids Book!
     let kidsTranslationLang = localStorage.getItem('kos_kids_tr_lang') || 'en'; // 'en' (default) | 'it' | 'fr' | 'de'
+    let kidsParallelMode = localStorage.getItem('kos_kids_parallel') === '1'; // Traduzione Pari Pari (Cheating Mode: Pag. SX lingua libro | Pag. DX lingua base)
     let kidsSettingsOpen = false;
     const KIDS_SPEED_STEPS = [
       { mult: 0.76, label: 'Molto lento (--)', short: '0.75×' },
@@ -4143,23 +4166,256 @@
       }
     };
 
+    const EMMA_STOPWORDS = {
+      it: new Set(['il','lo','la','i','gli','le','un','uno','una','di','a','da','in','con','su','per','tra','fra','del','dello','della','dei','degli','delle','al','allo','alla','ai','agli','alle','dal','dallo','dalla','dai','dagli','dalle','nel','nello','nella','nei','negli','nelle','sul','sullo','sulla','sui','sugli','sulle','e','ed','o','ma','che','cui','chi','si','ci','li','lo','la','le','mi','ti','vi','ne','se','non','più','così','mentre','come','dopo','prima','fino','dove','quando','loro','suo','sua','suoi','sue','mio','mia','nostro','nostra','questo','questa','questi','queste','quel','quello','quella','quelli','quelle','ogni','tutto','tutta','tutti','tutte','due','tre','dieci','mille','pochi','alcuni','sé','attorno','accanto','dietro','sopra','sotto','verso','senza']),
+      fr: new Set(['le','la','les','l','un','une','des','du','de','d','au','aux','à','en','dans','sur','sous','par','pour','avec','sans','entre','vers','chez','devant','derrière','autour','depuis','pendant','avant','après','jusqu','et','ou','mais','que','qu','qui','dont','où','si','ne','pas','plus','très','si','tandis','comme','quand','lorsque','leur','leurs','son','sa','ses','notre','nos','votre','vos','ce','cet','cette','ces','chaque','tout','toute','tous','toutes','deux','trois','dix','mille','ils','elles','il','elle','nous','vous','se','s','y','en','lui','eux','là','ici','loin','peu','dès','une','fois']),
+      de: new Set(['der','die','das','den','dem','des','ein','eine','einen','einem','einer','eines','im','in','am','an','auf','aus','bei','mit','nach','seit','von','vom','zu','zum','zur','für','gegen','ohne','um','über','unter','vor','hinter','neben','zwischen','durch','entlang','bis','und','oder','aber','dass','daß','als','wie','wenn','während','weil','wo','was','wer','sich','sie','er','es','wir','ihr','euch','ich','ihm','ihn','ihren','ihrer','ihrem','ihre','seine','seinem','seiner','seinen','diese','dieser','dieses','diesem','diesen','jeder','jede','jedes','alle','beiden','zwei','drei','zehn','tausend','so','sehr','kaum','noch','schon','nicht','nur','weit','hoch','oben','daneben','rund','hinauf','hinaus','umher','vorbei','empor','ab','auf','aus'])
+    };
+
+    const EMMA_VERBS = {
+      it: new Set(['atterra','scendono','abbracciano','salutano','corrono','ridono','nuotano','giocano','affrontano','spazia','ascolta','rispecchia','afferra','punta','osservano','svetta','è','sembra','sembrare','applaude','costeggiando','scivola','lasciano','lasciata','inoltrano','risalgono','conquistata','depongono','godersi','abbracciano','rivela','scoccando','conquista','circonda','vaga','stringono','attende','sistema','svelare','immergono','prende','danza','colpito','stringe','fa','siete','stati','porterà','incendia','custodiscono','splende','brillano','saltano','sorride','guarda','camminano','salgono','scattano','volano','tuffano','scoprono','ammirano','sognano','sospira','riposano','brilla','risplende','sussurra','esplorano','sfiorano','cullano','illumina','avvolge','raccontano','ricordano']),
+      fr: new Set(['atterrit','descendent','embrassent','saluent','courent','rient','nagent','jouent','franchissent','embrasse','savoure','déroule','prend','met','contemplent','surplombe','est','paraît','léviter','longeant','glisse','plongent','délaissant','enfoncent','gravissent','parvenus','posent','savourer','admirent','dévalent','arrivés','fait','plantant','apprivoise','entoure','déambulent','couvrent','attend','ajuste','explorer','éveille','dessine','tourbillonne','épaté','serre','scelle','êtes','mènera','embrase','enlacent','emportent','brille','sourire','regardent','marchent','grimpent','volent','découvrent','rêvent','venaient','venir']),
+      de: new Set(['landet','steigen','umarmen','begrüßen','rennen','lachen','schwimmen','spielen','wagen','reicht','lauscht','zieht','übernimmt','nimmt','bestaunen','ragt','ist','scheint','schweben','zusieht','gleitet','graben','hat','versetzen','brechen','erklimmen','stellen','genießen','schweift','stellt','spannt','trifft','streichelt','streifen','schließen','erwartet','hilft','tauchen','eröffnet','erkennen','umkreist','schnorcheln','schließt','verspricht','seid','mitnehme','taucht','tragen','leuchtet','glitzern','springen','lächelt','schauen','wandern','klettern','fliegen','entdecken','träumen'])
+    };
+
+    const EMMA_ADJS = {
+      it: new Set(['smeraldina','lontane','oscillante','ambrata','entusiasti','vellutato','maestosa','piena','quieto','seguente','incontaminate','protetti','arancioni','rapiti','vertiginose','calcaree','celebre','ardita','naturale','scolpito','irreale','sospeso','selvaggio','silenzioso','monumentali','marine','misteriose','modellate','incessante','intera','aspro','pietroso','secolari','contorti','rocciosa','carico','sconfinato','verdi','bianche','marino','incredibile','infallibile','giallo','fiero','azzurra','mansueto','sardo','rigoglioso','naturalistico','indisturbata','nodosi','fioriti','complice','lunghe','vellutate','riparate','incastonate','scolpiti','raro','rosa','pronti','immacolate','incantato','nitido','scintillante','argentati','colmo','solenne','abili','prossima','vera','corallina','pieno','azzurro','chiaro','caldo','calda','felici','felice','grande','grandi','piccolo','piccola','piccoli','piccole','bello','bella','belli','belle','nuovo','nuova','bianco','bianca','blu','dorato','dorata','lucente','brillante','limpido','limpida','limpide','cristallino','cristallina','cristalline','morbido','morbida','dolce','allegro','allegri','profondo','profonda','alto','alta','alti','alte','antico','antichi','selvaggia','selvaggi']),
+      fr: new Set(['équipés','suspendus','maritimes','mouvant','azuré','parsemé','baignée','ambrée','enthousiastes','nocturne','pleine','majestueuse','apaisés','préservées','fascinés','vertigineuses','calcaires','plongeant','célèbre','vertigineuse','naturelle','façonnée','saisissante','amusé','indomptée','monumentales','marines','rocheuses','mystérieuses','ciselées','profond','escarpé','caillouteux','centenaires','tordus','parfumé','rocheux','empreint','grandiose','verdoyantes','remarquable','plein','vêtu','bleu','tendre','sarde','vaste','naturel','millénaires','fleuries','attendri','petits','soyeuses','abritées','enchâssées','spectaculaire','rose','impatients','ouvert','immaculées','féerique','prodigieuse','étincelant','argentés','doués','prochain','vraie','couchant','lumineuse','clair','claire','chaud','chaude','heureux','heureuse','grand','grande','grands','grandes','petit','petite','beau','belle','beaux','belles','nouveau','nouvelle','blanc','blanche','doré','dorée','limpide','doux','douce']),
+      de: new Set(['sicher','ausgerüstet','schwindelfrei','schwankenden','hohen','luftigen','azurblaue','warm','beleuchteten','lebendigen','nachtblauen','majestätischer','silberne','ruhige','darauffolgenden','wendigen','unberührten','orangefarbenen','schroff','aufragenden','weißen','berühmten','kühne','geformten','unwirklich','klar','eigenen','zerklüfteten','gewaltigen','natürlichen','geheimnisvollen','unermüdliche','raue','steinigen','knorrigen','wildem','felsigen','erhabene','eingeschnittene','grüne','fernen','beeindruckende','ruhiger','goldene','stolz','blauen','zutraulichen','weitläufigen','ungestört','blühenden','uralten','lächelnd','innige','langohrigen','unvergessliche','versteckten','schimmernden','rosa','magische','gestochen','scharf','glitzernder','silbernen','neugierig','beeindruckt','klare','geschickt','nächstes','echtes','warmes','hellen','blauen','tiefen','schönen','großen','kleinen'])
+    };
+
+    const EMMA_NOUNS_GENDER = {
+      it: {
+        imbragatura:'f', moschettoni:'m', caschetto:'m', ponti:'m', pini:'m', passerella:'f', sguardo:'m', costa:'f', vele:'f',
+        sera:'f', terrazza:'f', luce:'f', lampada:'f', racconti:'m', nipotini:'m', cielo:'m', luna:'f', argento:'m', mare:'m',
+        alba:'f', giorno:'m', timone:'m', gommone:'m', prua:'f', acque:'f', golfo:'m', salvagenti:'m', falesie:'f',
+        baia:'f', guglia:'f', calcare:'m', arco:'m', tempo:'m', trasparenza:'f', acqua:'f', scafo:'m', vuoto:'m', tuffi:'m',
+        litorale:'m', grotte:'f', volte:'f', pietra:'f', cavità:'f', millenni:'m', erosione:'f', onde:'f', famiglia:'f', fiato:'m',
+        spalle:'f', fratelli:'m', zaino:'m', spalla:'f', entroterra:'m', sentiero:'m', ginepri:'m', maestrale:'m', cespugli:'m', timo:'m',
+        vetta:'f', belvedere:'m', zaini:'m', silenzio:'m', meraviglia:'f', fianco:'m', panorama:'m', gole:'f', creste:'f', orizzonte:'m',
+        penisola:'f', maestria:'f', tiro:'m', freccia:'f', cuore:'m', bersaglio:'m', passi:'m', maglia:'f', numero:'m', asinello:'m',
+        parco:'m', albergo:'m', fauna:'f', ombra:'f', ulivi:'m', prati:'m', amicizia:'f', asinelli:'m', orecchie:'f',
+        culmine:'m', spedizione:'f', calette:'f', scogli:'m', granito:'m', immersione:'f', cura:'f', maschera:'f', boccaglio:'m', segreti:'m', fondale:'m',
+        viso:'m', baie:'f', universo:'m', vita:'f', ciottolo:'m', cristallo:'m', banco:'m', pesciolini:'m', cerchio:'m',
+        disinvoltura:'f', orgoglio:'m', promessa:'f', avventura:'f', barriera:'f', tramonto:'m', oro:'m', abbraccio:'m', gioia:'f', cuori:'m', cugino:'m', sogno:'m',
+        aereo:'m', spiaggia:'f', sabbia:'f', sole:'m', rocce:'f', diamanti:'m', ponte:'m', alberi:'m', casco:'m', montagna:'f', pesci:'m', vacanza:'f', isola:'f', barca:'f', vento:'m',
+        egitto:'m', sardegna:'f', arbatax:'m', orosei:'m', olbia:'f', supramonte:'m', papino:'m', mamma:'f', nonna:'f', ale:'m', seby:'m', kate:'f', lucilla:'f', massimo:'m'
+      },
+      fr: {
+        baudriers:'m', mousquetons:'m', casque:'m', ponts:'m', singe:'m', pins:'m', belvédère:'m', regard:'m', littoral:'m', voiliers:'m',
+        crépuscule:'m', terrasse:'f', lueur:'f', lampe:'f', tendresse:'f', récits:'m', ciel:'m', lune:'f', sillage:'m', argent:'m', flots:'m',
+        lendemain:'m', matin:'m', barre:'f', bateau:'m', cap:'m', eaux:'f', golfe:'m', gilets:'m', sauvetage:'m', falaises:'f', bleu:'m',
+        crique:'f', aiguille:'f', arche:'f', siècles:'m', limpidité:'f', eau:'f', coque:'f', fond:'m',
+        côte:'f', embarcation:'f', grottes:'f', voûtes:'f', cavités:'f', fil:'m', millénaires:'m', ressac:'m', famille:'f', émerveillement:'m',
+        instant:'m', rivage:'m', frères:'m', sac:'m', dos:'m', sentier:'m', genévriers:'m', vent:'m', touffes:'f', thym:'m',
+        sommet:'m', sacs:'m', silence:'m', sérénité:'f', épaule:'f', panorama:'m', vallées:'f', méditerranée:'f',
+        tir:'m', arc:'m', adresse:'f', preuve:'f', flèche:'f', cœur:'m', cible:'f', maillot:'m', numéro:'m', ânon:'m',
+        parc:'m', hôtel:'m', animaux:'m', liberté:'f', ombre:'f', oliviers:'m', prairies:'f', affection:'f', ânes:'m', oreilles:'f',
+        point:'m', orgue:'m', périple:'m', criques:'f', granit:'m', masque:'m', tuba:'m', aquarium:'m',
+        visage:'m', monde:'m', yeux:'m', galet:'m', netteté:'f', banc:'m', poissons:'m',
+        aisance:'f', promesse:'f', voyage:'m', barrière:'f', corail:'m', soleil:'m', or:'m', émotion:'f', cousin:'m',
+        égypte:'f', sardaigne:'f', italie:'f', papino:'m', maman:'f', mamie:'f', ale:'m', seby:'m', kate:'f', lucilla:'f', massimo:'m'
+      }
+    };
+
+    const EMMA_ADVS = {
+      it: new Set(['ben','saldamente','appena','così','sempre','subito','insieme','qui','lì','ancora','già','molto','poco','bene','male','piano','forte','lontano','vicino','lentamente','velocemente','felicemente','silenziosamente','dolcemente']),
+      fr: new Set(['solidement','patiemment','doucement','soigneusement','fièrement','peine','ensemble','toujours','encore','déjà','bien','mal','vite','loin','près','lentement','calmement','joyeusement']),
+      de: new Set(['sicher','schwindelfrei','behutsam','punktgenau','sorgfältig','neugierig','stolz','weit','hoch','oben','daneben','gemeinsam','immer','noch','schon','gerne','leise','schnell','langsam','völlig'])
+    };
+
+    let _sharedGrammarIndexCache = {};
+    function getSharedGrammarIndex(lang) {
+      if (_sharedGrammarIndexCache[lang]) return _sharedGrammarIndexCache[lang];
+      const idx = {};
+      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+      (kb?.pages || []).forEach(pg => {
+        ['seby', 'ale'].forEach(lvl => {
+          const toks = pg.levels?.[lvl]?.[lang]?.tokens || [];
+          toks.forEach(t => {
+            const clean = String(t.w || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
+            if (!clean) return;
+            if (!idx[clean] || (idx[clean].pos === 'other' && t.pos && t.pos !== 'other')) {
+              idx[clean] = {
+                pos: t.pos || 'other',
+                g: t.g || '',
+                n: t.n || '',
+                audio_mp3: t.audio_mp3 || '',
+                audio_ogg: t.audio_ogg || ''
+              };
+            }
+          });
+        });
+      });
+      _sharedGrammarIndexCache[lang] = idx;
+      return idx;
+    }
+
+    function inferTokenNumber(rawWord, pos, gender, lang) {
+      if (pos !== 'noun' && pos !== 'adj') return '';
+      const clean = String(rawWord || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
+      if (!clean || clean.length < 2) return '';
+      if (lang === 'it') {
+        const invarSg = new Set(['città','cavità','crisi','re','bar','sport','foto','bici','cinema','blu','rosa','viola','litorale','fondale','calcare','mare','sole','cuore','fiore','colore','sapore','amore','rumore','calore','errore','valore','onore','timone','gommone','maestrale','boccaglio','belvedere','culmine','tramonto','granito','orgoglio','sogno','cugino','egitto','sardegna','arbatax','olbia','orosei','supramonte','papino','mamma','nonna','ale','seby','kate','lucilla','massimo','immersione','spedizione','erosione','barriera','notte','luce','voce','neve','pelle','gente','parte','arte','nave','torre','valle','ponte','fonte','mente','madre','padre','estate','vite','sete','rete','chiave','piede','dente','pesce','mese','paese','nome','fiume','lume','seme','cane','pane','sale','male','bene','fine','ordine','margine','vertigine','origine','immagine','indagine','abitudine','solitudine','moltitudine','gioventù','virtù','tribù','gru','tribù']);
+        if (invarSg.has(clean)) return 's';
+        const knownPl = new Set(['pesciolini','scogli','bambini','fratelli','pini','ciottoli','zaini','ginepri','cespugli','nipotini','abili','arancioni','nodosi','fioriti','argentati','moschettoni','ponti','racconti','salvagenti','tuffi','millenni','passi','ulivi','prati','asinelli','segreti','cuori','diamanti','alberi','pesci','entusiasti','protetti','rapiti','secolari','contorti','verdi','pronti','scolpiti','monumentali','felici','grandi','piccoli','belli','alti','antichi','selvaggi','falesie','onde','acque','rocce','grotte','baie','calette','vele','orecchie','creste','gole','spalle','volte','vertiginose','calcaree','lontane','incontaminate','marine','misteriose','modellate','bianche','lunghe','vellutate','riparate','incastonate','immacolate','limpide','cristalline','piccole','belle','alte']);
+        if (knownPl.has(clean)) return 'p';
+        if (gender === 'm') {
+          if (clean.endsWith('i') && !clean.endsWith('ai') && !clean.endsWith('oi')) return 'p';
+          return 's';
+        }
+        if (gender === 'f') {
+          if (clean.endsWith('e') && !clean.endsWith('ione') && !clean.endsWith('ice') && !clean.endsWith('ite') && !clean.endsWith('ie') && !clean.endsWith('ude') && !clean.endsWith('ine')) return 'p';
+          if (clean.endsWith('i') && !clean.endsWith('si') && !clean.endsWith('ti')) return 'p';
+          return 's';
+        }
+        return clean.endsWith('i') ? 'p' : 's';
+      }
+      if (lang === 'fr') {
+        const frSgEndingSX = new Set(['temps','bois','pays','dos','bras','fils','corps','cours','ours','pas','bas','cas','mois','fois','voix','croix','noix','paix','prix','nez','gaz','paradis','tapas','progrès','succès','accès','palais','marais','velours','secours','discours','parcours','printemps','univers','revers','travers','vers','jus','bus','plus','dessous','dessus','près','très','après','dès','sans','dans','vers','sous','tous','arbatax']);
+        if (frSgEndingSX.has(clean)) return 's';
+        if (clean.endsWith('s') || clean.endsWith('x')) return 'p';
+        return 's';
+      }
+      if (lang === 'de') {
+        const dePl = new Set(['wellen','felsen','buchten','fische','fischen','brüder','rucksäcke','hängebrücken','klippen','kalksteinklippen','höhlen','meeresgrotten','felsbögen','täler','esel','eseln','olivenbäumen','geschichten','schwimmwesten','pinienkronen','karabinern','wiesen','herzen','jungs','tiere','granitfelsen','wacholderbäumen','wanderrucksäcken','jahrtausende','enkel','bäume','bäumen','steine','sternen','vögel']);
+        if (dePl.has(clean)) return 'p';
+        return 's';
+      }
+      return '';
+    }
+
+    function formatGenderNumberBadge(rawWord, pos, gender, explicitNum, lang) {
+      if (pos !== 'noun' && pos !== 'adj') return '';
+      const num = explicitNum || inferTokenNumber(rawWord, pos, gender, lang);
+      const numIcon = num === 'p' ? '👥' : (num === 's' ? '👤' : '');
+      if (lang === 'de') {
+        if (!num) return '';
+        const numCode = num === 'p' ? 'Pl.' : 'Sg.';
+        return ` • ${numCode} ${numIcon}`;
+      }
+      if (gender === 'm') {
+        const code = num === 'p' ? 'm.p.' : (num === 's' ? 'm.s.' : 'm.');
+        return ` • ${code} 🔵${numIcon}`;
+      }
+      if (gender === 'f') {
+        const code = num === 'p' ? 'f.p.' : (num === 's' ? 'f.s.' : 'f.');
+        return ` • ${code} 🌸${numIcon}`;
+      }
+      if (num) {
+        return ` • ${num === 'p' ? 'pl.' : 'sg.'} ${numIcon}`;
+      }
+      return '';
+    }
+
     function buildEmmaLevelData(pageNum, lang) {
       const text = KIDS_EMMA_TEXTS_V2[pageNum]?.[lang] || KIDS_EMMA_TEXTS_V2[pageNum]?.it || '';
       const words = text.split(/\s+/).filter(Boolean);
+      const sharedIdx = getSharedGrammarIndex(lang);
+      const stopSet = EMMA_STOPWORDS[lang] || EMMA_STOPWORDS.it;
+      const verbSet = EMMA_VERBS[lang] || EMMA_VERBS.it;
+      const adjSet = EMMA_ADJS[lang] || EMMA_ADJS.it;
+      const advSet = EMMA_ADVS[lang] || EMMA_ADVS.it;
+      const nounMap = EMMA_NOUNS_GENDER[lang] || {};
+
       const tokens = words.map((w, idx) => {
-        const clean = w.toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
+        const stripped = w.replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '');
+        const clean = stripped.toLowerCase().split(/['’]/).pop();
         const enG = KIDS_EN_GLOSS[clean] || null;
+        const shared = sharedIdx[clean] || null;
+
+        let pos = 'other';
+        let g = '';
+        let n = '';
+
+        if (stopSet.has(clean)) {
+          pos = 'other';
+        } else if (verbSet.has(clean)) {
+          pos = 'verb';
+        } else if (advSet.has(clean) || (lang === 'it' && clean.endsWith('mente') && clean.length > 6) || (lang === 'fr' && clean.endsWith('ment') && clean.length > 6 && !nounMap[clean])) {
+          pos = 'adv';
+        } else if (adjSet.has(clean)) {
+          pos = 'adj';
+          if (lang === 'it') {
+            g = (clean.endsWith('a') || clean.endsWith('e') && !clean.endsWith('ile') && !clean.endsWith('ale') && !clean.endsWith('ente') && !clean.endsWith('ante') && !clean.endsWith('ore') && !clean.endsWith('ce') && !clean.endsWith('re')) ? 'f' : 'm';
+            if (shared?.g) g = shared.g;
+          } else if (lang === 'fr') {
+            g = (clean.endsWith('e') || clean.endsWith('es')) ? 'f' : 'm';
+            if (shared?.g) g = shared.g;
+          }
+        } else if (nounMap[clean]) {
+          pos = 'noun';
+          g = nounMap[clean];
+        } else if (shared && shared.pos && shared.pos !== 'other') {
+          pos = shared.pos;
+          g = shared.g || '';
+          n = shared.n || '';
+        } else if (lang === 'de') {
+          const isSentenceStart = idx === 0 || /[.!?«:]$/.test(words[idx - 1] || '');
+          const startsUpper = /^[A-ZÄÖÜ]/.test(stripped);
+          if (startsUpper && !isSentenceStart && clean.length > 2) {
+            pos = 'noun';
+          }
+        } else if (clean.length >= 4) {
+          // Light fallback for remaining Italian/French content nouns
+          if (lang === 'it' && (clean.endsWith('zione') || clean.endsWith('sione') || clean.endsWith('tà') || clean.endsWith('ezza') || clean.endsWith('anza') || clean.endsWith('enza'))) {
+            pos = 'noun';
+            g = 'f';
+          } else if (lang === 'fr' && (clean.endsWith('tion') || clean.endsWith('sion') || clean.endsWith('té') || clean.endsWith('esse') || clean.endsWith('ance') || clean.endsWith('ence'))) {
+            pos = 'noun';
+            g = 'f';
+          }
+        }
+
+        if ((pos === 'noun' || pos === 'adj') && !n) {
+          n = inferTokenNumber(w, pos, g, lang);
+        }
+
         return {
           w,
-          pos: 'other',
-          g: '',
+          pos,
+          g,
+          n,
           s: idx * 0.35,
           e: (idx + 1) * 0.35,
           gloss: enG ? { tr: enG.tr, def: enG.def } : null,
-          audio_mp3: '',
-          audio_ogg: ''
+          audio_mp3: shared?.audio_mp3 || '',
+          audio_ogg: shared?.audio_ogg || ''
         };
       });
+
+      // Tag German separable verb pairs in Emma's DE text (e.g. ragt ... empor, brechen ... auf, stellen ... ab, gleitet ... vorbei)
+      if (lang === 'de') {
+        const DE_SEP_PAIRS = [
+          { stem: 'ragt', prefix: 'empor', inf: 'empor·ragen', tr: 'towers up / rises', def: 'Stands tall above everything around it.' },
+          { stem: 'brechen', prefix: 'auf', inf: 'auf·brechen', tr: 'set off / depart', def: 'Start a journey or hike.' },
+          { stem: 'stellen', prefix: 'ab', inf: 'ab·stellen', tr: 'put down / set down', def: 'Place backpacks down on the ground.' },
+          { stem: 'gleitet', prefix: 'vorbei', inf: 'vorbei·gleiten', tr: 'glides past', def: 'Moves smoothly past the sea caves.' },
+          { stem: 'streifen', prefix: 'umher', inf: 'umher·streifen', tr: 'roam around', def: 'Wander freely around the park.' },
+          { stem: 'zusieht', prefix: '', inf: 'zu·sehen', tr: 'watches', def: 'Watches happily from nearby.' }
+        ];
+        DE_SEP_PAIRS.forEach((pair, pIdx) => {
+          if (!pair.prefix) return;
+          const sTok = tokens.find(t => t.w.toLowerCase().replace(/[^a-zäöüß]/g, '') === pair.stem);
+          const pTok = tokens.find(t => t.w.toLowerCase().replace(/[^a-zäöüß]/g, '') === pair.prefix);
+          if (sTok && pTok) {
+            const gid = `emma_sep_${pageNum}_${pIdx}`;
+            sTok.pos = 'verb';
+            sTok.sep_group = gid;
+            sTok.sep_role = 'stem';
+            sTok.sep_inf = pair.inf;
+            sTok.sep_pair = `${sTok.w} … ${pTok.w}`;
+            sTok.gloss = { tr: pair.tr, def: pair.def, sep_inf: pair.inf };
+            pTok.pos = 'verb';
+            pTok.sep_group = gid;
+            pTok.sep_role = 'prefix';
+            pTok.sep_inf = pair.inf;
+            pTok.sep_pair = `${sTok.w} … ${pTok.w}`;
+            pTok.gloss = { tr: pair.tr, def: pair.def, sep_inf: pair.inf };
+          }
+        });
+      }
+
       return { text, tokens, audio_mp3: '', audio_ogg: '', is_browser_tts: true };
     }
 
@@ -4183,6 +4439,56 @@
       const mult = KIDS_SPEED_STEPS[kidsSpeedStep]?.mult || 1.0;
       u.rate = Math.max(0.55, Math.min(1.6, (lang === 'fr' ? 0.90 : 0.95) * mult));
       window.speechSynthesis.speak(u);
+    }
+
+    function getKidsParallelRightLang(bookLang) {
+      if (['it', 'fr', 'de'].includes(kidsTranslationLang) && kidsTranslationLang !== bookLang) {
+        return kidsTranslationLang;
+      }
+      return bookLang !== 'it' ? 'it' : 'fr';
+    }
+
+    function toggleKidsParallelMode() {
+      kidsParallelMode = !kidsParallelMode;
+      try { localStorage.setItem('kos_kids_parallel', kidsParallelMode ? '1' : '0'); } catch (_) {}
+      syncStateToUrl();
+      renderActiveBook();
+    }
+
+    function getPuffinProfileDefaults() {
+      const u = window.PuffinLogin && typeof window.PuffinLogin.getCurrentUser === 'function'
+        ? window.PuffinLogin.getCurrentUser()
+        : null;
+      if (!u) return null;
+      const uid = String(u.id || u.username || u.name || '').toLowerCase();
+      if (uid.includes('seb')) {
+        return { name: u.name || 'Seby', mode: 'seby', trLang: 'it' };
+      }
+      if (uid.includes('ale')) {
+        return { name: u.name || 'Ale', mode: 'ale', trLang: 'it' };
+      }
+      if (uid.includes('ricc') || uid.includes('pap') || uid.includes('pallad')) {
+        return { name: u.name || 'Riccardo', mode: 'emma', trLang: 'it' };
+      }
+      if (uid.includes('kate') || uid.includes('mamm')) {
+        return { name: u.name || 'Kate', mode: 'emma', trLang: 'en' };
+      }
+      return { name: u.name || u.id || 'Ospite', mode: null, trLang: null };
+    }
+
+    function applyPuffinUserDefaults(force = false) {
+      const prof = getPuffinProfileDefaults();
+      if (!prof) return;
+      const urlParams = new URLSearchParams(window.location.search);
+      if (prof.mode && (force || !urlParams.has('mode'))) {
+        if (kidsBookMode || force) {
+          kidsBookMode = prof.mode;
+        }
+      }
+      if (prof.trLang && (force || !localStorage.getItem('kos_kids_tr_lang'))) {
+        kidsTranslationLang = prof.trLang;
+        try { localStorage.setItem('kos_kids_tr_lang', kidsTranslationLang); } catch (_) {}
+      }
     }
 
     function setKidsTranslationLang(trLang) {
@@ -4303,6 +4609,11 @@
       } else {
         url.searchParams.delete('mode');
       }
+      if (kidsParallelMode) {
+        url.searchParams.set('parallel', '1');
+      } else {
+        url.searchParams.delete('parallel');
+      }
       if (activeTab !== 'indice' && activeTab !== 'netflix' && curPageIdx > 0) {
         url.searchParams.set('page', String(curPageIdx + 1));
       } else {
@@ -4349,6 +4660,11 @@
       } else {
         kidsBookMode = null;
       }
+
+      if (urlParams.has('parallel')) {
+        kidsParallelMode = urlParams.get('parallel') === '1';
+      }
+      applyPuffinUserDefaults(false);
 
       const kidParam = urlParams.get('kid') || saved.kid || 'all';
       if (['all', 'alessandro', 'sebastian'].includes(kidParam)) {
@@ -5053,7 +5369,11 @@
       const hasCurrentKb = Boolean(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab]);
       const defaultKbSlug = Object.keys(window.KIDS_BOOKS_CATALOG || {})[0] || 'storia-sardegna-cala-gonone-arbatax-famiglia';
       const targetSlug = hasCurrentKb ? activeTab : defaultKbSlug;
-      const mode = (activeKidFilter === 'alessandro') ? 'ale' : (kidsBookMode || 'seby');
+      const puffinProf = getPuffinProfileDefaults();
+      const mode = puffinProf?.mode || ((activeKidFilter === 'alessandro') ? 'ale' : (kidsBookMode || 'seby'));
+      if (puffinProf?.trLang && !localStorage.getItem('kos_kids_tr_lang')) {
+        kidsTranslationLang = puffinProf.trLang;
+      }
       launchKidsBook(targetSlug, mode);
     }
 
@@ -5785,6 +6105,9 @@
       renderActiveBook();
     }
 
+    const KIDS_SPEAKER_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
+    const KIDS_PAUSE_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`;
+
     function renderKidsLaunchBar(story) {
       const bar = document.getElementById('kidsReadingLaunchBar');
       const floatBar = document.getElementById('kidsNotebookFloatingBar');
@@ -5808,46 +6131,61 @@
           const isFr = (lang === 'fr');
           const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
           const rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, (kb.pages?.length || 1) - 1));
-          const leftIdx = rawIdx - (rawIdx % 2);
-          const rightIdx = Math.min(leftIdx + 1, (kb.pages?.length || 1) - 1);
+          const leftIdx = kidsParallelMode ? rawIdx : (rawIdx - (rawIdx % 2));
+          const rightIdx = kidsParallelMode ? rawIdx : Math.min(leftIdx + 1, (kb.pages?.length || 1) - 1);
           const leftPage = kb.pages?.[leftIdx];
           const rightPage = kb.pages?.[rightIdx];
+          const leftLang = lang;
+          const rightLang = kidsParallelMode ? getKidsParallelRightLang(lang) : lang;
 
-          const buildPageMagicGroupHtml = (pObj, pIdx) => {
+          const buildPageMagicGroupHtml = (pObj, pIdx, includeQuiz = false, overrideLang = null) => {
             if (!pObj) return '';
+            const effLang = ['it', 'fr', 'de'].includes(overrideLang || lang) ? (overrideLang || lang) : 'it';
             const lvlData = (levelKey === 'emma')
-              ? (pObj.levels?.emma?.[lang] || buildEmmaLevelData(pObj.page, lang))
-              : (pObj.levels?.[levelKey]?.[lang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {});
+              ? (pObj.levels?.emma?.[effLang] || buildEmmaLevelData(pObj.page, effLang))
+              : (pObj.levels?.[levelKey]?.[effLang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {});
             const qs = pObj.questions?.[lang] || pObj.questions?.it || [];
             const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pObj.page, qs);
             const isPlayingThisPage = (activeKidsPlayingPage === pObj.page && !document.getElementById('kidsStaticAudio')?.paused);
-            const listenLbl = isPlayingThisPage ? '⏸️' : '🔊';
-            const listenTitle = isDe
-              ? `Seite ${pObj.page} vorlesen / Pause (Leertaste)`
-              : (isFr ? `Écouter / Pause page ${pObj.page} (Espace)` : `Ascolta / Pausa Pagina ${pObj.page} (Barra Spazio)`);
+            const listenLbl = isPlayingThisPage ? KIDS_PAUSE_SVG : KIDS_SPEAKER_SVG;
+            const langTag = effLang.toUpperCase();
+            const listenTitle = effLang === 'de'
+              ? `Seite ${pObj.page} (${langTag}) vorlesen / Pause`
+              : (effLang === 'fr' ? `Écouter / Pause page ${pObj.page} (${langTag})` : `Ascolta / Pausa Pagina ${pObj.page} (${langTag})`);
             const quizLbl = `❓ ⭐${prog.correct}/${prog.total}`;
             const listenAction = lvlData.audio_mp3
               ? `playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page})`
-              : `speakKidsTextFallback(KIDS_EMMA_TEXTS_V2[${pObj.page}]?.['${lang}'] || '', '${lang}')`;
+              : `speakKidsTextFallback(KIDS_EMMA_TEXTS_V2[${pObj.page}]?.['${effLang}'] || '', '${effLang}')`;
+            const quizHtml = includeQuiz ? `
+                <button type="button" class="kids-pill-control quiz-pill"
+                  onclick="openKidsPageQuizModal(${pIdx})"
+                  title="Quiz Antolin (Pagine ${Math.max(1, pObj.page - 1)}–${pObj.page})">
+                  ${quizLbl}
+                </button>` : '';
             return `
               <div class="kids-mini-footer-group">
-                <button type="button" class="kids-pill-control listen-pill ${isPlayingThisPage ? 'active' : ''}"
+                <button type="button" class="kids-min-icon-btn listen-pill ${isPlayingThisPage ? 'active' : ''}"
                   data-listen-page="${pObj.page}"
                   onclick="${listenAction}"
+                  aria-label="${listenTitle}"
                   title="${listenTitle}">
                   ${listenLbl}
                 </button>
-                <button type="button" class="kids-pill-control quiz-pill"
-                  onclick="openKidsPageQuizModal(${pIdx})"
-                  title="Quiz Antolin Pagina ${pObj.page}">
-                  ${quizLbl}
-                </button>
+                ${quizHtml}
               </div>
             `;
           };
 
           const bookLangBadge = lang === 'de' ? 'DE' : (lang === 'fr' ? 'FR' : 'IT');
           const trLangBadge = kidsTranslationLang.toUpperCase();
+          const parallelRightBadge = getKidsParallelRightLang(lang).toUpperCase();
+          const puffinProf = getPuffinProfileDefaults();
+          const puffinBadgeHtml = puffinProf
+            ? `<div style="font-size:0.74rem;color:#78350f;background:#fef3c7;border:1px solid rgba(217,119,6,0.35);border-radius:10px;padding:5px 9px;display:flex;align-items:center;justify-content:space-between;gap:6px;">
+                 <span>🐧 <strong>${escapeHtml(puffinProf.name)}</strong>${puffinProf.mode ? ` → ${puffinProf.mode.toUpperCase()}` : ''}</span>
+                 <span style="opacity:0.8;">Base: ${trLangBadge}</span>
+               </div>`
+            : '';
           const hasEmmaLevel = true;
 
           const gearSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
@@ -5868,8 +6206,8 @@
           }).join('');
 
           floatBar.innerHTML = `
-            ${buildPageMagicGroupHtml(leftPage, leftIdx)}
-            <div class="kids-mini-footer-group">
+            ${buildPageMagicGroupHtml(leftPage, leftIdx, false, leftLang)}
+            <div class="kids-mini-footer-group kids-mini-footer-center">
               <div class="kids-avatar-tier-group" role="radiogroup" aria-label="Livello di lettura">
                 <button type="button" class="kids-avatar-tier-btn tier-easy ${kidsBookMode === 'seby' ? 'active' : ''}"
                   onclick="launchKidsBook('${story.slug}', 'seby')" aria-label="Seby — 6 anni — Facile (A2)">
@@ -5891,62 +6229,73 @@
                   <span class="kids-avatar-hover-tip">Emma · 11a · Esperto (B2/C1)</span>
                 </button>
               </div>
-              <span style="opacity:0.28;color:#fef3c7;">|</span>
-              <div class="kids-settings-wrap">
-                <button type="button" class="kids-min-icon-btn ${kidsSettingsOpen ? 'active' : ''}"
-                  onclick="toggleKidsSettingsPopover(event)"
-                  title="Opzioni (${bookLangBadge} → ${trLangBadge} · ${KIDS_SPEED_STEPS[kidsSpeedStep]?.short || '1.0×'})">
-                  ${gearSvg}
-                </button>
-                <div id="kidsSettingsPopover" class="kids-settings-popover" ${kidsSettingsOpen ? '' : 'hidden'} onclick="event.stopPropagation()">
-                  <div>
-                    <div class="kids-settings-section-title">📖 Lingua del Libro</div>
-                    <div class="kids-settings-lang-big-grid">
-                      <button type="button" class="kids-settings-lang-big-btn ${lang === 'it' ? 'active' : ''}" onclick="setLanguage('it')">🇮🇹 Italiano</button>
-                      <button type="button" class="kids-settings-lang-big-btn ${lang === 'fr' ? 'active' : ''}" onclick="setLanguage('fr')">🇫🇷 Français</button>
-                      <button type="button" class="kids-settings-lang-big-btn ${lang === 'de' ? 'active' : ''}" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+              <div class="kids-mini-footer-tools">
+                <div class="kids-settings-wrap">
+                  <button type="button" class="kids-min-icon-btn ${kidsSettingsOpen || kidsParallelMode ? 'active' : ''}"
+                    onclick="toggleKidsSettingsPopover(event)"
+                    title="Opzioni (${bookLangBadge} → ${trLangBadge}${kidsParallelMode ? ' · Pari Pari ON' : ''} · ${KIDS_SPEED_STEPS[kidsSpeedStep]?.short || '1.0×'})">
+                    ${gearSvg}
+                  </button>
+                  <div id="kidsSettingsPopover" class="kids-settings-popover" translate="no" ${kidsSettingsOpen ? '' : 'hidden'} onclick="event.stopPropagation()">
+                    ${puffinBadgeHtml}
+                    <div>
+                      <div class="kids-settings-section-title">📖 Lingua del Libro</div>
+                      <div class="kids-settings-lang-big-grid">
+                        <button type="button" class="kids-settings-lang-big-btn ${lang === 'it' ? 'active' : ''}" onclick="setLanguage('it')">🇮🇹 Italiano</button>
+                        <button type="button" class="kids-settings-lang-big-btn ${lang === 'fr' ? 'active' : ''}" onclick="setLanguage('fr')">🇫🇷 Français</button>
+                        <button type="button" class="kids-settings-lang-big-btn ${lang === 'de' ? 'active' : ''}" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="kids-settings-section-title">🌍 Lingua di Traduzione / Spiegazioni</div>
-                    <div class="kids-settings-row-small">
-                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'en' ? 'active' : ''}" onclick="setKidsTranslationLang('en')">🇬🇧 English</button>
-                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'it' ? 'active' : ''}" onclick="setKidsTranslationLang('it')">🇮🇹 Italiano</button>
-                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'fr' ? 'active' : ''}" onclick="setKidsTranslationLang('fr')">🇫🇷 Français</button>
-                      <button type="button" class="kids-pill-control ${kidsTranslationLang === 'de' ? 'active' : ''}" onclick="setKidsTranslationLang('de')">🇩🇪 Deutsch</button>
+                    <div>
+                      <div class="kids-settings-section-title">🌍 Lingua di Traduzione / Spiegazioni</div>
+                      <div class="kids-settings-row-small">
+                        <button type="button" class="kids-pill-control ${kidsTranslationLang === 'en' ? 'active' : ''}" onclick="setKidsTranslationLang('en')">🇬🇧 English</button>
+                        <button type="button" class="kids-pill-control ${kidsTranslationLang === 'it' ? 'active' : ''}" onclick="setKidsTranslationLang('it')">🇮🇹 Italiano</button>
+                        <button type="button" class="kids-pill-control ${kidsTranslationLang === 'fr' ? 'active' : ''}" onclick="setKidsTranslationLang('fr')">🇫🇷 Français</button>
+                        <button type="button" class="kids-pill-control ${kidsTranslationLang === 'de' ? 'active' : ''}" onclick="setKidsTranslationLang('de')">🇩🇪 Deutsch</button>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="kids-settings-section-title">🎚️ Velocità di Lettura (${KIDS_SPEED_STEPS[kidsSpeedStep]?.label || 'Normale'})</div>
-                    <div style="display:flex;gap:5px;align-items:flex-end;">
-                      ${speedBarsHtml}
+                    <div>
+                      <div class="kids-settings-section-title">📖↔️📖 Traduzione Pari Pari (Cheating Mode)</div>
+                      <button type="button" class="kids-settings-lang-big-btn ${kidsParallelMode ? 'active' : ''}"
+                        style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:0.84rem;"
+                        onclick="toggleKidsParallelMode()">
+                        <span>${kidsParallelMode ? '✅ ATTIVA' : '⚪ SPENTA'} · SX ${bookLangBadge} ↔ DX ${parallelRightBadge}</span>
+                        <span style="font-size:0.74rem;opacity:0.85;">${kidsParallelMode ? 'ON' : 'OFF'}</span>
+                      </button>
+                    </div>
+                    <div>
+                      <div class="kids-settings-section-title">🎚️ Velocità di Lettura (${KIDS_SPEED_STEPS[kidsSpeedStep]?.label || 'Normale'})</div>
+                      <div style="display:flex;gap:5px;align-items:flex-end;">
+                        ${speedBarsHtml}
+                      </div>
                     </div>
                   </div>
                 </div>
+                <button type="button" class="kids-min-icon-btn ${kidsGrammarEnabled ? 'active' : ''}"
+                  onclick="toggleKidsGrammar()"
+                  title="${grammarLabel} (Nomi, Aggettivi, Verbi & Verbi Separabili)">
+                  ${grammarSvg}
+                </button>
+                <button type="button" class="kids-min-icon-btn ${kidsUppercaseEnabled ? 'active' : ''}"
+                  style="width:auto;padding:0 9px;font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.01em;"
+                  onclick="toggleKidsUppercase()"
+                  title="Maiuscolo / Minuscolo (a/A)">
+                  a/A
+                </button>
+                <button type="button" class="kids-min-icon-btn ${kidsFullscreenEnabled ? 'active' : ''}"
+                  onclick="toggleKidsFullscreen()"
+                  title="Tutta Pagina">
+                  ${fullSvg}
+                </button>
+                <button type="button" class="kids-min-icon-btn exit-btn"
+                  onclick="exitKidsBookToAdult()"
+                  title="Esci dal quaderno">
+                  ${closeSvg}
+                </button>
               </div>
-              <button type="button" class="kids-min-icon-btn ${kidsGrammarEnabled ? 'active' : ''}"
-                onclick="toggleKidsGrammar()"
-                title="${grammarLabel} (Nomi, Aggettivi, Verbi & Verbi Separabili)">
-                ${grammarSvg}
-              </button>
-              <button type="button" class="kids-min-icon-btn ${kidsUppercaseEnabled ? 'active' : ''}"
-                style="width:auto;padding:0 9px;font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.01em;"
-                onclick="toggleKidsUppercase()"
-                title="Maiuscolo / Minuscolo (a/A)">
-                a/A
-              </button>
-              <button type="button" class="kids-min-icon-btn ${kidsFullscreenEnabled ? 'active' : ''}"
-                onclick="toggleKidsFullscreen()"
-                title="Tutta Pagina">
-                ${fullSvg}
-              </button>
-              <button type="button" class="kids-min-icon-btn exit-btn"
-                onclick="exitKidsBookToAdult()"
-                title="Esci dal quaderno">
-                ${closeSvg}
-              </button>
             </div>
-            ${buildPageMagicGroupHtml(rightPage, rightIdx)}
+            ${buildPageMagicGroupHtml(rightPage, rightIdx, true, rightLang)}
           `;
         }
       } else {
@@ -6129,7 +6478,7 @@
         const pNum = parseInt(btn.getAttribute('data-listen-page'), 10);
         const activeHere = isPlaying && pNum === activeKidsPlayingPage;
         btn.classList.toggle('active', activeHere);
-        btn.textContent = activeHere ? '⏸️' : '🔊';
+        btn.innerHTML = activeHere ? KIDS_PAUSE_SVG : KIDS_SPEAKER_SVG;
       });
     }
 
@@ -6624,8 +6973,8 @@
       `;
     }
 
-    function buildKidsWatercolorLeafHtml(kb, pageObj, pageIdx, side = 'left') {
-      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+    function buildKidsWatercolorLeafHtml(kb, pageObj, pageIdx, side = 'left', overrideLang = null) {
+      const lang = ['it', 'fr', 'de'].includes(overrideLang || currentLang) ? (overrideLang || currentLang) : 'it';
       const isFr = (lang === 'fr');
       const isDe = (lang === 'de');
       const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
@@ -6640,9 +6989,7 @@
         const posMeta = getPosMeta(tok.pos, lang);
         const isSepVerb = Boolean(tok.sep_group);
         const hasGloss = Boolean(tok.gloss && !isSepVerb);
-        const genderLabel = (!isDe && tok.g === 'm')
-          ? (isFr ? ' • masc.' : ' • masch. 🔵')
-          : ((!isDe && tok.g === 'f') ? (isFr ? ' • fém.' : ' • femm. 🌸') : '');
+        const genderLabel = formatGenderNumberBadge(tok.w, tok.pos, tok.g, tok.n, lang);
 
         const cleanWordKey = String(tok.w || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
         const enFallback = (kidsTranslationLang === 'en') ? KIDS_EN_GLOSS[cleanWordKey] : null;
@@ -6709,7 +7056,8 @@
              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
            </button>`;
 
-      const cornerPageNumHtml = `<span class="kids-book-page-num ${side === 'left' ? 'is-left-num' : 'is-right-num'}">${pageObj.page}</span>`;
+      const cornerPageNumText = kidsParallelMode ? `${pageObj.page} · ${lang.toUpperCase()}` : `${pageObj.page}`;
+      const cornerPageNumHtml = `<span class="kids-book-page-num ${side === 'left' ? 'is-left-num' : 'is-right-num'}">${cornerPageNumText}</span>`;
 
       // Per-page speech bubble mouth-anchor coordinates (closer to each speaker's mouth!)
       const BUBBLE_ANCHORS = {
@@ -6779,8 +7127,11 @@
       zones.forEach((zone) => {
         const box = zone.querySelector('.kids-sentence-box');
         if (!box) return;
-        const maxH = zone.clientHeight - 4;
-        const maxW = zone.clientWidth - 2;
+        const zcs = getComputedStyle(zone);
+        const padV = (parseFloat(zcs.paddingTop) || 0) + (parseFloat(zcs.paddingBottom) || 0);
+        const padH = (parseFloat(zcs.paddingLeft) || 0) + (parseFloat(zcs.paddingRight) || 0);
+        const maxH = zone.clientHeight - padV - 4;
+        const maxW = zone.clientWidth - padH - 2;
         if (maxH < 24 || maxW < 80) return;
 
         const isSeby = box.classList.contains('level-seby');
@@ -6817,9 +7168,12 @@
         const box = leaf.querySelector('.kids-sentence-box');
         if (!zone || !box) return;
         const fontSizePx = parseFloat(getComputedStyle(box).fontSize) || 0;
-        const clientH = zone.clientHeight;
+        const zcs = getComputedStyle(zone);
+        const padV = (parseFloat(zcs.paddingTop) || 0) + (parseFloat(zcs.paddingBottom) || 0);
+        const padH = (parseFloat(zcs.paddingLeft) || 0) + (parseFloat(zcs.paddingRight) || 0);
+        const clientH = Math.max(1, Math.round(zone.clientHeight - padV));
         const scrollH = box.scrollHeight;
-        const clientW = zone.clientWidth;
+        const clientW = Math.max(1, Math.round(zone.clientWidth - padH));
         const scrollW = box.scrollWidth;
         const level = box.classList.contains('level-emma')
           ? 'emma'
@@ -6876,10 +7230,14 @@
         if (narratorBar) narratorBar.hidden = true;
         if (viewportEl) viewportEl.classList.add('kids-has-bg');
 
-        // Snap to even index (0, 2, 4, ..., 14) so Left Page = odd page (1,3,5...) and Right Page = even page (2,4,6...) like a real open notebook!
+        // In Parallel Mode ("Traduzione Pari Pari"), show the EXACT same page on Left (Book Lang) and Right (Base/Translation Lang)!
+        // In Classic Spread Mode, snap to even index (0, 2, 4, ..., 14) so Left = odd (1,3,5...) and Right = even (2,4,6...).
         let rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, kb.pages.length - 1));
-        const leftIdx = rawIdx - (rawIdx % 2);
-        const rightIdx = Math.min(leftIdx + 1, kb.pages.length - 1);
+        const bookLang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+        const leftIdx = kidsParallelMode ? rawIdx : (rawIdx - (rawIdx % 2));
+        const rightIdx = kidsParallelMode ? rawIdx : Math.min(leftIdx + 1, kb.pages.length - 1);
+        const leftLang = bookLang;
+        const rightLang = kidsParallelMode ? getKidsParallelRightLang(bookLang) : bookLang;
         kidsPageIndexBySlug[story.slug] = leftIdx;
         renderKidsLaunchBar(story);
 
@@ -6906,11 +7264,11 @@
 
         leftEl.className = 'book-page book-page-left is-primary-page';
         leftEl.onclick = null;
-        leftEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[leftIdx], leftIdx, 'left');
+        leftEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[leftIdx], leftIdx, 'left', leftLang);
 
         rightEl.className = 'book-page book-page-right is-primary-page';
         rightEl.onclick = null;
-        rightEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[rightIdx], rightIdx, 'right');
+        rightEl.innerHTML = buildKidsWatercolorLeafHtml(kb, kb.pages[rightIdx], rightIdx, 'right', rightLang);
 
         requestAnimationFrame(() => {
           fitKidsTextToPatch();
@@ -7422,7 +7780,7 @@
       const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
       if (kidsBookMode && kb && Array.isArray(kb.pages)) {
         const cur = kidsPageIndexBySlug[story.slug] || 0;
-        const step = delta > 0 ? 2 : -2;
+        const step = kidsParallelMode ? (delta > 0 ? 1 : -1) : (delta > 0 ? 2 : -2);
         const next = cur + step;
         if (next >= 0 && next < kb.pages.length) {
           const dir = delta > 0 ? 'next' : 'prev';
@@ -7477,8 +7835,10 @@
       renderActiveBook(dir);
     }
 
-    // Re-render role-aware buttons whenever PuffinLogin user changes
+    // Re-render role-aware buttons and apply PuffinLogin profile defaults (Ale -> ale, Seby -> seby, Riccardo -> emma + IT)
     window.addEventListener('puffin-auth-change', () => {
+      applyPuffinUserDefaults(true);
+      syncStateToUrl();
       renderAll();
     });
 
