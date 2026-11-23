@@ -177,11 +177,12 @@ def main() -> int:
                             f"scrollH={m['scrollHeight']} > clientH={m['clientHeight']}"
                         )
 
-            # Mobile Portrait (390×844) Single-Page Mode unit tests (GitHub Issue #8):
+            # Mobile Portrait (390×844) Single-Page Mode & Face Keep-Out Island unit tests (GitHub Issue #8):
             mobile_ctx = browser.new_context(viewport={"width": 390, "height": 844})
             mpage = mobile_ctx.new_page()
             for level in LEVELS:
-                url = f"{base_url}?story=sardegna&mode={level}&lang=it"
+                test_lang = "de" if level == "ale" else ("fr" if level == "emma" else "it")
+                url = f"{base_url}?story=sardegna&mode={level}&lang={test_lang}"
                 mpage.goto(url, wait_until="networkidle")
                 mpage.wait_for_selector(".kids-sentence-box", timeout=10000)
                 mpage.evaluate("() => document.fonts ? document.fonts.ready : Promise.resolve()")
@@ -198,6 +199,7 @@ def main() -> int:
                     mpage.wait_for_timeout(60)
                     mpage.evaluate("() => { if (typeof fitKidsTextToPatch === 'function') fitKidsTextToPatch(); }")
                     m_metrics = mpage.evaluate("() => window.__kidsTextFitMetrics ? window.__kidsTextFitMetrics() : []")
+                    b_metrics = mpage.evaluate("() => window.__kidsBubbleOverlapMetrics ? window.__kidsBubbleOverlapMetrics() : []")
                     mobile_pages_checked += 1
                     if len(m_metrics) != 1:
                         failures.append(f"MOBILE [{level}] P{page_idx + 1:02d}: expected 1 single page leaf, got {len(m_metrics)}")
@@ -209,6 +211,12 @@ def main() -> int:
                         failures.append(
                             f"MOBILE HORIZONTAL OVERFLOW [{level}] P{mm['page']:02d}: overflowX={mm['overflowX']}px"
                         )
+                    for bm in b_metrics:
+                        if bm.get("overlapsFace"):
+                            failures.append(
+                                f"MOBILE FACE OVERLAP [{level}/{test_lang}] P{bm['page']:02d}: "
+                                f"bubble rect={bm['rect']} overlaps face keep-out island (area={bm['overlapArea']})"
+                            )
             mobile_ctx.close()
 
             browser.close()

@@ -2,6 +2,14 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.13.14] - 2026-11-23
+
+### Added & Fixed
+- 🛡️💬 **Isole Anti-Collisione Facce (`KIDS_FACE_KEEP_OUT_ZONES` + `fitKidsComicBubbles()`) ([`index.html`](index.html), [`bin/test_kids_text_fit.py`](bin/test_kids_text_fit.py))**:
+  - Definite per ciascuna delle 16 tavole acquarellate le **"isole delle facce"** (`[x1, y1, x2, y2]` in coordinate percentuali della pagina, es. pagina 16 `[32, 43, 66, 66]`, pagina 15 `[31, 29, 72, 52]` + `[38, 5.5, 89, 28.5]`, ecc.) dove i fumetti **non devono mai sovrapporsi** su nessun viewport.
+  - Aggiunto il motore dinamico `fitKidsComicBubbles()` (invocato automaticamente ad ogni cambio pagina/lingua/livello e `resize`) che verifica l'intersezione 2D tra il bounding-box reale del fumetto e le isole delle facce: se rileva contatto (es. testo tedesco lungo su mobile/finestra stretta in pagina 16), espande la larghezza orizzontale utile, riduce progressivamente `font-size`/`padding` e sposta verticalmente il fumetto nella fascia di cielo libero finché la sovrapposizione con i volti è **zero**.
+  - Aggiunta la verifica automatica `__kidsBubbleOverlapMetrics()` in `just test-fit`.
+
 ## [0.13.13] - 2026-11-23
 
 ### Added & Fixed

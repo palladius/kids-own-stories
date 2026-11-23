@@ -3427,9 +3427,9 @@
       }
 
       .open-book.kids-notebook-spread.kids-single-page-mode .kids-comic-bubble {
-        font-size: clamp(0.74rem, 3.2vw, 0.94rem);
-        padding: 6px 11px;
-        line-height: 1.24;
+        font-size: clamp(0.68rem, 2.7vw, 0.88rem);
+        padding: 5px 10px;
+        line-height: 1.22;
       }
 
       .open-book.kids-notebook-spread.kids-single-page-mode .kids-figure-caption {
@@ -4063,7 +4063,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.13';
+    const APP_VERSION = '0.13.14';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
@@ -7381,26 +7381,26 @@
 
       // Per-page speech bubble mouth-anchor coordinates (closer to each speaker's mouth!)
       const BUBBLE_ANCHORS = {
-        1:  { top: '12.5%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '42%' },
-        2:  { top: '33.8%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '49%' },
-        3:  { top: '5.5%',  left: '32%',  maxW: '61%', tail: 'bottom', tailLeft: '20%' },
-        4:  { top: '34.5%', left: '30%',  maxW: '63%', tail: 'bottom', tailLeft: '30%' },
-        5:  { top: '11.5%', left: '5%',   maxW: '52%', tail: 'bottom', tailLeft: '54%' },
-        6:  { top: '38.5%', left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '54%' },
-        7:  { top: '10.5%', left: '6%',   maxW: '56%', tail: 'bottom', tailLeft: '72%' },
-        8:  { top: '42.0%', left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '52%' },
-        9:  { top: '14.5%', left: '8%',   maxW: '58%', tail: 'bottom', tailLeft: '54%' },
-        10: { top: '41.0%', left: '8%',   maxW: '60%', tail: 'bottom', tailLeft: '48%' },
-        11: { top: '5.0%',  left: '34%',  maxW: '60%', tail: 'bottom', tailLeft: '18%' },
-        12: { top: '35.5%', left: '28%',  maxW: '64%', tail: 'bottom', tailLeft: '28%' },
-        13: { top: '10.0%', left: '16%',  maxW: '60%', tail: 'bottom', tailLeft: '66%' },
-        14: { top: '42.5%', left: '6%',   maxW: '58%', tail: 'bottom', tailLeft: '64%' },
-        15: { top: '48.5%', left: '8.2%', maxW: '55%', tail: 'top',    tailLeft: '68%' },
-        16: { top: '36.5%', left: '6%',   maxW: '60%', tail: 'bottom', tailLeft: '58%' }
+        1:  { top: '10.5%', left: '5%',   maxW: '58%', tail: 'bottom', tailLeft: '42%' },
+        2:  { top: '31.5%', left: '5%',   maxW: '62%', tail: 'bottom', tailLeft: '46%' },
+        3:  { top: '4.5%',  left: '34%',  maxW: '61%', tail: 'bottom', tailLeft: '20%' },
+        4:  { top: '33.0%', left: '28%',  maxW: '66%', tail: 'bottom', tailLeft: '30%' },
+        5:  { top: '9.5%',  left: '5%',   maxW: '56%', tail: 'bottom', tailLeft: '54%' },
+        6:  { top: '34.5%', left: '5%',   maxW: '62%', tail: 'bottom', tailLeft: '50%' },
+        7:  { top: '8.5%',  left: '6%',   maxW: '60%', tail: 'bottom', tailLeft: '72%' },
+        8:  { top: '38.0%', left: '5%',   maxW: '58%', tail: 'bottom', tailLeft: '52%' },
+        9:  { top: '7.5%',  left: '6%',   maxW: '64%', tail: 'bottom', tailLeft: '52%' },
+        10: { top: '35.0%', left: '8%',   maxW: '66%', tail: 'bottom', tailLeft: '44%' },
+        11: { top: '4.5%',  left: '34%',  maxW: '60%', tail: 'bottom', tailLeft: '18%' },
+        12: { top: '32.5%', left: '24%',  maxW: '68%', tail: 'bottom', tailLeft: '28%' },
+        13: { top: '8.0%',  left: '12%',  maxW: '68%', tail: 'bottom', tailLeft: '64%' },
+        14: { top: '35.0%', left: '6%',   maxW: '64%', tail: 'bottom', tailLeft: '58%' },
+        15: { top: '48.5%', left: '5.5%', maxW: '56%', tail: 'top',    tailLeft: '68%' },
+        16: { top: '31.5%', left: '5%',   maxW: '68%', tail: 'bottom', tailLeft: '52%' }
       };
       const bAnchor = BUBBLE_ANCHORS[pageObj.page] || (patchPos === 'top'
-        ? { top: '35%', left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' }
-        : { top: '10%', left: '6%', maxW: '58%', tail: 'bottom', tailLeft: '48%' });
+        ? { top: '33%', left: '6%', maxW: '62%', tail: 'bottom', tailLeft: '48%' }
+        : { top: '9%',  left: '6%', maxW: '60%', tail: 'bottom', tailLeft: '48%' });
 
       const textZoneHtml = `
         <div class="kids-white-patch-text-zone">
@@ -7414,6 +7414,10 @@
       const comicBubbleHtml = bubbleData?.text ? `
         <div class="kids-comic-bubble notranslate ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}"
           lang="${lang}" translate="no"
+          data-anchor-top="${bAnchor.top}"
+          data-anchor-left="${bAnchor.left}"
+          data-anchor-maxw="${bAnchor.maxW}"
+          data-tail-dir="${bAnchor.tail}"
           style="top:${bAnchor.top};left:${bAnchor.left};max-width:${bAnchor.maxW};"
           onclick="event.stopPropagation(); playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')"
           title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
@@ -7442,6 +7446,107 @@
           ${cornerPageNumHtml}
         </div>
       `;
+    }
+
+    // Per-page face keep-out islands in percentage of page leaf [x1, y1, x2, y2]
+    // Speech bubbles must NEVER overlap these face rectangles on any viewport!
+    const KIDS_FACE_KEEP_OUT_ZONES = {
+      1:  [[22, 28, 79, 54]],
+      2:  [[24, 46, 92, 66]],
+      3:  [[30, 19, 71, 46]],
+      4:  [[38, 51, 74, 72]],
+      5:  [[30, 29, 80, 56]],
+      6:  [[18, 53, 76, 72]],
+      7:  [[30, 36, 86, 56]],
+      8:  [[19, 64, 53, 82]],
+      9:  [[36, 25, 66, 46]],
+      10: [[26, 49, 52, 68]],
+      11: [[15, 14, 30, 26], [54, 38, 69, 50]],
+      12: [[36, 47, 84, 73]],
+      13: [[41, 29, 77, 50]],
+      14: [[36, 49, 67, 65]],
+      15: [[31, 29, 72, 52], [38, 5.5, 89, 28.5]],
+      16: [[32, 43, 66, 66]]
+    };
+    window.KIDS_FACE_KEEP_OUT_ZONES = KIDS_FACE_KEEP_OUT_ZONES;
+
+    function fitKidsComicBubbles() {
+      const leaves = document.querySelectorAll('#openBookSpread .kids-watercolor-leaf');
+      leaves.forEach((leaf) => {
+        const bubble = leaf.querySelector('.kids-comic-bubble');
+        if (!bubble) return;
+        const pageNum = Number(leaf.dataset.page || 0);
+        const zones = KIDS_FACE_KEEP_OUT_ZONES[pageNum] || [];
+
+        // Reset to anchor defaults before measuring
+        bubble.style.fontSize = '';
+        bubble.style.padding = '';
+        bubble.style.top = bubble.dataset.anchorTop || bubble.style.top;
+        bubble.style.left = bubble.dataset.anchorLeft || bubble.style.left;
+        bubble.style.maxWidth = bubble.dataset.anchorMaxw || bubble.style.maxWidth;
+
+        const lr = leaf.getBoundingClientRect();
+        if (lr.width < 40 || lr.height < 60) return;
+
+        const getBubblePctRect = () => {
+          const br = bubble.getBoundingClientRect();
+          return {
+            x1: ((br.left - lr.left) / lr.width) * 100,
+            y1: ((br.top - lr.top) / lr.height) * 100,
+            x2: ((br.right - lr.left) / lr.width) * 100,
+            y2: ((br.bottom - lr.top) / lr.height) * 100
+          };
+        };
+
+        const overlapsAnyZone = () => {
+          const r = getBubblePctRect();
+          for (const [zx1, zy1, zx2, zy2] of zones) {
+            const ox = Math.max(0, Math.min(r.x2, zx2) - Math.max(r.x1, zx1));
+            const oy = Math.max(0, Math.min(r.y2, zy2) - Math.max(r.y1, zy1));
+            if (ox > 0.4 && oy > 0.4) return true;
+          }
+          return false;
+        };
+
+        if (!overlapsAnyZone()) return;
+
+        // Step 1: widen horizontal max-width slightly if safe (except page 15 where faces are to the right)
+        const origMaxW = parseFloat(bubble.dataset.anchorMaxw) || 60;
+        if (pageNum !== 15 && origMaxW < 76) {
+          const origLeft = parseFloat(bubble.dataset.anchorLeft) || 6;
+          const safeMaxW = Math.min(78, 94 - origLeft);
+          bubble.style.maxWidth = `${safeMaxW}%`;
+        }
+
+        // Step 2: shrink font-size and padding progressively until it clears the face island
+        const computedFs = parseFloat(getComputedStyle(bubble).fontSize) || 13.5;
+        for (let fs = computedFs; fs >= 9.0; fs -= 0.5) {
+          bubble.style.fontSize = `${fs.toFixed(1)}px`;
+          bubble.style.padding = fs < 11.5 ? '4px 8px' : '5px 10px';
+          if (!overlapsAnyZone()) return;
+        }
+
+        // Step 3: nudge vertical position away from the face island (respecting patch boundaries)
+        const isPatchTop = leaf.classList.contains('patch-top');
+        const minTopPct = isPatchTop ? 27.5 : 3.0;
+        const maxBottomPct = isPatchTop ? 94.0 : 71.0;
+        const origTop = parseFloat(bubble.dataset.anchorTop) || 10;
+        const tailDir = bubble.dataset.tailDir || 'bottom';
+
+        if (tailDir === 'top') {
+          // Bubble is below the mouth (e.g. page 15): try nudging down or slightly left
+          for (let t = origTop; t <= maxBottomPct - 14; t += 1.0) {
+            bubble.style.top = `${t.toFixed(1)}%`;
+            if (!overlapsAnyZone()) return;
+          }
+        } else {
+          // Bubble is above the faces: nudge upward toward minTopPct
+          for (let t = origTop; t >= minTopPct; t -= 1.0) {
+            bubble.style.top = `${t.toFixed(1)}%`;
+            if (!overlapsAnyZone()) return;
+          }
+        }
+      });
     }
 
     function fitKidsTextToPatch() {
@@ -7481,7 +7586,43 @@
         box.dataset.fittedFontPx = best.toFixed(2);
         box.dataset.fillRatio = (box.scrollHeight / Math.max(1, zone.clientHeight)).toFixed(3);
       });
+      fitKidsComicBubbles();
     }
+
+    window.__kidsBubbleOverlapMetrics = function() {
+      const results = [];
+      const zonesMap = window.KIDS_FACE_KEEP_OUT_ZONES || {};
+      document.querySelectorAll('#openBookSpread .kids-watercolor-leaf').forEach((leaf) => {
+        const bubble = leaf.querySelector('.kids-comic-bubble');
+        if (!bubble) return;
+        const pageNum = Number(leaf.dataset.page || 0);
+        const lr = leaf.getBoundingClientRect();
+        const br = bubble.getBoundingClientRect();
+        const r = {
+          x1: Number((((br.left - lr.left) / lr.width) * 100).toFixed(1)),
+          y1: Number((((br.top - lr.top) / lr.height) * 100).toFixed(1)),
+          x2: Number((((br.right - lr.left) / lr.width) * 100).toFixed(1)),
+          y2: Number((((br.bottom - lr.top) / lr.height) * 100).toFixed(1))
+        };
+        const zones = zonesMap[pageNum] || [];
+        let maxOverlapArea = 0;
+        for (const [zx1, zy1, zx2, zy2] of zones) {
+          const ox = Math.max(0, Math.min(r.x2, zx2) - Math.max(r.x1, zx1));
+          const oy = Math.max(0, Math.min(r.y2, zy2) - Math.max(r.y1, zy1));
+          if (ox > 0.4 && oy > 0.4) {
+            maxOverlapArea = Math.max(maxOverlapArea, Number((ox * oy).toFixed(2)));
+          }
+        }
+        results.push({
+          page: pageNum,
+          rect: r,
+          fontSizePx: Number((parseFloat(getComputedStyle(bubble).fontSize) || 0).toFixed(1)),
+          overlapArea: maxOverlapArea,
+          overlapsFace: maxOverlapArea > 0
+        });
+      });
+      return results;
+    };
 
     window.__kidsTextFitMetrics = function() {
       const results = [];
