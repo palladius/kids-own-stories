@@ -4,14 +4,15 @@
   <meta charset="UTF-8">
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e120a'/%3E%3Cpath d='M7 8.5C7 7.67 7.67 7 8.5 7H15v17H8.5C7.67 24 7 23.33 7 22.5V8.5z' fill='%23fdfaf2' stroke='%23d97706' stroke-width='1.5'/%3E%3Cpath d='M25 8.5C25 7.67 24.33 7 23.5 7H17v17h6.5c.83 0 1.5-.67 1.5-1.5V8.5z' fill='%23fef3c7' stroke='%23d97706' stroke-width='1.5'/%3E%3Cpath d='M16 7v17' stroke='%2378350f' stroke-width='1.8'/%3E%3C/svg%3E">
   <title>Kids' Own Stories — Il Libro delle Storie di Ale &amp; Seby</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="./src/puffin-login.js"></script>
-  <script src="./stories_catalog.js?v=0.13.6"></script>
-  <script src="./kids_books_catalog.js?v=0.13.6"></script>
+  <script type="module" src="./src/puffin-login.js"></script>
+  <script src="./stories_catalog.js?v=0.14.0"></script>
+  <script src="./kids_books_catalog.js?v=0.14.0"></script>
   <style>
     @media (prefers-reduced-motion: no-preference) {
       @view-transition {
@@ -59,9 +60,19 @@
       min-height: 100dvh;
     }
 
-    body:has(#bookViewport:not([hidden])) {
+    body.kids-fullscreen-book:has(#bookViewport:not([hidden])) {
       height: 100dvh;
       overflow: hidden;
+    }
+
+    body:has(#bookViewport:not([hidden])):not(.kids-fullscreen-book) {
+      height: auto;
+      min-height: 100dvh;
+      overflow-y: auto;
+    }
+
+    body:has(#bookViewport:not([hidden])):not(.kids-fullscreen-book) header.topbar {
+      position: relative;
     }
 
     h1, h2, h3, h4 {
@@ -441,6 +452,11 @@
       align-items: stretch;
       justify-content: center;
       perspective: 2000px;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport:not(.kids-has-bg) .open-book-stage {
+      flex: 1 0 auto;
+      min-height: 500px;
     }
 
     /* PHYSICAL HARDCOVER BOOK SPREAD (ASYMMETRIC 76%/24% 2-PAGE SPREAD BY PAGE PARITY) */
@@ -2329,6 +2345,20 @@
       }
     }
 
+    @media (max-width: 960px) {
+      header.topbar {
+        height: auto;
+        flex-wrap: wrap;
+      }
+      .topbar-right {
+        flex-wrap: wrap;
+        max-width: 100%;
+        justify-content: flex-end;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+    }
+
     @media (max-width: 900px) {
       header.topbar {
         height: auto;
@@ -2399,6 +2429,10 @@
 
       .open-book-stage {
         width: 100%;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport:not(.kids-has-bg) .open-book-stage {
+        min-height: 420px;
       }
 
       .open-book,
@@ -2525,11 +2559,76 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
+      flex-shrink: 0;
       gap: 10px;
       padding: 6px 14px;
       background: linear-gradient(90deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94));
       border-bottom: 1px solid rgba(255, 183, 3, 0.35);
       width: 100%;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport .kids-mode-launch-strip {
+      flex-wrap: nowrap;
+      justify-content: safe center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      max-width: 100%;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport .kids-mode-launch-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport .kids-mode-launch-strip .kids-pill-control,
+    body:not(.kids-fullscreen-book) .book-viewport .kids-mode-launch-strip .kids-img-launch-btn {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport .kids-img-launch-btn {
+      padding: 3px 10px 3px 4px;
+      gap: 7px;
+      font-size: 0.78rem;
+      border-radius: 11px;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport .kids-img-launch-btn img {
+      width: 32px;
+      height: 24px;
+      border-radius: 7px;
+    }
+
+    @media (max-width: 860px) {
+      .kids-mode-launch-strip {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+        gap: 6px;
+        padding: 4px 8px;
+      }
+      .kids-mode-launch-strip::-webkit-scrollbar {
+        display: none;
+      }
+      .kids-mode-launch-strip .kids-pill-control,
+      .kids-mode-launch-strip .kids-img-launch-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+      .kids-mode-launch-strip .kids-img-launch-btn {
+        padding: 2px 8px 2px 4px;
+        gap: 6px;
+        font-size: 0.74rem;
+        border-radius: 10px;
+      }
+      .kids-mode-launch-strip .kids-img-launch-btn img {
+        width: 28px;
+        height: 20px;
+        border-radius: 6px;
+      }
     }
 
     .kids-img-launch-btn {
@@ -2578,6 +2677,122 @@
     body.kids-fullscreen-book .carlessian-footer,
     body.kids-fullscreen-book #kidsReadingLaunchBar {
       display: none !important;
+    }
+
+    .kids-fullscreen-books-pill {
+      display: none;
+      position: fixed;
+      top: 10px;
+      left: 12px;
+      z-index: 60;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fef3c7;
+      background: linear-gradient(180deg, rgba(52, 31, 18, 0.94) 0%, rgba(30, 18, 10, 0.96) 100%);
+      border: 1.5px solid rgba(217, 119, 6, 0.48);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.48);
+      transition: transform 0.14s ease, border-color 0.14s ease;
+    }
+    .kids-fullscreen-books-pill:hover {
+      transform: translateY(-1px);
+      border-color: #f59e0b;
+    }
+    body.kids-fullscreen-book .kids-fullscreen-books-pill {
+      display: inline-flex;
+    }
+
+    .books-count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      background: rgba(245, 158, 11, 0.18);
+      color: #fde68a;
+      border: 1px solid rgba(245, 158, 11, 0.42);
+    }
+
+    .kids-pill-control .books-count-badge,
+    .kids-settings-book-item .books-count-badge {
+      background: rgba(120, 53, 15, 0.12);
+      color: #78350f;
+      border-color: rgba(120, 53, 15, 0.28);
+    }
+
+    .kids-book-title-ribbon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 7px;
+      min-height: 22px;
+      max-height: 26px;
+      max-width: min(74vw, 580px);
+      padding: 3px 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(253, 250, 242, 0.96) 0%, rgba(246, 236, 212, 0.96) 100%);
+      color: #451a03;
+      border: 1.5px solid #b45309;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.42), inset 0 0 0 1px rgba(245, 158, 11, 0.35);
+      pointer-events: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.1;
+      z-index: 55;
+    }
+
+    .kids-book-title-ribbon[hidden] {
+      display: none !important;
+    }
+
+    body.kids-fullscreen-book .kids-book-title-ribbon {
+      position: fixed;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .kids-book-title-ribbon-main {
+      font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.015em;
+      color: #451a03;
+    }
+
+    .kids-book-title-ribbon-author {
+      font-family: 'Cormorant Garamond', 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #78350f;
+    }
+
+    .kids-book-title-ribbon-ornament {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      color: #b45309;
+    }
+
+    @media (max-width: 960px) {
+      body.kids-fullscreen-book .kids-book-title-ribbon {
+        top: 46px;
+        max-width: 92vw;
+      }
     }
 
     body.kids-fullscreen-book .book-viewport,
@@ -2634,10 +2849,97 @@
       position: relative;
     }
 
-    .open-book.kids-notebook-spread:not(.is-fullscreen) {
-      width: min(98vw, calc((100dvh - var(--header-h) - var(--footer-h) - 86px) * 1792 / 1200)) !important;
-      height: min(calc(100dvh - var(--header-h) - var(--footer-h) - 86px), calc(98vw * 1200 / 1792)) !important;
-      max-height: calc(100dvh - var(--header-h) - var(--footer-h) - 86px) !important;
+    body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg {
+      padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+      gap: 5px !important;
+      justify-content: space-between !important;
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .kids-bookmark-resume-pill {
+      position: static;
+      transform: none;
+      flex-shrink: 0;
+      align-self: center;
+      max-width: min(360px, calc(100vw - 24px));
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .kids-book-title-ribbon {
+      flex-shrink: 0;
+      max-width: calc(100vw - 24px);
+    }
+
+    body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .open-book-stage {
+      flex: 1 1 0%;
+      min-height: 0;
+      width: 100%;
+      max-width: 98vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      container-type: size;
+    }
+
+    body:not(.kids-fullscreen-book) .open-book.kids-notebook-spread:not(.is-fullscreen) {
+      width: min(98cqw, calc(100cqh * 1792 / 1200)) !important;
+      height: min(100cqh, calc(98cqw * 1200 / 1792)) !important;
+      max-width: 98cqw !important;
+      max-height: 100cqh !important;
+      margin: 0 auto !important;
+    }
+
+    @media (min-width: 961px) {
+      body.kids-fullscreen-book .kids-book-title-ribbon {
+        max-width: min(calc(100vw - 590px), 560px);
+      }
+
+      body.kids-fullscreen-book .book-viewport {
+        padding: 44px 12px 6px !important;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      body.kids-fullscreen-book .open-book,
+      body.kids-fullscreen-book .open-book.kids-notebook-spread {
+        width: min(98vw, calc((100vh - 118px) * 1792 / 1200)) !important;
+        width: min(98vw, calc((100dvh - 118px - env(safe-area-inset-bottom, 0px)) * 1792 / 1200)) !important;
+        height: min(calc(100vh - 118px), calc(98vw * 1200 / 1792)) !important;
+        height: min(calc(100dvh - 118px - env(safe-area-inset-bottom, 0px)), calc(98vw * 1200 / 1792)) !important;
+        max-height: calc(100vh - 118px) !important;
+        max-height: calc(100dvh - 118px - env(safe-area-inset-bottom, 0px)) !important;
+      }
+    }
+
+    @media (min-width: 861px) and (max-width: 960px) {
+      body.kids-fullscreen-book .book-viewport {
+        padding: 74px 12px 6px !important;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      body.kids-fullscreen-book .open-book,
+      body.kids-fullscreen-book .open-book.kids-notebook-spread {
+        width: min(98vw, calc((100vh - 148px) * 1792 / 1200)) !important;
+        width: min(98vw, calc((100dvh - 148px - env(safe-area-inset-bottom, 0px)) * 1792 / 1200)) !important;
+        height: min(calc(100vh - 148px), calc(98vw * 1200 / 1792)) !important;
+        height: min(calc(100dvh - 148px - env(safe-area-inset-bottom, 0px)), calc(98vw * 1200 / 1792)) !important;
+        max-height: calc(100vh - 148px) !important;
+        max-height: calc(100dvh - 148px - env(safe-area-inset-bottom, 0px)) !important;
+      }
+    }
+
+    @media (max-width: 860px) {
+      body.kids-fullscreen-book .book-viewport {
+        padding: 74px 12px 6px !important;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      body.kids-fullscreen-book .open-book,
+      body.kids-fullscreen-book .open-book.kids-notebook-spread {
+        width: min(98vw, calc((100vh - 192px) * 1792 / 1200)) !important;
+        width: min(98vw, calc((100dvh - 192px - env(safe-area-inset-bottom, 0px)) * 1792 / 1200)) !important;
+        height: min(calc(100vh - 192px), calc(98vw * 1200 / 1792)) !important;
+        height: min(calc(100dvh - 192px - env(safe-area-inset-bottom, 0px)), calc(98vw * 1200 / 1792)) !important;
+        max-height: calc(100vh - 192px) !important;
+        max-height: calc(100dvh - 192px - env(safe-area-inset-bottom, 0px)) !important;
+      }
     }
 
     /* Portrait / Tall Viewport: switch to vertical 9:16 NeverEnding Grimoire + Fireplace background! */
@@ -2743,6 +3045,52 @@
       justify-content: space-between;
     }
 
+    .kids-page-xray-overlay {
+      position: absolute;
+      inset: 0;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity;
+    }
+
+    .kids-xray-hotspot {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: 31%;
+      height: 21%;
+      z-index: 15;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      appearance: none;
+    }
+
+    .kids-xray-hotspot:focus-visible {
+      outline: 2px dashed rgba(180, 83, 9, 0.65);
+      outline-offset: 4px;
+    }
+
+    .kids-watercolor-leaf.has-xray-reveal.boa-xray-active .kids-page-xray-overlay,
+    .kids-xray-hotspot:focus-visible ~ .kids-page-xray-overlay {
+      opacity: 1;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .kids-xray-hotspot:hover ~ .kids-page-xray-overlay {
+        opacity: 1;
+      }
+    }
+
     /* Classic Book Page Numbers: Black, at Bottom-Left (left page) & Bottom-Right (right page) */
     .kids-book-page-num {
       position: absolute;
@@ -2766,6 +3114,11 @@
 
     .kids-book-page-num.is-right-num {
       right: 14px;
+    }
+
+    .kids-watercolor-leaf.is-frontispiece .kids-book-page-num.is-frontispiece-num {
+      opacity: 0.52;
+      background: transparent;
     }
 
     /* Visual Navigation Arrows at Mid-Lateral Left & Right Edges of the Book */
@@ -2875,7 +3228,7 @@
       padding: 2px 4px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       overflow: visible;
       box-sizing: border-box;
     }
@@ -2906,6 +3259,7 @@
         0 1px 0 rgba(253, 250, 242, 0.95),
         0 0 10px rgba(253, 250, 242, 0.85);
       width: 100%;
+      margin: auto 0;
       box-sizing: border-box;
     }
 
@@ -3231,6 +3585,7 @@
     }
 
     .kids-min-icon-btn {
+      position: relative;
       width: 32px;
       height: 32px;
       padding: 0;
@@ -3357,9 +3712,267 @@
       border-color: #b45309;
     }
 
+    .kids-book-select {
+      max-width: 190px;
+      height: 32px;
+      background: rgba(255, 251, 235, 0.14);
+      color: #fef3c7;
+      border: 1.5px solid rgba(254, 243, 199, 0.28);
+      border-radius: 999px;
+      padding: 0 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: all 0.14s ease;
+    }
+
+    .kids-book-select:hover,
+    .kids-book-select:focus {
+      border-color: #fbbf24;
+      background: rgba(255, 251, 235, 0.24);
+      outline: none;
+    }
+
+    .kids-book-select option {
+      background: #1e120a;
+      color: #fef3c7;
+    }
+
+    @media (min-width: 861px) and (max-width: 960px) {
+      .kids-notebook-floating-bar {
+        gap: 8px;
+        padding: 5px 12px;
+      }
+      .kids-mini-footer-group {
+        gap: 7px;
+      }
+      .kids-mini-footer-center {
+        gap: 10px;
+      }
+      .kids-mini-footer-tools {
+        gap: 5px;
+      }
+      .kids-book-select {
+        max-width: 145px;
+      }
+    }
+
+    .kids-min-icon-btn.has-bookmark-elsewhere::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f59e0b;
+      border: 1.5px solid #1e120a;
+      pointer-events: none;
+    }
+
+    .kids-bookmark-resume-pill {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      left: auto;
+      transform: none;
+      z-index: 95;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(180deg, rgba(52, 31, 18, 0.96) 0%, rgba(30, 18, 10, 0.98) 100%);
+      color: #fef3c7;
+      border: 1.5px solid rgba(245, 158, 11, 0.65);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+      max-width: min(360px, calc(100vw - 28px));
+      white-space: nowrap;
+    }
+
+    body.kids-fullscreen-book .kids-bookmark-resume-pill {
+      position: fixed;
+      top: 6px;
+      right: 14px;
+      left: auto;
+      transform: none;
+      max-width: min(360px, calc(100vw - 160px));
+    }
+
+    .kids-bookmark-resume-pill[hidden] {
+      display: none !important;
+    }
+
+    .kids-bookmark-resume-label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .kids-bookmark-resume-jump {
+      flex-shrink: 0;
+      background: #f59e0b;
+      color: #0b0f19;
+      border: none;
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.14s ease;
+    }
+
+    .kids-bookmark-resume-jump:hover {
+      background: #fbbf24;
+    }
+
+    .kids-bookmark-resume-dismiss {
+      flex-shrink: 0;
+      background: transparent;
+      color: #fef3c7;
+      border: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 0 4px;
+      opacity: 0.75;
+    }
+
+    .kids-bookmark-resume-dismiss:hover {
+      opacity: 1;
+    }
+
+    .kids-settings-book-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .kids-settings-book-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      text-align: left;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(120, 53, 15, 0.22);
+      background: #fffbeb;
+      color: #1e293b;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .kids-settings-book-item:hover {
+      border-color: #d97706;
+      background: #fef3c7;
+    }
+
+    .kids-settings-book-item.active {
+      background: #f59e0b;
+      color: #0b0f19;
+      border-color: #78350f;
+    }
+
+    .kids-index-shelf {
+      background: linear-gradient(135deg, rgba(52, 31, 18, 0.92), rgba(20, 13, 8, 0.96));
+      border: 1.5px solid rgba(245, 158, 11, 0.45);
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .kids-index-shelf[hidden] {
+      display: none !important;
+    }
+
+    .kids-index-shelf-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: #fef3c7;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .kids-index-shelf-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .kids-index-shelf-book {
+      flex: 1 1 280px;
+      min-width: 0;
+      max-width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255, 251, 235, 0.08);
+      border: 1px solid rgba(254, 243, 199, 0.2);
+      border-radius: 14px;
+      padding: 10px 14px;
+      color: #fffdf7;
+    }
+
+    @media (max-width: 860px) {
+      .kids-notebook-floating-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 8px;
+        padding: 6px 10px;
+        border-radius: 20px;
+      }
+      .kids-mini-footer-center {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .kids-avatar-tier-btn {
+        width: 36px;
+        height: 36px;
+      }
+      .kids-book-select {
+        max-width: 145px;
+      }
+      .kids-settings-popover {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(192px + env(safe-area-inset-bottom, 0px));
+        width: min(360px, calc(100vw - 24px));
+        max-height: calc(100dvh - 208px - env(safe-area-inset-bottom, 0px));
+        overflow-y: auto;
+        z-index: 250;
+      }
+    }
+
     /* =========================================================================
        MOBILE / PORTRAIT SINGLE-PAGE MODE FOR KIDS NOTEBOOK (ISSUE #8)
        ========================================================================= */
+    body.kids-fullscreen-book .open-book.kids-notebook-spread.kids-single-page-mode,
     .open-book.kids-notebook-spread.kids-single-page-mode {
       grid-template-columns: 1fr !important;
       aspect-ratio: 896 / 1200 !important;
@@ -3372,10 +3985,12 @@
       border-width: 4px !important;
     }
 
-    .open-book.kids-notebook-spread.kids-single-page-mode:not(.is-fullscreen) {
-      width: min(96vw, calc((100dvh - var(--header-h, 110px) - var(--footer-h, 36px) - 76px) * 896 / 1200)) !important;
-      height: min(calc(100dvh - var(--header-h, 110px) - var(--footer-h, 36px) - 76px), calc(96vw * 1200 / 896)) !important;
-      max-height: calc(100dvh - var(--header-h, 110px) - var(--footer-h, 36px) - 76px) !important;
+    body:not(.kids-fullscreen-book) .open-book.kids-notebook-spread.kids-single-page-mode:not(.is-fullscreen) {
+      width: min(96cqw, calc(100cqh * 896 / 1200)) !important;
+      height: min(100cqh, calc(96cqw * 1200 / 896)) !important;
+      max-width: 96cqw !important;
+      max-height: 100cqh !important;
+      margin: 0 auto !important;
     }
 
     /* Hide center notebook spine crease & V-notch when showing 1 single page */
@@ -3412,14 +4027,50 @@
     }
 
     @media (max-width: 768px), ((orientation: portrait) and (max-width: 900px)) {
-      body.kids-fullscreen-book .book-viewport,
-      .book-viewport.kids-has-bg {
-        padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+      body.kids-fullscreen-book .book-viewport {
+        padding: 72px 6px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
         gap: 6px !important;
         justify-content: space-between !important;
         background-image:
           linear-gradient(180deg, rgba(12, 8, 4, 0.35) 0%, rgba(12, 8, 4, 0.55) 55%, rgba(12, 8, 4, 0.82) 100%),
           url('assets/backgrounds/kids_book_bg_portrait.jpg') !important;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg {
+        padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+        gap: 4px !important;
+        justify-content: space-between !important;
+        background-image:
+          linear-gradient(180deg, rgba(12, 8, 4, 0.35) 0%, rgba(12, 8, 4, 0.55) 55%, rgba(12, 8, 4, 0.82) 100%),
+          url('assets/backgrounds/kids_book_bg_portrait.jpg') !important;
+      }
+
+      body.kids-fullscreen-book .open-book.kids-notebook-spread.kids-single-page-mode {
+        width: min(96vw, calc((100dvh - 226px - env(safe-area-inset-bottom, 0px)) * 896 / 1200)) !important;
+        height: min(calc(100dvh - 226px - env(safe-area-inset-bottom, 0px)), calc(96vw * 1200 / 896)) !important;
+        max-height: calc(100dvh - 226px - env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      body.kids-fullscreen-book .kids-bookmark-resume-pill {
+        top: 10px;
+        right: 12px;
+        left: auto;
+        transform: none;
+        max-width: calc(100vw - 144px);
+        padding: 4px 8px;
+        gap: 5px;
+        font-size: 0.72rem;
+      }
+
+      body.kids-fullscreen-book .kids-book-title-ribbon {
+        top: 46px;
+        max-width: calc(100vw - 24px);
+        padding: 2px 10px;
+      }
+
+      body.kids-fullscreen-book .kids-book-title-ribbon-main,
+      body.kids-fullscreen-book .kids-book-title-ribbon-author {
+        font-size: 0.76rem;
       }
 
       .open-book.kids-notebook-spread.kids-single-page-mode .kids-watercolor-leaf {
@@ -3460,19 +4111,28 @@
       }
 
       .kids-notebook-floating-bar {
-        width: 97vw;
-        padding: 4px 8px;
-        gap: 4px;
-        border-radius: 999px;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        overflow-x: auto;
+        width: calc(100vw - 12px);
+        max-width: calc(100vw - 12px);
+        padding: 5px 8px;
+        gap: 4px 6px;
+        border-radius: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+      }
+
+      .kids-book-select {
+        max-width: 96px;
+        height: 28px;
+        font-size: 0.7rem;
+        padding: 0 7px;
       }
 
       .kids-mini-footer-center {
-        gap: 5px;
+        gap: 4px 6px;
         flex: 1 1 auto;
         justify-content: center;
+        flex-wrap: wrap;
       }
 
       .kids-avatar-tier-group {
@@ -3486,7 +4146,9 @@
       }
 
       .kids-mini-footer-tools {
-        gap: 3px;
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .kids-min-icon-btn {
@@ -3502,6 +4164,209 @@
       .kids-pill-control.quiz-pill {
         padding: 3px 6px;
         font-size: 0.72rem;
+      }
+    }
+
+    @media (min-width: 769px) and (min-height: 501px) {
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg {
+        overflow-y: auto;
+        justify-content: flex-start !important;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .open-book-stage {
+        flex: 1 0 auto;
+        min-height: 520px;
+        height: max(560px, calc(100dvh - 280px));
+      }
+    }
+
+    @media (max-width: 768px) {
+      body:not(.kids-fullscreen-book) header.topbar {
+        position: relative;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg {
+        overflow-y: auto;
+        justify-content: flex-start !important;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .open-book-stage {
+        flex: 0 0 auto;
+        min-height: 360px;
+        height: min(440px, 68dvh);
+      }
+    }
+
+    @media (max-height: 500px), (orientation: landscape) and (max-height: 710px) {
+      body:not(.kids-fullscreen-book) header.topbar {
+        position: relative;
+      }
+    }
+
+    @media (max-height: 500px) {
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg {
+        overflow-y: auto;
+        justify-content: flex-start !important;
+        padding: 4px 8px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+        gap: 4px !important;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .kids-mode-launch-strip {
+        padding: 2px 8px;
+        gap: 4px 6px;
+      }
+
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg .open-book-stage {
+        flex: 0 0 auto;
+        min-height: 320px;
+        height: max(320px, 84dvh);
+      }
+
+      body:not(.kids-fullscreen-book) .carlessian-footer {
+        padding: 3px 10px;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-height: 500px), (orientation: landscape) and (max-height: 600px) {
+      body.kids-fullscreen-book .book-viewport {
+        padding: 38px 10px calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+        gap: 3px !important;
+        justify-content: space-between !important;
+      }
+
+      body.kids-fullscreen-book .kids-fullscreen-books-pill {
+        top: 5px;
+        left: 8px;
+        padding: 4px 9px;
+        font-size: 0.72rem;
+      }
+
+      body.kids-fullscreen-book .kids-book-title-ribbon {
+        top: 5px !important;
+        max-width: min(215px, calc(100vw - 440px)) !important;
+        padding: 2px 10px;
+      }
+
+      body.kids-fullscreen-book .kids-book-title-ribbon-main,
+      body.kids-fullscreen-book .kids-book-title-ribbon-author {
+        font-size: 0.74rem;
+      }
+
+      body.kids-fullscreen-book .kids-bookmark-resume-pill {
+        top: 5px;
+        right: 8px;
+        max-width: min(195px, calc(100vw - 360px));
+        padding: 3px 8px;
+        font-size: 0.7rem;
+      }
+
+      body.kids-fullscreen-book .open-book,
+      body.kids-fullscreen-book .open-book.kids-notebook-spread {
+        width: min(98vw, calc((100vh - 82px) * 1792 / 1200)) !important;
+        width: min(98vw, calc((100dvh - 82px - env(safe-area-inset-bottom, 0px)) * 1792 / 1200)) !important;
+        height: min(calc(100vh - 82px), calc(98vw * 1200 / 1792)) !important;
+        height: min(calc(100dvh - 82px - env(safe-area-inset-bottom, 0px)), calc(98vw * 1200 / 1792)) !important;
+        max-height: calc(100vh - 82px) !important;
+        max-height: calc(100dvh - 82px - env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      .open-book.kids-notebook-spread .kids-watercolor-leaf {
+        padding: 1.0% 3.0% 1.2%;
+      }
+
+      .open-book.kids-notebook-spread .kids-watercolor-leaf.patch-bottom .kids-white-patch-text-zone {
+        padding-bottom: 6px;
+      }
+
+      .open-book.kids-notebook-spread .kids-book-page-num {
+        font-size: 0.72rem;
+        bottom: 3px;
+        padding: 1px 5px;
+      }
+
+      .open-book.kids-notebook-spread .kids-sentence-box {
+        line-height: 1.18;
+      }
+
+      .open-book.kids-notebook-spread .kids-sentence-box.level-emma {
+        line-height: 1.14;
+      }
+
+      .open-book.kids-notebook-spread .kw-token {
+        padding: 0 1px;
+        margin: 0;
+      }
+
+      .kids-notebook-floating-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: space-between;
+        padding: 3px 8px;
+        gap: 4px;
+        border-radius: 14px;
+      }
+
+      .kids-mini-footer-group {
+        gap: 4px;
+        flex-shrink: 0;
+      }
+
+      .kids-mini-footer-center {
+        gap: 5px;
+        flex-wrap: nowrap;
+      }
+
+      .kids-mini-footer-tools {
+        gap: 3px;
+        flex-wrap: nowrap;
+      }
+
+      .kids-book-select {
+        max-width: 88px;
+        height: 26px;
+        font-size: 0.68rem;
+      }
+
+      .kids-avatar-tier-btn {
+        width: 26px !important;
+        height: 26px !important;
+      }
+
+      .kids-min-icon-btn {
+        width: 24px;
+        height: 24px;
+      }
+
+      .kids-min-icon-btn.listen-pill {
+        width: 26px;
+        height: 26px;
+      }
+
+      .kids-pill-control.quiz-pill {
+        padding: 2px 6px;
+        font-size: 0.68rem;
+      }
+
+      .kids-settings-popover {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(46px + env(safe-area-inset-bottom, 0px));
+        width: min(360px, calc(100vw - 24px));
+        max-height: calc(100dvh - 60px - env(safe-area-inset-bottom, 0px));
+        overflow-y: auto;
+        z-index: 250;
+      }
+    }
+
+    @media (orientation: landscape) and (min-aspect-ratio: 11/10) {
+      body.kids-fullscreen-book .book-viewport,
+      body:not(.kids-fullscreen-book) .book-viewport.kids-has-bg {
+        background-image:
+          radial-gradient(ellipse at center, rgba(18, 12, 7, 0.10) 0%, rgba(12, 8, 4, 0.52) 100%),
+          url('assets/backgrounds/kids_book_bg_landscape.jpg') !important;
+        background-position: center center !important;
       }
     }
 
@@ -3775,6 +4640,7 @@
   </style>
 </head>
 <body>
+  <a href="books/" id="kidsFullscreenBooksLink" class="kids-fullscreen-books-pill notranslate" translate="no" title="Torna alla Libreria Acquerello (/books)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg><span>Libreria</span><span id="kidsFullscreenBooksCount" class="books-count-badge">2</span></a>
 
   <!-- 1. CARLESSIAN HEADER: BRAND HOME LINK, TABS, AUTHOR RADIOGROUP, LIVE SEARCH ('/') & LANG SWITCHER -->
   <header class="topbar">
@@ -3812,7 +4678,7 @@
         📊 Dashboard
       </button>
 
-      <puffin-login id="puffin-widget" app-id="kids-own-stories"></puffin-login>
+      <puffin-login id="puffin-widget" app-id="kids-own-stories" require-login="false"></puffin-login>
 
       <div class="lang-switch" role="group" aria-label="Lingua della storia e della voce narrante">
         <button type="button" class="lang-btn active" id="langBtnIt" data-lang="it" aria-pressed="true" onclick="setLanguage('it')">🇮🇹 IT</button>
@@ -3863,6 +4729,7 @@
 
   <!-- 2A. VETRINA CARDS (SHOWN WHEN ON 'INDICE' TAB) -->
   <main id="indexView" class="index-view" hidden>
+    <div id="kidsIndexShelf" class="kids-index-shelf notranslate" translate="no" hidden></div>
     <div class="index-grid" id="indexGrid"></div>
   </main>
 
@@ -3872,7 +4739,11 @@
   <!-- 2B. ZERO-SCROLL OPEN BOOK 3D CAROUSEL VIEWPORT -->
   <main id="bookViewport" class="book-viewport" hidden>
     <!-- ROLE-AWARE KIDS READING LAUNCH BAR ("👦 Ale leggi qui!" / "🧒 Seby leggi qui!") -->
-    <div id="kidsReadingLaunchBar" class="kids-mode-launch-strip" hidden></div>
+    <div id="kidsReadingLaunchBar" class="kids-mode-launch-strip notranslate" translate="no" hidden></div>
+
+    <div id="kidsBookmarkResumePill" class="kids-bookmark-resume-pill notranslate" translate="no" hidden></div>
+
+    <div id="kidsBookTitleRibbon" class="kids-book-title-ribbon notranslate" translate="no" hidden></div>
 
     <div class="open-book-stage">
       <article class="open-book" id="openBookSpread" aria-live="polite">
@@ -3888,14 +4759,14 @@
     </div>
 
     <!-- MINIMALIST EXTERNAL MINI-FOOTER OUTSIDE THE BOOK IN KIDS NOTEBOOK MODE -->
-    <div id="kidsNotebookFloatingBar" class="kids-notebook-floating-bar" hidden></div>
+    <div id="kidsNotebookFloatingBar" class="kids-notebook-floating-bar notranslate" translate="no" hidden></div>
   </main>
 
   <!-- 3. CANONICAL CARLESSIAN FOOTER (v<VERSION>, ENV BADGE, SOBER STORY TOOLS & GH/GHP/GHI) -->
   <footer class="carlessian-footer">
     <div class="footer-left">
       <strong>Kids' Own Stories</strong>
-      <a href="CHANGELOG.md" id="footerVersionLink" data-version="0.13.4" target="_blank" rel="noopener">v0.13.4</a>
+      <a href="CHANGELOG.md" id="footerVersionLink" data-version="0.14.0" target="_blank" rel="noopener">v0.14.0</a>
       <span class="env-badge" data-env="development" id="footerEnvBadge">ENV: development</span>
     </div>
     <div class="footer-center" id="footerStoryActions">
@@ -4063,25 +4934,63 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.13.14';
+    const APP_VERSION = '0.14.0';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
+    function safeStorageGet(key) {
+      try {
+        const storage = window.localStorage;
+        if (!storage || typeof storage.getItem !== 'function') return null;
+        return storage.getItem(key);
+      } catch (_) {
+        return null;
+      }
+    }
+    function safeStorageSet(key, value) {
+      try {
+        const storage = window.localStorage;
+        if (!storage || typeof storage.setItem !== 'function') return false;
+        storage.setItem(key, value);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+    const SARDEGNA_BOOK_ID = 'storia-sardegna-cala-gonone-arbatax-famiglia';
+    const KIDS_BOOK_ALIASES = {
+      'sardegna': SARDEGNA_BOOK_ID,
+      [SARDEGNA_BOOK_ID]: SARDEGNA_BOOK_ID,
+      'petit-prince': 'le-petit-prince',
+      'petit_prince': 'le-petit-prince',
+      'piccolo-principe': 'le-petit-prince',
+      'der-kleine-prinz': 'le-petit-prince',
+      'le-petit-prince': 'le-petit-prince'
+    };
+    const KIDS_BOOKMARKS_STORAGE_KEY = 'kos_kids_bookmarks_v1';
+    const dismissedBookmarkPromptByBook = {};
+
     let catalog = { authors: {}, stories: [] };
     let activeTab = 'storia-dello-zaino-del-drago-e-dei-puffins';
     let currentLang = 'it'; // 'it' | 'en' | 'fr' | 'de' | 'pt'
+    let userExplicitLang = false;
     let activeKidFilter = 'all'; // 'all' | 'alessandro' | 'sebastian'
+    let inboundRawKidParam = '';
     let searchQuery = '';
     let pendingLangCode = null;
     const pageIndexBySlug = {};
     let unmuteNextVideoRender = false;
 
     // Illustrated Kids Book & Antolin State
-    let kidsBookMode = null; // null (Adult Classic) | 'seby' (6-7 yo) | 'ale' (8-9 yo)
+    let kidsBookMode = null; // null (Adult Classic) | 'seby' (6-7 yo) | 'ale' (8-9 yo) | 'emma' (10-11+ yo)
     const kidsPageIndexBySlug = {};
     let kidsGrammarEnabled = false; // Disabled by default per Riccardo!
     let kidsUppercaseEnabled = false;
     let kidsFullscreenEnabled = true; // Fullscreen notebook by default when opening Kids Book!
-    let kidsTranslationLang = localStorage.getItem('kos_kids_tr_lang') || 'en'; // 'en' (default) | 'it' | 'fr' | 'de'
-    let kidsParallelMode = localStorage.getItem('kos_kids_parallel') === '1'; // Traduzione Pari Pari (Cheating Mode: Pag. SX lingua libro | Pag. DX lingua base)
+    function sanitizeKidsTranslationLang(lang) {
+      const normalized = typeof lang === 'string' ? lang.trim().toLowerCase() : '';
+      return ['en', 'it', 'fr', 'de'].includes(normalized) ? normalized : 'en';
+    }
+    let kidsTranslationLang = sanitizeKidsTranslationLang(safeStorageGet('kos_kids_tr_lang')); // 'en' (default) | 'it' | 'fr' | 'de'
+    let kidsParallelMode = safeStorageGet('kos_kids_parallel') === '1'; // Traduzione Pari Pari (Cheating Mode: Pag. SX lingua libro | Pag. DX lingua base)
     let kidsSettingsOpen = false;
     const KIDS_SPEED_STEPS = [
       { mult: 0.76, label: 'Molto lento (--)', short: '0.75×' },
@@ -4090,8 +4999,382 @@
       { mult: 1.15, label: 'Veloce (+)', short: '1.15×' },
       { mult: 1.30, label: 'Molto veloce (++)', short: '1.3×' }
     ];
-    let kidsSpeedStep = Math.max(0, Math.min(4, parseInt(localStorage.getItem('kos_kids_speed_step') ?? '2', 10) || 2));
+    function sanitizeKidsSpeedStep(step) {
+      const parsed = parseInt(step, 10);
+      return Number.isNaN(parsed) ? 2 : Math.max(0, Math.min(KIDS_SPEED_STEPS.length - 1, parsed));
+    }
+    let kidsSpeedStep = sanitizeKidsSpeedStep(safeStorageGet('kos_kids_speed_step'));
     const kidsQuizAnswers = {}; // key: `${storySlug}_${mode}_${lang}_p${pageNum}_${qId}` -> { chosenIdx, isCorrect, qText, chosenText, correctText, difficulty, pageNum, timestamp }
+
+    function isSardegnaBook(kbOrId) {
+      const id = typeof kbOrId === 'string' ? kbOrId : (kbOrId?.story_id || activeTab);
+      return id === SARDEGNA_BOOK_ID;
+    }
+
+    function getOrderedKidsBookIds() {
+      const cat = window.KIDS_BOOKS_CATALOG || {};
+      const keys = Object.keys(cat);
+      const preferred = [SARDEGNA_BOOK_ID, 'le-petit-prince'];
+      return [...preferred.filter(k => keys.includes(k)), ...keys.filter(k => !preferred.includes(k))];
+    }
+
+    function getKidsBookEntry(bookId) {
+      if (!bookId || typeof bookId !== 'string') return null;
+      const cat = window.KIDS_BOOKS_CATALOG;
+      if (!cat || typeof cat !== 'object') return null;
+      if (!Object.prototype.hasOwnProperty.call(cat, bookId)) return null;
+      const kb = cat[bookId];
+      return (kb && typeof kb === 'object' && Array.isArray(kb.pages)) ? kb : null;
+    }
+
+    function resolveKidsBookId(candidate) {
+      if (!candidate || typeof candidate !== 'string') return null;
+      const raw = candidate.trim();
+      if (!raw) return null;
+      const key = raw.toLowerCase();
+      const mapped = Object.prototype.hasOwnProperty.call(KIDS_BOOK_ALIASES, key)
+        ? KIDS_BOOK_ALIASES[key]
+        : raw;
+      if (getKidsBookEntry(mapped)) return mapped;
+      const cat = window.KIDS_BOOKS_CATALOG || {};
+      const byAlias = Object.values(cat).find(
+        kb => kb && typeof kb === 'object' && Array.isArray(kb.pages) &&
+          (kb.story_id === raw || (kb.book_alias && String(kb.book_alias).toLowerCase() === key))
+      );
+      return byAlias ? byAlias.story_id : null;
+    }
+
+    function getKidsBookAlias(bookId) {
+      const kb = getKidsBookEntry(bookId);
+      if (kb?.book_alias) return kb.book_alias;
+      if (bookId === SARDEGNA_BOOK_ID) return 'sardegna';
+      if (bookId === 'le-petit-prince') return 'petit-prince';
+      return bookId;
+    }
+
+    function getBookLearningLangs(kb) {
+      const allowed = ['fr', 'it', 'de'];
+      const raw = Array.isArray(kb?.supported_langs) ? kb.supported_langs : ['it', 'fr', 'de'];
+      const filtered = raw.filter(l => allowed.includes(l));
+      return filtered.length ? filtered : ['it', 'fr', 'de'];
+    }
+
+    function getBookDefaultLang(kb) {
+      const learningLangs = getBookLearningLangs(kb);
+      if (kb?.default_lang && learningLangs.includes(kb.default_lang)) {
+        return kb.default_lang;
+      }
+      return learningLangs.includes('it') ? 'it' : learningLangs[0];
+    }
+
+    function resolveBookLearningLang(kb, langCandidate) {
+      const learningLangs = getBookLearningLangs(kb);
+      if (langCandidate && learningLangs.includes(langCandidate)) return langCandidate;
+      return getBookDefaultLang(kb);
+    }
+
+    function loadKidsBookmarksMap() {
+      try {
+        const parsed = JSON.parse(safeStorageGet(KIDS_BOOKMARKS_STORAGE_KEY) || '{}');
+        return (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) ? parsed : {};
+      } catch (_) { return {}; }
+    }
+
+    function getKidsBookmark(bookId = activeTab) {
+      const resolved = resolveKidsBookId(bookId);
+      if (!resolved) return null;
+      const map = loadKidsBookmarksMap();
+      const bm = Object.prototype.hasOwnProperty.call(map, resolved) ? map[resolved] : null;
+      if (!bm || typeof bm !== 'object' || Array.isArray(bm)) return null;
+      const rawPage = bm.page;
+      const pageNum = (typeof rawPage === 'number')
+        ? rawPage
+        : (typeof rawPage === 'string' && rawPage.trim() !== '' ? Number(rawPage) : NaN);
+      if (!Number.isFinite(pageNum) || pageNum < 1) return null;
+      return {
+        ...bm,
+        page: Math.floor(pageNum),
+        mode: (typeof bm.mode === 'string' && ['seby', 'ale', 'emma'].includes(bm.mode)) ? bm.mode : undefined,
+        lang: (typeof bm.lang === 'string') ? bm.lang : undefined,
+        trLang: (typeof bm.trLang === 'string') ? bm.trLang : undefined,
+        parallel: Boolean(bm.parallel)
+      };
+    }
+
+    function getKidsDisplayPageNum(pageObj) {
+      if (!pageObj) return 0;
+      return (pageObj.display_page !== undefined && pageObj.display_page !== null)
+        ? pageObj.display_page
+        : (pageObj.page || 0);
+    }
+
+    function getKidsTotalDisplayPages(kb) {
+      const pages = kb?.pages || [];
+      if (pages.some(p => p?.is_frontispiece)) {
+        return pages.filter(p => !p?.is_frontispiece).length;
+      }
+      return kb?.total_pages || pages.length || 16;
+    }
+
+    function getKidsBookmarkDisplayPage(kb, bmPage) {
+      const pObj = kb?.pages?.find(p => p.page === bmPage) || kb?.pages?.[bmPage - 1];
+      return pObj ? getKidsDisplayPageNum(pObj) : bmPage;
+    }
+
+    function saveKidsBookmark(bookId = activeTab, opts = {}) {
+      const resolved = resolveKidsBookId(bookId);
+      const kb = getKidsBookEntry(resolved);
+      if (!resolved || !kb) return null;
+      const lang = resolveBookLearningLang(kb, currentLang);
+      const maxPages = kb.pages?.length || kb.total_pages || 1;
+      let rawIdx = Math.max(0, Math.min(maxPages - 1, kidsPageIndexBySlug[resolved] || 0));
+      if (kb.pages?.[rawIdx]?.is_frontispiece && kb.pages?.[rawIdx + 1]) {
+        rawIdx += 1;
+      }
+      const page = Math.max(1, Math.min(maxPages, kb.pages?.[rawIdx]?.page || (rawIdx + 1)));
+      const entry = {
+        page,
+        mode: ['seby', 'ale', 'emma'].includes(kidsBookMode) ? kidsBookMode : 'seby',
+        lang,
+        trLang: ['en', 'it', 'fr', 'de'].includes(kidsTranslationLang) ? kidsTranslationLang : 'en',
+        parallel: Boolean(kidsParallelMode),
+        savedAt: new Date().toISOString()
+      };
+      const map = loadKidsBookmarksMap();
+      map[resolved] = entry;
+      safeStorageSet(KIDS_BOOKMARKS_STORAGE_KEY, JSON.stringify(map));
+      dismissedBookmarkPromptByBook[resolved] = true;
+      if (!opts || !opts.silent) {
+        renderActiveBook();
+      }
+      return entry;
+    }
+
+    function clearKidsBookmark(bookId = activeTab) {
+      const resolved = resolveKidsBookId(bookId);
+      if (!resolved) return;
+      const map = loadKidsBookmarksMap();
+      delete map[resolved];
+      safeStorageSet(KIDS_BOOKMARKS_STORAGE_KEY, JSON.stringify(map));
+      renderActiveBook();
+    }
+
+    function isSpreadOnBookmark(kb, leftIdx, rightIdx, bm) {
+      if (!kb || !bm) return false;
+      const leftPageNum = kb.pages?.[leftIdx]?.page;
+      const rightPageNum = kb.pages?.[rightIdx]?.page;
+      return bm.page === leftPageNum || (!kidsParallelMode && bm.page === rightPageNum);
+    }
+
+    function toggleKidsBookmark(bookId = activeTab) {
+      const resolved = resolveKidsBookId(bookId);
+      const kb = getKidsBookEntry(resolved);
+      if (!resolved || !kb) return;
+      const bm = getKidsBookmark(resolved);
+      const rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[resolved] || 0, (kb.pages?.length || 1) - 1));
+      const leftIdx = kidsParallelMode ? rawIdx : (rawIdx - (rawIdx % 2));
+      const rightIdx = kidsParallelMode ? rawIdx : Math.min(leftIdx + 1, (kb.pages?.length || 1) - 1);
+      if (bm && isSpreadOnBookmark(kb, leftIdx, rightIdx, bm)) {
+        clearKidsBookmark(resolved);
+      } else {
+        saveKidsBookmark(resolved);
+      }
+    }
+
+    function restoreKidsBookmark(bookId = activeTab) {
+      const resolved = resolveKidsBookId(bookId);
+      const kb = getKidsBookEntry(resolved);
+      const bm = resolved ? getKidsBookmark(resolved) : null;
+      if (!resolved || !kb || !bm) return;
+      stopBrowserKaraokeSpeech();
+      if (kidsSentenceKaraokeRaf) {
+        cancelAnimationFrame(kidsSentenceKaraokeRaf);
+        kidsSentenceKaraokeRaf = null;
+      }
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio && !kidsAudio.paused) kidsAudio.pause();
+      activeKidsPlayingPage = null;
+      document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
+      updateKidsListenButtonsState();
+      kidsBookMode = ['seby', 'ale', 'emma'].includes(bm.mode) ? bm.mode : (kidsBookMode || 'seby');
+      activeKidFilter = (kidsBookMode === 'ale') ? 'alessandro' : (kidsBookMode === 'seby' ? 'sebastian' : 'all');
+      currentLang = resolveBookLearningLang(kb, bm.lang);
+      userExplicitLang = true;
+      if (['en', 'it', 'fr', 'de'].includes(bm.trLang)) {
+        kidsTranslationLang = bm.trLang;
+        safeStorageSet('kos_kids_tr_lang', kidsTranslationLang);
+      }
+      kidsParallelMode = Boolean(bm.parallel);
+      safeStorageSet('kos_kids_parallel', kidsParallelMode ? '1' : '0');
+      kidsPageIndexBySlug[resolved] = Math.max(0, Math.min((kb.pages?.length || 1) - 1, bm.page - 1));
+      activeTab = resolved;
+      kidsFullscreenEnabled = true;
+      dismissedBookmarkPromptByBook[resolved] = true;
+      syncStateToUrl();
+      renderAll();
+    }
+
+    function dismissKidsBookmarkPrompt(bookId = activeTab) {
+      const resolved = resolveKidsBookId(bookId) || bookId;
+      dismissedBookmarkPromptByBook[resolved] = true;
+      const pill = document.getElementById('kidsBookmarkResumePill');
+      if (pill) pill.hidden = true;
+    }
+
+    function renderBookmarkResumePill(kb, leftIdx, rightIdx) {
+      const pill = document.getElementById('kidsBookmarkResumePill');
+      if (!pill) return;
+      if (!kb || !kidsBookMode) {
+        pill.hidden = true;
+        pill.innerHTML = '';
+        return;
+      }
+      const bookId = kb.story_id || activeTab;
+      const bm = getKidsBookmark(bookId);
+      if (!bm || dismissedBookmarkPromptByBook[bookId] || isSpreadOnBookmark(kb, leftIdx, rightIdx, bm)) {
+        pill.hidden = true;
+        pill.innerHTML = '';
+        return;
+      }
+      const isFr = currentLang === 'fr';
+      const isDe = currentLang === 'de';
+      const dispBmPage = getKidsBookmarkDisplayPage(kb, bm.page);
+      const label = isDe
+        ? `🔖 Lesezeichen (S. ${dispBmPage})`
+        : (isFr ? `🔖 Reprendre (Page ${dispBmPage})` : `🔖 Riprendi segnalibro (Pag. ${dispBmPage})`);
+      const goLabel = isDe ? 'Öffnen' : (isFr ? 'Aller' : 'Vai');
+      pill.hidden = false;
+      pill.innerHTML = `
+        <span class="kids-bookmark-resume-label">${label}</span>
+        <button type="button" class="kids-bookmark-resume-jump" onclick="restoreKidsBookmark('${bookId}')">${goLabel}</button>
+        <button type="button" class="kids-bookmark-resume-dismiss" onclick="dismissKidsBookmarkPrompt('${bookId}')" aria-label="Chiudi">✕</button>
+      `;
+    }
+
+    function switchKidsBook(targetBookId) {
+      const resolved = resolveKidsBookId(targetBookId);
+      const targetKb = getKidsBookEntry(resolved);
+      if (!resolved || !targetKb) return;
+      stopBrowserKaraokeSpeech();
+      if (kidsSentenceKaraokeRaf) {
+        cancelAnimationFrame(kidsSentenceKaraokeRaf);
+        kidsSentenceKaraokeRaf = null;
+      }
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio) kidsAudio.pause();
+      activeKidsPlayingPage = null;
+      document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
+      if (!['seby', 'ale', 'emma'].includes(kidsBookMode)) {
+        kidsBookMode = getPuffinProfileDefaults()?.mode || 'seby';
+      }
+      activeKidFilter = (kidsBookMode === 'ale') ? 'alessandro' : (kidsBookMode === 'seby' ? 'sebastian' : 'all');
+      const learningLangs = getBookLearningLangs(targetKb);
+      if (!userExplicitLang) {
+        currentLang = getBookDefaultLang(targetKb);
+      } else if (!learningLangs.includes(currentLang)) {
+        currentLang = getBookDefaultLang(targetKb);
+      }
+      if (typeof kidsPageIndexBySlug[resolved] !== 'number') {
+        kidsPageIndexBySlug[resolved] = 0;
+      }
+      delete dismissedBookmarkPromptByBook[resolved];
+      kidsSettingsOpen = false;
+      activeTab = resolved;
+      kidsFullscreenEnabled = true;
+      syncStateToUrl();
+      renderAll();
+    }
+
+    function normalizeBubbleAnchor(rawAnchor, fallback) {
+      if (!rawAnchor || typeof rawAnchor !== 'object') return fallback;
+      const top = rawAnchor.top !== undefined
+        ? String(rawAnchor.top)
+        : (typeof rawAnchor.y === 'number' ? `${rawAnchor.y}%` : fallback.top);
+      const left = rawAnchor.left !== undefined
+        ? String(rawAnchor.left)
+        : (typeof rawAnchor.x === 'number' ? `${rawAnchor.x}%` : fallback.left);
+      const maxW = rawAnchor.maxW ? String(rawAnchor.maxW) : fallback.maxW;
+      const rawTail = String(rawAnchor.tail || fallback.tail || 'bottom').toLowerCase();
+      const tail = rawTail.startsWith('top') ? 'top' : 'bottom';
+      const tailLeft = rawAnchor.tailLeft
+        ? String(rawAnchor.tailLeft)
+        : (rawTail.includes('left') ? '25%' : (rawTail.includes('right') ? '75%' : fallback.tailLeft));
+      return { top, left, maxW, tail, tailLeft };
+    }
+
+    function resolveQuizForPageIdx(kb, pageIdx, lang) {
+      const pages = kb?.pages || [];
+      const pObj = pages[pageIdx];
+      if (!pObj) return { quizPageObj: null, quizPageIdx: pageIdx, questions: [], isSpreadQuiz: false, spreadStart: 0, spreadEnd: 0 };
+      const defLang = getBookDefaultLang(kb);
+      const getQs = (obj) => {
+        if (!obj || !obj.questions) return [];
+        return obj.questions[lang] || obj.questions[defLang] || obj.questions.it || obj.questions.fr || obj.questions.de || [];
+      };
+      const directQs = getQs(pObj);
+      if (directQs.length > 0) {
+        const prevObj = (pObj.page % 2 === 0 && !pages[pageIdx - 1]?.is_frontispiece) ? pages[pageIdx - 1] : null;
+        const prevHasQs = prevObj ? getQs(prevObj).length > 0 : false;
+        const isSpread = Boolean(pObj.page % 2 === 0 && prevObj && !prevHasQs);
+        return {
+          quizPageObj: pObj,
+          quizPageIdx: pageIdx,
+          questions: directQs,
+          isSpreadQuiz: isSpread,
+          spreadStart: isSpread ? getKidsDisplayPageNum(prevObj) : getKidsDisplayPageNum(pObj),
+          spreadEnd: getKidsDisplayPageNum(pObj)
+        };
+      }
+      const partnerIdx = (pObj.page % 2 === 1) ? Math.min(pageIdx + 1, pages.length - 1) : Math.max(0, pageIdx - 1);
+      const partnerObj = pages[partnerIdx];
+      const partnerQs = (partnerIdx !== pageIdx && partnerObj) ? getQs(partnerObj) : [];
+      if (partnerQs.length > 0) {
+        const isSpread = !pObj.is_frontispiece && !partnerObj.is_frontispiece;
+        return {
+          quizPageObj: partnerObj,
+          quizPageIdx: partnerIdx,
+          questions: partnerQs,
+          isSpreadQuiz: isSpread,
+          spreadStart: isSpread ? Math.min(getKidsDisplayPageNum(pObj), getKidsDisplayPageNum(partnerObj)) : getKidsDisplayPageNum(partnerObj),
+          spreadEnd: isSpread ? Math.max(getKidsDisplayPageNum(pObj), getKidsDisplayPageNum(partnerObj)) : getKidsDisplayPageNum(partnerObj)
+        };
+      }
+      return { quizPageObj: pObj, quizPageIdx: pageIdx, questions: [], isSpreadQuiz: false, spreadStart: getKidsDisplayPageNum(pObj), spreadEnd: getKidsDisplayPageNum(pObj) };
+    }
+
+    function resolveKidsLevelData(kb, pageObj, levelKey, effLang) {
+      if (!pageObj) return { text: '', tokens: [], audio_mp3: '', audio_ogg: '' };
+      if (effLang === 'en') {
+        return buildEnglishLevelData(pageObj, levelKey, kb);
+      }
+      const defLang = getBookDefaultLang(kb);
+      if (levelKey === 'emma') {
+        if (pageObj.levels?.emma?.[effLang]) return pageObj.levels.emma[effLang];
+        if (isSardegnaBook(kb)) return buildEmmaLevelData(pageObj.page, effLang, kb.story_id);
+        return pageObj.levels?.ale?.[effLang]
+          || pageObj.levels?.emma?.[defLang]
+          || pageObj.levels?.seby?.[effLang]
+          || { text: '', tokens: [], audio_mp3: '', audio_ogg: '' };
+      }
+      return pageObj.levels?.[levelKey]?.[effLang]
+        || pageObj.levels?.[levelKey]?.[defLang]
+        || pageObj.levels?.[levelKey]?.it
+        || pageObj.levels?.seby?.[effLang]
+        || pageObj.levels?.seby?.it
+        || { text: '', tokens: [], audio_mp3: '', audio_ogg: '' };
+    }
+
+    function triggerKidsPageAudio(bookId, pageNum, levelKey, lang) {
+      const kb = getKidsBookEntry(resolveKidsBookId(bookId || activeTab) || bookId || activeTab);
+      const pageObj = kb?.pages?.find(p => p.page === pageNum);
+      if (!pageObj) return;
+      const lvlData = resolveKidsLevelData(kb, pageObj, levelKey, lang);
+      if (lvlData?.audio_mp3) {
+        playKidsPageSentenceKaraoke(lvlData.audio_mp3, lvlData.audio_ogg || '', pageNum, null, lang);
+      } else if (lvlData?.text) {
+        speakKidsTextFallback(lvlData.text, lang);
+      }
+    }
 
     const KIDS_EN_GLOSS = {
       // German -> English
@@ -4374,12 +5657,14 @@
     };
 
     let _sharedGrammarIndexCache = {};
-    function getSharedGrammarIndex(lang) {
-      if (_sharedGrammarIndexCache[lang]) return _sharedGrammarIndexCache[lang];
+    function getSharedGrammarIndex(bookId, lang) {
+      const bid = bookId || activeTab || '';
+      const cacheKey = `${bid}:${lang}`;
+      if (_sharedGrammarIndexCache[cacheKey]) return _sharedGrammarIndexCache[cacheKey];
       const idx = {};
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+      const kb = getKidsBookEntry(bid);
       (kb?.pages || []).forEach(pg => {
-        ['seby', 'ale'].forEach(lvl => {
+        ['seby', 'ale', 'emma'].forEach(lvl => {
           const toks = pg.levels?.[lvl]?.[lang]?.tokens || [];
           toks.forEach(t => {
             const clean = String(t.w || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
@@ -4396,7 +5681,7 @@
           });
         });
       });
-      _sharedGrammarIndexCache[lang] = idx;
+      _sharedGrammarIndexCache[cacheKey] = idx;
       return idx;
     }
 
@@ -4457,10 +5742,14 @@
       return '';
     }
 
-    function buildEmmaLevelData(pageNum, lang) {
+    function buildEmmaLevelData(pageNum, lang, bookId = activeTab) {
+      if (!isSardegnaBook(bookId)) {
+        return { text: '', tokens: [], audio_mp3: '', audio_ogg: '', is_browser_tts: true };
+      }
       const text = KIDS_EMMA_TEXTS_V2[pageNum]?.[lang] || KIDS_EMMA_TEXTS_V2[pageNum]?.it || '';
       const words = text.split(/\s+/).filter(Boolean);
-      const sharedIdx = getSharedGrammarIndex(lang);
+      const sharedIdx = getSharedGrammarIndex(bookId, lang);
+      const kb = getKidsBookEntry(bookId);
       const stopSet = EMMA_STOPWORDS[lang] || EMMA_STOPWORDS.it;
       const verbSet = EMMA_VERBS[lang] || EMMA_VERBS.it;
       const adjSet = EMMA_ADJS[lang] || EMMA_ADJS.it;
@@ -4470,7 +5759,7 @@
       const tokens = words.map((w, idx) => {
         const stripped = w.replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '');
         const clean = stripped.toLowerCase().split(/['’]/).pop();
-        const enG = KIDS_EN_GLOSS[clean] || null;
+        const enG = kb?.en_gloss?.[clean] || KIDS_EN_GLOSS[clean] || null;
         const shared = sharedIdx[clean] || null;
 
         let pos = 'other';
@@ -4569,11 +5858,13 @@
     }
 
     function setKidsSpeedStep(step) {
-      kidsSpeedStep = Math.max(0, Math.min(4, parseInt(step, 10) || 2));
-      try { localStorage.setItem('kos_kids_speed_step', String(kidsSpeedStep)); } catch (_) {}
+      const parsed = parseInt(step, 10);
+      const safeStep = Number.isNaN(parsed) ? 2 : Math.max(0, Math.min(KIDS_SPEED_STEPS.length - 1, parsed));
+      kidsSpeedStep = safeStep;
+      safeStorageSet('kos_kids_speed_step', String(kidsSpeedStep));
       const audio = document.getElementById('kidsStaticAudio');
       if (audio && !audio.paused) {
-        const rate = getKidsAudioPlaybackRate(false);
+        const rate = getKidsAudioPlaybackRate(false, audio.getAttribute('data-playing-lang') || null);
         audio.defaultPlaybackRate = rate;
         audio.playbackRate = rate;
       }
@@ -4705,21 +5996,39 @@
       }
     };
 
-    function buildEnglishLevelData(pageNum, levelKey) {
-      const p = KIDS_EN_BOOK_PAGES[pageNum] || KIDS_EN_BOOK_PAGES[1];
-      const text = p[levelKey] || p.ale || p.seby || '';
-      const words = text.split(/\s+/).filter(Boolean);
-      const tokens = words.map((w, idx) => ({
-        w,
-        pos: 'other',
-        g: '',
-        n: '',
-        s: idx * 0.35,
-        e: (idx + 1) * 0.35,
-        gloss: null,
-        audio_mp3: '',
-        audio_ogg: ''
-      }));
+    function buildEnglishLevelData(pageOrNum, levelKey, kb = null) {
+      const pageObj = (pageOrNum && typeof pageOrNum === 'object') ? pageOrNum : null;
+      const pageNum = pageObj ? pageObj.page : pageOrNum;
+      const bookObj = kb || getKidsBookEntry(activeTab);
+      const prebuilt = pageObj?.translations?.en?.[levelKey]
+        || pageObj?.translations?.en?.ale
+        || pageObj?.translations?.en?.seby;
+      let text = prebuilt?.text || '';
+      const prebuiltTokens = Array.isArray(prebuilt?.tokens) && prebuilt.tokens.length ? prebuilt.tokens : null;
+
+      if (!text && isSardegnaBook(bookObj)) {
+        const p = KIDS_EN_BOOK_PAGES[pageNum] || KIDS_EN_BOOK_PAGES[1];
+        text = p?.[levelKey] || p?.ale || p?.seby || '';
+      }
+      const tokens = prebuiltTokens
+        ? prebuiltTokens.map((t, idx) => ({
+            ...t,
+            s: t.s ?? idx * 0.35,
+            e: t.e ?? (idx + 1) * 0.35,
+            audio_mp3: '',
+            audio_ogg: ''
+          }))
+        : text.split(/\s+/).filter(Boolean).map((w, idx) => ({
+            w,
+            pos: 'other',
+            g: '',
+            n: '',
+            s: idx * 0.35,
+            e: (idx + 1) * 0.35,
+            gloss: null,
+            audio_mp3: '',
+            audio_ogg: ''
+          }));
       return { text, tokens, audio_mp3: '', audio_ogg: '', is_browser_tts: true };
     }
 
@@ -4732,7 +6041,7 @@
 
     function toggleKidsParallelMode() {
       kidsParallelMode = !kidsParallelMode;
-      try { localStorage.setItem('kos_kids_parallel', kidsParallelMode ? '1' : '0'); } catch (_) {}
+      safeStorageSet('kos_kids_parallel', kidsParallelMode ? '1' : '0');
       syncStateToUrl();
       renderActiveBook();
     }
@@ -4742,20 +6051,24 @@
         ? window.PuffinLogin.getCurrentUser()
         : null;
       if (!u) return null;
-      const uid = String(u.id || u.username || u.name || '').toLowerCase();
+      const uid = String(u.id || u.username || u.displayName || u.shortName || u.name || '').toLowerCase();
+      const shortLabel = u.shortName || u.displayName || u.name;
       if (uid.includes('seb')) {
-        return { name: u.name || 'Seby', mode: 'seby', trLang: 'it' };
+        return { name: shortLabel || 'Seby', mode: 'seby', trLang: 'it' };
       }
       if (uid.includes('ale')) {
-        return { name: u.name || 'Ale', mode: 'ale', trLang: 'it' };
+        return { name: shortLabel || 'Ale', mode: 'ale', trLang: 'it' };
+      }
+      if (uid.includes('emma')) {
+        return { name: shortLabel || 'Emma', mode: 'emma', trLang: 'it' };
       }
       if (uid.includes('ricc') || uid.includes('pap') || uid.includes('pallad')) {
-        return { name: u.name || 'Riccardo', mode: 'emma', trLang: 'it' };
+        return { name: shortLabel || 'Riccardo', mode: 'emma', trLang: 'it' };
       }
       if (uid.includes('kate') || uid.includes('mamm')) {
-        return { name: u.name || 'Kate', mode: 'emma', trLang: 'en' };
+        return { name: shortLabel || 'Kate', mode: 'emma', trLang: 'en' };
       }
-      return { name: u.name || u.id || 'Ospite', mode: null, trLang: null };
+      return { name: u.displayName || u.shortName || u.name || u.id || 'Ospite', mode: null, trLang: null };
     }
 
     function applyPuffinUserDefaults(force = false) {
@@ -4767,15 +6080,15 @@
           kidsBookMode = prof.mode;
         }
       }
-      if (prof.trLang && (force || !localStorage.getItem('kos_kids_tr_lang'))) {
+      if (prof.trLang && (force || !safeStorageGet('kos_kids_tr_lang'))) {
         kidsTranslationLang = prof.trLang;
-        try { localStorage.setItem('kos_kids_tr_lang', kidsTranslationLang); } catch (_) {}
+        safeStorageSet('kos_kids_tr_lang', kidsTranslationLang);
       }
     }
 
     function setKidsTranslationLang(trLang) {
       kidsTranslationLang = ['en', 'it', 'fr', 'de'].includes(trLang) ? trLang : 'en';
-      try { localStorage.setItem('kos_kids_tr_lang', kidsTranslationLang); } catch (_) {}
+      safeStorageSet('kos_kids_tr_lang', kidsTranslationLang);
       renderActiveBook();
     }
 
@@ -4809,7 +6122,7 @@
       return all.filter(s => {
         if (!storyMatchesKidFilter(s, activeKidFilter)) return false;
         if (searchQuery) {
-          const q = searchQuery.toLowerCase();
+          const q = String(searchQuery || '').toLowerCase();
           const haystack = [
             s.title, s.title_en, s.short_title, s.short_title_en, s.author, ...(s.recipients || []), s.slug,
             ...(s.assets?.pages || []).map(p => `${p.title || ''} ${p.title_en || ''} ${p.summary || ''}`)
@@ -4840,9 +6153,10 @@
         btn.setAttribute('aria-pressed', isAct ? 'true' : 'false');
       });
 
+      const safeSearchQuery = typeof searchQuery === 'string' ? searchQuery : '';
       const searchEl = document.getElementById('liveSearchInput');
-      if (searchEl && searchEl.value !== searchQuery) {
-        searchEl.value = searchQuery;
+      if (searchEl && searchEl.value !== safeSearchQuery) {
+        searchEl.value = safeSearchQuery;
       }
 
       // Update Carlessian Footer Version, ENV & Add-a-Bug Permalink
@@ -4880,12 +6194,19 @@
         q: searchQuery,
         mode: kidsBookMode || ''
       };
-      try {
-        localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(stateObj));
-      } catch (_) {}
+      safeStorageSet(STATE_STORAGE_KEY, JSON.stringify(stateObj));
 
       const url = new URL(window.location.href);
-      url.searchParams.set('tab', activeTab);
+      const isKidsBookActive = Boolean(kidsBookMode && resolveKidsBookId(activeTab));
+      if (isKidsBookActive) {
+        url.searchParams.set('book', getKidsBookAlias(activeTab));
+        url.searchParams.delete('tab');
+        url.searchParams.delete('story');
+      } else {
+        url.searchParams.delete('book');
+        url.searchParams.delete('story');
+        url.searchParams.set('tab', activeTab);
+      }
       if (kidsBookMode) {
         url.searchParams.set('mode', kidsBookMode);
       } else {
@@ -4906,8 +6227,11 @@
       } else {
         url.searchParams.delete('lang');
       }
-      if (activeKidFilter && activeKidFilter !== 'all') {
-        url.searchParams.set('kid', activeKidFilter);
+      const kidOut = (activeKidFilter && activeKidFilter !== 'all')
+        ? activeKidFilter
+        : (inboundRawKidParam && inboundRawKidParam !== 'all' ? inboundRawKidParam : '');
+      if (kidOut) {
+        url.searchParams.set('kid', kidOut);
       } else {
         url.searchParams.delete('kid');
       }
@@ -4924,19 +6248,38 @@
     function hydrateStateFromUrlAndStorage() {
       let saved = {};
       try {
-        saved = JSON.parse(localStorage.getItem(STATE_STORAGE_KEY) || '{}') || {};
+        const parsed = JSON.parse(safeStorageGet(STATE_STORAGE_KEY) || '{}');
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          saved = parsed;
+        }
       } catch (_) {}
+
+      const savedTab = typeof saved.tab === 'string' ? saved.tab.trim() : '';
+      const savedLang = typeof saved.lang === 'string' ? saved.lang.trim().toLowerCase() : '';
+      const savedMode = (typeof saved.mode === 'string' && ['seby', 'ale', 'emma'].includes(saved.mode)) ? saved.mode : '';
+      const savedKid = typeof saved.kid === 'string' ? saved.kid.trim() : '';
+      const savedQ = typeof saved.q === 'string' ? saved.q : '';
+      const savedPageRaw = saved.page;
+      const savedPage = (typeof savedPageRaw === 'number' && Number.isFinite(savedPageRaw) && savedPageRaw >= 1)
+        ? String(Math.floor(savedPageRaw))
+        : (typeof savedPageRaw === 'string' && /^\d+$/.test(savedPageRaw.trim()) ? savedPageRaw.trim() : null);
 
       const urlParams = new URLSearchParams(window.location.search);
       const rawHash = window.location.hash.replace(/^#/, '');
       const [hashTab, hashPage] = rawHash.split(':');
 
-      const langParam = urlParams.get('lang') || saved.lang || 'it';
+      userExplicitLang = urlParams.has('lang');
+      const langParam = urlParams.get('lang') || savedLang || 'it';
       if (['it', 'en', 'fr', 'de', 'pt'].includes(langParam)) {
         currentLang = langParam;
       }
 
-      const modeParam = urlParams.get('mode') || (urlParams.has('tab') ? '' : (saved.mode || ''));
+      const bookParam = urlParams.get('book');
+      const storyParam = urlParams.get('story');
+      const tabParam = urlParams.get('tab');
+      const isStudioTab = ['studio', 'quaderno', 'kids'].includes((tabParam || hashTab || '').trim().toLowerCase());
+
+      const modeParam = urlParams.get('mode') || ((bookParam || isStudioTab) ? savedMode : '');
       if (modeParam === 'seby' || modeParam === 'ale' || modeParam === 'emma') {
         kidsBookMode = modeParam;
       } else {
@@ -4948,23 +6291,40 @@
       }
       applyPuffinUserDefaults(false);
 
-      const kidParam = urlParams.get('kid') || saved.kid || 'all';
+      inboundRawKidParam = urlParams.has('kid') ? (urlParams.get('kid') || '').trim() : '';
+      const kidParam = urlParams.get('kid') || savedKid || 'all';
       if (['all', 'alessandro', 'sebastian'].includes(kidParam)) {
         activeKidFilter = kidParam;
       }
 
-      searchQuery = urlParams.get('q') ?? saved.q ?? '';
+      const rawUrlQ = urlParams.get('q');
+      searchQuery = typeof rawUrlQ === 'string' ? rawUrlQ : savedQ;
 
-      const tabCandidate = hashTab || urlParams.get('tab') || urlParams.get('story') || saved.tab || '';
-      const pageCandidate = hashPage || urlParams.get('page') || (saved.tab === tabCandidate ? saved.page : null);
+      const safeSavedTab = (savedTab && !savedMode && !resolveKidsBookId(savedTab)) ? savedTab : '';
+      const tabCandidate = bookParam || hashTab || urlParams.get('tab') || storyParam || safeSavedTab || '';
+      const resolvedCandidateKb = resolveKidsBookId(tabCandidate);
+      const resolvedSavedKb = resolveKidsBookId(savedTab);
+      const sameModeLayer = Boolean(kidsBookMode) === Boolean(savedMode);
+      const sameTarget = sameModeLayer && ((savedTab === tabCandidate) || Boolean(resolvedCandidateKb && resolvedSavedKb && resolvedCandidateKb === resolvedSavedKb));
+      const pageCandidate = hashPage || urlParams.get('page') || (sameTarget ? savedPage : null);
 
       applyHeaderControlsState();
-      return { tabCandidate, pageCandidate };
+      return {
+        tabCandidate,
+        pageCandidate,
+        hasBookParam: Boolean(bookParam),
+        hasStoryParam: Boolean(storyParam),
+        hasLangParam: urlParams.has('lang'),
+        hasModeParam: urlParams.has('mode'),
+        hasPageParam: urlParams.has('page') || Boolean(hashPage),
+        savedTab
+      };
     }
 
     window.addEventListener('hashchange', () => {
       const rawHash = window.location.hash.replace(/^#/, '');
       const [hashTab] = rawHash.split(':');
+      const resolvedKb = resolveKidsBookId(hashTab);
       if (hashTab === 'indice' || hashTab === 'vetrina') {
         selectTab('indice');
       } else if (hashTab === 'netflix' || hashTab === 'storieflix' || hashTab === 'cinema') {
@@ -4972,6 +6332,8 @@
       } else if (hashTab && (catalog.stories || []).some(s => s.slug === hashTab || s.id === hashTab)) {
         const matched = (catalog.stories || []).find(s => s.slug === hashTab || s.id === hashTab);
         if (matched) selectTab(matched.slug);
+      } else if (resolvedKb) {
+        launchKidsBook(resolvedKb, kidsBookMode || getPuffinProfileDefaults()?.mode || 'seby');
       }
     });
 
@@ -4990,7 +6352,7 @@
     }
 
     async function initApp() {
-      const { tabCandidate, pageCandidate } = hydrateStateFromUrlAndStorage();
+      const { tabCandidate, pageCandidate, hasBookParam, hasStoryParam, hasLangParam, hasModeParam, hasPageParam, savedTab } = hydrateStateFromUrlAndStorage();
 
       try {
         const res = await fetch(`stories.yaml?v=${APP_VERSION}`, { cache: 'no-cache' });
@@ -5015,35 +6377,68 @@
       const stories = catalog.stories || [];
       stories.forEach(s => { pageIndexBySlug[s.slug] = 0; });
 
+      const resolvedKbId = resolveKidsBookId(tabCandidate);
+      const matchedStoryCandidate = stories.find(s => s.slug === tabCandidate || s.id === tabCandidate);
+
       if (tabCandidate === 'indice' || tabCandidate === 'vetrina') {
         activeTab = 'indice';
       } else if (tabCandidate === 'netflix' || tabCandidate === 'storieflix' || tabCandidate === 'cinema') {
         activeTab = 'netflix';
-      } else if (tabCandidate === 'studio' || tabCandidate === 'quaderno') {
-        activeTab = 'storia-sardegna-cala-gonone-arbatax-famiglia';
-        if (!kidsBookMode) kidsBookMode = (activeKidFilter === 'alessandro') ? 'ale' : 'seby';
+      } else if (tabCandidate === 'studio' || tabCandidate === 'quaderno' || tabCandidate === 'kids') {
+        activeTab = resolveKidsBookId(savedTab) || getOrderedKidsBookIds()[0] || SARDEGNA_BOOK_ID;
+        if (!kidsBookMode) {
+          kidsBookMode = getPuffinProfileDefaults()?.mode || ((activeKidFilter === 'alessandro') ? 'ale' : 'seby');
+        }
         kidsFullscreenEnabled = true;
-      } else if (stories.some(s => s.slug === tabCandidate || s.id === tabCandidate)) {
-        const matched = stories.find(s => s.slug === tabCandidate || s.id === tabCandidate);
-        activeTab = matched.slug;
+      } else if (resolvedKbId && (hasBookParam || (hasStoryParam && tabCandidate !== matchedStoryCandidate?.slug) || !matchedStoryCandidate || kidsBookMode)) {
+        activeTab = resolvedKbId;
+        if (!kidsBookMode) {
+          kidsBookMode = getPuffinProfileDefaults()?.mode || ((activeKidFilter === 'alessandro') ? 'ale' : 'seby');
+        }
+        kidsFullscreenEnabled = true;
+      } else if (matchedStoryCandidate) {
+        activeTab = matchedStoryCandidate.slug;
       } else if (stories.length > 0) {
         activeTab = stories[0].slug;
       } else {
         activeTab = 'indice';
       }
 
-      if (kidsBookMode && !(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab])) {
-        activeTab = Object.keys(window.KIDS_BOOKS_CATALOG || {})[0] || 'storia-sardegna-cala-gonone-arbatax-famiglia';
+      if (kidsBookMode && !getKidsBookEntry(activeTab)) {
+        activeTab = getOrderedKidsBookIds()[0] || SARDEGNA_BOOK_ID;
       }
 
-      if (pageCandidate && activeTab !== 'indice' && activeTab !== 'netflix') {
-        const matchedStory = stories.find(s => s.slug === activeTab);
-        if (matchedStory) {
-          const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
-          const pNum = parseInt(pageCandidate, 10);
-          if (kidsBookMode && kb && !isNaN(pNum) && pNum >= 1) {
-            kidsPageIndexBySlug[activeTab] = Math.min(kb.pages.length - 1, pNum - 1);
-          } else {
+      const activeKb = getKidsBookEntry(activeTab);
+      if (kidsBookMode && activeKb) {
+        const learningLangs = getBookLearningLangs(activeKb);
+        const resolvedSavedTab = resolveKidsBookId(savedTab) || savedTab;
+        if (!hasLangParam && (hasBookParam || hasStoryParam) && resolvedSavedTab !== activeTab && activeKb.default_lang) {
+          currentLang = resolveBookLearningLang(activeKb, activeKb.default_lang);
+        } else if (!learningLangs.includes(currentLang)) {
+          currentLang = getBookDefaultLang(activeKb);
+        }
+      }
+
+      const savedBmForBook = (kidsBookMode && activeKb && (hasBookParam || hasStoryParam) && !hasPageParam)
+        ? getKidsBookmark(activeTab)
+        : null;
+
+      if (savedBmForBook && savedBmForBook.page >= 1 && Array.isArray(activeKb.pages)) {
+        kidsPageIndexBySlug[activeTab] = Math.min(activeKb.pages.length - 1, savedBmForBook.page - 1);
+        dismissedBookmarkPromptByBook[activeTab] = true;
+        if (!hasModeParam && !getPuffinProfileDefaults()?.mode && ['seby', 'ale', 'emma'].includes(savedBmForBook.mode)) {
+          kidsBookMode = savedBmForBook.mode;
+        }
+        if (!hasLangParam && savedBmForBook.lang) {
+          currentLang = resolveBookLearningLang(activeKb, savedBmForBook.lang);
+        }
+      } else if (pageCandidate && activeTab !== 'indice' && activeTab !== 'netflix') {
+        const pNum = parseInt(pageCandidate, 10);
+        if (kidsBookMode && activeKb && Array.isArray(activeKb.pages) && !isNaN(pNum) && pNum >= 1) {
+          kidsPageIndexBySlug[activeTab] = Math.min(activeKb.pages.length - 1, pNum - 1);
+        } else {
+          const matchedStory = stories.find(s => s.slug === activeTab);
+          if (matchedStory) {
             const totalSlides = getSlidesForStory(matchedStory).length;
             if (pageCandidate === 'video' || pageCandidate === 'film') {
               pageIndexBySlug[activeTab] = Math.max(0, totalSlides - 1);
@@ -5054,6 +6449,7 @@
         }
       }
 
+      syncStateToUrl();
       renderAll();
     }
 
@@ -5134,7 +6530,9 @@
       return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
     let fallbackWordCounter = 0;
@@ -5373,11 +6771,19 @@
        ========================================================================= */
     function getStoryRatingInfo(story) {
       if (!story) return { score: 7.8, votes: 3, threshold: 8.0 };
-      const saved = JSON.parse(localStorage.getItem(`kos_vote_${story.slug}`) || 'null');
+      let saved = null;
+      try {
+        const parsed = JSON.parse(safeStorageGet(`kos_vote_${story.slug}`) || 'null');
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          saved = parsed;
+        }
+      } catch (_) {
+        saved = null;
+      }
       const baseScore = story.rating?.score || 7.8;
       const baseVotes = story.rating?.votes || 3;
       const threshold = story.rating?.unlock_threshold || 8.0;
-      if (saved && typeof saved.userVote === 'number') {
+      if (saved && typeof saved.userVote === 'number' && Number.isFinite(saved.userVote)) {
         const newVotes = baseVotes + 1;
         const newScore = Number(((baseScore * baseVotes + saved.userVote) / newVotes).toFixed(1));
         return { score: newScore, votes: newVotes, threshold, userVote: saved.userVote };
@@ -5440,7 +6846,7 @@
     function castStoryVote(voteVal) {
       const story = (catalog.stories || []).find(s => s.slug === activeTab) || catalog.stories?.[0];
       if (!story) return;
-      localStorage.setItem(`kos_vote_${story.slug}`, JSON.stringify({
+      safeStorageSet(`kos_vote_${story.slug}`, JSON.stringify({
         userVote: voteVal,
         votedAt: new Date().toISOString()
       }));
@@ -5486,15 +6892,28 @@
       stopBrowserKaraokeSpeech();
       const narratorAudio = document.getElementById('narratorAudio');
       if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
-      currentLang = lang;
+      if (kidsSentenceKaraokeRaf) {
+        cancelAnimationFrame(kidsSentenceKaraokeRaf);
+        kidsSentenceKaraokeRaf = null;
+      }
+      const kidsAudio = document.getElementById('kidsStaticAudio');
+      if (kidsAudio && !kidsAudio.paused) kidsAudio.pause();
+      activeKidsPlayingPage = null;
+      document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
+      updateKidsListenButtonsState();
+
+      userExplicitLang = true;
+      const kb = getKidsBookEntry(activeTab);
+      currentLang = (kidsBookMode && kb) ? resolveBookLearningLang(kb, lang) : lang;
       syncStateToUrl();
       renderAll();
     }
 
     function setKidFilter(kid) {
+      inboundRawKidParam = '';
       activeKidFilter = kid || 'all';
       // When viewing a story with a Kids Book (or clicking Ale/Seby at the very top), switch directly into Ale/Seby Kids Book version!
-      const currentKb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+      const currentKb = getKidsBookEntry(activeTab);
       if (activeTab !== 'indice' && activeTab !== 'netflix' && currentKb) {
         if (kid === 'alessandro') {
           launchKidsBook(activeTab, 'ale');
@@ -5529,15 +6948,29 @@
       const kidsAudio = document.getElementById('kidsStaticAudio');
       if (kidsAudio) kidsAudio.pause();
 
+      const resolvedKb = resolveKidsBookId(tabSlug);
+      const inStories = (catalog.stories || []).some(s => s.slug === tabSlug);
+      let nextTab = tabSlug;
+
       if (!keepKidsMode) {
-        const hasKidsBook = Boolean(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[tabSlug]);
-        if (!hasKidsBook || tabSlug === 'indice' || tabSlug === 'netflix') {
+        if (tabSlug === 'indice' || tabSlug === 'netflix') {
+          kidsBookMode = null;
+          document.body.classList.remove('kids-fullscreen-book');
+        } else if (resolvedKb && !inStories) {
+          nextTab = resolvedKb;
+          if (!kidsBookMode) {
+            kidsBookMode = getPuffinProfileDefaults()?.mode || ((activeKidFilter === 'alessandro') ? 'ale' : 'seby');
+          }
+          kidsFullscreenEnabled = true;
+        } else {
           kidsBookMode = null;
           document.body.classList.remove('kids-fullscreen-book');
         }
+      } else if (resolvedKb) {
+        nextTab = resolvedKb;
       }
 
-      activeTab = tabSlug;
+      activeTab = nextTab;
       syncStateToUrl();
       renderTabsStrip();
 
@@ -5561,10 +6994,13 @@
       const bookViewportEl = document.getElementById('bookViewport');
       const narratorBarEl = document.getElementById('narratorBar');
       const floatBarEl = document.getElementById('kidsNotebookFloatingBar');
+      const resumePillEl = document.getElementById('kidsBookmarkResumePill');
+      const inStories = (catalog.stories || []).some(s => s.slug === activeTab);
 
       if (activeTab === 'indice') {
         document.body.classList.remove('kids-fullscreen-book');
         if (floatBarEl) floatBarEl.hidden = true;
+        if (resumePillEl) resumePillEl.hidden = true;
         indexViewEl.hidden = false;
         if (netflixViewEl) netflixViewEl.hidden = true;
         bookViewportEl.hidden = true;
@@ -5574,6 +7010,7 @@
       } else if (activeTab === 'netflix') {
         document.body.classList.remove('kids-fullscreen-book');
         if (floatBarEl) floatBarEl.hidden = true;
+        if (resumePillEl) resumePillEl.hidden = true;
         indexViewEl.hidden = true;
         if (netflixViewEl) netflixViewEl.hidden = false;
         bookViewportEl.hidden = true;
@@ -5584,7 +7021,7 @@
         indexViewEl.hidden = true;
         if (netflixViewEl) netflixViewEl.hidden = true;
         bookViewportEl.hidden = false;
-        if (storyActionsEl) storyActionsEl.hidden = false;
+        if (storyActionsEl) storyActionsEl.hidden = Boolean(kidsBookMode || !inStories);
         renderActiveBook();
       }
     }
@@ -5648,12 +7085,20 @@
     }
 
     function openStudioVersionTab() {
-      const hasCurrentKb = Boolean(window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab]);
-      const defaultKbSlug = Object.keys(window.KIDS_BOOKS_CATALOG || {})[0] || 'storia-sardegna-cala-gonone-arbatax-famiglia';
-      const targetSlug = hasCurrentKb ? activeTab : defaultKbSlug;
+      let savedTab = '';
+      try {
+        const parsed = JSON.parse(safeStorageGet(STATE_STORAGE_KEY) || '{}');
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed) && typeof parsed.tab === 'string') {
+          savedTab = parsed.tab.trim();
+        }
+      } catch (_) {}
+      const targetSlug = resolveKidsBookId(activeTab)
+        || resolveKidsBookId(savedTab)
+        || getOrderedKidsBookIds()[0]
+        || SARDEGNA_BOOK_ID;
       const puffinProf = getPuffinProfileDefaults();
       const mode = puffinProf?.mode || ((activeKidFilter === 'alessandro') ? 'ale' : (kidsBookMode || 'seby'));
-      if (puffinProf?.trLang && !localStorage.getItem('kos_kids_tr_lang')) {
+      if (puffinProf?.trLang && !safeStorageGet('kos_kids_tr_lang')) {
         kidsTranslationLang = puffinProf.trLang;
       }
       launchKidsBook(targetSlug, mode);
@@ -5706,44 +7151,141 @@
         </button>
       `;
 
-      // Only the 3 main mode buttons in the top bar (no individual story clutter!)
-      strip.innerHTML = indiceBtn + netflixBtn + studioBtn;
+      const libreriaCount = Object.keys(window.KIDS_BOOKS_CATALOG || {}).length;
+      const libreriaSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>';
+      const fsCountEl = document.getElementById('kidsFullscreenBooksCount');
+      if (fsCountEl) fsCountEl.textContent = String(libreriaCount);
+      const booksLinkBtn = `
+        <a href="books/" class="tab-pill notranslate" translate="no"
+          style="text-decoration:none;border-color:rgba(245,158,11,0.45);"
+          title="Libreria Libri Acquerello (Vista YouTube)">
+          ${libreriaSvg}
+          <span>Libreria</span>
+          <span class="books-count-badge">${libreriaCount}</span>
+        </a>
+      `;
+
+      // Main mode buttons + Bookshelf link in the top bar
+      strip.innerHTML = indiceBtn + netflixBtn + studioBtn + booksLinkBtn;
     }
 
     function getVisibleKidModesForCurrentUser() {
       const user = (window.PuffinLogin && typeof window.PuffinLogin.getCurrentUser === 'function')
         ? window.PuffinLogin.getCurrentUser()
         : null;
-      const uid = user?.id || '';
+      const uid = String(user?.id || '').toLowerCase();
       if (uid === 'seby') return ['seby'];
       if (uid === 'ale') return ['ale'];
-      return ['seby', 'ale']; // Riccardo, Kate, Nonna Lucilla, or Guest see both!
+      if (uid === 'emma') return ['emma'];
+      return ['seby', 'ale', 'emma'];
     }
 
     function launchKidsBook(storySlug, mode) {
-      kidsBookMode = mode;
-      activeKidFilter = (mode === 'ale') ? 'alessandro' : 'sebastian';
+      const targetId = resolveKidsBookId(storySlug) || storySlug;
+      const kb = getKidsBookEntry(targetId);
+      if (!kb) return;
+      const isBookSwitch = targetId !== activeTab || !kidsBookMode;
+      kidsBookMode = ['seby', 'ale', 'emma'].includes(mode) ? mode : 'seby';
+      activeKidFilter = (kidsBookMode === 'ale') ? 'alessandro' : (kidsBookMode === 'seby' ? 'sebastian' : 'all');
       kidsFullscreenEnabled = true;
-      if (!['it', 'fr', 'de'].includes(currentLang)) {
+      if (kb) {
+        if (isBookSwitch && !userExplicitLang) {
+          currentLang = getBookDefaultLang(kb);
+        } else {
+          currentLang = resolveBookLearningLang(kb, currentLang);
+        }
+      } else if (!['it', 'fr', 'de'].includes(currentLang)) {
         currentLang = 'it';
       }
-      if (typeof kidsPageIndexBySlug[storySlug] !== 'number') {
-        kidsPageIndexBySlug[storySlug] = 0;
+      if (typeof kidsPageIndexBySlug[targetId] !== 'number') {
+        kidsPageIndexBySlug[targetId] = 0;
       }
-      selectTab(storySlug, true);
+      selectTab(targetId, true);
     }
 
     function exitKidsBookToAdult() {
       const kidsAudio = document.getElementById('kidsStaticAudio');
       if (kidsAudio) kidsAudio.pause();
+      stopBrowserKaraokeSpeech();
+      kidsSettingsOpen = false;
       kidsBookMode = null;
       document.body.classList.remove('kids-fullscreen-book');
       const floatBarEl = document.getElementById('kidsNotebookFloatingBar');
       if (floatBarEl) floatBarEl.hidden = true;
+      const resumePillEl = document.getElementById('kidsBookmarkResumePill');
+      if (resumePillEl) resumePillEl.hidden = true;
+      const inStories = (catalog.stories || []).some(s => s.slug === activeTab);
+      if (!inStories && activeTab !== 'indice' && activeTab !== 'netflix') {
+        selectTab('indice');
+        return;
+      }
       syncStateToUrl();
       if (activeTab !== 'indice' && activeTab !== 'netflix') {
         renderActiveBook();
       }
+    }
+
+    function renderKidsIndexShelf(visibleKidModes) {
+      const shelf = document.getElementById('kidsIndexShelf');
+      if (!shelf) return;
+      const bookIds = getOrderedKidsBookIds();
+      if (!bookIds.length) {
+        shelf.hidden = true;
+        shelf.innerHTML = '';
+        return;
+      }
+      shelf.hidden = false;
+      const lang = ['fr', 'it', 'de'].includes(currentLang) ? currentLang : 'it';
+      const shelfTitle = lang === 'fr'
+        ? '🎨 Bibliothèque Aquarelle (Studio · 3 Langues & Quiz Antolin)'
+        : (lang === 'de' ? '🎨 Aquarell-Bibliothek (Studio · 3 Sprachen & Antolin-Quiz)' : '🎨 Biblioteca Acquerello (Studio Version · 3 Lingue & Quiz Antolin)');
+      const cardsHtml = bookIds.map(bid => {
+        const kb = getKidsBookEntry(bid);
+        if (!kb) return '';
+        const bLang = resolveBookLearningLang(kb, lang);
+        const bTitle = kb.title?.[bLang] || kb.title?.it || kb.title?.fr || bid;
+        const bPages = kb.total_pages || kb.pages?.length || 16;
+        const bAuthor = kb.author_label || 'Studio Acquerello';
+        const firstArtPage = (kb.pages || []).find(p => !p?.is_frontispiece && p?.image) || kb.pages?.[0];
+        const thumb = firstArtPage?.image ? `${firstArtPage.image}?v=${APP_VERSION}` : '';
+        const bm = getKidsBookmark(bid);
+        const bmBadge = bm ? `<span class="num-chip num-chip--warn">🔖 Pag. ${getKidsBookmarkDisplayPage(kb, bm.page)}</span>` : '';
+        const defMode = visibleKidModes.includes('emma') && !visibleKidModes.includes('seby')
+          ? 'emma'
+          : (visibleKidModes[0] || 'seby');
+        return `
+          <div class="kids-index-shelf-book">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+              ${thumb ? `<img src="${thumb}" alt="${escapeHtml(bTitle)}" style="width:46px;height:62px;object-fit:cover;border-radius:8px;border:1.5px solid rgba(245,158,11,0.55);flex-shrink:0;">` : ''}
+              <div style="min-width:0;">
+                <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.95rem;color:#fef3c7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                  ${escapeHtml(bTitle)}
+                </div>
+                <div style="font-size:0.75rem;color:#cbd5e1;margin-top:2px;">
+                  ${escapeHtml(bAuthor)} · ${bPages}p · ${getBookLearningLangs(kb).map(l => l.toUpperCase()).join('/')}
+                </div>
+                ${bmBadge ? `<div style="margin-top:4px;">${bmBadge}</div>` : ''}
+              </div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;">
+              ${bm ? `<button type="button" class="kids-pill-control" onclick="restoreKidsBookmark('${bid}')">🔖 Riprendi</button>` : ''}
+              <button type="button" class="page-turn-btn primary" onclick="launchKidsBook('${bid}', '${defMode}')">📖 Apri (${bPages}p)</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      const shelfLibCount = Object.keys(window.KIDS_BOOKS_CATALOG || {}).length;
+      const shelfLibSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>';
+      shelf.innerHTML = `
+        <div class="kids-index-shelf-header">
+          <span>${shelfTitle}</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:0.76rem;color:#fcd34d;opacity:0.9;">Seby (A2) · Ale (B1) · Emma (B2/C1)</span>
+            <a href="books/" class="kids-pill-control notranslate" translate="no" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">${shelfLibSvg}<span>Vista Libreria</span><span class="books-count-badge">${shelfLibCount}</span></a>
+          </div>
+        </div>
+        <div class="kids-index-shelf-cards">${cardsHtml}</div>
+      `;
     }
 
     function renderIndexView() {
@@ -5752,6 +7294,7 @@
       const grid = document.getElementById('indexGrid');
       const ageUnit = currentLang === 'en' ? 'yo' : 'a';
       const visibleKidModes = getVisibleKidModesForCurrentUser();
+      renderKidsIndexShelf(visibleKidModes);
 
       grid.innerHTML = stories.map((s) => {
         const origIdx = allStories.indexOf(s) + 1;
@@ -5773,23 +7316,24 @@
           ? `#${origIdx} · ✍️ ${authorObj.name} → ❤️ ${getPersonDisplayName(firstRecipient)}`
           : `#${origIdx} · ${authorObj.name} (${s.author_age_at_recording}${ageUnit})`;
 
-        const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[s.slug];
+        const kb = getKidsBookEntry(s.slug);
         let kidsButtonsHtml = '';
         if (kb) {
+          const kbTotalPages = kb.total_pages || kb.pages?.length || 16;
           const sebyBtn = visibleKidModes.includes('seby') ? `
             <button type="button" class="kids-img-launch-btn"
               onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); launchKidsBook('${s.slug}', 'seby')"
-              title="Libro Illustrato Acquerello 16 pagine + Quiz Antolin per Seby (6-7 anni)">
+              title="Libro Illustrato Acquerello ${kbTotalPages} pagine + Quiz Antolin per Seby (6-7 anni)">
               <img src="assets/buttons/seby_leggi_qui.jpg" alt="Seby">
-              <span>${currentLang === 'fr' ? '🧒 Seby lis ici ! (16p)' : '🧒 Seby leggi qui! (16p)'}</span>
+              <span>${currentLang === 'fr' ? `🧒 Seby lis ici ! (${kbTotalPages}p)` : `🧒 Seby leggi qui! (${kbTotalPages}p)`}</span>
             </button>
           ` : '';
           const aleBtn = visibleKidModes.includes('ale') ? `
             <button type="button" class="kids-img-launch-btn"
               onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); launchKidsBook('${s.slug}', 'ale')"
-              title="Libro Illustrato Acquerello 16 pagine + Quiz Antolin per Ale (8-9 anni)">
+              title="Libro Illustrato Acquerello ${kbTotalPages} pagine + Quiz Antolin per Ale (8-9 anni)">
               <img src="assets/buttons/ale_leggi_qui.jpg" alt="Ale">
-              <span>${currentLang === 'fr' ? '👦 Ale lis ici ! (16p)' : '👦 Ale leggi qui! (16p)'}</span>
+              <span>${currentLang === 'fr' ? `👦 Ale lis ici ! (${kbTotalPages}p)` : `👦 Ale leggi qui! (${kbTotalPages}p)`}</span>
             </button>
           ` : '';
           kidsButtonsHtml = `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">${sebyBtn}${aleBtn}</div>`;
@@ -6390,27 +7934,86 @@
     const KIDS_SPEAKER_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
     const KIDS_PAUSE_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`;
 
+    function getKidsBookRibbonMeta(kb, lang) {
+      const sid = kb?.story_id || '';
+      const l = ['fr', 'it', 'de'].includes(lang) ? lang : 'it';
+      if (sid === SARDEGNA_BOOK_ID) {
+        const titles = {
+          it: 'Vacanze in Sardegna',
+          fr: 'Vacances en Sardaigne',
+          de: 'Urlaub auf Sardinien'
+        };
+        const authors = {
+          it: 'di Riccardo Carlesso',
+          fr: 'par Riccardo Carlesso',
+          de: 'von Riccardo Carlesso'
+        };
+        return { emoji: '🏖️', title: titles[l] || titles.it, author: authors[l] || authors.it };
+      }
+      if (sid === 'le-petit-prince') {
+        const titles = {
+          fr: 'Le Petit Prince',
+          it: 'Il Piccolo Principe',
+          de: 'Der kleine Prinz'
+        };
+        const authors = {
+          fr: 'par Antoine de Saint-Exupéry',
+          it: 'di Antoine de Saint-Exupéry',
+          de: 'von Antoine de Saint-Exupéry'
+        };
+        return { emoji: '👑', title: kb?.title?.[l] || titles[l] || 'Le Petit Prince', author: authors[l] || authors.it };
+      }
+      return {
+        emoji: '📖',
+        title: kb?.title?.[l] || kb?.title?.it || kb?.title?.fr || sid,
+        author: kb?.author_label || ''
+      };
+    }
+
     function isKidsMobileSinglePageMode() {
       if (typeof window === 'undefined') return false;
       const w = window.innerWidth || document.documentElement.clientWidth || 1024;
       const h = window.innerHeight || document.documentElement.clientHeight || 768;
-      // Single-page mode on narrow screens (< 768px) or portrait orientation on mobile/tablet (<= 900px and height >= width)
-      return (w < 768) || (h >= w && w <= 900);
+      // Single-page mode on portrait narrow screens (< 768px & h > w) or portrait mobile/tablet (<= 900px and h >= w)
+      return (w < 768 && h > w) || (h >= w && w <= 900);
     }
 
-    function renderKidsLaunchBar(story) {
+    function renderKidsLaunchBar(kbOrStory, optionalStory = null) {
       const bar = document.getElementById('kidsReadingLaunchBar');
       const floatBar = document.getElementById('kidsNotebookFloatingBar');
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story?.slug];
+      const titleRibbon = document.getElementById('kidsBookTitleRibbon');
+      const bookId = typeof kbOrStory === 'string'
+        ? kbOrStory
+        : (kbOrStory?.story_id || kbOrStory?.slug || optionalStory?.slug || activeTab);
+      const kb = (kbOrStory && typeof kbOrStory === 'object' && Array.isArray(kbOrStory.pages))
+        ? kbOrStory
+        : getKidsBookEntry(resolveKidsBookId(bookId) || bookId);
       if (!kb) {
         if (bar) { bar.hidden = true; bar.innerHTML = ''; }
         if (floatBar) { floatBar.hidden = true; floatBar.innerHTML = ''; }
+        if (titleRibbon) { titleRibbon.hidden = true; titleRibbon.innerHTML = ''; }
         document.body.classList.remove('kids-fullscreen-book');
         return;
       }
 
       const visibleModes = getVisibleKidModesForCurrentUser();
-      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+      const lang = resolveBookLearningLang(kb, currentLang);
+      const totalPages = kb.total_pages || kb.pages?.length || 16;
+      const allBookIds = getOrderedKidsBookIds();
+      const fsCountEl = document.getElementById('kidsFullscreenBooksCount');
+      if (fsCountEl) fsCountEl.textContent = String(Object.keys(window.KIDS_BOOKS_CATALOG || {}).length);
+
+      if (titleRibbon) {
+        if (kidsBookMode) {
+          const rm = getKidsBookRibbonMeta(kb, lang);
+          const ornamentSvg = `<svg class="kids-book-title-ribbon-ornament" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1.2L9.8 6.2L14.8 8L9.8 9.8L8 14.8L6.2 9.8L1.2 8L6.2 6.2Z"/></svg>`;
+          titleRibbon.innerHTML = `${ornamentSvg}<span class="kids-book-title-ribbon-main">${escapeHtml(rm.title)}</span>${rm.author ? `<span class="kids-book-title-ribbon-author">· ${escapeHtml(rm.author)}</span>` : ''}${ornamentSvg}`;
+          titleRibbon.hidden = false;
+        } else {
+          titleRibbon.hidden = true;
+          titleRibbon.innerHTML = '';
+        }
+      }
 
       if (kidsBookMode) {
         const isSinglePage = isKidsMobileSinglePageMode();
@@ -6421,7 +8024,7 @@
           const isDe = (lang === 'de');
           const isFr = (lang === 'fr');
           const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
-          const rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, (kb.pages?.length || 1) - 1));
+          const rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[kb.story_id] || 0, (kb.pages?.length || 1) - 1));
           const leftIdx = (isSinglePage || kidsParallelMode) ? rawIdx : (rawIdx - (rawIdx % 2));
           const rightIdx = (isSinglePage || kidsParallelMode) ? rawIdx : Math.min(leftIdx + 1, (kb.pages?.length || 1) - 1);
           const leftPage = kb.pages?.[leftIdx];
@@ -6429,42 +8032,53 @@
           const leftLang = lang;
           const rightLang = kidsParallelMode ? getKidsParallelRightLang(lang) : lang;
 
+          const audioEl = document.getElementById('kidsStaticAudio');
+          const playingLang = audioEl?.getAttribute('data-playing-lang') || '';
+
           const buildPageMagicGroupHtml = (pObj, pIdx, includeQuiz = false, overrideLang = null, includeListen = true) => {
             if (!pObj) return '';
-            const effLang = ['en', 'it', 'fr', 'de'].includes(overrideLang || lang) ? (overrideLang || lang) : 'it';
-            const lvlData = (effLang === 'en')
-              ? buildEnglishLevelData(pObj.page, levelKey)
-              : ((levelKey === 'emma')
-                ? (pObj.levels?.emma?.[effLang] || buildEmmaLevelData(pObj.page, effLang))
-                : (pObj.levels?.[levelKey]?.[effLang] || pObj.levels?.[levelKey]?.it || pObj.levels?.seby?.it || {}));
-            const qs = pObj.questions?.[lang] || pObj.questions?.it || [];
-            const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, pObj.page, qs);
-            const isPlayingThisPage = (activeKidsPlayingPage === pObj.page && !document.getElementById('kidsStaticAudio')?.paused);
+            const effLang = ['en', 'it', 'fr', 'de'].includes(overrideLang || lang) ? (overrideLang || lang) : lang;
+            const lvlData = resolveKidsLevelData(kb, pObj, levelKey, effLang);
+            const quizInfo = includeQuiz ? resolveQuizForPageIdx(kb, pIdx, lang) : null;
+            const qs = quizInfo?.questions || [];
+            const showListen = Boolean(includeListen && !pObj.is_frontispiece);
+            const showQuiz = Boolean(includeQuiz && qs.length > 0);
+            if (!showListen && !showQuiz) return '';
+            const quizTargetPage = quizInfo?.quizPageObj?.page || pObj.page;
+            const prog = getKidsPageQuizProgress(kb.story_id, levelKey, lang, quizTargetPage, qs);
+            const isPlayingThisPage = Boolean(
+              activeKidsPlayingPage === pObj.page &&
+              audioEl && !audioEl.paused &&
+              (!playingLang || playingLang === effLang)
+            );
             const listenLbl = isPlayingThisPage ? KIDS_PAUSE_SVG : KIDS_SPEAKER_SVG;
             const langTag = effLang.toUpperCase();
+            const dispPno = getKidsDisplayPageNum(pObj);
             const listenTitle = effLang === 'en'
-              ? `Listen / Pause Page ${pObj.page} (EN)`
+              ? `Listen / Pause Page ${dispPno} (EN)`
               : (effLang === 'de'
-                ? `Seite ${pObj.page} (${langTag}) vorlesen / Pause`
-                : (effLang === 'fr' ? `Écouter / Pause page ${pObj.page} (${langTag})` : `Ascolta / Pausa Pagina ${pObj.page} (${langTag})`));
+                ? `Seite ${dispPno} (${langTag}) vorlesen / Pause`
+                : (effLang === 'fr' ? `Écouter / Pause page ${dispPno} (${langTag})` : `Ascolta / Pausa Pagina ${dispPno} (${langTag})`));
             const quizLbl = `❓ ⭐${prog.correct}/${prog.total}`;
             const listenAction = lvlData.audio_mp3
-              ? `playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page})`
-              : (effLang === 'en'
-                ? `speakKidsTextFallback(KIDS_EN_BOOK_PAGES[${pObj.page}]?.['${levelKey}'] || '', 'en')`
-                : `speakKidsTextFallback(KIDS_EMMA_TEXTS_V2[${pObj.page}]?.['${effLang}'] || '', '${effLang}')`);
-            const listenHtml = includeListen ? `
+              ? `playKidsPageSentenceKaraoke('${lvlData.audio_mp3 || ''}', '${lvlData.audio_ogg || ''}', ${pObj.page}, null, '${effLang}')`
+              : `triggerKidsPageAudio('${kb.story_id}', ${pObj.page}, '${levelKey}', '${effLang}')`;
+            const quizTitle = quizInfo?.isSpreadQuiz
+              ? `Quiz Antolin (Pagine ${quizInfo.spreadStart}–${quizInfo.spreadEnd})`
+              : `Quiz Antolin (Pagina ${getKidsDisplayPageNum(quizInfo?.quizPageObj || pObj)})`;
+            const listenHtml = showListen ? `
                 <button type="button" class="kids-min-icon-btn listen-pill ${isPlayingThisPage ? 'active' : ''}"
                   data-listen-page="${pObj.page}"
+                  data-listen-lang="${effLang}"
                   onclick="${listenAction}"
                   aria-label="${listenTitle}"
                   title="${listenTitle}">
                   ${listenLbl}
                 </button>` : '';
-            const quizHtml = includeQuiz ? `
+            const quizHtml = showQuiz ? `
                 <button type="button" class="kids-pill-control quiz-pill"
-                  onclick="openKidsPageQuizModal(${pIdx})"
-                  title="Quiz Antolin (Pagina ${pObj.page})">
+                  onclick="openKidsPageQuizModal(${quizInfo.quizPageIdx})"
+                  title="${quizTitle}">
                   ${quizLbl}
                 </button>` : '';
             return `
@@ -6485,11 +8099,54 @@
                  <span style="opacity:0.8;">Base: ${trLangBadge}</span>
                </div>`
             : '';
-          const hasEmmaLevel = true;
+
+          const bookSelectOptionsHtml = allBookIds.map(bid => {
+            const b = getKidsBookEntry(bid);
+            const bLang = resolveBookLearningLang(b, lang);
+            const bTitle = b?.title?.[bLang] || b?.title?.it || b?.title?.fr || bid;
+            const bPages = b?.total_pages || b?.pages?.length || 16;
+            const sel = (bid === kb.story_id) ? 'selected' : '';
+            return `<option value="${escapeHtml(bid)}" ${sel}>📖 ${escapeHtml(bTitle)} (${bPages}p)</option>`;
+          }).join('');
+
+          const settingsBookListHtml = allBookIds.map(bid => {
+            const b = getKidsBookEntry(bid);
+            const bLang = resolveBookLearningLang(b, lang);
+            const bTitle = b?.title?.[bLang] || b?.title?.it || b?.title?.fr || bid;
+            const bPages = b?.total_pages || b?.pages?.length || 16;
+            const bm = getKidsBookmark(bid);
+            const isCur = bid === kb.story_id;
+            return `
+              <button type="button" class="kids-settings-book-item ${isCur ? 'active' : ''}" onclick="switchKidsBook('${bid}')">
+                <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">📖 ${escapeHtml(bTitle)}</span>
+                <span style="font-size:0.7rem;opacity:0.85;flex-shrink:0;">${bm ? `🔖p.${getKidsBookmarkDisplayPage(b, bm.page)} · ` : ''}${bPages}p</span>
+              </button>
+            `;
+          }).join('');
+
+          const LANG_BTN_META = {
+            it: '🇮🇹 Italiano',
+            fr: '🇫🇷 Français',
+            de: '🇩🇪 Deutsch'
+          };
+          const bookLangBtnsHtml = getBookLearningLangs(kb).map(code => `
+            <button type="button" class="kids-settings-lang-big-btn ${lang === code ? 'active' : ''}" onclick="setLanguage('${code}')">${LANG_BTN_META[code] || code.toUpperCase()}</button>
+          `).join('');
+
+          const activeBm = getKidsBookmark(kb.story_id);
+          const activeBmDisp = activeBm ? getKidsBookmarkDisplayPage(kb, activeBm.page) : null;
+          const isOnBookmark = isSpreadOnBookmark(kb, leftIdx, rightIdx, activeBm);
+          const hasBookmarkElsewhere = Boolean(activeBm && !isOnBookmark);
+          const bookmarkTitle = isOnBookmark
+            ? (isDe ? 'Lesezeichen entfernen' : (isFr ? 'Retirer le marque-page' : 'Rimuovi segnalibro'))
+            : (activeBm
+              ? (isDe ? `Lesezeichen hier setzen (aktuell S. ${activeBmDisp})` : (isFr ? `Marquer cette page (actuel p. ${activeBmDisp})` : `Segna questa pagina (attuale pag. ${activeBmDisp})`))
+              : (isDe ? 'Lesezeichen setzen' : (isFr ? 'Enregistrer le marque-page' : 'Salva segnalibro')));
 
           const gearSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
           const parallelSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="8" height="16" rx="1.6"/><rect x="13.5" y="4" width="8" height="16" rx="1.6"/><path d="M5.5 9.5h2M5.5 13h2M16.5 9.5h2M16.5 13h2"/><path d="M9.5 16.5h5M13 15l1.5 1.5L13 18M11 15l-1.5 1.5L11 18"/></svg>`;
           const grammarSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7,14 12,5 17,14"/><circle cx="18.5" cy="7.5" r="2.2"/><path d="M4,18.5 Q12,22 20,18.5" stroke-dasharray="2.5 2"/></svg>`;
+          const bookmarkSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
           const fullSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
           const closeSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
           const grammarLabel = isDe ? 'Grammatik' : (isFr ? 'Grammaire' : 'Grammatica');
@@ -6506,23 +8163,26 @@
           }).join('');
 
           floatBar.innerHTML = `
-            ${buildPageMagicGroupHtml(leftPage, leftIdx, false, leftLang, true)}
+            ${buildPageMagicGroupHtml(leftPage, leftIdx, false, leftLang, !leftPage?.is_frontispiece)}
             <div class="kids-mini-footer-group kids-mini-footer-center">
+              <select id="kidsBookSelector" class="kids-book-select notranslate" translate="no" aria-label="Scegli libro" title="Scegli libro illustrato" onchange="switchKidsBook(this.value)">
+                ${bookSelectOptionsHtml}
+              </select>
               <div class="kids-avatar-tier-group" role="radiogroup" aria-label="Livello di lettura">
                 <button type="button" class="kids-avatar-tier-btn tier-easy ${kidsBookMode === 'seby' ? 'active' : ''}"
-                  onclick="launchKidsBook('${story.slug}', 'seby')" aria-label="Seby — 6 anni — Facile (A2)">
+                  onclick="launchKidsBook('${kb.story_id}', 'seby')" aria-label="Seby — 6 anni — Facile (A2)">
                   <img src="assets/avatars/seby_tier.jpg" alt="Seby" onerror="this.src='assets/avatars/seby.png'">
                   <span class="kids-avatar-tier-dot"></span>
                   <span class="kids-avatar-hover-tip">Seby · 6a · Facile (A2)</span>
                 </button>
                 <button type="button" class="kids-avatar-tier-btn tier-medium ${kidsBookMode === 'ale' ? 'active' : ''}"
-                  onclick="launchKidsBook('${story.slug}', 'ale')" aria-label="Ale — 8 anni — Medio (B1)">
+                  onclick="launchKidsBook('${kb.story_id}', 'ale')" aria-label="Ale — 8 anni — Medio (B1)">
                   <img src="assets/avatars/ale_tier.jpg" alt="Ale" onerror="this.src='assets/avatars/ale.png'">
                   <span class="kids-avatar-tier-dot"></span>
                   <span class="kids-avatar-hover-tip">Ale · 8a · Medio (B1)</span>
                 </button>
                 <button type="button" class="kids-avatar-tier-btn tier-hard ${kidsBookMode === 'emma' ? 'active' : ''}"
-                  onclick="launchKidsBook('${story.slug}', 'emma')"
+                  onclick="launchKidsBook('${kb.story_id}', 'emma')"
                   aria-label="Emma — 11 anni — Esperto (B2/C1)">
                   <img src="assets/avatars/emma.png" alt="Emma" onerror="this.src='assets/avatars/kate.png'">
                   <span class="kids-avatar-tier-dot"></span>
@@ -6539,11 +8199,16 @@
                   <div id="kidsSettingsPopover" class="kids-settings-popover" translate="no" ${kidsSettingsOpen ? '' : 'hidden'} onclick="event.stopPropagation()">
                     ${puffinBadgeHtml}
                     <div>
+                      <div class="kids-settings-section-title">📚 Scegli Libro</div>
+                      <div class="kids-settings-book-list">
+                        ${settingsBookListHtml}
+                        <a href="books/" class="kids-settings-book-item notranslate" translate="no" style="text-decoration:none;justify-content:center;gap:6px;background:#fef3c7;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg><span>Apri Libreria</span><span class="books-count-badge">${allBookIds.length}</span></a>
+                      </div>
+                    </div>
+                    <div>
                       <div class="kids-settings-section-title">📖 Lingua del Libro</div>
                       <div class="kids-settings-lang-big-grid">
-                        <button type="button" class="kids-settings-lang-big-btn ${lang === 'it' ? 'active' : ''}" onclick="setLanguage('it')">🇮🇹 Italiano</button>
-                        <button type="button" class="kids-settings-lang-big-btn ${lang === 'fr' ? 'active' : ''}" onclick="setLanguage('fr')">🇫🇷 Français</button>
-                        <button type="button" class="kids-settings-lang-big-btn ${lang === 'de' ? 'active' : ''}" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+                        ${bookLangBtnsHtml}
                       </div>
                     </div>
                     <div>
@@ -6589,6 +8254,13 @@
                   title="Maiuscolo / Minuscolo (a/A)">
                   a/A
                 </button>
+                <button type="button" id="kidsBookmarkBtn"
+                  class="kids-min-icon-btn ${isOnBookmark ? 'active' : ''} ${hasBookmarkElsewhere ? 'has-bookmark-elsewhere' : ''}"
+                  onclick="toggleKidsBookmark('${kb.story_id}')"
+                  aria-label="${bookmarkTitle}"
+                  title="${bookmarkTitle}">
+                  ${bookmarkSvg}
+                </button>
                 <button type="button" class="kids-min-icon-btn ${kidsFullscreenEnabled ? 'active' : ''}"
                   onclick="toggleKidsFullscreen()"
                   title="Tutta Pagina">
@@ -6601,7 +8273,7 @@
                 </button>
               </div>
             </div>
-            ${buildPageMagicGroupHtml(rightPage, rightIdx, true, rightLang, !isSinglePage)}
+            ${buildPageMagicGroupHtml(rightPage, rightIdx, true, rightLang, !isSinglePage && !rightPage?.is_frontispiece)}
           `;
         }
       } else {
@@ -6611,25 +8283,45 @@
       }
 
       if (!bar) return;
+      const bookSwitchPillsHtml = allBookIds.length > 1
+        ? allBookIds.map(bid => {
+            const b = getKidsBookEntry(bid);
+            const bLang = resolveBookLearningLang(b, lang);
+            const bTitle = b?.title?.[bLang] || b?.title?.it || b?.title?.fr || bid;
+            const bPages = b?.total_pages || b?.pages?.length || 16;
+            const isCur = bid === kb.story_id;
+            return `<button type="button" class="kids-pill-control ${isCur ? 'active' : ''}" onclick="switchKidsBook('${bid}')">📖 ${escapeHtml(bTitle)} (${bPages}p)</button>`;
+          }).join('')
+        : '';
+
       const sebyBtn = visibleModes.includes('seby') ? `
         <button type="button" class="kids-img-launch-btn ${kidsBookMode === 'seby' ? 'active-mode' : ''}"
-          onclick="launchKidsBook('${story.slug}', 'seby')"
+          onclick="launchKidsBook('${kb.story_id}', 'seby')"
           title="Apri a Tutta Pagina il Quaderno Illustrato Acquerello per Seby (6-7 anni)">
           <img src="assets/buttons/seby_leggi_qui.jpg" alt="Seby">
-          <span>🧒 Seby leggi qui! (Quaderno 16p a Tutta Pagina)</span>
+          <span>🧒 Seby leggi qui! (Quaderno ${totalPages}p a Tutta Pagina)</span>
         </button>
       ` : '';
 
       const aleBtn = visibleModes.includes('ale') ? `
         <button type="button" class="kids-img-launch-btn ${kidsBookMode === 'ale' ? 'active-mode' : ''}"
-          onclick="launchKidsBook('${story.slug}', 'ale')"
+          onclick="launchKidsBook('${kb.story_id}', 'ale')"
           title="Apri a Tutta Pagina il Quaderno Illustrato Acquerello per Ale (8-9 anni)">
           <img src="assets/buttons/ale_leggi_qui.jpg" alt="Ale">
-          <span>👦 Ale leggi qui! (Quaderno 16p a Tutta Pagina)</span>
+          <span>👦 Ale leggi qui! (Quaderno ${totalPages}p a Tutta Pagina)</span>
         </button>
       ` : '';
 
-      bar.innerHTML = `${sebyBtn}${aleBtn}`;
+      const emmaBtn = visibleModes.includes('emma') ? `
+        <button type="button" class="kids-img-launch-btn ${kidsBookMode === 'emma' ? 'active-mode' : ''}"
+          onclick="launchKidsBook('${kb.story_id}', 'emma')"
+          title="Apri a Tutta Pagina il Quaderno Illustrato Acquerello per Emma & Papino (10-11+ anni)">
+          <img src="assets/avatars/emma.png" alt="Emma" onerror="this.src='assets/avatars/kate.png'">
+          <span>👩 Emma &amp; Papino (${totalPages}p B2/C1)</span>
+        </button>
+      ` : '';
+
+      bar.innerHTML = `${bookSwitchPillsHtml}${sebyBtn}${aleBtn}${emmaBtn}`;
     }
 
     function getPosMeta(pos, lang) {
@@ -6769,26 +8461,30 @@
     let kidsSentenceKaraokeRaf = null;
     let activeKidsPlayingPage = null;
 
-    function getKidsAudioPlaybackRate(isSingleWord = false) {
+    function getKidsAudioPlaybackRate(isSingleWord = false, targetLang = null) {
+      const lang = targetLang || currentLang;
       const mult = KIDS_SPEED_STEPS[kidsSpeedStep]?.mult || 1.0;
-      const base = currentLang === 'fr'
+      const base = lang === 'fr'
         ? (isSingleWord ? 0.88 : 0.90)
-        : (currentLang === 'de' ? (isSingleWord ? 0.90 : 0.92) : (isSingleWord ? 0.92 : 0.95));
+        : (lang === 'de' ? (isSingleWord ? 0.90 : 0.92) : (isSingleWord ? 0.92 : 0.95));
       return Math.max(0.55, Math.min(1.6, +(base * mult).toFixed(2)));
     }
 
     function updateKidsListenButtonsState() {
       const audio = document.getElementById('kidsStaticAudio');
       const isPlaying = Boolean(audio && !audio.paused && !audio.ended && activeKidsPlayingPage);
+      const playingLang = audio?.getAttribute('data-playing-lang') || '';
       document.querySelectorAll('.listen-pill[data-listen-page]').forEach(btn => {
         const pNum = parseInt(btn.getAttribute('data-listen-page'), 10);
-        const activeHere = isPlaying && pNum === activeKidsPlayingPage;
+        const btnLang = btn.getAttribute('data-listen-lang') || '';
+        const langMatch = !playingLang || !btnLang || playingLang === btnLang;
+        const activeHere = isPlaying && pNum === activeKidsPlayingPage && langMatch;
         btn.classList.toggle('active', activeHere);
         btn.innerHTML = activeHere ? KIDS_PAUSE_SVG : KIDS_SPEAKER_SVG;
       });
     }
 
-    function playSingleWordAudio(mp3Url, oggUrl, tokenEl) {
+    function playSingleWordAudio(mp3Url, oggUrl, tokenEl, tokenLang = null) {
       const audio = document.getElementById('kidsStaticAudio');
       if (!audio) return;
       if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
@@ -6804,10 +8500,11 @@
         }
       }
 
-      const rate = getKidsAudioPlaybackRate(true);
+      const speakLang = tokenLang || tokenEl?.closest('.kids-watercolor-leaf')?.getAttribute('lang') || currentLang;
+      const rate = getKidsAudioPlaybackRate(true, speakLang);
       if (!mp3Url) {
         const wTxt = tokenEl?.querySelector('span:nth-child(2)')?.textContent || tokenEl?.textContent || '';
-        speakKidsTextFallback(wTxt.trim(), currentLang);
+        speakKidsTextFallback(wTxt.trim(), speakLang);
         setTimeout(() => document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active')), 800);
         return;
       }
@@ -6830,9 +8527,23 @@
       });
     }
 
-    function playKidsBubbleAudio(mp3Url, oggUrl) {
+    function playKidsBubbleAudio(mp3Url, oggUrl, bubbleEl = null) {
       const audio = document.getElementById('kidsStaticAudio');
-      if (!audio || !mp3Url) return;
+      const bLang = bubbleEl?.getAttribute('lang') || currentLang;
+      if (!mp3Url) {
+        if (kidsSentenceKaraokeRaf) {
+          cancelAnimationFrame(kidsSentenceKaraokeRaf);
+          kidsSentenceKaraokeRaf = null;
+        }
+        if (audio && !audio.paused) audio.pause();
+        activeKidsPlayingPage = null;
+        document.querySelectorAll('.kw-token.active').forEach(el => el.classList.remove('active'));
+        updateKidsListenButtonsState();
+        const bText = bubbleEl?.querySelector('span')?.textContent || '';
+        if (bText.trim()) speakKidsTextFallback(bText.trim(), bLang);
+        return;
+      }
+      if (!audio) return;
       if (kidsSentenceKaraokeRaf) cancelAnimationFrame(kidsSentenceKaraokeRaf);
       activeKidsPlayingPage = null;
       updateKidsListenButtonsState();
@@ -6848,7 +8559,7 @@
         }
       }
 
-      const rate = getKidsAudioPlaybackRate(false);
+      const rate = getKidsAudioPlaybackRate(false, bLang);
       audio.pause();
       audio.setAttribute('data-bubble-src', targetSrc);
       audio.removeAttribute('data-page-src');
@@ -6867,12 +8578,13 @@
       });
     }
 
-    function playKidsPageSentenceKaraoke(mp3Url, oggUrl, pageNum, explicitRate = null) {
+    function playKidsPageSentenceKaraoke(mp3Url, oggUrl, pageNum, explicitRate = null, targetLang = null) {
       const audio = document.getElementById('kidsStaticAudio');
       if (!audio || !mp3Url) return;
 
+      const effLang = targetLang || currentLang;
       const targetSrc = `${mp3Url}?v=${APP_VERSION}`;
-      const rate = explicitRate || getKidsAudioPlaybackRate(false);
+      const rate = explicitRate || getKidsAudioPlaybackRate(false, effLang);
 
       // Toggle Pause / Resume if clicking the same page's Listen button!
       if (activeKidsPlayingPage === pageNum && audio.getAttribute('data-page-src') === targetSrc && !audio.ended && audio.currentTime > 0) {
@@ -6897,6 +8609,7 @@
       activeKidsPlayingPage = pageNum;
       audio.pause();
       audio.setAttribute('data-page-src', targetSrc);
+      audio.setAttribute('data-playing-lang', effLang);
       audio.removeAttribute('data-bubble-src');
       audio.src = targetSrc;
       audio.preservesPitch = true;
@@ -6904,9 +8617,12 @@
       audio.playbackRate = rate;
 
       const scopeSelector = pageNum
-        ? `.kids-watercolor-leaf[data-page="${pageNum}"] .kw-token[data-start]`
+        ? `.kids-watercolor-leaf[data-page="${pageNum}"][lang="${effLang}"] .kw-token[data-start]`
         : `#openBookSpread .kw-token[data-start]`;
-      const tokens = Array.from(document.querySelectorAll(scopeSelector));
+      let tokens = Array.from(document.querySelectorAll(scopeSelector));
+      if (!tokens.length && pageNum) {
+        tokens = Array.from(document.querySelectorAll(`.kids-watercolor-leaf[data-page="${pageNum}"] .kw-token[data-start]`));
+      }
       const tick = () => {
         const t = audio.currentTime;
         tokens.forEach(sp => {
@@ -6973,21 +8689,27 @@
     }
 
     function openKidsPageQuizModal(pageIdx) {
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[activeTab];
+      const kb = getKidsBookEntry(activeTab);
       if (!kb) return;
-      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
-      const pageObj = kb.pages[pageIdx];
-      if (!pageObj) return;
-      const questions = pageObj.questions?.[lang] || pageObj.questions?.it || [];
-      const modeLabel = kidsBookMode === 'seby' ? 'Seby (6-7a)' : 'Ale (8-9a)';
+      const lang = resolveBookLearningLang(kb, currentLang);
+      const { quizPageObj, questions, isSpreadQuiz, spreadStart, spreadEnd } = resolveQuizForPageIdx(kb, pageIdx, lang);
+      if (!quizPageObj || !questions.length) return;
+      const totalDisplayPages = getKidsTotalDisplayPages(kb);
+      const dispQuizPage = getKidsDisplayPageNum(quizPageObj);
+      const modeLabel = kidsBookMode === 'seby'
+        ? 'Seby (6-7a)'
+        : (kidsBookMode === 'emma' ? 'Emma (10-11+)' : 'Ale (8-9a)');
+      const pageSpanLabel = isSpreadQuiz
+        ? `${spreadStart}–${spreadEnd}/${totalDisplayPages}`
+        : `${dispQuizPage}/${totalDisplayPages}`;
 
       document.getElementById('antolinQuizTitle').textContent = lang === 'fr'
-        ? `❓ Quiz Antolin — Page ${pageObj.page}/${kb.total_pages} (${modeLabel})`
+        ? `❓ Quiz Antolin — ${isSpreadQuiz ? 'Pages' : 'Page'} ${pageSpanLabel} (${modeLabel})`
         : (lang === 'de'
-          ? `❓ Antolin-Quiz — Seite ${pageObj.page}/${kb.total_pages} (${modeLabel})`
-          : `❓ Quiz Antolin — Pagina ${pageObj.page}/${kb.total_pages} (${modeLabel})`);
+          ? `❓ Antolin-Quiz — ${isSpreadQuiz ? 'Seiten' : 'Seite'} ${pageSpanLabel} (${modeLabel})`
+          : `❓ Quiz Antolin — ${isSpreadQuiz ? 'Pagine' : 'Pagina'} ${pageSpanLabel} (${modeLabel})`);
 
-      renderAntolinQuizDialogBody(kb, pageObj, lang, questions);
+      renderAntolinQuizDialogBody(kb, quizPageObj, lang, questions);
       const dlg = document.getElementById('antolinQuizDialog');
       if (!dlg.open) dlg.showModal();
     }
@@ -6995,6 +8717,7 @@
     function renderAntolinQuizDialogBody(kb, pageObj, lang, questions) {
       const isFr = lang === 'fr';
       const isDe = lang === 'de';
+      const totalPages = kb.total_pages || kb.pages?.length || 16;
       const cardsHtml = questions.map((q, qIdx) => {
         const key = `${kb.story_id}_${kidsBookMode}_${lang}_p${pageObj.page}_${q.id}`;
         const existing = kidsQuizAnswers[key];
@@ -7039,9 +8762,13 @@
       const prog = getKidsPageQuizProgress(kb.story_id, kidsBookMode, lang, pageObj.page, questions);
       const nextPageIdx = pageObj.page; // 1-based page equals next 0-based index
       const isSinglePageQuiz = isKidsMobileSinglePageMode();
-      const nextBtnHtml = (pageObj.page < kb.total_pages)
-        ? `<button type="button" class="page-turn-btn primary" onclick="document.getElementById('antolinQuizDialog').close(); ${(pageObj.page % 2 === 1 && !isSinglePageQuiz) ? `openKidsPageQuizModal(${nextPageIdx})` : `turnPage(1)`};">
-             ${(pageObj.page % 2 === 1 && !isSinglePageQuiz)
+      const nextOwnQuiz = (!isSinglePageQuiz && pageObj.page % 2 === 1 && nextPageIdx < (kb.pages?.length || 0))
+        ? resolveQuizForPageIdx(kb, nextPageIdx, lang)
+        : null;
+      const hasNextOwnQuiz = Boolean(nextOwnQuiz && nextOwnQuiz.quizPageIdx === nextPageIdx && nextOwnQuiz.questions.length > 0);
+      const nextBtnHtml = (pageObj.page < totalPages)
+        ? `<button type="button" class="page-turn-btn primary" onclick="document.getElementById('antolinQuizDialog').close(); ${hasNextOwnQuiz ? `openKidsPageQuizModal(${nextPageIdx})` : `turnPage(1)`};">
+             ${hasNextOwnQuiz
                ? (isDe ? `Quiz Seite ${pageObj.page + 1} ›` : (isFr ? `Quiz Page ${pageObj.page + 1} ›` : `Quiz Pagina ${pageObj.page + 1} ›`))
                : (isSinglePageQuiz
                  ? (isDe ? `Nächste Seite (${pageObj.page + 1}) ›` : (isFr ? `Page Suivante (${pageObj.page + 1}) ›` : `Pagina Successiva (${pageObj.page + 1}) ›`))
@@ -7071,12 +8798,13 @@
     }
 
     async function answerAntolinQuestion(storyId, pageNum, qId, chosenIdx) {
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[storyId];
+      const kb = getKidsBookEntry(storyId);
       if (!kb) return;
-      const lang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+      const lang = resolveBookLearningLang(kb, currentLang);
       const pageObj = kb.pages.find(p => p.page === pageNum);
       if (!pageObj) return;
-      const questions = pageObj.questions?.[lang] || pageObj.questions?.it || [];
+      const defLang = getBookDefaultLang(kb);
+      const questions = pageObj.questions?.[lang] || pageObj.questions?.[defLang] || pageObj.questions?.it || [];
       const q = questions.find(item => item.id === qId);
       if (!q) return;
 
@@ -7100,13 +8828,19 @@
       kidsQuizAnswers[key] = record;
 
       try {
-        const logArr = JSON.parse(localStorage.getItem('kos_antolin_question_logs_v1') || '[]');
+        const curUser = window.PuffinLogin && typeof window.PuffinLogin.getCurrentUser === 'function'
+          ? window.PuffinLogin.getCurrentUser()
+          : null;
+        const parsedLogs = JSON.parse(safeStorageGet('kos_antolin_question_logs_v1') || '[]');
+        const logArr = Array.isArray(parsedLogs)
+          ? parsedLogs.filter(x => x && typeof x === 'object' && !Array.isArray(x))
+          : [];
         logArr.unshift({
           ...record,
-          userId: (window.PuffinLogin && window.PuffinLogin.getCurrentUser()?.id) || kidsBookMode || 'guest',
-          userName: (window.PuffinLogin && window.PuffinLogin.getCurrentUser()?.name) || (kidsBookMode === 'ale' ? 'Ale' : 'Seby')
+          userId: curUser?.id || kidsBookMode || 'guest',
+          userName: curUser?.shortName || curUser?.displayName || curUser?.name || (kidsBookMode === 'ale' ? 'Ale' : (kidsBookMode === 'emma' ? 'Emma' : 'Seby'))
         });
-        localStorage.setItem('kos_antolin_question_logs_v1', JSON.stringify(logArr.slice(0, 500)));
+        safeStorageSet('kos_antolin_question_logs_v1', JSON.stringify(logArr.slice(0, 500)));
       } catch (_) {}
 
       renderAntolinQuizDialogBody(kb, pageObj, lang, questions);
@@ -7120,6 +8854,7 @@
           await window.PuffinLogin.submitScore({
             appId: 'kids-own-stories',
             score: points,
+            skipCardDrop: true,
             level: `${storyId}:p${pageNum}:${kidsBookMode}:${lang}`,
             extra: {
               story_id: storyId,
@@ -7167,74 +8902,90 @@
       let cloudScores = [];
       if (window.PuffinLogin && typeof window.PuffinLogin.fetchScores === 'function') {
         try {
-          cloudScores = await window.PuffinLogin.fetchScores('kids-own-stories', 40) || [];
+          const fetched = await window.PuffinLogin.fetchScores('kids-own-stories', 40);
+          if (Array.isArray(fetched)) cloudScores = fetched;
         } catch (_) {}
       }
 
       let localLogs = [];
       try {
-        localLogs = JSON.parse(localStorage.getItem('kos_antolin_question_logs_v1') || '[]');
+        const parsedLogs = JSON.parse(safeStorageGet('kos_antolin_question_logs_v1') || '[]');
+        if (Array.isArray(parsedLogs)) {
+          localLogs = parsedLogs.filter(x => x && typeof x === 'object' && !Array.isArray(x) && typeof x.qId === 'string' && x.qId.length > 0);
+        }
       } catch (_) {}
 
       const allQuestionLogs = [...localLogs];
       cloudScores.forEach(cs => {
-        const qLogs = cs.extra?.question_logs;
+        if (!cs || typeof cs !== 'object' || Array.isArray(cs)) return;
+        const qLogs = cs.extra && typeof cs.extra === 'object' ? cs.extra.question_logs : null;
         if (Array.isArray(qLogs)) {
           qLogs.forEach(ql => {
-            if (!allQuestionLogs.some(x => x.qId === ql.qId && x.timestamp === ql.timestamp)) {
+            if (!ql || typeof ql !== 'object' || Array.isArray(ql) || typeof ql.qId !== 'string' || !ql.qId) return;
+            if (!allQuestionLogs.some(x => x && typeof x === 'object' && x.qId === ql.qId && x.timestamp === ql.timestamp)) {
               allQuestionLogs.push({
                 ...ql,
-                userId: cs.userId,
-                userName: cs.userName
+                userId: typeof cs.userId === 'string' ? cs.userId : (typeof ql.userId === 'string' ? ql.userId : ''),
+                userName: typeof cs.userName === 'string' ? cs.userName : (typeof ql.userName === 'string' ? ql.userName : '')
               });
             }
           });
         }
       });
 
-      const qStatsMap = {};
+      const qStatsMap = Object.create(null);
       allQuestionLogs.forEach(item => {
-        if (!item.qId) return;
-        if (!qStatsMap[item.qId]) {
+        if (!item || typeof item !== 'object' || Array.isArray(item) || typeof item.qId !== 'string' || !item.qId) return;
+        if (!Object.prototype.hasOwnProperty.call(qStatsMap, item.qId)) {
           qStatsMap[item.qId] = {
             qId: item.qId,
-            pageNum: item.pageNum,
-            qText: item.qText,
-            difficulty: item.difficulty,
+            pageNum: (typeof item.pageNum === 'number' && Number.isFinite(item.pageNum)) ? item.pageNum : (typeof item.pageNum === 'string' && item.pageNum ? item.pageNum : '?'),
+            qText: typeof item.qText === 'string' ? item.qText : '',
+            difficulty: typeof item.difficulty === 'string' ? item.difficulty : '',
             attempts: 0,
             wrong: 0,
-            wrongAnswers: {}
+            wrongAnswers: Object.create(null)
           };
         }
         qStatsMap[item.qId].attempts++;
         if (!item.isCorrect) {
           qStatsMap[item.qId].wrong++;
-          const wTxt = item.chosenText || '?';
+          const wTxt = (typeof item.chosenText === 'string' && item.chosenText) ? item.chosenText : '?';
           qStatsMap[item.qId].wrongAnswers[wTxt] = (qStatsMap[item.qId].wrongAnswers[wTxt] || 0) + 1;
         }
       });
       const qStatsList = Object.values(qStatsMap).sort((a, b) => (b.wrong / b.attempts) - (a.wrong / a.attempts));
 
-      const recentRowsHtml = allQuestionLogs.slice(0, 25).map(r => `
+      const recentRowsHtml = allQuestionLogs.slice(0, 25).filter(r => r && typeof r === 'object' && !Array.isArray(r)).map(r => {
+        const readerName = (typeof r.userName === 'string' && r.userName)
+          ? r.userName
+          : ((typeof r.mode === 'string' && r.mode) ? r.mode : 'Bambino');
+        const langStr = (typeof r.lang === 'string' && r.lang) ? r.lang : 'it';
+        const pageStr = (typeof r.pageNum === 'number' && Number.isFinite(r.pageNum)) || (typeof r.pageNum === 'string' && r.pageNum) ? r.pageNum : '?';
+        const qTextStr = typeof r.qText === 'string' ? r.qText : '';
+        const chosenStr = typeof r.chosenText === 'string' ? r.chosenText : '';
+        const correctStr = typeof r.correctText === 'string' ? r.correctText : '';
+        return `
         <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
-          <td style="padding:7px 8px;"><strong>${escapeHtml(r.userName || r.mode || 'Bambino')}</strong> <span class="num-chip">${escapeHtml((r.lang || 'it').toUpperCase())}</span></td>
-          <td style="padding:7px 8px;">Pag. ${r.pageNum || '?'} ${r.difficulty === 'hard' ? '⭐' : '🟢'}</td>
-          <td style="padding:7px 8px;">${escapeHtml(r.qText || '')}</td>
+          <td style="padding:7px 8px;"><strong>${escapeHtml(readerName)}</strong> <span class="num-chip">${escapeHtml(langStr.toUpperCase())}</span></td>
+          <td style="padding:7px 8px;">Pag. ${escapeHtml(pageStr)} ${r.difficulty === 'hard' ? '⭐' : '🟢'}</td>
+          <td style="padding:7px 8px;">${escapeHtml(qTextStr)}</td>
           <td style="padding:7px 8px;">
             ${r.isCorrect
-              ? `<span style="color:#34d399;font-weight:700;">✅ ${escapeHtml(r.chosenText || '')}</span>`
-              : `<span style="color:#f87171;font-weight:700;">❌ ${escapeHtml(r.chosenText || '')}</span> <br><small style="color:#94a3b8;">(Giusta: ${escapeHtml(r.correctText || '')})</small>`
+              ? `<span style="color:#34d399;font-weight:700;">✅ ${escapeHtml(chosenStr)}</span>`
+              : `<span style="color:#f87171;font-weight:700;">❌ ${escapeHtml(chosenStr)}</span> <br><small style="color:#94a3b8;">(Giusta: ${escapeHtml(correctStr)})</small>`
             }
           </td>
         </tr>
-      `).join('') || `<tr><td colspan="4" style="padding:14px;text-align:center;color:#94a3b8;">Nessuna domanda risposta finora in questa sessione. Apri "Seby leggi qui!" o "Ale leggi qui!" e prova un quiz!</td></tr>`;
+      `;
+      }).join('') || `<tr><td colspan="4" style="padding:14px;text-align:center;color:#94a3b8;">Nessuna domanda risposta finora in questa sessione. Apri "Seby leggi qui!" o "Ale leggi qui!" e prova un quiz!</td></tr>`;
 
       const refineRowsHtml = qStatsList.map(st => {
         const errRate = Math.round((st.wrong / st.attempts) * 100);
         const topWrong = Object.entries(st.wrongAnswers).map(([k, v]) => `${k} (${v}x)`).join(', ') || '—';
         return `
           <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
-            <td style="padding:7px 8px;">Pag. ${st.pageNum} (<code>${escapeHtml(st.qId)}</code>)</td>
+            <td style="padding:7px 8px;">Pag. ${escapeHtml(st.pageNum)} (<code>${escapeHtml(st.qId)}</code>)</td>
             <td style="padding:7px 8px;">${escapeHtml(st.qText)}</td>
             <td style="padding:7px 8px;"><span class="num-chip ${errRate > 40 ? 'num-chip--warn' : 'num-chip--ok'}">${st.wrong}/${st.attempts} errori (${errRate}%)</span></td>
             <td style="padding:7px 8px;color:#fca5a5;">${escapeHtml(topWrong)}</td>
@@ -7245,7 +8996,7 @@
       body.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);padding:10px 14px;border-radius:12px;">
           <div>
-            👋 Ciao <strong>${escapeHtml(user.name)}</strong>! Stai visualizzando i registri didattici Antolin della famiglia.
+            👋 Ciao <strong>${escapeHtml(user.displayName || user.shortName || user.name || user.id || 'Amico')}</strong>! Stai visualizzando i registri didattici Antolin della famiglia.
           </div>
           <span class="num-chip num-chip--ok">${allQuestionLogs.length} risposte registrate</span>
         </div>
@@ -7288,27 +9039,37 @@
       const isDe = (lang === 'de');
       const isEn = (lang === 'en');
       const levelKey = (kidsBookMode === 'emma') ? 'emma' : ((kidsBookMode === 'ale') ? 'ale' : 'seby');
-      const levelData = isEn
-        ? buildEnglishLevelData(pageObj.page, levelKey)
-        : ((levelKey === 'emma')
-          ? (pageObj.levels?.emma?.[lang] || buildEmmaLevelData(pageObj.page, lang))
-          : (pageObj.levels?.[levelKey]?.[lang] || pageObj.levels?.[levelKey]?.it || pageObj.levels?.seby?.it));
-      const bubbleData = isEn
-        ? { text: KIDS_EN_BOOK_PAGES[pageObj.page]?.bubble || '', audio_mp3: '', audio_ogg: '' }
-        : (pageObj.speech_bubble?.[lang] || pageObj.speech_bubble?.it);
+      const levelData = resolveKidsLevelData(kb, pageObj, levelKey, lang);
+      const defLang = getBookDefaultLang(kb);
+      const rawBubble = pageObj.speech_bubble;
+      const enBubble = rawBubble?.en?.text
+        ? { text: rawBubble.en.text, audio_mp3: '', audio_ogg: '', is_browser_tts: true }
+        : (isSardegnaBook(kb) && KIDS_EN_BOOK_PAGES[pageObj.page]?.bubble
+            ? { text: KIDS_EN_BOOK_PAGES[pageObj.page].bubble, audio_mp3: '', audio_ogg: '', is_browser_tts: true }
+            : null);
+      const bubbleData = !rawBubble && !(isEn && isSardegnaBook(kb))
+        ? null
+        : (isEn ? enBubble : (rawBubble?.[lang] !== undefined ? rawBubble[lang] : (rawBubble?.[defLang] || null)));
       const pageTitle = isEn
-        ? (KIDS_EN_BOOK_PAGES[pageObj.page]?.title || `Page ${pageObj.page}`)
-        : (pageObj.title?.[lang] || pageObj.title?.it || `Pagina ${pageObj.page}`);
+        ? (pageObj.title?.en || (isSardegnaBook(kb) ? KIDS_EN_BOOK_PAGES[pageObj.page]?.title : '') || pageObj.title?.[defLang] || pageObj.title?.it || `Page ${pageObj.page}`)
+        : (pageObj.title?.[lang] || pageObj.title?.[defLang] || pageObj.title?.it || `Pagina ${pageObj.page}`);
       const patchPos = pageObj.patch_pos || (side === 'left' ? 'bottom' : 'top');
+      const totalPages = kb.total_pages || kb.pages?.length || 16;
+      const isFrontispiece = Boolean(pageObj?.is_frontispiece);
+      const displayPageNum = getKidsDisplayPageNum(pageObj);
+      const totalDisplayPages = getKidsTotalDisplayPages(kb);
 
       const tokensHtml = (levelData?.tokens || []).map(tok => {
         const posMeta = getPosMeta(tok.pos, lang);
         const isSepVerb = Boolean(tok.sep_group);
-        const hasGloss = Boolean(tok.gloss && !isSepVerb);
         const genderLabel = formatGenderNumberBadge(tok.w, tok.pos, tok.g, tok.n, lang);
 
-        const cleanWordKey = String(tok.w || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
-        const enFallback = (kidsTranslationLang === 'en') ? KIDS_EN_GLOSS[cleanWordKey] : null;
+        const cleanWordKey = String(tok.clean || tok.w || '').toLowerCase().replace(/^[^\wÀ-ÿÄÖÜäöüß]+|[^\wÀ-ÿÄÖÜäöüß]+$/g, '').split(/['’]/).pop();
+        const cleanRawLower = tok.clean ? String(tok.clean).toLowerCase() : '';
+        const enFallback = (kidsTranslationLang === 'en')
+          ? (kb?.en_gloss?.[cleanWordKey] || (cleanRawLower ? kb?.en_gloss?.[cleanRawLower] : null) || (isSardegnaBook(kb) ? KIDS_EN_GLOSS[cleanWordKey] : null))
+          : null;
+        const hasGloss = Boolean((tok.gloss || enFallback) && !isSepVerb);
         const glossTr = enFallback ? enFallback.tr : (tok.gloss?.tr || '');
         const glossDef = enFallback ? enFallback.def : (tok.gloss?.def || '');
         const clickToListenHint = kidsTranslationLang === 'en'
@@ -7316,11 +9077,11 @@
           : (kidsTranslationLang === 'de' ? 'Klicke, um das Wort zu hören' : (kidsTranslationLang === 'fr' ? 'Clique pour écouter le mot' : 'Clicca per ascoltare la parola'));
 
         let glossHtml = '';
-        if (isSepVerb && tok.gloss) {
+        if (isSepVerb && (tok.gloss || enFallback || tok.sep_inf)) {
           glossHtml = `
             <span class="kw-gloss-popover">
               <strong style="color:#fde047;">${escapeHtml(tok.sep_pair || tok.w)}</strong>
-              <span style="opacity:0.95;">(🏃🔗 Separable verb: <strong style="color:#fca5a5;text-decoration:underline;">${escapeHtml(tok.sep_inf || tok.gloss.sep_inf || '')}</strong>)</span><br>
+              <span style="opacity:0.95;">(🏃🔗 Separable verb: <strong style="color:#fca5a5;text-decoration:underline;">${escapeHtml(tok.sep_inf || tok.gloss?.sep_inf || enFallback?.sep_inf || '')}</strong>)</span><br>
               🔄 <em>${escapeHtml(glossTr)}</em><br>
               💡 ${escapeHtml(glossDef)}<br>
               <span style="opacity:0.8;font-size:0.72rem;">🔊 ${clickToListenHint}</span>
@@ -7353,19 +9114,22 @@
           ? `data-sep-group="${escapeHtml(tok.sep_group)}" data-sep-role="${escapeHtml(tok.sep_role || '')}" data-sep-inf="${escapeHtml(tok.sep_inf || '')}"`
           : '';
 
-        return `<span class="kw-token ${hasGloss ? 'kw-has-gloss' : ''} ${sepClasses}" data-pos="${tok.pos}" data-gender="${isDe ? '' : (tok.g || '')}" ${sepAttrs} data-start="${tok.s}" data-end="${tok.e}" onmouseenter="highlightSepVerbBrothers(this, true)" onmouseleave="highlightSepVerbBrothers(this, false)" onclick="event.stopPropagation(); playSingleWordAudio('${tok.audio_mp3}', '${tok.audio_ogg}', this)"><span class="kw-pos-icon">${iconDisplay}</span><span>${innerWordHtml}</span>${glossHtml}</span>`;
+        return `<span class="kw-token ${hasGloss ? 'kw-has-gloss' : ''} ${sepClasses}" data-pos="${tok.pos}" data-gender="${isDe ? '' : (tok.g || '')}" ${sepAttrs} data-start="${tok.s}" data-end="${tok.e}" onmouseenter="highlightSepVerbBrothers(this, true)" onmouseleave="highlightSepVerbBrothers(this, false)" onclick="event.stopPropagation(); playSingleWordAudio('${tok.audio_mp3 || ''}', '${tok.audio_ogg || ''}', this, '${lang}')"><span class="kw-pos-icon">${iconDisplay}</span><span>${innerWordHtml}</span>${glossHtml}</span>`;
       }).join(' ');
 
+      const hasPrevReachable = (side === 'single' || kidsParallelMode)
+        ? kb.pages.slice(0, pageIdx).some(p => !p?.is_frontispiece)
+        : pageIdx > 0;
       const leftArrowBtnHtml = `<button type="button" class="kids-edge-nav-arrow is-left-arrow"
              onclick="event.stopPropagation(); turnPage(-1)"
-             ${pageIdx === 0 ? 'disabled' : ''}
+             ${!hasPrevReachable ? 'disabled' : ''}
              aria-label="${isDe ? 'Vorherige Seite' : (isFr ? 'Page précédente' : 'Pagina precedente')}"
              title="${isDe ? 'Vorherige Seite (‹)' : (isFr ? 'Page précédente (‹)' : 'Pagina precedente (‹)')}">
              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
            </button>`;
       const rightArrowBtnHtml = `<button type="button" class="kids-edge-nav-arrow is-right-arrow"
              onclick="event.stopPropagation(); turnPage(1)"
-             ${pageIdx >= kb.total_pages - 1 ? 'disabled' : ''}
+             ${pageIdx >= totalPages - 1 ? 'disabled' : ''}
              aria-label="${isDe ? 'Nächste Seite' : (isFr ? 'Page suivante' : 'Pagina successiva')}"
              title="${isDe ? 'Nächste Seite (›)' : (isFr ? 'Page suivante (›)' : 'Pagina successiva (›)')}">
              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -7374,10 +9138,12 @@
         ? `${leftArrowBtnHtml}${rightArrowBtnHtml}`
         : (side === 'left' ? leftArrowBtnHtml : rightArrowBtnHtml);
 
-      const cornerPageNumText = side === 'single'
-        ? `${pageObj.page}/${kb.total_pages} · ${lang.toUpperCase()}`
-        : (kidsParallelMode ? `${pageObj.page} · ${lang.toUpperCase()}` : `${pageObj.page}`);
-      const cornerPageNumHtml = `<span class="kids-book-page-num ${side === 'right' ? 'is-right-num' : 'is-left-num'}">${cornerPageNumText}</span>`;
+      const cornerPageNumText = isFrontispiece
+        ? `${displayPageNum}`
+        : (side === 'single'
+          ? `${displayPageNum}/${totalDisplayPages} · ${lang.toUpperCase()}`
+          : (kidsParallelMode ? `${displayPageNum} · ${lang.toUpperCase()}` : `${displayPageNum}`));
+      const cornerPageNumHtml = `<span class="kids-book-page-num ${side === 'right' ? 'is-right-num' : 'is-left-num'} ${isFrontispiece ? 'is-frontispiece-num' : ''}">${cornerPageNumText}</span>`;
 
       // Per-page speech bubble mouth-anchor coordinates (closer to each speaker's mouth!)
       const BUBBLE_ANCHORS = {
@@ -7398,9 +9164,11 @@
         15: { top: '48.5%', left: '5.5%', maxW: '56%', tail: 'top',    tailLeft: '68%' },
         16: { top: '31.5%', left: '5%',   maxW: '68%', tail: 'bottom', tailLeft: '52%' }
       };
-      const bAnchor = BUBBLE_ANCHORS[pageObj.page] || (patchPos === 'top'
+      const defaultAnchor = (patchPos === 'top')
         ? { top: '33%', left: '6%', maxW: '62%', tail: 'bottom', tailLeft: '48%' }
-        : { top: '9%',  left: '6%', maxW: '60%', tail: 'bottom', tailLeft: '48%' });
+        : { top: '9%',  left: '6%', maxW: '60%', tail: 'bottom', tailLeft: '48%' };
+      const rawAnchor = pageObj.bubble_anchor || (isSardegnaBook(kb) ? BUBBLE_ANCHORS[pageObj.page] : null);
+      const bAnchor = normalizeBubbleAnchor(rawAnchor, defaultAnchor);
 
       const textZoneHtml = `
         <div class="kids-white-patch-text-zone">
@@ -7411,7 +9179,7 @@
         </div>
       `;
 
-      const comicBubbleHtml = bubbleData?.text ? `
+      const comicBubbleHtml = String(bubbleData?.text || '').trim() ? `
         <div class="kids-comic-bubble notranslate ${kidsUppercaseEnabled ? 'uppercase-mode' : ''}"
           lang="${lang}" translate="no"
           data-anchor-top="${bAnchor.top}"
@@ -7419,7 +9187,7 @@
           data-anchor-maxw="${bAnchor.maxW}"
           data-tail-dir="${bAnchor.tail}"
           style="top:${bAnchor.top};left:${bAnchor.left};max-width:${bAnchor.maxW};"
-          onclick="event.stopPropagation(); playKidsBubbleAudio('${bubbleData.audio_mp3}', '${bubbleData.audio_ogg}')"
+          onclick="event.stopPropagation(); playKidsBubbleAudio('${bubbleData.audio_mp3 || ''}', '${bubbleData.audio_ogg || ''}', this)"
           title="${isDe ? 'Klicke, um die Sprechblase zu hören!' : (isFr ? 'Clique pour écouter la bulle BD !' : 'Clicca per ascoltare il fumetto!')}">
           <span>${escapeHtml(bubbleData.text)}</span><span class="kids-comic-audio-dot" aria-hidden="true">🔊</span>
           <svg class="kids-comic-tail tail-${bAnchor.tail}" style="left:${bAnchor.tailLeft};" viewBox="0 0 28 26" aria-hidden="true">
@@ -7435,38 +9203,86 @@
         </div>
       `;
 
+      const xrayImg = String(pageObj.hover_reveal_image || '').trim();
+      const xrayHint = isEn
+        ? 'Hover or tap the hat to reveal the elephant inside the boa!'
+        : (isDe
+            ? 'Fahre mit der Maus über den Hut oder tippe darauf, um in die Boa zu schauen!'
+            : (isFr
+                ? "Passe la souris ou touche le chapeau pour voir l'intérieur du boa !"
+                : 'Passa il mouse o tocca il cappello per vedere dentro il boa!'));
+      const hsObj = pageObj.hover_reveal_hotspot;
+      const hsStyleAttr = (hsObj && typeof hsObj === 'object')
+        ? `style="top:${escapeHtml(String(hsObj.top || '31%'))};left:${escapeHtml(String(hsObj.left || '10%'))};right:${escapeHtml(String(hsObj.right || '10%'))};height:${escapeHtml(String(hsObj.height || '21%'))};"`
+        : '';
+      const xrayMarkup = (!isFrontispiece && xrayImg) ? `
+        <button type="button"
+          class="kids-xray-hotspot"
+          ${hsStyleAttr}
+          aria-pressed="false"
+          aria-label="${escapeHtml(xrayHint)}"
+          title="${escapeHtml(xrayHint)}"
+          onclick="event.stopPropagation(); toggleKidsBoaXray(this)"></button>
+        <div class="kids-page-xray-overlay"
+          style="background-image: url('${escapeHtml(xrayImg)}?v=${APP_VERSION}');"
+          aria-hidden="true"></div>
+      ` : '';
+
+      const bodyZonesHtml = isFrontispiece
+        ? ''
+        : (patchPos === 'top' ? `${textZoneHtml}${artZoneHtml}` : `${artZoneHtml}${textZoneHtml}`);
+
       return `
-        <div class="kids-watercolor-leaf notranslate patch-${patchPos} ${kidsGrammarEnabled ? 'grammar-on' : ''}"
+        <div class="kids-watercolor-leaf notranslate patch-${patchPos} ${isFrontispiece ? 'is-frontispiece' : ''} ${kidsGrammarEnabled ? 'grammar-on' : ''} ${(!isFrontispiece && xrayImg) ? 'has-xray-reveal' : ''}"
           lang="${lang}" translate="no"
+          data-book-id="${escapeHtml(kb.story_id)}"
           data-page="${pageObj.page}"
           style="background-image: url('${pageObj.image}?v=${APP_VERSION}');">
+          ${xrayMarkup}
           ${edgeArrowHtml}
-          ${comicBubbleHtml}
-          ${patchPos === 'top' ? `${textZoneHtml}${artZoneHtml}` : `${artZoneHtml}${textZoneHtml}`}
+          ${isFrontispiece ? '' : comicBubbleHtml}
+          ${bodyZonesHtml}
           ${cornerPageNumHtml}
         </div>
       `;
     }
 
-    // Per-page face keep-out islands in percentage of page leaf [x1, y1, x2, y2]
+    function toggleKidsBoaXray(btn) {
+      const leaf = btn?.closest?.('.kids-watercolor-leaf.has-xray-reveal');
+      if (!leaf) return;
+      const nextActive = !leaf.classList.contains('boa-xray-active');
+      const bookId = leaf.dataset.bookId || '';
+      const pageNo = leaf.dataset.page || '';
+      document.querySelectorAll('#openBookSpread .kids-watercolor-leaf.has-xray-reveal').forEach((el) => {
+        if (el === leaf || (bookId && el.dataset.bookId === bookId && el.dataset.page === pageNo)) {
+          el.classList.toggle('boa-xray-active', nextActive);
+          const hs = el.querySelector('.kids-xray-hotspot');
+          if (hs) hs.setAttribute('aria-pressed', nextActive ? 'true' : 'false');
+        }
+      });
+    }
+
+    // Per-book, per-page face keep-out islands in percentage of page leaf [x1, y1, x2, y2]
     // Speech bubbles must NEVER overlap these face rectangles on any viewport!
     const KIDS_FACE_KEEP_OUT_ZONES = {
-      1:  [[22, 28, 79, 54]],
-      2:  [[24, 46, 92, 66]],
-      3:  [[30, 19, 71, 46]],
-      4:  [[38, 51, 74, 72]],
-      5:  [[30, 29, 80, 56]],
-      6:  [[18, 53, 76, 72]],
-      7:  [[30, 36, 86, 56]],
-      8:  [[19, 64, 53, 82]],
-      9:  [[36, 25, 66, 46]],
-      10: [[26, 49, 52, 68]],
-      11: [[15, 14, 30, 26], [54, 38, 69, 50]],
-      12: [[36, 47, 84, 73]],
-      13: [[41, 29, 77, 50]],
-      14: [[36, 49, 67, 65]],
-      15: [[31, 29, 72, 52], [38, 5.5, 89, 28.5]],
-      16: [[32, 43, 66, 66]]
+      [SARDEGNA_BOOK_ID]: {
+        1:  [[22, 28, 79, 54]],
+        2:  [[24, 46, 92, 66]],
+        3:  [[30, 19, 71, 46]],
+        4:  [[38, 51, 74, 72]],
+        5:  [[30, 29, 80, 56]],
+        6:  [[18, 53, 76, 72]],
+        7:  [[30, 36, 86, 56]],
+        8:  [[19, 64, 53, 82]],
+        9:  [[36, 25, 66, 46]],
+        10: [[26, 49, 52, 68]],
+        11: [[15, 14, 30, 26], [54, 38, 69, 50]],
+        12: [[36, 47, 84, 73]],
+        13: [[41, 29, 77, 50]],
+        14: [[36, 49, 67, 65]],
+        15: [[31, 29, 72, 52], [38, 5.5, 89, 28.5]],
+        16: [[32, 43, 66, 66]]
+      }
     };
     window.KIDS_FACE_KEEP_OUT_ZONES = KIDS_FACE_KEEP_OUT_ZONES;
 
@@ -7475,8 +9291,9 @@
       leaves.forEach((leaf) => {
         const bubble = leaf.querySelector('.kids-comic-bubble');
         if (!bubble) return;
+        const bookId = leaf.dataset.bookId || SARDEGNA_BOOK_ID;
         const pageNum = Number(leaf.dataset.page || 0);
-        const zones = KIDS_FACE_KEEP_OUT_ZONES[pageNum] || [];
+        const zones = (KIDS_FACE_KEEP_OUT_ZONES[bookId] || {})[pageNum] || [];
 
         // Reset to anchor defaults before measuring
         bubble.style.fontSize = '';
@@ -7484,6 +9301,8 @@
         bubble.style.top = bubble.dataset.anchorTop || bubble.style.top;
         bubble.style.left = bubble.dataset.anchorLeft || bubble.style.left;
         bubble.style.maxWidth = bubble.dataset.anchorMaxw || bubble.style.maxWidth;
+
+        if (!zones.length) return;
 
         const lr = leaf.getBoundingClientRect();
         if (lr.width < 40 || lr.height < 60) return;
@@ -7534,13 +9353,11 @@
         const tailDir = bubble.dataset.tailDir || 'bottom';
 
         if (tailDir === 'top') {
-          // Bubble is below the mouth (e.g. page 15): try nudging down or slightly left
           for (let t = origTop; t <= maxBottomPct - 14; t += 1.0) {
             bubble.style.top = `${t.toFixed(1)}%`;
             if (!overlapsAnyZone()) return;
           }
         } else {
-          // Bubble is above the faces: nudge upward toward minTopPct
           for (let t = origTop; t >= minTopPct; t -= 1.0) {
             bubble.style.top = `${t.toFixed(1)}%`;
             if (!overlapsAnyZone()) return;
@@ -7563,7 +9380,7 @@
 
         const isSeby = box.classList.contains('level-seby');
         const isAle = box.classList.contains('level-ale');
-        let lo = 10.5;
+        let lo = isKidsMobileSinglePageMode() ? 7.5 : (maxH < 110 ? 5.5 : (maxH < 145 ? 7.5 : 10.5));
         let hi = isSeby
           ? Math.min(40, Math.max(24, maxW * 0.072))
           : (isAle
@@ -7595,6 +9412,7 @@
       document.querySelectorAll('#openBookSpread .kids-watercolor-leaf').forEach((leaf) => {
         const bubble = leaf.querySelector('.kids-comic-bubble');
         if (!bubble) return;
+        const bookId = leaf.dataset.bookId || SARDEGNA_BOOK_ID;
         const pageNum = Number(leaf.dataset.page || 0);
         const lr = leaf.getBoundingClientRect();
         const br = bubble.getBoundingClientRect();
@@ -7604,7 +9422,7 @@
           x2: Number((((br.right - lr.left) / lr.width) * 100).toFixed(1)),
           y2: Number((((br.bottom - lr.top) / lr.height) * 100).toFixed(1))
         };
-        const zones = zonesMap[pageNum] || [];
+        const zones = (zonesMap[bookId] || {})[pageNum] || [];
         let maxOverlapArea = 0;
         for (const [zx1, zy1, zx2, zy2] of zones) {
           const ox = Math.max(0, Math.min(r.x2, zx2) - Math.max(r.x1, zx1));
@@ -7614,6 +9432,7 @@
           }
         }
         results.push({
+          bookId,
           page: pageNum,
           rect: r,
           fontSizePx: Number((parseFloat(getComputedStyle(bubble).fontSize) || 0).toFixed(1)),
@@ -7685,14 +9504,14 @@
     }
 
     async function renderActiveBook(turnDirection = null) {
-      const story = (catalog.stories || []).find(s => s.slug === activeTab);
-      if (!story) return;
+      const kb = getKidsBookEntry(resolveKidsBookId(activeTab) || activeTab);
+      const story = (catalog.stories || []).find(s => s.slug === activeTab) || null;
+      if (!story && !(kidsBookMode && kb)) return;
 
       updateTopVoteBadge();
 
       const bookEl = document.getElementById('openBookSpread');
       const viewportEl = document.getElementById('bookViewport');
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
       if (kidsBookMode && kb && Array.isArray(kb.pages) && kb.pages.length > 0) {
         const isSinglePage = isKidsMobileSinglePageMode();
         _lastSinglePageModeState = isSinglePage;
@@ -7704,15 +9523,20 @@
 
         // On mobile/portrait (isSinglePage), show 1 single page at a time (p.1 -> p.2 -> p.3)!
         // In Parallel Mode ("Traduzione Pari Pari"), show the EXACT same page on Left (Book Lang) and Right (Base/Translation Lang)!
-        // In Classic Spread Mode, snap to even index (0, 2, 4, ..., 14) so Left = odd (1,3,5...) and Right = even (2,4,6...).
-        let rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[story.slug] || 0, kb.pages.length - 1));
-        const bookLang = ['it', 'fr', 'de'].includes(currentLang) ? currentLang : 'it';
+        // In Classic Spread Mode, snap to even index (0, 2, 4, ...) so Left = odd (1,3,5...) and Right = even (2,4,6...).
+        let rawIdx = Math.max(0, Math.min(kidsPageIndexBySlug[activeTab] || 0, kb.pages.length - 1));
+        if ((isSinglePage || kidsParallelMode) && kb.pages[rawIdx]?.is_frontispiece) {
+          const firstNonFrontIdx = kb.pages.findIndex(p => !p?.is_frontispiece);
+          if (firstNonFrontIdx >= 0) rawIdx = firstNonFrontIdx;
+        }
+        const bookLang = resolveBookLearningLang(kb, currentLang);
         const leftIdx = (isSinglePage || kidsParallelMode) ? rawIdx : (rawIdx - (rawIdx % 2));
         const rightIdx = (isSinglePage || kidsParallelMode) ? rawIdx : Math.min(leftIdx + 1, kb.pages.length - 1);
         const leftLang = bookLang;
         const rightLang = kidsParallelMode ? getKidsParallelRightLang(bookLang) : bookLang;
-        kidsPageIndexBySlug[story.slug] = leftIdx;
-        renderKidsLaunchBar(story);
+        kidsPageIndexBySlug[activeTab] = leftIdx;
+        renderKidsLaunchBar(kb, story);
+        renderBookmarkResumePill(kb, leftIdx, rightIdx);
 
         bookEl.classList.add('kids-notebook-spread');
         bookEl.classList.toggle('kids-single-page-mode', isSinglePage);
@@ -7757,7 +9581,9 @@
         return;
       }
 
-      renderKidsLaunchBar(story);
+      renderBookmarkResumePill(null, 0, 0);
+      renderKidsLaunchBar(kb, story);
+      if (!story) return;
 
       if (bookEl) {
         bookEl.classList.remove('kids-notebook-spread', 'kids-single-page-mode', 'is-fullscreen');
@@ -8252,26 +10078,32 @@
     }
 
     function turnPage(delta) {
-      const story = (catalog.stories || []).find(s => s.slug === activeTab);
-      if (!story) return;
       const kidsAudio = document.getElementById('kidsStaticAudio');
       if (kidsAudio) kidsAudio.pause();
 
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
+      const kb = getKidsBookEntry(activeTab);
       if (kidsBookMode && kb && Array.isArray(kb.pages)) {
-        const cur = kidsPageIndexBySlug[story.slug] || 0;
+        const cur = kidsPageIndexBySlug[activeTab] || 0;
         const isSinglePage = isKidsMobileSinglePageMode();
         const step = (isSinglePage || kidsParallelMode) ? (delta > 0 ? 1 : -1) : (delta > 0 ? 2 : -2);
-        const next = cur + step;
+        let next = cur + step;
+        if (isSinglePage || kidsParallelMode) {
+          while (next >= 0 && next < kb.pages.length && kb.pages[next]?.is_frontispiece) {
+            next += step;
+          }
+        }
         if (next >= 0 && next < kb.pages.length) {
           const dir = delta > 0 ? 'next' : 'prev';
           playPageFlipRustle(dir);
-          kidsPageIndexBySlug[story.slug] = next;
+          kidsPageIndexBySlug[activeTab] = next;
           syncStateToUrl();
           renderActiveBook(dir);
         }
         return;
       }
+
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      if (!story) return;
 
       const slides = getSlidesForStory(story);
       const cur = pageIndexBySlug[story.slug] || 0;
@@ -8288,22 +10120,23 @@
     }
 
     function goToPage(index) {
-      const story = (catalog.stories || []).find(s => s.slug === activeTab);
-      if (!story) return;
       const kidsAudio = document.getElementById('kidsStaticAudio');
       if (kidsAudio) kidsAudio.pause();
 
-      const kb = window.KIDS_BOOKS_CATALOG && window.KIDS_BOOKS_CATALOG[story.slug];
+      const kb = getKidsBookEntry(activeTab);
       if (kidsBookMode && kb && Array.isArray(kb.pages)) {
-        const cur = kidsPageIndexBySlug[story.slug] || 0;
+        const cur = kidsPageIndexBySlug[activeTab] || 0;
         if (index === cur) return;
         const dir = index > cur ? 'next' : 'prev';
         playPageFlipRustle(dir);
-        kidsPageIndexBySlug[story.slug] = index;
+        kidsPageIndexBySlug[activeTab] = index;
         syncStateToUrl();
         renderActiveBook(dir);
         return;
       }
+
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      if (!story) return;
 
       const cur = pageIndexBySlug[story.slug] || 0;
       if (index === cur) return;
@@ -8317,11 +10150,13 @@
     }
 
     // Re-render role-aware buttons and apply PuffinLogin profile defaults (Ale -> ale, Seby -> seby, Riccardo -> emma + IT)
-    window.addEventListener('puffin-auth-change', () => {
+    function onPuffinAuthUpdated() {
       applyPuffinUserDefaults(true);
       syncStateToUrl();
       renderAll();
-    });
+    }
+    window.addEventListener('puffin-auth-updated', onPuffinAuthUpdated);
+    window.addEventListener('puffin-auth-change', onPuffinAuthUpdated);
 
     /* =========================================================================
        MOBILE & DESKTOP DRAG-AND-DROP PAGE TURN SIMULATION + PAPER RUSTLE SOUND
@@ -8522,9 +10357,41 @@
       if (isTyping) return;
       const regenDialog = document.getElementById('regenerateDialog');
       const newStoryDialog = document.getElementById('newStoryDialog');
+      const voteDialog = document.getElementById('voteStoryDialog');
       const quizDialog = document.getElementById('antolinQuizDialog');
       const dashDialog = document.getElementById('antolinDashDialog');
-      if (behindDialog.open || cinemaDialog?.open || regenDialog?.open || newStoryDialog?.open || quizDialog?.open || dashDialog?.open || activeTab === 'indice' || activeTab === 'netflix') return;
+      const puffinDialog = document.getElementById('puffin-widget')?.shadowRoot?.querySelector('dialog');
+      if (behindDialog.open || cinemaDialog?.open || regenDialog?.open || newStoryDialog?.open || voteDialog?.open || quizDialog?.open || dashDialog?.open || puffinDialog?.open) return;
+
+      if (e.key === 'Escape') {
+        if (kidsSettingsOpen) {
+          kidsSettingsOpen = false;
+          const pop = document.getElementById('kidsSettingsPopover');
+          if (pop) pop.hidden = true;
+          e.preventDefault();
+          return;
+        }
+        if (kidsBookMode && activeTab !== 'indice' && activeTab !== 'netflix') {
+          e.preventDefault();
+          const kidsAudio = document.getElementById('kidsStaticAudio');
+          if (kidsAudio) kidsAudio.pause();
+          stopBrowserKaraokeSpeech();
+          saveKidsBookmark(activeTab, { silent: true });
+          const urlKid = new URLSearchParams(window.location.search).get('kid');
+          const escKid = (urlKid && urlKid !== 'all')
+            ? urlKid
+            : ((inboundRawKidParam && inboundRawKidParam !== 'all')
+              ? inboundRawKidParam
+              : (activeKidFilter && activeKidFilter !== 'all' ? activeKidFilter : ''));
+          const targetUrl = escKid
+            ? ('books/?kid=' + encodeURIComponent(escKid))
+            : 'books/';
+          window.location.href = targetUrl;
+          return;
+        }
+      }
+
+      if (activeTab === 'indice' || activeTab === 'netflix') return;
 
       // Spacebar toggles Play / Pause on the active Kids Book audio (or Adult Narrator audio)
       if (e.code === 'Space' || e.key === ' ') {
@@ -8605,9 +10472,17 @@
         return;
       }
       // Save to localStorage queue
-      const queue = JSON.parse(localStorage.getItem('kos_regen_queue') || '[]');
+      let queue = [];
+      try {
+        const parsedQueue = JSON.parse(safeStorageGet('kos_regen_queue') || '[]');
+        if (Array.isArray(parsedQueue)) {
+          queue = parsedQueue.filter(x => x && typeof x === 'object' && !Array.isArray(x));
+        }
+      } catch (_) {
+        queue = [];
+      }
       queue.push(payload);
-      localStorage.setItem('kos_regen_queue', JSON.stringify(queue));
+      safeStorageSet('kos_regen_queue', JSON.stringify(queue));
 
       // Open pre-filled GitHub Issue on palladius/kids-own-stories so AGY / Pux can act on it
       const issueTitle = encodeURIComponent(`🔄 [Rigenera Storia] ${payload.story_title}`);
@@ -8826,7 +10701,11 @@
       msgEl.hidden = false;
     }
 
-    initApp();
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => initApp(), { once: true });
+    } else {
+      initApp();
+    }
   </script>
 </body>
 </html>

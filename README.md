@@ -12,17 +12,40 @@ Questo repository raccoglie i racconti originali creati dai bimbi — registrati
 
 ```text
 kids-own-stories/
-├── index.html         # 🌐 Vetrina & Libro Multi-Pagina Interattivo (GitHub Pages)
-├── GEMINI.md          # 🤖 Istruzioni operative per AI (workflow + schema YAML)
-├── stories.yaml       # 📋 Catalogo deterministico delle storie, stato e asset
+├── index.html             # 🌐 Vetrina & Lettore Multi-Libro Acquerello (GitHub Pages)
+├── books/                 # 📚 Libreria Acquerello 3D brossura (/books/, ?book=...)
+├── docs/CONSTITUTION.md   # 📜 Costituzione linguistica e pedagogica (FR/IT/DE + en-GB)
+├── GEMINI.md              # 🤖 Istruzioni operative per AI (workflow + schema YAML)
+├── stories.yaml           # 📋 Catalogo deterministico delle storie mic-recorded (Layer 1)
+├── kids_books_catalog.js  # 📖 Catalogo compilato dei libri illustrati ad acquerello (Layer 2)
 ├── stories/
-│   ├── alessandro/    # 👦 Le storie di Alessandro (Primary 3)
-│   └── sebastian/     # 🧒 Le storie di Sebastian / Seby (Primary 1)
-├── audio/             # 🎙️ Registrazioni vocali microfonate da sbobinare
-├── CHANGELOG.md       # Registro delle modifiche e nuove storie aggiunte
-├── VERSION            # Versione semantica del progetto
-└── README.md          # Questo file
+│   ├── alessandro/        # 👦 Le storie di Alessandro (Primary 3)
+│   └── sebastian/         # 🧒 Le storie di Sebastian / Seby (Primary 1)
+├── audio/                 # 🎙️ Registrazioni vocali microfonate da sbobinare
+├── CHANGELOG.md           # Registro delle modifiche e nuove storie aggiunte
+├── VERSION                # Versione semantica del progetto
+└── README.md              # Questo file
 ```
+
+---
+
+## 📚 Libri Illustrati ad Acquerello (`/books/` & Lettore Multi-Libro)
+
+Accanto alle storie registrate al microfono (Layer 1), la piattaforma include una **Libreria Acquerello interattiva** ([`books/index.html`](books/index.html) → `/books/`) con copertine **3D brossura** e lettore a doppia pagina (`1792×1200`, con modalità monopagina su smartphone):
+
+* 🏖️ **Vacanze in Sardegna** (`?book=sardegna`) — *scritto da Riccardo Carlesso* (Cala Gonone & Arbatax, **16 tavole / 8 aperture**).
+* 👑 **Le Petit Prince** (`?book=petit-prince`) — *di Antoine de Saint-Exupéry* (**26 tavole / 13 aperture** con frontespizio Pag. 0 + 1 illustrazione per pagina e X-ray interattivo cappello→elefante a Pag. 2, **13 quiz Antolin** sulle pagine del libro, segnalibro automatico `ESC → /books/`, acquerelli originali del 1943 rimasterizzati su carta calda).
+
+### 🌍 Costituzione Linguistica (`docs/CONSTITUTION.md`)
+Ogni libro ad acquerello segue rigorosamente [`docs/CONSTITUTION.md`](docs/CONSTITUTION.md):
+- **3 lingue di apprendimento attive (`FR`, `IT`, `DE`)**: testi completi su **3 livelli CEFR** (**Seby** 6a · A2, **Ale** 8a · B1, **Emma & Papino** 10–11a+ · B2/C1), audio studio `Aoede` (`.mp3` + `.ogg`), grammatica Montessori, verbi separabili tedeschi e quiz Antolin.
+- **Inglese (`en-GB` British English) solo per traduzione e spiegazioni**: usato esclusivamente nella **Traduzione Pari Pari** (*Cheating Mode*), nei glossari (`en_gloss`) e nei titoli tradotti — **zero audio studio generato in inglese** (fallback solo browser `en-GB` RP).
+
+### ⚖️ Trasparenza Copyright & Pubblico Dominio (*Le Petit Prince*)
+L'adattamento educativo di **Le Petit Prince** utilizza le illustrazioni ad acquerello originali del 1943 e riscritture/estratti calibrati per età nel rispetto delle norme sul diritto d'autore:
+- **Switzerland (`CH`) & European Union (`EU`)**: Antoine de Saint-Exupéry morì il **31 luglio 1944**; il testo originale e gli acquerelli sono entrati nel **pubblico dominio in Svizzera (`CH`) e nell'Unione Europea (`EU`) dal 1° gennaio 2015** (vita dell'autore + 70 anni).
+- **France**: in **France**, in virtù della menzione *Mort pour la France* (Art. L123-10 CPI, proroga di +30 anni), l'opera resta protetta fino al **~2032–2035** (e negli Stati Uniti fino al **1° gennaio 2039**).
+- Questo progetto è realizzato **esclusivamente come web app educativa privata/familiare in Svizzera (Switzerland)**, senza alcun fine commerciale.
 
 ---
 

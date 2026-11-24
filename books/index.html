@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="it" translate="no" class="notranslate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e120a'/%3E%3Cpath d='M7 8.5C7 7.67 7.67 7 8.5 7H15v17H8.5C7.67 24 7 23.33 7 22.5V8.5z' fill='%23fdfaf2' stroke='%23d97706' stroke-width='1.5'/%3E%3Cpath d='M25 8.5C25 7.67 24.33 7 23.5 7H17v17h6.5c.83 0 1.5-.67 1.5-1.5V8.5z' fill='%23fef3c7' stroke='%23d97706' stroke-width='1.5'/%3E%3Cpath d='M16 7v17' stroke='%2378350f' stroke-width='1.8'/%3E%3C/svg%3E">
+  <title>📚 Libreria Acquerello — Kids' Own Stories</title>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var rawPathname = window.location.pathname || '/';
+      var pathname = rawPathname.replace(/\/+/g, '/');
+      var basePath = (pathname.replace(/\/books(?:\/(?:index\.html)?)?$/, '/') || '/').replace(/\/+/g, '/');
+      var bookVal = params.get('book');
+      var storyVal = params.get('story');
+      if ((bookVal && bookVal.trim()) || (storyVal && storyVal.trim())) {
+        window.location.replace(basePath + window.location.search + window.location.hash);
+        return;
+      }
+      if (rawPathname !== pathname || /\/books$/.test(pathname)) {
+        var canonicalPath = /\/books$/.test(pathname) ? (pathname + '/') : pathname;
+        window.location.replace(canonicalPath + window.location.search + window.location.hash);
+        return;
+      }
+      window.__kosCatalogLoadPromise = new Promise(function (resolve) {
+        var s = document.createElement('script');
+        s.src = basePath + 'kids_books_catalog.js?v=0.14.0';
+        s.onload = resolve;
+        s.onerror = resolve;
+        document.head.appendChild(s);
+      });
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
+    }
+
+    :root {
+      --desk-dark: #140d08;
+      --wood-top: rgba(52, 31, 18, 0.97);
+      --wood-bottom: rgba(30, 18, 10, 0.99);
+      --gold: #f59e0b;
+      --gold-soft: #fcd34d;
+      --amber-border: rgba(217, 119, 6, 0.42);
+      --paper-bg: #fdfaf2;
+      --paper-ink: #1e2430;
+      --paper-muted: #645344;
+      --leather: #78350f;
+      --inner-gold: #d97706;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #fef3c7;
+      background-color: var(--desk-dark);
+      background-image:
+        radial-gradient(ellipse at center, rgba(18, 12, 7, 0.14) 0%, rgba(12, 8, 4, 0.62) 100%),
+        url('../assets/backgrounds/kids_book_bg_landscape.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    @media (max-aspect-ratio: 11/10) {
+      html, body {
+        background-image:
+          radial-gradient(ellipse at center, rgba(18, 12, 7, 0.16) 0%, rgba(12, 8, 4, 0.64) 100%),
+          url('../assets/backgrounds/kids_book_bg_portrait.jpg');
+      }
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 10px clamp(14px, 3vw, 32px);
+      background: linear-gradient(180deg, var(--wood-top) 0%, var(--wood-bottom) 100%);
+      border-bottom: 1.5px solid var(--amber-border);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.52);
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .topbar-title {
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.1rem, 1.9vw, 1.42rem);
+      font-weight: 700;
+      color: #fef3c7;
+      letter-spacing: 0.015em;
+    }
+
+    .books-count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      background: rgba(245, 158, 11, 0.18);
+      color: #fde68a;
+      border: 1px solid rgba(245, 158, 11, 0.42);
+    }
+
+    .topbar-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.96rem;
+      color: var(--gold-soft);
+      opacity: 0.92;
+      white-space: nowrap;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fef3c7;
+      background: rgba(120, 53, 15, 0.42);
+      border: 1.5px solid rgba(245, 158, 11, 0.42);
+      transition: transform 0.14s ease, background 0.14s ease, border-color 0.14s ease;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+      background: rgba(245, 158, 11, 0.24);
+      border-color: var(--gold);
+    }
+
+    .shelf-main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(18px, 3vh, 34px) clamp(14px, 2.6vw, 28px) 32px;
+    }
+
+    .bookshelf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(20px, 2.8vw, 36px);
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px) {
+      .bookshelf-grid {
+        grid-template-columns: 1fr;
+      }
+      .topbar-sub {
+        display: none;
+      }
+    }
+
+    .book-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--paper-bg);
+      color: var(--paper-ink);
+      border: 5px solid var(--leather);
+      border-radius: 22px;
+      padding: clamp(14px, 1.8vw, 22px) clamp(14px, 1.8vw, 22px) clamp(14px, 1.6vw, 20px);
+      box-shadow:
+        0 24px 58px rgba(0, 0, 0, 0.78),
+        0 0 32px rgba(245, 158, 11, 0.18),
+        inset 0 0 0 2px var(--inner-gold),
+        inset 18px 0 32px -18px rgba(69, 26, 3, 0.22);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 30px 66px rgba(0, 0, 0, 0.84),
+        0 0 42px rgba(245, 158, 11, 0.3),
+        inset 0 0 0 2px #f59e0b,
+        inset 18px 0 32px -18px rgba(69, 26, 3, 0.24);
+    }
+
+    .book-cover-header {
+      position: absolute;
+      top: 4.8%;
+      left: 7.5%;
+      right: 6.5%;
+      z-index: 3;
+      pointer-events: none;
+      text-align: center;
+      padding: 0.8cqw 1.2cqw 1.8cqw;
+      background: linear-gradient(
+        180deg,
+        rgba(253, 250, 242, 0.88) 0%,
+        rgba(253, 250, 242, 0.64) 72%,
+        rgba(253, 250, 242, 0) 100%
+      );
+    }
+
+    .book-card-title {
+      margin: 0;
+      font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1rem, 5.9cqw, 1.66rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      color: #451a03;
+    }
+
+    .book-card-author {
+      margin: 0.6cqw 0 0;
+      font-family: 'Cormorant Garamond', 'Crimson Pro', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(0.74rem, 3.4cqw, 1.02rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--paper-muted);
+    }
+
+    .book-cover-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      width: 100%;
+      text-decoration: none;
+      perspective: 1100px;
+      padding: 4px 14px 14px 6px;
+    }
+
+    .book-3d-volume {
+      position: relative;
+      display: block;
+      container-type: inline-size;
+      width: min(100%, calc(clamp(340px, 60vh, 560px) * 896 / 1200));
+      aspect-ratio: 896 / 1200;
+      transform-style: preserve-3d;
+      border-radius: 4px 12px 12px 4px;
+      box-shadow:
+        3px 3px 0 0 #f5efe0,
+        4px 4px 0 0 #d6c5a7,
+        6px 6px 0 0 #efe5cf,
+        7px 7px 0 0 #c9b591,
+        9px 9px 0 0 #e7dcc6,
+        10px 10px 0 0 #b89f78,
+        14px 18px 28px -4px rgba(24, 12, 4, 0.46),
+        4px 8px 16px rgba(69, 26, 3, 0.28);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .book-spine-sheen {
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      width: 22px;
+      border-radius: 3px 0 0 3px;
+      background: linear-gradient(
+        90deg,
+        rgba(69, 26, 3, 0.28) 0%,
+        rgba(255, 251, 235, 0.34) 22%,
+        rgba(120, 53, 15, 0.16) 44%,
+        rgba(69, 26, 3, 0.24) 56%,
+        rgba(255, 251, 235, 0.14) 72%,
+        rgba(120, 53, 15, 0) 100%
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .book-card:hover .book-3d-volume,
+    .book-card:focus-within .book-3d-volume {
+      transform: rotateY(-6deg) rotateX(2deg) translateY(-6px);
+      box-shadow:
+        4px 3px 0 0 #f5efe0,
+        5px 4px 0 0 #d6c5a7,
+        8px 6px 0 0 #efe5cf,
+        9px 7px 0 0 #c9b591,
+        12px 9px 0 0 #e7dcc6,
+        13px 10px 0 0 #b89f78,
+        20px 26px 36px -4px rgba(20, 10, 3, 0.56),
+        6px 12px 20px rgba(69, 26, 3, 0.32);
+    }
+
+    .book-cover-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px 12px 12px 4px;
+      border: 1.5px solid rgba(120, 53, 15, 0.42);
+      background: var(--paper-bg);
+    }
+
+    .book-resume-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #78350f;
+      border: 1.5px solid #d97706;
+      box-shadow: 0 4px 12px rgba(180, 83, 9, 0.16);
+      transition: transform 0.14s ease, background 0.14s ease;
+    }
+
+    .book-resume-pill:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, #fde68a, #fcd34d);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .book-card,
+      .book-3d-volume,
+      .nav-pill,
+      .book-resume-pill {
+        transition: none !important;
+      }
+      .book-card:hover,
+      .book-card:hover .book-3d-volume,
+      .book-card:focus-within .book-3d-volume,
+      .nav-pill:hover,
+      .book-resume-pill:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="notranslate" translate="no">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <h1 class="topbar-title"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg><span>Libreria Acquerello</span><span id="shelfBookCountBadge" class="books-count-badge">2</span></h1>
+      <span class="topbar-sub">Edizioni Illustrate · Seby · Ale · Emma</span>
+    </div>
+    <nav class="topbar-nav" aria-label="Navigazione libreria">
+      <a href="../?tab=indice" class="nav-pill">← Tutte le storie</a>
+      <a href="../netflix.html" class="nav-pill">🍿 StorieFlix</a>
+    </nav>
+  </header>
+
+  <main class="shelf-main">
+    <section id="bookshelfGrid" class="bookshelf-grid" aria-label="Libri illustrati disponibili"></section>
+  </main>
+
+  <script>
+    (function () {
+      var BOOKMARKS_KEY = 'kos_kids_bookmarks_v1';
+      var inbound = new URLSearchParams(window.location.search);
+
+      function escapeHtml(str) {
+        return String(str == null ? '' : str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function readBookmarks() {
+        try {
+          var raw = localStorage.getItem(BOOKMARKS_KEY);
+          if (!raw) return {};
+          var parsed = JSON.parse(raw);
+          return (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) ? parsed : {};
+        } catch (err) {
+          return {};
+        }
+      }
+
+      function buildBookUrl(alias, overrides) {
+        var qs = new URLSearchParams();
+        qs.set('book', alias);
+        var forwardKeys = ['kid', 'mode', 'lang', 'parallel', 'page'];
+        for (var i = 0; i < forwardKeys.length; i++) {
+          var k = forwardKeys[i];
+          if (inbound.has(k) && inbound.get(k) !== '') {
+            qs.set(k, inbound.get(k));
+          }
+        }
+        if (overrides) {
+          var keys = Object.keys(overrides);
+          for (var j = 0; j < keys.length; j++) {
+            var ok = keys[j];
+            var ov = overrides[ok];
+            if (ov === null || ov === undefined || ov === '') {
+              qs.delete(ok);
+            } else {
+              qs.set(ok, String(ov));
+            }
+          }
+        }
+        return '../?' + qs.toString();
+      }
+
+      function renderBookshelf() {
+        var catalog = window.KIDS_BOOKS_CATALOG || {};
+        var bookmarks = readBookmarks();
+
+        var bookSpecs = [
+          {
+            storyId: 'storia-sardegna-cala-gonone-arbatax-famiglia',
+            alias: 'sardegna',
+            displayTitle: 'Vacanze in Sardegna',
+            authorPrefix: 'scritto da ',
+            authorName: 'Riccardo Carlesso',
+            fallbackPages: 16,
+            coverSrc: 'covers/sardegna.jpg?v=0.14.0',
+            coverAlt: 'Copertina acquerello Vacanze in Sardegna'
+          },
+          {
+            storyId: 'le-petit-prince',
+            alias: 'petit-prince',
+            displayTitle: 'Le Petit Prince',
+            authorPrefix: 'di ',
+            authorName: 'Antoine de Saint-Exupéry',
+            fallbackPages: 26,
+            coverSrc: 'covers/petit-prince.jpg?v=0.14.0',
+            coverAlt: 'Copertina acquerello Le Petit Prince'
+          }
+        ];
+
+        var badgeEl = document.getElementById('shelfBookCountBadge');
+        if (badgeEl) {
+          badgeEl.textContent = String(bookSpecs.length);
+        }
+
+        var gridEl = document.getElementById('bookshelfGrid');
+        if (!gridEl) return;
+
+        var html = '';
+        for (var i = 0; i < bookSpecs.length; i++) {
+          var spec = bookSpecs[i];
+          var kb = Object.prototype.hasOwnProperty.call(catalog, spec.storyId) ? catalog[spec.storyId] : null;
+          var titleText = spec.displayTitle;
+          var totalPages = (kb && (kb.total_pages || (kb.pages && kb.pages.length))) || spec.fallbackPages;
+          var openHref = buildBookUrl(spec.alias);
+
+          var rawBm = Object.prototype.hasOwnProperty.call(bookmarks, spec.storyId)
+            ? bookmarks[spec.storyId]
+            : (Object.prototype.hasOwnProperty.call(bookmarks, spec.alias) ? bookmarks[spec.alias] : null);
+          var bm = (rawBm && typeof rawBm === 'object' && !Array.isArray(rawBm)) ? rawBm : null;
+          var rawPage = bm ? bm.page : null;
+          var parsedPage = (typeof rawPage === 'number')
+            ? rawPage
+            : (typeof rawPage === 'string' && /^\d+$/.test(rawPage.trim()) ? Number(rawPage.trim()) : NaN);
+          var hasBm = Boolean(bm && Number.isFinite(parsedPage) && parsedPage >= 1);
+          var bmHtml = '';
+          if (hasBm) {
+            var bmPage = Math.max(1, Math.min(totalPages, Math.floor(parsedPage)));
+            var bmPageObj = (kb && Array.isArray(kb.pages))
+              ? (kb.pages.find(function (p) { return p && p.page === bmPage; }) || kb.pages[bmPage - 1])
+              : null;
+            var dispBmPage = (bmPageObj && bmPageObj.display_page !== undefined && bmPageObj.display_page !== null)
+              ? bmPageObj.display_page
+              : bmPage;
+            var bmMode = (bm.mode === 'seby' || bm.mode === 'ale' || bm.mode === 'emma') ? bm.mode : '';
+            var bmLang = (bm.lang === 'fr' || bm.lang === 'it' || bm.lang === 'de') ? bm.lang : '';
+            var resumeOverrides = { page: bmPage };
+            if (!inbound.has('mode') && bmMode) resumeOverrides.mode = bmMode;
+            if (!inbound.has('lang') && bmLang) resumeOverrides.lang = bmLang;
+            var resumeHref = buildBookUrl(spec.alias, resumeOverrides);
+            bmHtml = '<a href="' + escapeHtml(resumeHref) + '" class="book-resume-pill">🔖 Riprendi da pag. ' + dispBmPage + '</a>';
+          }
+
+          html +=
+            '<article class="book-card notranslate" data-book="' + escapeHtml(spec.alias) + '" translate="no">' +
+              '<a href="' + escapeHtml(openHref) + '" class="book-cover-link" aria-label="Apri ' + escapeHtml(titleText) + '">' +
+                '<div class="book-3d-volume">' +
+                  '<span class="book-spine-sheen" aria-hidden="true"></span>' +
+                  '<header class="book-cover-header">' +
+                    '<h2 class="book-card-title">' + escapeHtml(titleText) + '</h2>' +
+                    '<p class="book-card-author">' + escapeHtml(spec.authorPrefix) + '<em>' + escapeHtml(spec.authorName) + '</em></p>' +
+                  '</header>' +
+                  '<img class="book-cover-img" src="' + escapeHtml(spec.coverSrc) + '" alt="' + escapeHtml(spec.coverAlt) + '" width="896" height="1200">' +
+                '</div>' +
+              '</a>' +
+              bmHtml +
+            '</article>';
+        }
+
+        gridEl.innerHTML = html;
+      }
+
+      if (window.KIDS_BOOKS_CATALOG) {
+        renderBookshelf();
+      } else if (window.__kosCatalogLoadPromise) {
+        window.__kosCatalogLoadPromise.then(renderBookshelf);
+      } else {
+        renderBookshelf();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -6,7 +6,7 @@ default: test
 test:
     uv run --with pyyaml --with pillow python3 bin/test_stories.py
 
-# Run Playwright bounding-box text auto-fit test across all 16 pages × 3 tiers × 3 languages
+# Run Playwright bounding-box text auto-fit test across all books (sardegna 16p + petit-prince 26p) × 3 tiers × 3 languages
 test-fit:
     uv run --with playwright python3 bin/test_kids_text_fit.py
 

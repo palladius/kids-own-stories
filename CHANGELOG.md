@@ -2,6 +2,22 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.14.0] - 2026-11-23
+
+### Added & Changed
+- 👑🎨 **Nuovo Libro Illustrato: *Le Petit Prince* ([`books/petit-prince/`](books/petit-prince/), [`kids_books_catalog.js`](kids_books_catalog.js))**:
+  - **26 tavole acquarellate (`896×1200` RGB JPEG, 13 doppie aperture)** con le illustrazioni originali del 1943 di Antoine de Saint-Exupéry rimasterizzate su carta calda `#fdfaf2` e riquadri alternati (`patch-bottom` dispari / `patch-top` pari): **1 sola illustrazione per pagina**, apertura con **frontespizio Pag. 0** a sinistra + **Serpente Boa** a destra (`wc_p02.jpg`), e **X-ray interattivo cappello→elefante** su hover/tap a Pag. 2 (`wc_p03.jpg` → `wc_p03_xray.jpg`).
+  - **3 livelli CEFR (`seby` 6a A2, `ale` 8a B1, `emma` 10–11a+ B2/C1) × 3 lingue di apprendimento (`FR`, `IT`, `DE`)**, validati dal gate **Adversarial CEFR Pedagogical Critic**, con grammatica Montessori, verbi separabili tedeschi e glossari + **Traduzione Pari Pari** in British English (`en-GB`).
+  - **Audio studio `Aoede` (`MP3` + `OGG`)** su tutte le 25 pagine narrative (`Pag. 1..25`) × 3 livelli × `FR`/`IT`/`DE`, fumetti e clip singola parola (`assets/words_audio/{fr,it,de}/`), con **zero audio studio generato in `EN`**.
+  - **13 quiz Antolin** (1 per doppia apertura sulle pagine pari interne `2..26`, 3 domande in `FR`/`IT`/`DE`).
+- 📚🔖 **Architettura Multi-Libro, Segnalibro, `ESC → /books/` & Libreria 3D Brossura ([`index.html`](index.html), [`books/index.html`](books/index.html), [`bin/serve_local.py`](bin/serve_local.py))**:
+  - Supporto multi-libro con routing `?book=sardegna`, `?book=petit-prince` e retrocompatibilità `?story=`, selettore libro nella barra inferiore e impostazioni, ribbon titolo editoriale `#kidsBookTitleRibbon` e **Segnalibro (`segnalibro`)** persistito in `localStorage` (`kos_kids_bookmarks_v1`).
+  - Nuova vetrina **`/books/`** in stile YouTube minimalista con copertine **3D brossura**, titolo e autore in tipografia serif editoriale **stampati dentro la copertina** nella cornice ornamentale (senza ripetizioni: *Vacanze in Sardegna* + *Riccardo Carlesso*; *Le Petit Prince* + *Antoine de Saint-Exupéry*), badge contatore libri con icona SVG monocromatica `currentColor`, forwarding dei parametri query e `ESC` che salva automaticamente il segnalibro e riporta a `/books/`.
+  - Integrati su `v0.14.0` i fix `v0.13.13` (modalità monopagina portrait mobile) e `v0.13.14` (`KIDS_FACE_KEEP_OUT_ZONES` + `fitKidsComicBubbles` resi *book-aware* per non alterare i fumetti di *Le Petit Prince*).
+- 📜🧪 **Costituzione & Suite di Test Estesa ([`docs/CONSTITUTION.md`](docs/CONSTITUTION.md), [`bin/test_stories.py`](bin/test_stories.py), [`bin/test_kids_text_fit.py`](bin/test_kids_text_fit.py), [`bin/test_e2e_multibook.py`](bin/test_e2e_multibook.py))**:
+  - Formalizzata in `docs/CONSTITUTION.md` la separazione Layer 1/Layer 2 e la regola `FR`/`IT`/`DE` + `en-GB` solo traduzione/spiegazioni (zero audio studio `EN`).
+  - Estesi `just test` (validazione completa Layer 1 + entrambi i libri Layer 2, immagini `896×1200`, audio `Aoede`, word-audio, verbi separabili DE, budget CEFR, zero EN audio, `/books/`, `VERSION`/`APP_VERSION` e `node --check`), `just test-fit` (369 rendering desktop + 135 verifiche Pari Pari su tutte le pagine `→ en` + 369 rendering mobile portrait su entrambi i libri) e suite E2E Playwright (`149/149`), inclusa la regressione retrocompatibilità R1 `?story=` / `#<slug>` senza ereditarietà spuria di `savedMode`.
+
 ## [0.13.14] - 2026-11-23
 
 ### Added & Fixed
