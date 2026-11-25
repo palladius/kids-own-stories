@@ -3091,6 +3091,22 @@
       }
     }
 
+    /* Subtle Veo watercolor plate animation overlay (triggers 3s after page open) */
+    .kids-page-anim-overlay {
+      position: absolute;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.85s ease;
+      object-fit: cover;
+      -webkit-mask-image: radial-gradient(ellipse 94% 92% at 50% 50%, #000 80%, transparent 100%);
+      mask-image: radial-gradient(ellipse 94% 92% at 50% 50%, #000 80%, transparent 100%);
+    }
+
+    .kids-page-anim-overlay.is-playing {
+      opacity: 1;
+    }
+
     /* Classic Book Page Numbers: Black, at Bottom-Left (left page) & Bottom-Right (right page) */
     .kids-book-page-num {
       position: absolute;
@@ -9228,6 +9244,18 @@
           aria-hidden="true"></div>
       ` : '';
 
+      const animCfg = !isFrontispiece ? (KIDS_PAGE_ANIMATIONS[kb.story_id]?.[pageObj.page] || null) : null;
+      const animMarkup = animCfg ? `
+        <video class="kids-page-anim-overlay"
+          src="${escapeHtml(animCfg.src)}?v=${APP_VERSION}"
+          data-anim-delay="${animCfg.delayMs || 3000}"
+          data-anim-volume="${animCfg.volume ?? 0.25}"
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+          style="left:${animCfg.left};top:${animCfg.top};width:${animCfg.width};height:${animCfg.height};"></video>
+      ` : '';
+
       const bodyZonesHtml = isFrontispiece
         ? ''
         : (patchPos === 'top' ? `${textZoneHtml}${artZoneHtml}` : `${artZoneHtml}${textZoneHtml}`);
@@ -9238,6 +9266,7 @@
           data-book-id="${escapeHtml(kb.story_id)}"
           data-page="${pageObj.page}"
           style="background-image: url('${pageObj.image}?v=${APP_VERSION}');">
+          ${animMarkup}
           ${xrayMarkup}
           ${edgeArrowHtml}
           ${isFrontispiece ? '' : comicBubbleHtml}
@@ -9245,6 +9274,58 @@
           ${cornerPageNumHtml}
         </div>
       `;
+    }
+
+    const KIDS_PAGE_ANIMATIONS = {
+      'le-petit-prince': {
+        2: { src: 'books/petit-prince/anim_p02.mp4', left: '6%', top: '44.5%', width: '88%', height: '36.917%', delayMs: 3000, volume: 0.25 },
+        4: { src: 'books/petit-prince/anim_p04.mp4', left: '5%', top: '45%', width: '90%', height: '37.75%', delayMs: 3000, volume: 0.25 },
+      }
+    };
+    let _kidsPageAnimTimers = [];
+
+    function stopKidsPageAnimations() {
+      _kidsPageAnimTimers.forEach((id) => clearTimeout(id));
+      _kidsPageAnimTimers = [];
+      document.querySelectorAll('#openBookSpread .kids-page-anim-overlay').forEach((v) => {
+        try { v.pause(); v.currentTime = 0; } catch (_) {}
+        v.classList.remove('is-playing');
+      });
+    }
+
+    function scheduleKidsPageAnimations() {
+      stopKidsPageAnimations();
+      const videos = document.querySelectorAll('#openBookSpread .kids-page-anim-overlay');
+      videos.forEach((video) => {
+        const delayMs = Number(video.dataset.animDelay || 3000);
+        const targetVol = Math.max(0, Math.min(1, Number(video.dataset.animVolume ?? 0.25)));
+        const timerId = setTimeout(() => {
+          if (!video.isConnected) return;
+          const narratorPlaying = Boolean(
+            (typeof kidsAudioEl !== 'undefined' && kidsAudioEl && !kidsAudioEl.paused) ||
+            (window.speechSynthesis && window.speechSynthesis.speaking)
+          );
+          video.currentTime = 0;
+          video.volume = targetVol;
+          video.muted = narratorPlaying;
+          video.onended = () => {
+            video.classList.remove('is-playing');
+          };
+          video.classList.add('is-playing');
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {
+              // Browser autoplay policy blocked unmuted playback before first gesture -> play gently muted
+              if (!video.isConnected) return;
+              video.muted = true;
+              video.play().catch(() => {
+                video.classList.remove('is-playing');
+              });
+            });
+          }
+        }, delayMs);
+        _kidsPageAnimTimers.push(timerId);
+      });
     }
 
     function toggleKidsBoaXray(btn) {
@@ -9577,10 +9658,12 @@
         requestAnimationFrame(() => {
           fitKidsTextToPatch();
           drawKidsSeparableVerbArcs();
+          scheduleKidsPageAnimations();
         });
         return;
       }
 
+      stopKidsPageAnimations();
       renderBookmarkResumePill(null, 0, 0);
       renderKidsLaunchBar(kb, story);
       if (!story) return;

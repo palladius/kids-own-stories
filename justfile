@@ -10,6 +10,10 @@ test:
 test-fit:
     uv run --with playwright python3 bin/test_kids_text_fit.py
 
+# Run strict acoustic unit test verifying 100% clickable word-audio coverage (non-silent, >= -35dB) across all books
+test-words:
+    python3 bin/test_word_audio_coverage.py
+
 # Alias for test
 check: test
 

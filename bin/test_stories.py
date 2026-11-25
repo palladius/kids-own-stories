@@ -394,6 +394,26 @@ def main() -> int:
                             elif not has_valid_audio_magic(afp, ext_key):
                                 errors.append(f"[{lbl} p.{pno} {lvl} {klang}] invalid {ext_key} magic header: {arel}")
 
+                        # Strict word-audio coverage for EVERY book (Sardegna + Le Petit Prince),
+                        # EVERY level, and EVERY non-punctuation word token across FR/IT/DE.
+                        # Minimum 1500B MP3 / 500B OGG catches 720B silent edge-tts stubs immediately!
+                        for tok in ldata.get("tokens") or []:
+                            w_txt = str(tok.get("w") or "")
+                            if not re.search(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]", w_txt):
+                                continue
+                            for w_ext, min_sz in (("audio_mp3", 1500), ("audio_ogg", 500)):
+                                w_rel = tok.get(w_ext)
+                                w_fp = (ROOT / w_rel) if w_rel else None
+                                if not w_rel or not w_fp or not w_fp.exists() or w_fp.stat().st_size < min_sz:
+                                    sz = w_fp.stat().st_size if (w_fp and w_fp.exists()) else 0
+                                    errors.append(
+                                        f"[{lbl} p.{pno} {lvl} {klang}] token {w_txt!r} missing/tiny/silent {w_ext} ({sz}B < {min_sz}B): {w_rel}"
+                                    )
+                                elif not has_valid_audio_magic(w_fp, w_ext):
+                                    errors.append(
+                                        f"[{lbl} p.{pno} {lvl} {klang}] token {w_txt!r} invalid {w_ext} magic header: {w_rel}"
+                                    )
+
                         if sid == "le-petit-prince":
                             words_cnt = len(str(ldata.get("text") or "").split())
                             if lvl == "seby":
@@ -409,13 +429,6 @@ def main() -> int:
 
                             sep_groups: dict[str, list[dict]] = {}
                             for tok in ldata.get("tokens") or []:
-                                for w_ext in ("audio_mp3", "audio_ogg"):
-                                    w_rel = tok.get(w_ext)
-                                    w_fp = (ROOT / w_rel) if w_rel else None
-                                    if not w_rel or not w_fp or not w_fp.exists() or w_fp.stat().st_size < 100:
-                                        errors.append(
-                                            f"[{lbl} p.{pno} {lvl} {klang}] token {tok.get('w')!r} missing/small {w_ext}: {w_rel}"
-                                        )
                                 sg = tok.get("sep_group")
                                 if sg:
                                     sep_groups.setdefault(sg, []).append(tok)

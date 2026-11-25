@@ -1603,7 +1603,7 @@ async def _synth_word_async(sem: asyncio.Semaphore, lang: str, clean: str, spoke
     out_dir.mkdir(parents=True, exist_ok=True)
     mp3_path = out_dir / f"{clean}.mp3"
     ogg_path = out_dir / f"{clean}.ogg"
-    if mp3_path.exists() and ogg_path.exists() and mp3_path.stat().st_size > 200 and ogg_path.stat().st_size > 200:
+    if mp3_path.exists() and ogg_path.exists() and mp3_path.stat().st_size >= 1500 and ogg_path.stat().st_size >= 500:
         return (lang, clean, True, "cached")
 
     voice, rate = EDGE_VOICES[lang]
