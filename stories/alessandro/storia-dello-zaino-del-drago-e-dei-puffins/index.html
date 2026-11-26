@@ -145,9 +145,34 @@
       margin-bottom: 15px;
     }
 
-    .audio-player-card audio {
+    .audio-lang-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 18px;
+    }
+
+    .audio-lang-item {
+      flex: 1 1 320px;
+      min-width: min(100%, 280px);
+      max-width: 420px;
+    }
+
+    .audio-lang-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    audio {
+      display: block;
       width: 100%;
-      max-width: 600px;
+      min-width: min(100%, 260px);
+      max-width: 560px;
+      height: 48px;
+      margin: 0 auto;
       outline: none;
       border-radius: 30px;
     }
@@ -284,8 +309,9 @@
 <body>
 
   <div class="container">
-    <nav class="top-nav" aria-label="Navigazione storia">
-      <a href="../../../index.html" class="back-link">← Tutte le Storie di Ale &amp; Seby</a>
+    <nav class="top-nav" aria-label="Navigazione storia" style="flex-wrap: wrap; gap: 10px;">
+      <a href="../../../index.html?story=storia-dello-zaino-del-drago-e-dei-puffins" class="back-link">← Torna al Libro di Ale &amp; Seby (Karaoke &amp; Primi Passi)</a>
+      <a href="https://palladius.github.io/kids-own-stories/?story=storia-dello-zaino-del-drago-e-dei-puffins" class="back-link" target="_blank" rel="noopener">🌐 Apri Versione Web</a>
     </nav>
 
     <header>
@@ -294,15 +320,32 @@
       <div class="author-tag">Ideata e raccontata a voce da <span>Alessandro C.</span> (8 anni) con papà <span>Riccardo</span></div>
     </header>
 
-    <!-- BOX AUDIO ORIGINALE -->
+    <!-- BOX AUDIO NARRATO (IT, EN, FR) + ORIGINALE -->
     <div class="audio-player-card">
-      <h3>🎙️ La Registrazione Originale di Alessandro</h3>
-      <p>Ascolta la viva voce di Ale che racconta la storia al microfono!</p>
-      <audio controls>
-        <source src="audio_originale.mp3" type="audio/mpeg">
-        <source src="audio_originale.ogg" type="audio/ogg">
-        Il tuo browser non supporta il tag audio.
-      </audio>
+      <h3>🎧 Audiolibro Narrato (Voce Calma + Pianino)</h3>
+      <p>Ascolta la fiaba di Ale narrata in italiano, British English o francese, oppure la registrazione originale al microfono!</p>
+      <div class="audio-lang-grid">
+        <div class="audio-lang-item">
+          <div class="audio-lang-label" style="color:#fbbf24;">🇮🇹 Italiano</div>
+          <audio controls preload="metadata" src="narrated_it.mp3" data-media-file="narrated_it.mp3"></audio>
+        </div>
+        <div class="audio-lang-item">
+          <div class="audio-lang-label" style="color:#38bdf8;">🇬🇧 British English</div>
+          <audio controls preload="metadata" src="narrated_en.mp3" data-media-file="narrated_en.mp3"></audio>
+        </div>
+        <div class="audio-lang-item">
+          <div class="audio-lang-label" style="color:#f472b6;">🇫🇷 Français</div>
+          <audio controls preload="metadata" src="narrated_fr.mp3" data-media-file="narrated_fr.mp3"></audio>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
+        <div class="audio-lang-label" style="color:#fde68a;">🎙️ La Registrazione Originale di Alessandro</div>
+        <audio controls preload="metadata" src="audio_originale.mp3" data-media-file="audio_originale.mp3">
+          <source src="audio_originale.mp3" type="audio/mpeg">
+          <source src="audio_originale.ogg" type="audio/ogg">
+          Il tuo browser non supporta il tag audio.
+        </audio>
+      </div>
     </div>
 
     <!-- CAPITOLO 1 -->
@@ -380,10 +423,7 @@
       <h3>🎬 Film Completo (40 Secondi): Gemini Omni Flash</h3>
       <p style="margin-bottom: 20px;">Ecco il film animato completo di <strong>40 secondi (4 atti × 10s)</strong> narrato in italiano che racconta <strong>tutta la storia dall'inizio alla fine</strong>!</p>
       <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.5); max-width: 800px; margin: 0 auto;">
-        <video controls loading="lazy" playsinline width="1280" height="720" preload="metadata" poster="scena1_banco_porta.jpg" style="width: 100%; height: auto; display: block; border-radius: 16px;">
-          <source src="video_drago_puffins.mp4" type="video/mp4">
-          Il tuo browser non supporta il tag video.
-        </video>
+        <video controls loading="lazy" playsinline width="1280" height="720" preload="metadata" poster="scena1_banco_porta.jpg" src="video_drago_puffins.mp4" data-media-file="video_drago_puffins.mp4" style="width: 100%; height: auto; display: block; border-radius: 16px;"></video>
       </div>
       <div style="margin-top: 15px; font-weight: bold; color: #38bdf8;">
         Modello: <code>gemini-omni-flash-preview</code> • Durata: 40s (4 Atti × 10s) • 720p HD • Narrato in Italiano
@@ -397,24 +437,58 @@
   </div>
 
   <script>
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function syncReducedMotion(prefersReducedMotion) {
-      for (const video of document.querySelectorAll('video[autoplay]')) {
-        if (prefersReducedMotion) {
-          video.removeAttribute('autoplay');
-          video.pause();
+    (() => {
+      const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function syncReducedMotion(prefersReducedMotion) {
+        for (const video of document.querySelectorAll('video[autoplay]')) {
+          if (prefersReducedMotion) {
+            video.removeAttribute('autoplay');
+            video.pause();
+          }
         }
       }
-    }
-    syncReducedMotion(reducedMotionQuery.matches);
-    reducedMotionQuery.addEventListener('change', (event) => syncReducedMotion(event.matches));
-    document.querySelectorAll('audio').forEach((el) => {
-      el.preservesPitch = true;
-      el.defaultPlaybackRate = 1.1;
-      el.playbackRate = 1.1;
-      el.addEventListener('loadedmetadata', () => { el.playbackRate = 1.1; });
-      el.addEventListener('play', () => { if (el.playbackRate === 1) el.playbackRate = 1.1; });
-    });
+      syncReducedMotion(reducedMotionQuery.matches);
+      reducedMotionQuery.addEventListener('change', (event) => syncReducedMotion(event.matches));
+
+      const HOSTED_BASE = 'https://palladius.github.io/kids-own-stories/stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/';
+      const allMedia = Array.from(document.querySelectorAll('audio, video'));
+      const isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+
+      allMedia.forEach((el) => {
+        if (el.tagName === 'AUDIO') {
+          el.preservesPitch = true;
+          el.defaultPlaybackRate = 1.1;
+          el.playbackRate = 1.1;
+          el.addEventListener('loadedmetadata', () => { el.playbackRate = 1.1; });
+        }
+        el.addEventListener('play', () => {
+          if (el.tagName === 'AUDIO' && el.playbackRate === 1) el.playbackRate = 1.1;
+          allMedia.forEach((other) => {
+            if (other !== el && !other.paused) other.pause();
+          });
+        });
+
+        const file = el.getAttribute('data-media-file');
+        if (!file) return;
+        const applyHostedFallback = () => {
+          if (el.dataset.hostedFallback === '1') return;
+          el.dataset.hostedFallback = '1';
+          el.querySelectorAll('source').forEach((s) => s.remove());
+          el.src = HOSTED_BASE + file;
+          el.load();
+        };
+        el.addEventListener('error', applyHostedFallback);
+        if (!isHttp) {
+          applyHostedFallback();
+        } else {
+          setTimeout(() => {
+            if (el.readyState === 0 && el.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+              applyHostedFallback();
+            }
+          }, 1800);
+        }
+      });
+    })();
   </script>
 </body>
 </html>

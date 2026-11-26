@@ -46,10 +46,20 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+class QuietThreadingTCPServer(socketserver.ThreadingTCPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
+    def handle_error(self, request, client_address) -> None:
+        exc = sys.exc_info()[1]
+        if isinstance(exc, (BrokenPipeError, ConnectionResetError)):
+            return
+        super().handle_error(request, client_address)
+
+
 def start_static_server(root: Path) -> tuple[socketserver.TCPServer, int]:
     handler = functools.partial(QuietHandler, directory=str(root))
-    socketserver.TCPServer.allow_reuse_address = True
-    httpd = socketserver.TCPServer(("127.0.0.1", 0), handler)
+    httpd = QuietThreadingTCPServer(("127.0.0.1", 0), handler)
     port = httpd.server_address[1]
     thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     thread.start()
@@ -221,6 +231,34 @@ def main() -> int:
             m_mob = mobile_page.evaluate("window.__firstReaderMetrics()")
             record(m_mob["cardVisible"] is True and m_mob["fontSizePx"] >= 24.0, f"Mobile First Reader typography check failed: {m_mob}")
             record(m_mob["nextBtnHeightPx"] >= 56.0, f"Mobile nextBtn height < 56px: {m_mob}")
+
+            # 9. Standalone story pages (stories/*/*/index.html): zero 67px audio collapse & valid metadata
+            for shp in sorted((REPO_ROOT / "stories").glob("*/*/index.html")):
+                sh_txt = shp.read_text(encoding="utf-8")
+                if 'http-equiv="refresh"' in sh_txt.lower():
+                    continue
+                rel_url = shp.relative_to(REPO_ROOT).as_posix()
+                page.goto(f"{base_url}/{rel_url}", wait_until="domcontentloaded")
+                page.evaluate("document.querySelectorAll('details').forEach(d => d.open = true)")
+                page.wait_for_function(
+                    "() => Array.from(document.querySelectorAll('audio')).every(a => a.readyState >= 1)",
+                    timeout=8000,
+                )
+                aud_metrics = page.evaluate(
+                    """() => Array.from(document.querySelectorAll('audio')).map(a => ({
+                        src: a.currentSrc.split('/').pop(),
+                        ready: a.readyState,
+                        dur: a.duration || 0,
+                        w: Math.round(a.getBoundingClientRect().width),
+                        h: Math.round(a.getBoundingClientRect().height)
+                    }))"""
+                )
+                record(len(aud_metrics) >= 3, f"{rel_url}: expected >= 3 <audio> players, got {aud_metrics}")
+                for am in aud_metrics:
+                    record(
+                        am["w"] >= 260 and am["h"] >= 40 and am["ready"] >= 1 and am["dur"] > 10,
+                        f"{rel_url} audio collapsed or failed to load: {am}",
+                    )
 
             record(len(js_errors) == 0, f"Uncaught JS page errors: {js_errors}")
             browser.close()

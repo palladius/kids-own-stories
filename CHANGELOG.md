@@ -2,6 +2,15 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.15.1] - 2026-11-26
+
+### Fixed
+- 🎧🔧 **Fix Audio Player Collassato (`67px` / `111px`) e `0:00 / 0:00` nelle Pagine Standalone delle Storie (`stories/*/*/index.html`)**:
+  - **Risolto collasso CSS Flexbox dei controlli `<audio>`**: nelle schede standalone (inclusa *Ale & Pony Club* `stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/index.html`, *Cavalletto Marie*, *Scheletri & Zombie*, *Hot Wheels a Lido degli Estensi*, *Zaino del Drago & Puffins*, *Sguisatazzo*) i wrapper flex privi di `flex-basis` restringevano `<audio controls>` alla larghezza dell'etichetta (`67px` su `🇮🇹 Italiano`, nascondendo persino il tasto `▶` Play e lasciando solo `⋮`). Introdotta griglia `.audio-lang-grid` / `.audio-lang-item` (`flex: 1 1 320px; min-width: min(100%, 280px); max-width: 420px`) e `min-width: min(100%, 260px)` su `audio`, più larghezza maggiorata su `.narrator-bar audio` nel lettore principale (`index.html`).
+  - **Attributo `src` diretto, tracce `IT` / `en-GB` / `FR` complete & Fallback HTTPS automatico per viewer locali**: impostato `src="..."` direttamente su tutti i tag `<audio>` e `<video>` (`preload="metadata"`), aggiunta riproduzione mutualmente esclusiva (avviare una lingua mette in pausa le altre) e fallback automatico verso `https://palladius.github.io/kids-own-stories/stories/...` quando la pagina viene aperta fuori da HTTP/HTTPS (es. viewer file locale sandboxato di T3 Code, evitando `0:00 / 0:00` e tasti `▶` disabilitati).
+  - **GitHub Pages Workflow (`actions/upload-pages-artifact@v4`)**: aggiornato [`.github/workflows/pages.yml`](.github/workflows/pages.yml) da `@v3` a `@v4` per ripristinare il deploy automatico su GitHub Pages con `actions/deploy-pages@v4`.
+  - **Regression Gate Automatico**: estesi [`bin/test_stories.py`](bin/test_stories.py) e [`bin/test_first_reader.py`](bin/test_first_reader.py) per verificare `rect.width >= 250px`, `readyState >= 1`, `duration > 10s` e sintassi JS su tutte le pagine standalone `stories/*/*/index.html`.
+
 ## [0.15.0] - 2026-11-26
 
 ### Added & Verified

@@ -552,11 +552,37 @@ def main() -> int:
             except Exception as e:
                 errors.append(f"Invalid cover image {cover_rel}: {e}")
 
-    # 4. Validate JavaScript syntax in index.html, netflix.html, ring.html, books/index.html, and kids_books_catalog.js via `node --check`
-    for html_name in ("index.html", "netflix.html", "ring.html", "books/index.html"):
-        hp = ROOT / html_name
+    # 4. Validate standalone story pages (stories/*/*/index.html): audio player non-collapse CSS, direct src, valid media, and JS syntax
+    standalone_htmls = sorted((ROOT / "stories").glob("*/*/index.html"))
+    for shp in standalone_htmls:
+        rel_shp = shp.relative_to(ROOT)
+        sh_src = shp.read_text(encoding="utf-8")
+        if 'http-equiv="refresh"' in sh_src.lower():
+            continue
+        if ".audio-lang-item" not in sh_src or "min-width" not in sh_src:
+            errors.append(f"[{rel_shp}] missing .audio-lang-item / min-width anti-collapse CSS for <audio> controls")
+        if 'preload="none"' in sh_src:
+            errors.append(f"[{rel_shp}] <audio> uses preload=\"none\" (causes 0:00 / 0:00 display)")
+        audio_tags = re.findall(r"<audio\b[^>]*>", sh_src)
+        if len(audio_tags) < 3:
+            errors.append(f"[{rel_shp}] expected >= 3 narrated <audio> tags (IT/en-GB/FR), got {len(audio_tags)}")
+        for atag in audio_tags:
+            m_src = re.search(r'\bsrc="([^"]+)"', atag)
+            if not m_src:
+                errors.append(f"[{rel_shp}] <audio> tag missing direct src=\"...\" attribute: {atag}")
+                continue
+            media_path = shp.parent / m_src.group(1)
+            if not media_path.exists() or media_path.stat().st_size < 1024:
+                errors.append(f"[{rel_shp}] <audio src=\"{m_src.group(1)}\"> missing or empty on disk")
+        if "HOSTED_BASE" not in sh_src:
+            errors.append(f"[{rel_shp}] missing HOSTED_BASE fallback script for non-HTTP local HTML viewers")
+
+    # 5. Validate JavaScript syntax in index.html, netflix.html, ring.html, books/index.html, standalone story pages, and kids_books_catalog.js via `node --check`
+    all_html_targets = [ROOT / n for n in ("index.html", "netflix.html", "ring.html", "books/index.html")] + standalone_htmls
+    for hp in all_html_targets:
         if not hp.exists():
             continue
+        rel_name = hp.relative_to(ROOT)
         html_src = hp.read_text(encoding="utf-8")
         scripts = re.findall(r"<script(?![^>]*src=)[^>]*>(.*?)</script>", html_src, re.S)
         for s_idx, script_body in enumerate(scripts):
@@ -566,7 +592,7 @@ def main() -> int:
             chk = subprocess.run(["node", "--check", str(tmp_js)], capture_output=True, text=True)
             tmp_js.unlink(missing_ok=True)
             if chk.returncode != 0:
-                errors.append(f"[{html_name} inline script #{s_idx}] JS SyntaxError:\n{chk.stderr.strip()}")
+                errors.append(f"[{rel_name} inline script #{s_idx}] JS SyntaxError:\n{chk.stderr.strip()}")
 
     if cat_js.exists():
         chk = subprocess.run(["node", "--check", str(cat_js)], capture_output=True, text=True)

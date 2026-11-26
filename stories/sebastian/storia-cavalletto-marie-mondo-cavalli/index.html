@@ -144,10 +144,34 @@
       margin-bottom: 15px;
     }
 
+    .audio-lang-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 18px;
+    }
+
+    .audio-lang-item {
+      flex: 1 1 320px;
+      min-width: min(100%, 280px);
+      max-width: 420px;
+    }
+
+    .audio-lang-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
     audio {
+      display: block;
       width: 100%;
-      max-width: 500px;
+      min-width: min(100%, 260px);
+      max-width: 520px;
       height: 48px;
+      margin: 0 auto;
       border-radius: 30px;
       outline: none;
     }
@@ -317,9 +341,12 @@
 
   <div class="container">
     
-    <nav class="top-nav" aria-label="Navigazione storia">
-      <a href="../../../index.html#storia-cavalletto-marie-mondo-cavalli" class="back-link">
-        ← Torna al Libro di Ale &amp; Seby
+    <nav class="top-nav" aria-label="Navigazione storia" style="flex-wrap: wrap; gap: 10px;">
+      <a href="../../../index.html?story=storia-cavalletto-marie-mondo-cavalli" class="back-link">
+        ← Torna al Libro di Ale &amp; Seby (Karaoke &amp; Primi Passi)
+      </a>
+      <a href="https://palladius.github.io/kids-own-stories/?story=storia-cavalletto-marie-mondo-cavalli" class="back-link" target="_blank" rel="noopener">
+        🌐 Apri Versione Web
       </a>
     </nav>
 
@@ -335,27 +362,27 @@
       «Mancava un cavallo nel camion! Ho preso Marie, l'ho messo dentro, poi ha chiuso il tunnel e siamo felici per sempre!» &mdash; Sebastian C.
     </div>
 
-    <!-- BOX AUDIO NARRATO (IT & EN) -->
+    <!-- BOX AUDIO NARRATO (IT, EN, FR) -->
     <div class="audio-player-card">
       <h3>🎧 Audiolibro Narrato (Voce Calma + Pianino)</h3>
-      <p>Ascolta la fiaba di Seby e del cavalletto magico Marie narrata in italiano o in inglese con sottofondo di pianoforte!</p>
-      <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:center; margin-bottom:18px;">
-        <div>
-          <div style="font-size:0.85rem; color:#fbbf24; font-weight:700; margin-bottom:4px;">🇮🇹 Italiano</div>
-          <audio controls preload="metadata">
-            <source src="narrated_it.mp3" type="audio/mpeg">
-          </audio>
+      <p>Ascolta la fiaba di Seby e del cavalletto magico Marie narrata in italiano, British English o francese con sottofondo di pianoforte!</p>
+      <div class="audio-lang-grid">
+        <div class="audio-lang-item">
+          <div class="audio-lang-label" style="color:#fbbf24;">🇮🇹 Italiano</div>
+          <audio controls preload="metadata" src="narrated_it.mp3" data-media-file="narrated_it.mp3"></audio>
         </div>
-        <div>
-          <div style="font-size:0.85rem; color:#38bdf8; font-weight:700; margin-bottom:4px;">🇬🇧 English</div>
-          <audio controls preload="metadata">
-            <source src="narrated_en.mp3" type="audio/mpeg">
-          </audio>
+        <div class="audio-lang-item">
+          <div class="audio-lang-label" style="color:#38bdf8;">🇬🇧 British English</div>
+          <audio controls preload="metadata" src="narrated_en.mp3" data-media-file="narrated_en.mp3"></audio>
+        </div>
+        <div class="audio-lang-item">
+          <div class="audio-lang-label" style="color:#f472b6;">🇫🇷 Français</div>
+          <audio controls preload="metadata" src="narrated_fr.mp3" data-media-file="narrated_fr.mp3"></audio>
         </div>
       </div>
       <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
-        <div style="font-size:0.85rem; color:#fde68a; font-weight:700; margin-bottom:6px;">🎙️ Registrazione Vocale Originale di Sebastian con Papà Riccardo</div>
-        <audio controls preload="metadata">
+        <div class="audio-lang-label" style="color:#fde68a;">🎙️ Registrazione Vocale Originale di Sebastian con Papà Riccardo</div>
+        <audio controls preload="metadata" src="audio_originale.mp3" data-media-file="audio_originale.mp3">
           <source src="audio_originale.mp3" type="audio/mpeg">
           <source src="audio_originale.ogg" type="audio/ogg">
           Il tuo browser non supporta il tag audio.
@@ -436,9 +463,7 @@
     <section class="video-section">
       <h2>🎬 Film Completo (40 Secondi): Gemini Omni Flash</h2>
       <p>Guarda il film animato completo di <strong>40 secondi (4 atti × 10s)</strong> narrato in italiano dell'avventura di Seby, del cavalletto Marie e del Camion Camper dei Cavalli!</p>
-      <video controls loading="lazy" playsinline width="1280" height="720" preload="metadata" poster="scena3_camion_camper_tutti_cavalli.jpg">
-        <source src="video_cavalletto_marie_camion.mp4" type="video/mp4">
-      </video>
+      <video controls loading="lazy" playsinline width="1280" height="720" preload="metadata" poster="scena3_camion_camper_tutti_cavalli.jpg" src="video_cavalletto_marie_camion.mp4" data-media-file="video_cavalletto_marie_camion.mp4"></video>
       <div style="margin-top: 14px; font-weight: bold; color: #38bdf8;">
         Modello: <code>gemini-omni-flash-preview</code> • Durata: 40s (4 Atti × 10s) • 720p HD • Narrato in Italiano
       </div>
@@ -472,13 +497,46 @@
   </div>
 
   <script>
-    document.querySelectorAll('audio').forEach((el) => {
-      el.preservesPitch = true;
-      el.defaultPlaybackRate = 1.1;
-      el.playbackRate = 1.1;
-      el.addEventListener('loadedmetadata', () => { el.playbackRate = 1.1; });
-      el.addEventListener('play', () => { if (el.playbackRate === 1) el.playbackRate = 1.1; });
-    });
+    (() => {
+      const HOSTED_BASE = 'https://palladius.github.io/kids-own-stories/stories/sebastian/storia-cavalletto-marie-mondo-cavalli/';
+      const allMedia = Array.from(document.querySelectorAll('audio, video'));
+      const isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+
+      allMedia.forEach((el) => {
+        if (el.tagName === 'AUDIO') {
+          el.preservesPitch = true;
+          el.defaultPlaybackRate = 1.1;
+          el.playbackRate = 1.1;
+          el.addEventListener('loadedmetadata', () => { el.playbackRate = 1.1; });
+        }
+        el.addEventListener('play', () => {
+          if (el.tagName === 'AUDIO' && el.playbackRate === 1) el.playbackRate = 1.1;
+          allMedia.forEach((other) => {
+            if (other !== el && !other.paused) other.pause();
+          });
+        });
+
+        const file = el.getAttribute('data-media-file');
+        if (!file) return;
+        const applyHostedFallback = () => {
+          if (el.dataset.hostedFallback === '1') return;
+          el.dataset.hostedFallback = '1';
+          el.querySelectorAll('source').forEach((s) => s.remove());
+          el.src = HOSTED_BASE + file;
+          el.load();
+        };
+        el.addEventListener('error', applyHostedFallback);
+        if (!isHttp) {
+          applyHostedFallback();
+        } else {
+          setTimeout(() => {
+            if (el.readyState === 0 && el.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+              applyHostedFallback();
+            }
+          }, 1800);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
