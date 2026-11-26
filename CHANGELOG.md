@@ -2,6 +2,19 @@
 
 All notable changes to **kids-own-stories** will be documented in this file.
 
+## [0.15.0] - 2026-11-26
+
+### Added & Verified
+- 🧒📖 **Layer-1 «First Reader Mode / Primi Passi (0.9x)» ([GHI #4](https://github.com/palladius/kids-own-stories/issues/4) · Septober #242, [`index.html`](index.html), [`bin/test_first_reader.py`](bin/test_first_reader.py))**:
+  - **Tokenizzatore sintattico deterministico `≤ 12` parole (`buildFirstReaderChunks`)**: spezza automaticamente ogni pagina delle 7 storie microfonate (`stories.yaml`) su tutte le 5 lingue (`IT`, `EN`, `FR`, `DE`, `PT` — **2.131 frasi verificate al 100% con `1 ≤ parole ≤ 12`**) preservando gli offset parola-per-parola (`s` / `e`) del karaoke studio ed evitando troncamenti su articoli/preposizioni (`FIRST_READER_NO_END_WORDS`).
+  - **Tipografia didattica gigante & Stampatello Maiuscolo**: card pergamena `.first-reader-card` centrata con font arrotondato `'Fredoka'` gigante (`clamp(1.62rem, 2.35vw, 2.15rem)`, `≥ 24px` anche su mobile `390×844`), barra di progresso `🧒 Frase X / Y` e pulsante `🔤 a/A` per passare in 1 tap allo **STAMPATELLO MAIUSCOLO** per Sebi (Primary 1).
+  - **Lettura autonoma con pulsante gigante `✅ Ho letto! ➔` & Accordo Maggiore WebAudio**: pulsanti touch extra-large (`min-height: 58px`) — il bambino legge da solo al proprio ritmo e preme **`✅ Ho letto! ➔`** (o `Invio` / `→`) con feedback sonoro armonico (triade di Do maggiore `C5-E5-G5` a ogni frase, accordo pieno `C5-E5-G5-C6` e sfoglio automatico alla pagina successiva a fine pagina).
+  - **Karaoke lento a `0.9x` (`🔊 Ascolta (0.9x)`)**: riproduce esclusivamente il segmento audio della frase corrente a velocità didattica `0.9x` (`preservesPitch = true`, fermandosi esattamente a fine frase senza girare pagina da solo) oppure sintesi browser a `0.9x` (rigorosamente British English `en-GB` per `EN`).
+  - **Lancio in 1 click e permalink `?firstreader=1`**: pulsante **`🧒 Primi Passi (0.9x)`** su tutte le card della griglia principale, toggle rapido `#firstReaderToggleBtn` nella barra karaoke superiore e permalink `?story=<slug>&firstreader=1` con piena retrocompatibilità dei link standard `?story=<slug>`.
+- 🧪🤖 **Suite Playwright `just test-first-reader` & Chiusura Pipeline Storie ([#2](https://github.com/palladius/kids-own-stories/issues/2), [#3](https://github.com/palladius/kids-own-stories/issues/3) · Septober #224 & #225)**:
+  - Aggiunto [`bin/test_first_reader.py`](bin/test_first_reader.py) (`25/25` check E2E desktop + mobile + audit completo dei `2.131` chunk).
+  - Verificati completi al 100% (4 tavole Pixar 16:9, film 40.1s, `hover_preview.mp4`, audiolibri + karaoke `IT`/`EN`/`FR`) *Sebi Campione al Pony Club* (`storia-sebi-campione-pony-club-pupurabbu`, GHI #2/#3, Septober #225) e *Il Cavalletto Magico Marie e il Camion Camper* (`storia-cavalletto-marie-mondo-cavalli`, Septober #224).
+
 ## [0.14.0] - 2026-11-23
 
 ### Added & Changed

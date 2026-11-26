@@ -14,6 +14,10 @@ test-fit:
 test-words:
     python3 bin/test_word_audio_coverage.py
 
+# Run Playwright E2E & <=12-word chunker test for Layer-1 First Reader Mode (Primi Passi 0.9x)
+test-first-reader:
+    uv run --with playwright python3 bin/test_first_reader.py
+
 # Alias for test
 check: test
 

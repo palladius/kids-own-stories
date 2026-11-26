@@ -49,6 +49,15 @@ L'adattamento educativo di **Le Petit Prince** utilizza le illustrazioni ad acqu
 
 ---
 
+## 🧒 Modalità Didattica «Primi Passi / First Reader Mode (0.9x)»
+
+Tutte le storie microfonate del catalogo principale ([`stories.yaml`](stories.yaml)) includono la modalità di lettura autonoma **Primi Passi (`?firstreader=1`)** pensata per Sebastian (Primary 1) e Alessandro (Primary 3):
+- **Frasi brevi (`≤ 12` parole)**: spezzate automaticamente lungo i confini naturali di punteggiatura e congiunzioni senza mai troncare articoli o preposizioni.
+- **Font gigante `'Fredoka'` (`≥ 26px`) + Toggle `🔤 MAIUSCOLO`**: leggibilità immediata anche in stampatello maiuscolo.
+- **Avanzamento autonomo (`✅ Ho letto! ➔`) & Karaoke lento a `0.9x` (`🔊 Ascolta (0.9x)`)**: il bambino legge prima in autonomia, ascolta solo la frase corrente a velocità ridotta `0.9x` con evidenziazione parola-per-parola se desidera aiuto, e avanza con chime musicale celebrativo.
+
+---
+
 ## 🎙️ Workflow: Dal Microfono alla Vetrina
 
 1. **Registrazione (`audio/`)**: I bimbi raccontano la loro storia al microfono (`.m4a`, `.mp3`, `.wav`, `.ogg`).
@@ -60,13 +69,17 @@ L'adattamento educativo di **Le Petit Prince** utilizza le illustrazioni ad acqu
 ## 📖 Indice delle Storie
 
 ### 👦 Alessandro (Ale)
-* 🏆🐴🌈 **[Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu](stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/)** *(8 Novembre 2026)* — Una storia dolcissima inventata e narrata da Ale per il fratellino Sebi: in sella al suo pony bianco, Sebi sfida i grandissimi cavalli al Pony Club, vola sugli ostacoli alla velocità della luce col tifo di Ale al microfono, vince la Coppa d'Oro e festeggia con una Disco Party sotto un arcobaleno (*Rainbow / Regenbogen*) abbracciato da un **Pupurabbu grandissimo**! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/))
+* 🏆🐴🌈 **[Sebi, il Campione del Pony Club alla Velocità della Luce e il Disco Party con Pupurabbu](stories/alessandro/storia-sebi-campione-pony-club-pupurabbu/)** *(8 Novembre 2026)* — Una storia dolcissima inventata e narrata da Ale per il fratellino Sebi: in sella al suo pony bianco, Sebi sfida i grandissimi cavalli al Pony Club, vola sugli ostacoli alla velocità della luce col tifo di Ale al microfono, vince la Coppa d'Oro e festeggia con una Disco Party sotto un arcobaleno (*Rainbow / Regenbogen*) abbracciato da un **Pupurabbu grandissimo**! ([🌐 Lettore Primi Passi](https://palladius.github.io/kids-own-stories/?story=storia-sebi-campione-pony-club-pupurabbu&firstreader=1))
 * 🎒🐉🐧 **[La Storia dello Zaino Magico, del Drago e dei Puffins](stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/)** *(6 Novembre 2026)* — Storia completa con registrazione audio originale, sbobinatura integrale, 4 illustrazioni 3D e video animato con Gemini Omni Flash! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-dello-zaino-del-drago-e-dei-puffins/))
 * 💀🧟☕ **[La Famiglia di Scheletri e gli Zombie Assetati di Tè](stories/alessandro/storia-scheletri-zombie-te/)** *(4 Novembre 2026)* — Alessandro ci racconta di zombies gentili che amano il tè servito da una famiglia di scheletri! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/alessandro/storia-scheletri-zombie-te/))
 
 ### 🧒 Sebastian (Seby)
-* 🐴🚛🌀 **[Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli](stories/sebastian/storia-cavalletto-marie-mondo-cavalli/)** *(8 Novembre 2026)* — Un cavalletto magico di nome Marie apre un tunnel dimensionale per il Mondo dei Cavalli. Sebi trova un gigante camion camper, carica a bordo tutta la mandria per portarla nel mondo delle persone e non dimentica Marie prima di chiudere il portale! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/sebastian/storia-cavalletto-marie-mondo-cavalli/))
+* 🐴🚛🌀 **[Sebastian, il Cavalletto Magico Marie e il Camion Camper dei Cavalli](stories/sebastian/storia-cavalletto-marie-mondo-cavalli/)** *(8 Novembre 2026)* — Un cavalletto magico di nome Marie apre un tunnel dimensionale per il Mondo dei Cavalli. Sebi trova un gigante camion camper, carica a bordo tutta la mandria per portarla nel mondo delle persone e non dimentica Marie prima di chiudere il portale! ([🌐 Lettore Primi Passi](https://palladius.github.io/kids-own-stories/?story=storia-cavalletto-marie-mondo-cavalli&firstreader=1))
 * 🐰🏎️🌈 **[Seby, il Dolce Pupurabbu e la Pista Fatata delle Hot Wheels a Lido degli Estensi](stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/)** *(7 Novembre 2026)* — La prima storia di Seby (6 anni): sulla spiaggia di Lido degli Estensi, Seby e il suo inseparabile coniglietto viola di peluche **Pupurabbu** sfrecciano con le **Hot Wheels** dentro un portale fatato pieno di magia! ([🌐 Pagina GHP](https://palladius.github.io/kids-own-stories/stories/sebastian/storia-pupurabbu-hot-wheels-lido-degli-estensi/))
+
+### 🧔🏻 Papà Riccardo (per Ale & Seby)
+* 💻✨👦 **[La Nascita di Sguisatazzo, il Computer Magico di Alessandro](stories/riccardo/storia-nascita-sguisatazzo-computer-alessandro/)** *(14 Novembre 2026)* — La storia di come nacque il computer magico di Ale con tutti gli adesivi colorati e lo spirito giocoso di Sguisatazzo! ([🌐 Lettore Primi Passi](https://palladius.github.io/kids-own-stories/?story=storia-nascita-sguisatazzo-computer-alessandro&firstreader=1))
+* 🏖️🚤👵 **[La Grande Avventura in Sardegna: Cala Gonone, il Gommone con Nonna Lucilla e Arbatax](stories/riccardo/storia-sardegna-cala-gonone-arbatax-famiglia/)** *(2 Ottobre 2026)* — Il diario illustrato delle vacanze estive di famiglia tra le acque turchesi del Golfo di Orosei, il gommone con Nonna Lucilla e le rocce rosse di Arbatax! ([🌐 Lettore Primi Passi](https://palladius.github.io/kids-own-stories/?story=storia-sardegna-cala-gonone-arbatax-famiglia&firstreader=1))
 
 ---
 

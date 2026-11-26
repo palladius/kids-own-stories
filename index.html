@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script type="module" src="./src/puffin-login.js"></script>
-  <script src="./stories_catalog.js?v=0.14.0"></script>
-  <script src="./kids_books_catalog.js?v=0.14.0"></script>
+  <script src="./stories_catalog.js?v=0.15.0"></script>
+  <script src="./kids_books_catalog.js?v=0.15.0"></script>
   <style>
     @media (prefers-reduced-motion: no-preference) {
       @view-transition {
@@ -1181,6 +1181,252 @@
       padding-top: 4px;
       color: var(--paper-accent);
       font-weight: 700;
+    }
+
+    /* =========================================================================
+       LAYER-1 FIRST READER MODE ("PRIMI PASSI": <=12 WORDS, GIANT FONT, 0.9x)
+       ========================================================================= */
+    .first-reader-toggle-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fef3c7;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1.5px solid rgba(251, 191, 36, 0.55);
+      padding: 4px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .first-reader-toggle-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .first-reader-toggle-btn.active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border-color: #6ee7b7;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.48);
+    }
+
+    .book-prose.first-reader-prose {
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      justify-content: safe center;
+      overflow-y: auto;
+      padding: 2px 4px;
+    }
+
+    .book-prose.first-reader-prose p:first-of-type::first-letter {
+      float: none;
+      font-size: inherit;
+      line-height: inherit;
+      padding: 0;
+      color: inherit;
+    }
+
+    .first-reader-card {
+      background: #fffdf7;
+      border: 2px solid rgba(217, 119, 6, 0.32);
+      border-radius: 18px;
+      padding: 10px 15px;
+      box-shadow: 0 8px 24px rgba(124, 45, 18, 0.08);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 9px;
+      width: 100%;
+    }
+
+    .first-reader-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .first-reader-step-pill {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #7c2d12;
+      background: rgba(245, 158, 11, 0.18);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .first-reader-progress-track {
+      flex: 1 1 90px;
+      height: 8px;
+      background: rgba(154, 52, 18, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      min-width: 70px;
+    }
+
+    .first-reader-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #10b981);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .first-reader-case-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(154, 52, 18, 0.3);
+      background: #fff;
+      color: #7c2d12;
+      cursor: pointer;
+    }
+
+    .first-reader-case-btn.active {
+      background: #7c2d12;
+      color: #fffdf7;
+      border-color: #7c2d12;
+    }
+
+    .first-reader-sentence {
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: clamp(1.62rem, 2.35vw, 2.15rem);
+      font-weight: 600;
+      line-height: 1.48;
+      letter-spacing: 0.015em;
+      word-spacing: 0.08em;
+      color: #0f172a;
+      text-align: center;
+      padding: 8px 6px;
+      margin: 0;
+      min-height: 3.1em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      gap: 0.24em;
+    }
+
+    .first-reader-sentence.is-uppercase {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .first-reader-sentence .k-word {
+      padding: 2px 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.14s ease, background-color 0.14s ease, color 0.14s ease;
+    }
+
+    .first-reader-sentence .k-word:hover {
+      background: rgba(245, 158, 11, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .first-reader-sentence .k-word.active {
+      background: #fde047;
+      color: #7c2d12;
+      box-shadow: 0 3px 10px rgba(234, 179, 8, 0.45);
+      transform: translateY(-2px) scale(1.06);
+    }
+
+    .first-reader-sentence .k-word.spoken {
+      color: #047857;
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    .first-reader-actions {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .first-reader-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.0rem, 1.3vw, 1.18rem);
+      font-weight: 700;
+      min-height: 58px;
+      padding: 10px 18px;
+      border-radius: 16px;
+      border: 2px solid rgba(154, 52, 18, 0.25);
+      background: #ffffff;
+      color: #1e293b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .first-reader-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+    }
+
+    .first-reader-btn:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .first-reader-btn.prev-phrase {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      color: #7c2d12;
+    }
+
+    .first-reader-btn.listen-slow {
+      flex: 1 1 170px;
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border-color: #60a5fa;
+      color: #1e3a8a;
+    }
+
+    .first-reader-btn.listen-slow.is-playing {
+      background: linear-gradient(135deg, #fde047, #facc15);
+      border-color: #eab308;
+      color: #713f12;
+    }
+
+    .first-reader-btn.read-done {
+      flex: 1.25 1 200px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+    }
+
+    .first-reader-card-launch-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(16, 185, 129, 0.65);
+      background: rgba(16, 185, 129, 0.16);
+      color: #6ee7b7;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.16s ease;
+    }
+
+    .first-reader-card-launch-btn:hover {
+      background: #10b981;
+      color: #052e16;
+      transform: translateY(-1px);
     }
 
     .book-quote-ribbon {
@@ -4723,6 +4969,9 @@
         <option value="1.75">1.75x</option>
         <option value="2">2.0x</option>
       </select>
+      <button type="button" id="firstReaderToggleBtn" class="first-reader-toggle-btn notranslate" translate="no" aria-pressed="false" onclick="toggleFirstReaderMode()" title="Modalità Primi Passi nella Lettura (frasi brevi da 10-12 parole, font gigante e karaoke lento 0.9x per Ale e Seby)">
+        🧒 Primi Passi (0.9x)
+      </button>
       <button type="button" class="tab-pill netflix-tab-pill" style="padding:3px 10px;font-size:0.76rem;" onclick="openCinemaModal(0)" title="Guarda il Film Animato di 40s di questa storia a Tutto Schermo">
         🎬 Film 40s
       </button>
@@ -4782,7 +5031,7 @@
   <footer class="carlessian-footer">
     <div class="footer-left">
       <strong>Kids' Own Stories</strong>
-      <a href="CHANGELOG.md" id="footerVersionLink" data-version="0.14.0" target="_blank" rel="noopener">v0.14.0</a>
+      <a href="CHANGELOG.md" id="footerVersionLink" data-version="0.15.0" target="_blank" rel="noopener">v0.15.0</a>
       <span class="env-badge" data-env="development" id="footerEnvBadge">ENV: development</span>
     </div>
     <div class="footer-center" id="footerStoryActions">
@@ -4950,7 +5199,7 @@
   </dialog>
 
   <script>
-    const APP_VERSION = '0.14.0';
+    const APP_VERSION = '0.15.0';
     const STATE_STORAGE_KEY = 'kos_app_state_v1';
     function safeStorageGet(key) {
       try {
@@ -4994,6 +5243,14 @@
     let pendingLangCode = null;
     const pageIndexBySlug = {};
     let unmuteNextVideoRender = false;
+
+    // Layer-1 First Reader Mode ("Primi Passi" — GHI #4 / Septober #242)
+    let firstReaderEnabled = false;
+    let firstReaderUppercase = safeStorageGet('kos_first_reader_uppercase') === '1';
+    const firstReaderChunkByKey = {}; // key: `${slug}_${pageIdx}_${lang}` -> 0-based chunk index
+    let firstReaderSavedSpeed = 1.1;
+    let firstReaderSegmentStopSec = null;
+    let firstReaderAudioPlaying = false;
 
     // Illustrated Kids Book & Antolin State
     let kidsBookMode = null; // null (Adult Classic) | 'seby' (6-7 yo) | 'ale' (8-9 yo) | 'emma' (10-11+ yo)
@@ -6196,6 +6453,19 @@
         );
         bugLink.href = `https://github.com/palladius/kids-own-stories/issues/new?title=${bugTitle}&body=${bugBody}`;
       }
+      const frBtn = document.getElementById('firstReaderToggleBtn');
+      if (frBtn) {
+        frBtn.classList.toggle('active', Boolean(firstReaderEnabled));
+        frBtn.setAttribute('aria-pressed', firstReaderEnabled ? 'true' : 'false');
+        const frLabelMap = {
+          it: firstReaderEnabled ? '🧒 Primi Passi: ATTIVO (0.9x)' : '🧒 Primi Passi (0.9x)',
+          en: firstReaderEnabled ? '🧒 First Reader: ON (0.9x)' : '🧒 First Reader (0.9x)',
+          fr: firstReaderEnabled ? '🧒 Premiers Pas : ACTIF (0.9x)' : '🧒 Premiers Pas (0.9x)',
+          de: firstReaderEnabled ? '🧒 Erste Schritte: AN (0.9x)' : '🧒 Erste Schritte (0.9x)',
+          pt: firstReaderEnabled ? '🧒 Primeiros Passos: ON (0.9x)' : '🧒 Primeiros Passos (0.9x)'
+        };
+        frBtn.textContent = frLabelMap[currentLang] || frLabelMap.it;
+      }
     }
 
     function syncStateToUrl() {
@@ -6232,6 +6502,12 @@
         url.searchParams.set('parallel', '1');
       } else {
         url.searchParams.delete('parallel');
+      }
+      if (firstReaderEnabled && !isKidsBookActive && activeTab !== 'indice' && activeTab !== 'netflix') {
+        url.searchParams.set('firstreader', '1');
+      } else {
+        url.searchParams.delete('firstreader');
+        url.searchParams.delete('reader');
       }
       if (activeTab !== 'indice' && activeTab !== 'netflix' && curPageIdx > 0) {
         url.searchParams.set('page', String(curPageIdx + 1));
@@ -6304,6 +6580,13 @@
 
       if (urlParams.has('parallel')) {
         kidsParallelMode = urlParams.get('parallel') === '1';
+      }
+      if (urlParams.get('firstreader') === '1' || urlParams.get('reader') === 'first') {
+        firstReaderEnabled = true;
+        firstReaderSavedSpeed = currentPlaybackSpeed;
+        currentPlaybackSpeed = 0.9;
+        const sel = document.getElementById('playbackSpeedSelect');
+        if (sel) sel.value = '0.9';
       }
       applyPuffinUserDefaults(false);
 
@@ -6695,9 +6978,17 @@
       const story = (catalog.stories || []).find(s => s.slug === activeTab);
       if (!story) return;
 
-      // 1. Auto-Page-Turn when narrator crosses into the next page's timestamp
+      // Stop cleanly at end of current bite-sized phrase when First Reader Mode segment playback is active
+      if (firstReaderEnabled && firstReaderSegmentStopSec !== null && !narratorAudio.paused && t >= firstReaderSegmentStopSec) {
+        narratorAudio.pause();
+        firstReaderSegmentStopSec = null;
+        firstReaderAudioPlaying = false;
+        updateFirstReaderListenBtnState();
+      }
+
+      // 1. Auto-Page-Turn when narrator crosses into the next page's timestamp (disabled in phrase-by-phrase First Reader Mode)
       const kData = karaokeCache[`${story.slug}_${currentLang}`];
-      if (!narratorAudio.paused && kData && Array.isArray(kData.pages) && (Date.now() - lastManualTurnTimestamp > 1800)) {
+      if (!firstReaderEnabled && !narratorAudio.paused && kData && Array.isArray(kData.pages) && (Date.now() - lastManualTurnTimestamp > 1800)) {
         const curPageIdx = pageIndexBySlug[story.slug] || 0;
         const targetIdx = kData.pages.findIndex(kp => t >= (kp.start - 0.12) && t <= (kp.end + 0.35));
         if (targetIdx !== -1 && targetIdx !== curPageIdx) {
@@ -6732,10 +7023,390 @@
       }
 
       // 3. Auto-Scroll inside .book-prose so the spoken line stays comfortably centered
-      if (activeSpan) {
+      if (activeSpan && !firstReaderEnabled) {
         autoScrollActiveWordSpan(activeSpan);
       }
     }
+
+    /* =========================================================================
+       LAYER-1 FIRST READER ENGINE (<=12-WORD CHUNKER, 0.9x KARAOKE & TRIAD CHIME)
+       ========================================================================= */
+    const FIRST_READER_STRONG_END_RE = /[.!?…]+['"»”)\]]*$/;
+    const FIRST_READER_CLAUSE_END_RE = /[,;:—–)»”"]+$/;
+    const FIRST_READER_CONJ_WORDS = new Set([
+      'e','ed','ma','però','perché','mentre','quando','dove','così','finché','oppure','che','con','per','in','su','tra','fra','insieme','davanti','accanto','sotto','sopra','verso',
+      'and','but','while','when','where','because','until','as','with','into','from','that','which','who','under','over','across','through',
+      'et','mais','quand','pendant','comme','pour','dans','avec','qui','que','vers','sous','sur',
+      'und','aber','doch','als','wenn','während','weil','bis','mit','auf','für','dass','unter','über','durch',
+      'ou','mas','enquanto','porque','até','com','para','sob','sobre'
+    ]);
+    const FIRST_READER_NO_END_WORDS = new Set([
+      'il','lo','la','i','gli','le','un','uno','una','di','del','dello','della','dei','degli','delle',
+      'a','ad','al','allo','alla','ai','agli','alle','da','dal','dallo','dalla','dai','dagli','dalle',
+      'in','nel','nello','nella','nei','negli','nelle','su','sul','sullo','sulla','sui','sugli','sulle',
+      'con','per','tra','fra','che','non','più','molto','così','suo','sua','suoi','sue','mio','mia',
+      'the','an','of','to','in','on','at','by','for','with','from','his','her','their','my','our','its','very','so',
+      'du','des','au','aux','de','mon','ton','son','ma','ta','sa','mes','tes','ses','ce','cet','cette','ces','très','plus',
+      'der','die','das','den','dem','ein','eine','einer','einem','einen','eines','zu','zum','zur','im','am','vom','sein','seine','ihr','ihre','sehr',
+      'o','os','as','do','dos','das','no','na','nos','nas','ao','aos','um','uma','seu','sua'
+    ]);
+
+    function cleanFirstReaderToken(w) {
+      return String(w || '')
+        .replace(/^['"«“(\[]+|['"»”.,!?;:)\]]+$/g, '')
+        .toLowerCase();
+    }
+
+    function splitFirstReaderClause(tokens, maxWords = 12) {
+      const n = tokens.length;
+      if (n <= maxWords) return [tokens];
+      const ideal = Math.min(10, Math.max(5, Math.ceil(n / Math.ceil(n / 10))));
+      const lo = 3;
+      const hi = Math.min(maxWords, n - 3);
+      let bestK = Math.min(maxWords, Math.max(lo, ideal));
+      let bestScore = -99999;
+
+      for (let k = lo; k <= hi; k++) {
+        const prevW = String(tokens[k - 1].w || '');
+        const nextW = String(tokens[k].w || '');
+        const prevClean = cleanFirstReaderToken(prevW);
+        const nextClean = cleanFirstReaderToken(nextW);
+        const distPen = Math.abs(k - ideal) * 1.4;
+        let score = -distPen;
+        if (FIRST_READER_CLAUSE_END_RE.test(prevW) || nextW === '—' || nextW === '–') {
+          score += 35;
+        } else if (FIRST_READER_CONJ_WORDS.has(nextClean)) {
+          score += 20;
+        }
+        if (FIRST_READER_NO_END_WORDS.has(prevClean) || prevW.endsWith("'") || prevW.endsWith('’')) {
+          score -= 50;
+        }
+        if (score > bestScore) {
+          bestScore = score;
+          bestK = k;
+        }
+      }
+      return [tokens.slice(0, bestK), ...splitFirstReaderClause(tokens.slice(bestK), maxWords)];
+    }
+
+    function buildFirstReaderChunks(paragraphs, kPage = null, maxWords = 12) {
+      const rawChunks = [];
+      const kParas = Array.isArray(kPage?.paragraphs) ? kPage.paragraphs : [];
+      (paragraphs || []).forEach((pText, pIdx) => {
+        const alignedPara = Array.isArray(kParas[pIdx]) && kParas[pIdx].length > 0 ? kParas[pIdx] : null;
+        const tokens = alignedPara
+          ? alignedPara.map(item => ({ w: String(item.w || ''), s: typeof item.s === 'number' ? item.s : null, e: typeof item.e === 'number' ? item.e : null }))
+          : String(pText || '').trim().split(/\s+/).filter(Boolean).map(w => ({ w, s: null, e: null }));
+        if (!tokens.length) return;
+
+        const sentences = [];
+        let cur = [];
+        for (let i = 0; i < tokens.length; i++) {
+          cur.push(tokens[i]);
+          if (FIRST_READER_STRONG_END_RE.test(tokens[i].w)) {
+            sentences.push(cur);
+            cur = [];
+          }
+        }
+        if (cur.length) sentences.push(cur);
+
+        sentences.forEach(sent => {
+          splitFirstReaderClause(sent, maxWords).forEach(chunkToks => {
+            if (chunkToks.length) rawChunks.push(chunkToks);
+          });
+        });
+      });
+
+      return rawChunks.map((words, idx) => {
+        const timed = words.filter(x => typeof x.s === 'number' && typeof x.e === 'number');
+        return {
+          index: idx,
+          words,
+          wordCount: words.length,
+          text: words.map(x => x.w).join(' '),
+          startSec: timed.length ? timed[0].s : null,
+          endSec: timed.length ? timed[timed.length - 1].e : null
+        };
+      });
+    }
+
+    function getFirstReaderChunkKey(slug, pageIdx, lang = currentLang) {
+      return `${slug}_${pageIdx}_${lang}`;
+    }
+
+    function playFirstReaderTriadChime(isPageComplete = false) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        if (!pageFlipAudioCtx) pageFlipAudioCtx = new AudioCtx();
+        if (pageFlipAudioCtx.state === 'suspended') pageFlipAudioCtx.resume();
+        const ctx = pageFlipAudioCtx;
+        const notes = isPageComplete
+          ? [523.25, 659.25, 783.99, 1046.5] // C5 - E5 - G5 - C6 celebratory major chord
+          : [523.25, 659.25, 783.99];         // C5 - E5 - G5 C-major triad
+        const now = ctx.currentTime;
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.065);
+          gain.gain.setValueAtTime(0.0001, now + idx * 0.065);
+          gain.gain.exponentialRampToValueAtTime(0.11, now + idx * 0.065 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.065 + 0.28);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.065);
+          osc.stop(now + idx * 0.065 + 0.30);
+        });
+      } catch (_) {}
+    }
+
+    function updateFirstReaderListenBtnState() {
+      const btn = document.getElementById('firstReaderListenBtn');
+      if (!btn) return;
+      const isPlaying = Boolean(firstReaderAudioPlaying || browserTtsActive);
+      btn.classList.toggle('is-playing', isPlaying);
+      const labels = {
+        it: isPlaying ? '⏸️ Ascoltando (0.9x)…' : '🔊 Ascolta (0.9x)',
+        en: isPlaying ? '⏸️ Listening (0.9x)…' : '🔊 Listen (0.9x)',
+        fr: isPlaying ? '⏸️ Écoute (0.9x)…' : '🔊 Écouter (0.9x)',
+        de: isPlaying ? '⏸️ Läuft (0.9x)…' : '🔊 Anhören (0.9x)',
+        pt: isPlaying ? '⏸️ Ouvindo (0.9x)…' : '🔊 Ouvir (0.9x)'
+      };
+      btn.textContent = labels[currentLang] || labels.it;
+    }
+
+    function stopFirstReaderPlayback() {
+      firstReaderSegmentStopSec = null;
+      firstReaderAudioPlaying = false;
+      const narratorAudio = document.getElementById('narratorAudio');
+      if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
+      stopBrowserKaraokeSpeech();
+      updateFirstReaderListenBtnState();
+    }
+
+    function getSyncFirstReaderPageContext() {
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      if (!story) return null;
+      const slides = getSlidesForStory(story);
+      const pageIdx = Math.min(pageIndexBySlug[story.slug] || 0, slides.length - 1);
+      const slide = slides[pageIdx];
+      if (!slide || slide.type === 'video') return null;
+      const kData = karaokeCache[`${story.slug}_${currentLang}`] || null;
+      const kPages = kData?.pages || [];
+      const kPage = kPages[Math.min(pageIdx, Math.max(0, kPages.length - 1))] || null;
+      const chunks = buildFirstReaderChunks(slide.paragraphs || [], kPage, 12);
+      const key = getFirstReaderChunkKey(story.slug, pageIdx, currentLang);
+      const chunkIdx = Math.max(0, Math.min(firstReaderChunkByKey[key] || 0, Math.max(0, chunks.length - 1)));
+      firstReaderChunkByKey[key] = chunkIdx;
+      return { story, slides, pageIdx, slide, kPage, chunks, chunkIdx, chunk: chunks[chunkIdx] || null, key };
+    }
+
+    async function getActiveFirstReaderPageContext() {
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      if (!story) return null;
+      await ensureKaraokeLoaded(story, currentLang);
+      return getSyncFirstReaderPageContext();
+    }
+
+    async function playFirstReaderCurrentChunk() {
+      const ctx = await getActiveFirstReaderPageContext();
+      if (!ctx || !ctx.chunk) return;
+
+      if (firstReaderAudioPlaying || browserTtsActive) {
+        stopFirstReaderPlayback();
+        return;
+      }
+
+      // Enforce 0.9x slow didactic reading rate
+      setPlaybackSpeed(0.9);
+      const speedSel = document.getElementById('playbackSpeedSelect');
+      if (speedSel) speedSel.value = '0.9';
+
+      const hasStudioAudio = Boolean(ctx.story.assets?.narrated_audio?.[currentLang]) && typeof ctx.chunk.startSec === 'number' && typeof ctx.chunk.endSec === 'number';
+      const narratorAudio = document.getElementById('narratorAudio');
+
+      if (hasStudioAudio && narratorAudio) {
+        stopBrowserKaraokeSpeech();
+        lastManualTurnTimestamp = Date.now();
+        const startAt = Math.max(0, ctx.chunk.startSec - 0.04);
+        firstReaderSegmentStopSec = ctx.chunk.endSec + 0.08;
+        firstReaderAudioPlaying = true;
+        updateFirstReaderListenBtnState();
+
+        const startSegment = () => {
+          narratorAudio.preservesPitch = true;
+          narratorAudio.defaultPlaybackRate = 0.9;
+          narratorAudio.playbackRate = 0.9;
+          narratorAudio.currentTime = startAt;
+          narratorAudio.play().catch(() => {
+            firstReaderAudioPlaying = false;
+            updateFirstReaderListenBtnState();
+          });
+          startKaraokeLoop();
+        };
+        if (narratorAudio.readyState >= 1) {
+          startSegment();
+        } else {
+          narratorAudio.addEventListener('loadedmetadata', startSegment, { once: true });
+        }
+        return;
+      }
+
+      // Browser SpeechSynthesis fallback at 0.9x (strictly en-GB for English!)
+      if (!('speechSynthesis' in window)) return;
+      stopFirstReaderPlayback();
+      const primaryEl = document.querySelector('#openBookSpread .is-primary-page') || document.getElementById('openBookSpread');
+      const wordSpans = primaryEl ? Array.from(primaryEl.querySelectorAll('.first-reader-sentence .k-word')) : [];
+      if (!wordSpans.length) return;
+
+      const charOffsets = [];
+      let running = 0;
+      const parts = wordSpans.map(sp => {
+        const w = sp.textContent || '';
+        charOffsets.push({ start: running, end: running + w.length });
+        running += w.length + 1;
+        return w;
+      });
+      const utter = new SpeechSynthesisUtterance(parts.join(' '));
+      const bcpMap = { it: 'it-IT', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', pt: 'pt-BR' };
+      utter.lang = bcpMap[currentLang] || 'en-GB';
+      utter.rate = 0.9;
+
+      const highlightLocal = (wIdx) => {
+        wordSpans.forEach((sp, idx) => {
+          sp.classList.toggle('active', idx === wIdx);
+          sp.classList.toggle('spoken', idx < wIdx);
+        });
+      };
+
+      let boundaryFired = false;
+      utter.onboundary = (ev) => {
+        if (typeof ev.charIndex === 'number') {
+          boundaryFired = true;
+          const found = charOffsets.findIndex(o => ev.charIndex >= o.start && ev.charIndex <= o.end + 1);
+          if (found !== -1) highlightLocal(found);
+        }
+      };
+
+      let approxIdx = 0;
+      browserTtsFallbackTimer = setInterval(() => {
+        if (!browserTtsActive) return;
+        if (!boundaryFired && approxIdx < wordSpans.length) {
+          highlightLocal(approxIdx++);
+        }
+      }, 355);
+
+      utter.onend = () => {
+        stopBrowserKaraokeSpeech();
+        firstReaderAudioPlaying = false;
+        wordSpans.forEach(sp => { sp.classList.remove('active'); sp.classList.add('spoken'); });
+        updateFirstReaderListenBtnState();
+      };
+
+      browserTtsActive = true;
+      firstReaderAudioPlaying = true;
+      updateFirstReaderListenBtnState();
+      highlightLocal(0);
+      window.speechSynthesis.speak(utter);
+    }
+
+    function advanceFirstReaderChunk(delta = 1, withChime = false) {
+      const ctx = getSyncFirstReaderPageContext();
+      if (!ctx) return;
+      stopFirstReaderPlayback();
+
+      const nextChunkIdx = ctx.chunkIdx + delta;
+      if (nextChunkIdx >= 0 && nextChunkIdx < ctx.chunks.length) {
+        if (withChime && delta > 0) playFirstReaderTriadChime(false);
+        firstReaderChunkByKey[ctx.key] = nextChunkIdx;
+        renderActiveBook();
+        return;
+      }
+
+      if (delta > 0) {
+        if (withChime) playFirstReaderTriadChime(true);
+        const nextSlideIdx = ctx.pageIdx + 1;
+        if (nextSlideIdx < ctx.slides.length) {
+          const nextKey = getFirstReaderChunkKey(ctx.story.slug, nextSlideIdx, currentLang);
+          firstReaderChunkByKey[nextKey] = 0;
+          turnPage(1);
+        }
+      } else if (delta < 0 && ctx.pageIdx > 0) {
+        const prevSlideIdx = ctx.pageIdx - 1;
+        const prevSlide = ctx.slides[prevSlideIdx];
+        if (prevSlide && prevSlide.type !== 'video') {
+          const kData = karaokeCache[`${ctx.story.slug}_${currentLang}`] || null;
+          const prevKPage = kData?.pages?.[prevSlideIdx] || null;
+          const prevChunks = buildFirstReaderChunks(prevSlide.paragraphs || [], prevKPage, 12);
+          const prevKey = getFirstReaderChunkKey(ctx.story.slug, prevSlideIdx, currentLang);
+          firstReaderChunkByKey[prevKey] = Math.max(0, prevChunks.length - 1);
+        }
+        turnPage(-1);
+      }
+    }
+
+    function toggleFirstReaderUppercase() {
+      firstReaderUppercase = !firstReaderUppercase;
+      safeStorageSet('kos_first_reader_uppercase', firstReaderUppercase ? '1' : '0');
+      renderActiveBook();
+    }
+
+    function toggleFirstReaderMode(forceVal = null) {
+      const nextVal = typeof forceVal === 'boolean' ? forceVal : !firstReaderEnabled;
+      stopFirstReaderPlayback();
+      firstReaderEnabled = nextVal;
+      const speedSel = document.getElementById('playbackSpeedSelect');
+      if (firstReaderEnabled) {
+        firstReaderSavedSpeed = currentPlaybackSpeed || 1.1;
+        setPlaybackSpeed(0.9);
+        if (speedSel) speedSel.value = '0.9';
+      } else {
+        const restore = firstReaderSavedSpeed || 1.1;
+        setPlaybackSpeed(restore);
+        if (speedSel) speedSel.value = String(restore);
+      }
+      syncStateToUrl();
+      renderActiveBook();
+    }
+
+    function launchFirstReaderStory(slug) {
+      kidsBookMode = null;
+      document.body.classList.remove('kids-fullscreen-book');
+      firstReaderEnabled = true;
+      firstReaderSavedSpeed = currentPlaybackSpeed || 1.1;
+      setPlaybackSpeed(0.9);
+      const speedSel = document.getElementById('playbackSpeedSelect');
+      if (speedSel) speedSel.value = '0.9';
+      pageIndexBySlug[slug] = 0;
+      firstReaderChunkByKey[getFirstReaderChunkKey(slug, 0, currentLang)] = 0;
+      selectTab(slug);
+    }
+
+    window.__firstReaderMetrics = function () {
+      const primaryEl = document.querySelector('#openBookSpread .is-primary-page') || document.getElementById('openBookSpread');
+      const card = primaryEl ? primaryEl.querySelector('.first-reader-card') : null;
+      const sent = card ? card.querySelector('.first-reader-sentence') : null;
+      const listenBtn = document.getElementById('firstReaderListenBtn');
+      const nextBtn = document.getElementById('firstReaderNextBtn');
+      const words = sent ? Array.from(sent.querySelectorAll('.k-word')).map(el => el.textContent.trim()) : [];
+      const cs = sent ? window.getComputedStyle(sent) : null;
+      const story = (catalog.stories || []).find(s => s.slug === activeTab);
+      const curPageNum = story ? ((pageIndexBySlug[story.slug] || 0) + 1) : 0;
+      return {
+        enabled: Boolean(firstReaderEnabled),
+        cardVisible: Boolean(card && card.offsetParent !== null),
+        pageNum: curPageNum,
+        playbackSpeed: currentPlaybackSpeed,
+        uppercase: Boolean(firstReaderUppercase),
+        wordCount: words.length,
+        text: words.join(' '),
+        fontSizePx: cs ? parseFloat(cs.fontSize) : 0,
+        listenBtnHeightPx: listenBtn ? listenBtn.getBoundingClientRect().height : 0,
+        nextBtnHeightPx: nextBtn ? nextBtn.getBoundingClientRect().height : 0,
+        stepPill: card?.querySelector('.first-reader-step-pill')?.textContent?.trim() || ''
+      };
+    };
 
     function startKaraokeLoop() {
       if (karaokeRafId) cancelAnimationFrame(karaokeRafId);
@@ -6905,9 +7576,7 @@
     }
 
     function setLanguage(lang) {
-      stopBrowserKaraokeSpeech();
-      const narratorAudio = document.getElementById('narratorAudio');
-      if (narratorAudio && !narratorAudio.paused) narratorAudio.pause();
+      stopFirstReaderPlayback();
       if (kidsSentenceKaraokeRaf) {
         cancelAnimationFrame(kidsSentenceKaraokeRaf);
         kidsSentenceKaraokeRaf = null;
@@ -6958,9 +7627,7 @@
     }
 
     function selectTab(tabSlug, keepKidsMode = false) {
-      stopBrowserKaraokeSpeech();
-      const narratorAudio = document.getElementById('narratorAudio');
-      if (narratorAudio) narratorAudio.pause();
+      stopFirstReaderPlayback();
       const kidsAudio = document.getElementById('kidsStaticAudio');
       if (kidsAudio) kidsAudio.pause();
 
@@ -7321,6 +7988,14 @@
         const hoverVideo = s.assets?.hover_video || s.assets?.video?.file || '';
         const cta = currentLang === 'it' ? `Sfoglia (${pages.length} pag.)` : `Read (${pages.length} p.)`;
         const movieCta = currentLang === 'it' ? `Film 40s` : `40s Movie`;
+        const firstReaderCtaMap = {
+          it: '🧒 Primi Passi (0.9x)',
+          en: '🧒 First Reader (0.9x)',
+          fr: '🧒 Premiers Pas (0.9x)',
+          de: '🧒 Erstleser (0.9x)',
+          pt: '🧒 Primeiros Passos (0.9x)'
+        };
+        const firstReaderCta = firstReaderCtaMap[currentLang] || firstReaderCtaMap.it;
         const isSeby = s.author === 'sebastian';
         const kidClass = isSeby ? 'kid-badge--seby' : 'kid-badge--ale';
         const avatarClass = getPersonAvatarClass(s.author);
@@ -7385,6 +8060,11 @@
               ${kidsButtonsHtml}
               <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
                 <span class="page-turn-btn primary">${cta}</span>
+                <button type="button" class="first-reader-card-launch-btn"
+                  onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); launchFirstReaderStory('${s.slug}')"
+                  title="Modalità didattica Primi Passi: frasi brevi (≤12 parole), font gigante e karaoke lento 0.9x">
+                  ${firstReaderCta}
+                </button>
                 ${s.assets?.video?.file ? `
                   <button type="button" class="page-turn-btn"
                     onclick="event.stopPropagation(); onCardHoverEnd(this.closest('.index-card')); openStoryMovieFromIndex('${s.slug}')">
@@ -9675,7 +10355,7 @@
         viewportEl.classList.remove('kids-has-bg');
       }
 
-      const kData = await ensureKaraokeLoaded(story, currentLang);
+      const kData = karaokeCache[`${story.slug}_${currentLang}`] || await ensureKaraokeLoaded(story, currentLang);
 
       // Update topbar narrated audio player for current story & language
       const narratorBar = document.getElementById('narratorBar');
@@ -9944,6 +10624,99 @@
           </div>
           ${quoteText ? `<div class="book-quote-ribbon" style="margin-top:4px;">${quoteText}</div>` : ''}
         `;
+      } else if (firstReaderEnabled) {
+        const chunks = buildFirstReaderChunks(slide.paragraphs || [], kPage, 12);
+        const totalChunks = Math.max(1, chunks.length);
+        const frKey = getFirstReaderChunkKey(story.slug, idx, currentLang);
+        const chunkIdx = Math.max(0, Math.min(firstReaderChunkByKey[frKey] || 0, totalChunks - 1));
+        firstReaderChunkByKey[frKey] = chunkIdx;
+        const chunk = chunks[chunkIdx] || { words: [], wordCount: 0, text: '' };
+        const pct = Math.round(((chunkIdx + 1) / totalChunks) * 100);
+        const isFirstOverall = idx === 0 && chunkIdx === 0;
+        const isLastChunkOnPage = chunkIdx >= totalChunks - 1;
+        const hasNextSlide = idx + 1 < slides.length;
+        const isStoryLastChunk = isLastChunkOnPage && !hasNextSlide;
+
+        const stepNounMap = { it: 'Frase', en: 'Phrase', fr: 'Phrase', de: 'Satz', pt: 'Frase' };
+        const stepNoun = stepNounMap[currentLang] || 'Frase';
+        const listenLblMap = {
+          it: '🔊 Ascolta (0.9x)',
+          en: '🔊 Listen (0.9x)',
+          fr: '🔊 Écouter (0.9x)',
+          de: '🔊 Anhören (0.9x)',
+          pt: '🔊 Ouvir (0.9x)'
+        };
+        const nextChunkMap = {
+          it: '✅ Ho letto! ➔',
+          en: '✅ I read it! ➔',
+          fr: "✅ J'ai lu ! ➔",
+          de: '✅ Gelesen! ➔',
+          pt: '✅ Já li! ➔'
+        };
+        const nextPageMap = {
+          it: '🎉 Ho letto! Pagina ›',
+          en: '🎉 I read it! Next Page ›',
+          fr: "🎉 J'ai lu ! Page suiv. ›",
+          de: '🎉 Gelesen! Nächste ›',
+          pt: '🎉 Já li! Próxima ›'
+        };
+        const finishMap = {
+          it: '🏆 Bravo! Fine!',
+          en: '🏆 Well done!',
+          fr: '🏆 Bravo ! Fin !',
+          de: '🏆 Super! Fertig!',
+          pt: '🏆 Bravo! Fim!'
+        };
+        const nextBtnLabel = isStoryLastChunk
+          ? (finishMap[currentLang] || finishMap.it)
+          : (isLastChunkOnPage ? (nextPageMap[currentLang] || nextPageMap.it) : (nextChunkMap[currentLang] || nextChunkMap.it));
+
+        const chunkWordsHtml = (chunk.words || []).map(item => {
+          if (typeof item.s === 'number' && typeof item.e === 'number') {
+            return `<span class="k-word" data-start="${item.s}" data-end="${item.e}" onclick="seekNarratorToWord(${item.s})">${escapeHtml(item.w)}</span>`;
+          }
+          return `<span class="k-word" onclick="playFirstReaderCurrentChunk()">${escapeHtml(item.w)}</span>`;
+        }).join(' ');
+
+        const quoteHtml = (slide.isLastPage && isLastChunkOnPage && quoteText)
+          ? `<div class="book-quote-ribbon" style="margin-top:6px;">${quoteText}</div>`
+          : '';
+
+        rightBodyHtml = `
+          <div class="first-reader-card" data-chunk-idx="${chunkIdx}" data-total-chunks="${totalChunks}" onclick="event.stopPropagation()">
+            <div class="first-reader-topbar">
+              <span class="first-reader-step-pill">🧒 ${stepNoun} ${chunkIdx + 1} / ${totalChunks}</span>
+              <div class="first-reader-progress-track" aria-hidden="true">
+                <div class="first-reader-progress-fill" style="width:${pct}%"></div>
+              </div>
+              <button type="button" class="first-reader-case-btn ${firstReaderUppercase ? 'active' : ''}"
+                onclick="event.stopPropagation(); toggleFirstReaderUppercase()"
+                title="Alterna STAMPATELLO MAIUSCOLO / minuscolo">
+                ${firstReaderUppercase ? '🔤 MAIUSCOLO' : '🔤 a/A'}
+              </button>
+            </div>
+            <p class="first-reader-sentence ${firstReaderUppercase ? 'is-uppercase' : ''}">
+              ${chunkWordsHtml}
+            </p>
+            <div class="first-reader-actions">
+              <button type="button" class="first-reader-btn prev-phrase"
+                onclick="event.stopPropagation(); advanceFirstReaderChunk(-1, false)"
+                ${isFirstOverall ? 'disabled' : ''}
+                aria-label="Frase precedente" title="Frase precedente">
+                ‹
+              </button>
+              <button type="button" class="first-reader-btn listen-slow" id="firstReaderListenBtn"
+                onclick="event.stopPropagation(); playFirstReaderCurrentChunk()">
+                ${listenLblMap[currentLang] || listenLblMap.it}
+              </button>
+              <button type="button" class="first-reader-btn read-done" id="firstReaderNextBtn"
+                onclick="event.stopPropagation(); ${isStoryLastChunk ? 'playFirstReaderTriadChime(true)' : 'advanceFirstReaderChunk(1, true)'}">
+                ${nextBtnLabel}
+              </button>
+            </div>
+          </div>
+          ${quoteHtml}
+        `;
       } else {
         const paragraphsHtml = (slide.paragraphs || []).map((p, pIdx) => {
           const alignedPara = kPage?.paragraphs?.[pIdx] || null;
@@ -9976,8 +10749,12 @@
         ? `Pag. ${slide.pageNum} / ${slide.totalPages}`
         : `Page ${slide.pageNum} / ${slide.totalPages}`;
 
+      const proseExtraClass = slide.type === 'video'
+        ? 'movie-program-prose'
+        : (firstReaderEnabled ? 'first-reader-prose' : '');
+
       const primaryPageHtml = `
-        <div class="page-main-stack">
+        <div class="page-main-stack" onclick="event.stopPropagation()">
           ${topMediaHtml}
           <div class="page-bottom-story">
             <div class="book-text-main">
@@ -9989,17 +10766,17 @@
                 <h2 class="book-chapter-title" id="activePageHeading" tabindex="-1">${chapterTitleStaticHtml}</h2>
               </div>
 
-              <div class="book-prose ${slide.type === 'video' ? 'movie-program-prose' : ''}">
+              <div class="book-prose ${proseExtraClass}">
                 ${rightBodyHtml}
               </div>
             </div>
 
-            <div class="book-nav-footer">
-              <button type="button" class="page-turn-btn" onclick="turnPage(-1)" ${idx === 0 ? 'disabled' : ''}>
+            <div class="book-nav-footer" onclick="event.stopPropagation()">
+              <button type="button" class="page-turn-btn" onclick="event.stopPropagation(); turnPage(-1)" ${idx === 0 ? 'disabled' : ''}>
                 ${prevLabel}
               </button>
               <div class="book-dots" role="tablist" aria-label="Pagine del libro">${dotsHtml}</div>
-              <button type="button" class="page-turn-btn primary" onclick="turnPage(1)" ${idx === slides.length - 1 ? 'disabled' : ''}>
+              <button type="button" class="page-turn-btn primary" onclick="event.stopPropagation(); turnPage(1)" ${idx === slides.length - 1 ? 'disabled' : ''}>
                 ${nextLabel}
               </button>
             </div>
@@ -10192,7 +10969,7 @@
       const cur = pageIndexBySlug[story.slug] || 0;
       const next = cur + delta;
       if (next >= 0 && next < slides.length) {
-        if (browserTtsActive) stopBrowserKaraokeSpeech();
+        stopFirstReaderPlayback();
         lastManualTurnTimestamp = Date.now();
         const dir = delta > 0 ? 'next' : 'prev';
         playPageFlipRustle(dir);
@@ -10223,7 +11000,7 @@
 
       const cur = pageIndexBySlug[story.slug] || 0;
       if (index === cur) return;
-      if (browserTtsActive) stopBrowserKaraokeSpeech();
+      stopFirstReaderPlayback();
       lastManualTurnTimestamp = Date.now();
       const dir = index > cur ? 'next' : 'prev';
       playPageFlipRustle(dir);
@@ -10264,7 +11041,7 @@
 
       const isInteractiveTarget = (target) => {
         if (!target || !target.closest) return false;
-        return Boolean(target.closest('button, a, select, input, textarea, video, audio, .kw-token, .kids-comic-bubble, .kids-notebook-floating-bar'));
+        return Boolean(target.closest('button, a, select, input, textarea, video, audio, .kw-token, .k-word, .first-reader-card, .kids-comic-bubble, .kids-notebook-floating-bar'));
       };
 
       const updateDragLeafPreview = (dx, dy) => {
@@ -10476,7 +11253,7 @@
 
       if (activeTab === 'indice' || activeTab === 'netflix') return;
 
-      // Spacebar toggles Play / Pause on the active Kids Book audio (or Adult Narrator audio)
+      // Spacebar toggles Play / Pause on the active Kids Book audio, First Reader 0.9x phrase, or Adult Narrator audio
       if (e.code === 'Space' || e.key === ' ') {
         e.preventDefault();
         if (kidsBookMode) {
@@ -10495,6 +11272,10 @@
           }
           return;
         }
+        if (firstReaderEnabled && document.querySelector('#openBookSpread .first-reader-card')) {
+          playFirstReaderCurrentChunk();
+          return;
+        }
         const narratorAudio = document.getElementById('narratorAudio');
         if (narratorAudio && !narratorAudio.hidden && narratorAudio.src) {
           if (!narratorAudio.paused) {
@@ -10504,6 +11285,24 @@
           }
         }
         return;
+      }
+
+      if (firstReaderEnabled && !kidsBookMode && document.querySelector('#openBookSpread .first-reader-card')) {
+        if (e.key === 'Enter' && (!activeEl || (activeEl.tagName !== 'BUTTON' && activeEl.tagName !== 'A' && activeEl.tagName !== 'SELECT'))) {
+          e.preventDefault();
+          advanceFirstReaderChunk(1, true);
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          advanceFirstReaderChunk(1, false);
+          return;
+        }
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          advanceFirstReaderChunk(-1, false);
+          return;
+        }
       }
 
       if (e.key === 'ArrowRight') turnPage(1);
